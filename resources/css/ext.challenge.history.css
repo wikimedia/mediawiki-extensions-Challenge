@@ -1,0 +1,54 @@
+select[name="status-filter"] {
+	font-size: 10px;
+}
+
+.challenge-nav {
+	padding-bottom: 25px;
+	width: 740;
+}
+
+.challenge-history-table {
+	border-collapse: collapse; /* cellspacing=0 equivalent */
+	border: 0;
+	padding: 3px;
+	width: 830px;
+}
+
+.challenge-history-header {
+	color: #666666;
+	font-size: 12px;
+	font-weight: 800;
+	padding-right: 5px;
+}
+
+.challenge-history-empty {
+	font-size: 11px;
+}
+
+.challenge-data {
+	border-bottom: 1px solid #eeeeee;
+	font-size: 11px;
+	padding: 5px;
+	vertical-align: top;
+}
+
+.challenge-data img {
+	padding: 2px;
+}
+
+.challenge-data-description {
+	width: 150px;
+}
+
+.challenge-history-filter {
+	float: right;
+}
+
+.challenge-link {
+	float: left;
+}
+
+.challenge-link a {
+	font-weight: 800;
+	font-size: 15px;
+}

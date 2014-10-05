@@ -1,0 +1,31 @@
+.challenge-standings-table {
+	border: 0;
+	border-collapse: collapse;
+	padding: 3px;
+}
+
+.challenge-standings-title {
+	font-size: 12px;
+	font-weight: 800;
+	padding-right: 5px;
+}
+
+.challenge-standings {
+	border-bottom: 1px solid #eeeeee;
+	font-size: 11px;
+	padding: 5px;
+	vertical-align: top;
+}
+
+.challenge-standings img {
+	padding: 2px;
+}
+
+.challenge-standings-user-link {
+	color: #666;
+}
+
+.challenge-standings-history-link {
+	font-size: 13px;
+	font-weight: bold;
+}

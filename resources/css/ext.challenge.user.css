@@ -1,0 +1,49 @@
+.challenge-user-top {
+	padding-bottom: 15px;
+}
+
+.challenge-user-title {
+	color: #78BA5D;
+	font-size: 15px;
+	font-weight: 800;
+	padding-bottom: 4px;
+}
+
+.challenge-field {
+	padding-bottom: 10px;
+}
+
+.challenge-label {
+	color: #666666;
+}
+
+.challenge-user-info {
+	padding-bottom: 20px;
+	width: 400px;
+}
+
+.challenge-info {
+	border: 1px solid #cccccc;
+	float: right;
+	padding: 5px;
+	width: 200px;
+}
+
+.challenge-user-top a {
+	font-size: 12px;
+	font-weight: 800;
+	text-decoration: none;
+}
+
+.challenge-user-avatar {
+	float: left;
+	width: 75px;
+}
+
+.challenge-user-stats {
+	float: right;
+}
+
+.challenge-user-or {
+	margin: 10px 0px 10px 0px;
+}
