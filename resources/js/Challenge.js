@@ -116,7 +116,7 @@ var Challenge = {
 	}
 };
 
-$( document ).ready( function() {
+$( function() {
 	// Special:ChallengeHistory (SpecialChallengeHistory.php)
 	$( 'select[name="status-filter"]' ).on( 'change', function() {
 		Challenge.changeFilter( $( this ).data( 'username' ), $( this ).val() );

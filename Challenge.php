@@ -53,6 +53,7 @@ $wgResourceModules['ext.challenge.js.main'] = array(
 		'challenge-js-accepted', 'challenge-js-rejected', 'challenge-js-countered',
 		'challenge-js-winner-recorded', 'challenge-js-rating-submitted'
 	),
+	'dependencies' => 'mediawiki.util',
 	'localBasePath' => __DIR__,
 	'remoteExtPath' => 'Challenge'
 );
@@ -71,6 +72,7 @@ $wgResourceModules['ext.challenge.js.datevalidator'] = array(
 
 $wgResourceModules['ext.challenge.js.datepicker'] = array(
 	'scripts' => 'resources/js/DatePicker.js',
+	'dependencies' => 'jquery.ui.datepicker',
 	'localBasePath' => __DIR__,
 	'remoteExtPath' => 'Challenge'
 );
@@ -93,6 +95,10 @@ $wgAutoloadClasses['ChallengeHistory'] = __DIR__ . '/ChallengeHistory.php';
 $wgAutoloadClasses['ChallengeStandings'] = __DIR__ . '/ChallengeStandings.php';
 $wgAutoloadClasses['ChallengeUser'] = __DIR__ . '/ChallengeUser.php';
 $wgAutoloadClasses['ChallengeView'] = __DIR__ . '/ChallengeView.php';
+
+// Special page UI templates
+$wgAutoloadClasses['ChallengeUserTemplate'] = __DIR__ . '/templates/challengeuser.tmpl.php';
+$wgAutoloadClasses['ChallengeViewTemplate'] = __DIR__ . '/templates/challengeview.tmpl.php';
 
 // New special pages
 $wgSpecialPages['ChallengeAction'] = 'ChallengeAction';

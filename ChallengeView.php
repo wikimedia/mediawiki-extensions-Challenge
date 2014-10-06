@@ -44,7 +44,6 @@ class ChallengeView extends SpecialPage {
 		$title1 = Title::makeTitle( NS_USER, $challenge['user_name_1'] );
 		$title2 = Title::makeTitle( NS_USER, $challenge['user_name_2'] );
 
-		require_once( 'templates/challengeview.tmpl.php' );
 		$template = new ChallengeViewTemplate();
 
 		$template->setRef( 'c', $c );

@@ -55,6 +55,7 @@ class ChallengeUser extends SpecialPage {
 				$_SESSION['alreadysubmitted'] = true;
 				$c = new Challenge();
 				$c->addChallenge(
+					$this->getUser(),
 					$this->user_name_to,
 					$request->getVal( 'info' ),
 					$request->getVal( 'date' ),
@@ -65,7 +66,7 @@ class ChallengeUser extends SpecialPage {
 
 				$output->setPageTitle(
 					$this->msg( 'challengeuser-challenge-sent-title',
-						$this->user_name_to )->parse()
+						$this->user_name_to )
 				);
 
 				$out = '<div class="challenge-links">';
@@ -164,7 +165,6 @@ class ChallengeUser extends SpecialPage {
 		$neu = Challenge::getUserFeedbackScoreByType( 0, $this->user_id_to );
 		$total = ( $pos + $neg + $neu );
 
-		require_once( 'templates/challengeuser.tmpl.php' );
 		$template = new ChallengeUserTemplate();
 
 		$template->set( 'pos', $pos );

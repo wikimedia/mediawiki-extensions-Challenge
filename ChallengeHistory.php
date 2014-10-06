@@ -66,7 +66,7 @@ class ChallengeHistory extends SpecialPage {
 
 			$this->getOutput()->setPageTitle(
 				$this->msg( 'challengehistory-users-history',
-					$userTitle->getText() )->parse()
+					$userTitle->getText() )
 			);
 			$out .= $this->displayUserHeader( $userTitle->getText(), $userId );
 		} else {

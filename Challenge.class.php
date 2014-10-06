@@ -38,6 +38,7 @@ class Challenge {
 	 * Add a challenge to the database and send a challenge request mail to the
 	 * challenged user.
 	 *
+	 * @param User $challenger The user (object) who challenged $user_to
 	 * @param string $user_to Name of the person who was challenged
 	 * @param $info
 	 * @param $event_date
@@ -45,17 +46,15 @@ class Challenge {
 	 * @param string $win_terms User-supplied win terms
 	 * @param string $lose_terms User-supplied lose terms
 	 */
-	public function addChallenge( $user_to, $info, $event_date, $description, $win_terms, $lose_terms ) {
-		global $wgUser;
-
+	public function addChallenge( $challenger, $user_to, $info, $event_date, $description, $win_terms, $lose_terms ) {
 		$user_id_to = User::idFromName( $user_to );
 
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->insert(
 			'challenge',
 			array(
-				'challenge_user_id_1' => $wgUser->getId(),
-				'challenge_username1' => $wgUser->getName(),
+				'challenge_user_id_1' => $challenger->getId(),
+				'challenge_username1' => $challenger->getName(),
 				'challenge_user_id_2' => $user_id_to,
 				'challenge_username2' => $user_to,
 				'challenge_info' => $info,
@@ -70,7 +69,7 @@ class Challenge {
 		);
 
 		$this->challenge_id = $dbw->insertId();
-		$this->sendChallengeRequestEmail( $user_id_to, $wgUser->getName(), $this->challenge_id );
+		$this->sendChallengeRequestEmail( $user_id_to, $challenger->getName(), $this->challenge_id );
 	}
 
 	public function sendChallengeRequestEmail( $user_id_to, $user_from, $id ) {
