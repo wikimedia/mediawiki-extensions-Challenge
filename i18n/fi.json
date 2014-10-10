@@ -63,6 +63,7 @@
 	"challengehistory-view-standings": "Tarkastele tilastoja",
 	"challengestandings": "Haastetilastot",
 	"challengestandings-challengeuser": "haasta käyttäjä",
+	"challengestandings-empty": "Haastetilastot ovat tyhjät. Miksi et [[Special:ChallengeUser|haastaisi jotakuta]]?",
 	"challengestandings-l": "H",
 	"challengestandings-t": "T",
 	"challengestandings-title": "{{GRAMMAR:genitive|{{SITENAME}}}} haastetilastot",

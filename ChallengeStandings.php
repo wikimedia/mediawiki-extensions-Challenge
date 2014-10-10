@@ -79,6 +79,14 @@ class ChallengeStandings extends SpecialPage {
 
 		$out .= '</table>';
 
+		// No rows = nothing to display. This is the case usually when the
+		// extension was recently installed, as the users haven't yet had the
+		// time to challenge each other. Display an informational message in
+		// that case.
+		if ( $dbr->numRows( $res ) === 0 ) {
+			$out = $this->msg( 'challengestandings-empty' )->parse();
+		}
+
 		$this->getOutput()->addHTML( $out );
 	}
 }

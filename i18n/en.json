@@ -71,6 +71,7 @@
 	"challengehistory-view-standings": "View standings",
 	"challengestandings": "Challenge Standings",
 	"challengestandings-challengeuser": "challenge user",
+	"challengestandings-empty": "There are no challenge standings. Why don't you [[Special:ChallengeUser|challenge someone]]?",
 	"challengestandings-l": "L",
 	"challengestandings-t": "T",
 	"challengestandings-title": "{{SITENAME}} Challenge Standings",
