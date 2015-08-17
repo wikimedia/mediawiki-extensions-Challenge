@@ -109,7 +109,7 @@ class ChallengeHistory extends SpecialPage {
 		$out .= $this->msg( 'word-separator' )->escaped();
 		$out .= "{$standings_link}
 			</div>
-			<div class=\"cleared\"></div>
+			<div class=\"visualClear\"></div>
 		</div>
 
 		<table class=\"challenge-history-table\">

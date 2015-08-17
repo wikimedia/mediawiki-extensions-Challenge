@@ -52,7 +52,7 @@ class ChallengeUserTemplate extends QuickTemplate {
 			) ); ?>)</div>
 		</div>
 	</div>
-	<div class="cleared"></div>
+	<div class="visualClear"></div>
 
 	<div class="challenge-user-title"><?php echo wfMessage( 'challengeuser-enter-info' )->plain() ?></div>
 	<form action="" method="post" enctype="multipart/form-data" name="challenge">
@@ -91,7 +91,7 @@ class ChallengeUserTemplate extends QuickTemplate {
 		<div class="challenge-buttons">
 			<input type="button" class="createbox challenge-send-button site-button" value="<?php echo wfMessage( 'challengeuser-submit-button' )->plain() ?>" size="20" />
 		</div>
-		<div class="cleared"></div>
+		<div class="visualClear"></div>
 	</form>
 <?php
 	} // execute()

@@ -81,7 +81,7 @@ class ChallengeUser extends SpecialPage {
 				$out .= $this->msg( 'challengeuser-sent', $this->user_name_to )->parse();
 				$out .= '</div>';
 
-				$out .= '<div class="cleared"></div>';
+				$out .= '<div class="visualClear"></div>';
 
 				$output->addHTML( $out );
 			} else {
