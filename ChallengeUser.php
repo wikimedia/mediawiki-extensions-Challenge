@@ -6,6 +6,10 @@ class ChallengeUser extends SpecialPage {
 		parent::__construct( 'ChallengeUser' );
 	}
 
+	public function doesWrites() {
+		return true;
+	}
+
 	/**
 	 * Under which header this special page is listed in Special:SpecialPages?
 	 *
