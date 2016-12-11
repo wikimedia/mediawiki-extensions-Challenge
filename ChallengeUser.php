@@ -101,6 +101,9 @@ class ChallengeUser extends SpecialPage {
 		$this->getOutput()->setPageTitle( $this->msg(
 			'challengeuser-info-title-no-user' )->plain() );
 
+		// JS required for autocompleting the user name (T152885)
+		$this->getOutput()->addModules( 'mediawiki.userSuggest' );
+
 		// @todo FIXME: rename form & HTML classes/IDs
 		$output = '<form action="" method="get" enctype="multipart/form-data" name="gift">
 		<input type="hidden" name="title" value="' . htmlspecialchars( $this->getRequest()->getVal( 'title' ), ENT_QUOTES ) . '" />';
@@ -140,7 +143,7 @@ class ChallengeUser extends SpecialPage {
 		$output .= $this->msg( 'challengeuser-type-username' )->plain();
 		$output .= '</div>';
 		$output .= '<div class="give-gift-textbox">
-			<input type="text" width="85" name="user" value="" />
+			<input type="text" width="85" name="user" class="mw-autocomplete-user" value="" />
 			<input class="site-button" type="button" value="' .
 				$this->msg( 'challengeuser-start-button' )->plain() .
 				'" onclick="document.gift.submit()" />
