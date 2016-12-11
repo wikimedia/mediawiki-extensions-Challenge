@@ -36,6 +36,7 @@
 	"challenge_lose_body": "Hi $1.\n\n\t$2 has won the challenge on {{SITENAME}}!\n\nGo to $3 to view the challenge details and terms.\n\nThanks\n\nThe {{SITENAME}} Team\n\n---\n\nHey, want to stop getting e-mails from us?\n\nClick $4\nand change your settings to disable e-mail notifications.",
 	"challenge_win_subject": "Congratulations! You've beaten $1 in {{SITENAME}} challenge #$2!",
 	"challenge_win_body": "Hi $1.\n\n\tYou've won the {{SITENAME}} challenge against $2!\n\nGo to $3 to view the challenge details and terms.\n\nThanks\n\nThe {{SITENAME}} Team\n\n---\n\nHey, want to stop getting e-mails from us?\n\nClick $4\nand change your settings to disable e-mail notifications.",	"challengeaction": "Challenge Standings",
+	"challengeaction-go-away": "This page isn't meant to be directly accessed. Perhaps you meant to [[Special:ChallengeUser|challenge a user]] instead?",
 	"challengehistory": "Challenge History",
 	"challengehistory-all": "All",
 	"challengehistory-accepted": "accepted",

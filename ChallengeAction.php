@@ -14,8 +14,17 @@ class ChallengeAction extends UnlistedSpecialPage {
 	public function execute( $par ) {
 		$request = $this->getRequest();
 		$c = new Challenge();
+		$action = $request->getVal( 'action' );
 
-		switch ( $request->getVal( 'action' ) ) {
+		if ( !$action ) {
+			// This page isn't supposed to be accessed directly, but who knows
+			// what the users will do, so show an informative message in case
+			// if some poor soul ends up here directly (bug T152890)
+			$this->getOutput()->addWikiMsg( 'challengeaction-go-away' );
+			return;
+		}
+
+		switch ( $action ) {
 			case 1:
 				$c->updateChallengeStatus(
 					$request->getVal( 'id' ),
