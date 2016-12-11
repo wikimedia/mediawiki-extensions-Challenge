@@ -105,8 +105,8 @@ class ChallengeUser extends SpecialPage {
 		$this->getOutput()->addModules( 'mediawiki.userSuggest' );
 
 		// @todo FIXME: rename form & HTML classes/IDs
-		$output = '<form action="" method="get" enctype="multipart/form-data" name="gift">
-		<input type="hidden" name="title" value="' . htmlspecialchars( $this->getRequest()->getVal( 'title' ), ENT_QUOTES ) . '" />';
+		$output = '<form action="" method="get" enctype="multipart/form-data" name="gift">';
+		$output .= Html::hidden( 'title', $this->getPageTitle() );
 
 		$output .= '<div class="give-gift-message">';
 		$output .= $this->msg( 'challengeuser-info-body-no-user' )->plain();
@@ -147,7 +147,8 @@ class ChallengeUser extends SpecialPage {
 			<input class="site-button" type="button" value="' .
 				$this->msg( 'challengeuser-start-button' )->plain() .
 				'" onclick="document.gift.submit()" />
-		</div>';
+		</div>
+		</form>';
 
 		return $output;
 	}
