@@ -6,10 +6,10 @@
  * @ingroup Extensions
  */
 
-$aliases = array();
+$specialPageAliases = array();
 
 /** English */
-$aliases['en'] = array(
+$specialPageAliases['en'] = array(
 	'ChallengeAction' => array( 'ChallengeAction' ),
 	'ChallengeHistory' => array( 'ChallengeHistory' ),
 	'ChallengeStandings' => array( 'ChallengeStandings' ),
@@ -18,7 +18,7 @@ $aliases['en'] = array(
 );
 
 /** Finnish (Suomi) */
-$aliases['fi'] = array(
+$specialPageAliases['fi'] = array(
 	'ChallengeAction' => array( 'Haastetoiminto' ),
 	'ChallengeHistory' => array( 'Haastehistoria' ),
 	'ChallengeStandings' => array( 'Haastetilastot' ),
