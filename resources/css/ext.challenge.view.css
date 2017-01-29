@@ -1,14 +1,14 @@
 .challenge-main-table {
-	background-color: #eeeeee;
-	border: 1px solid #cccccc;
-	border-collapse: collapse; /* cellspacing=0 equivalent */
+	background-color: #eee;
+	border: 1px solid #ccc;
+	border-collapse: collapse;
 	padding: 8px;
 }
 
 .challenge-title {
-	color: #78BA5D;
+	color: #78ba5d;
 	font-size: 15px;
-	font-weight: 800;
+	font-weight: 700;
 	padding-bottom: 10px;
 }
 
@@ -18,13 +18,13 @@
 
 .challenge-user-link {
 	font-size: 14px;
-	font-weight: 800;
+	font-weight: 700;
 }
 
 .challenge-status-text {
-	color: #666666;
+	color: #666;
 	font-size: 14px;
-	font-weight: 800;
+	font-weight: 700;
 }
 
 .challenge-form {
@@ -34,22 +34,22 @@
 
 /* Admin-only link for cancelling the challenge */
 a.challenge-admin-cancel-link {
-	color: #990000;
+	color: #990;
 }
 
 .challenge-terms-container {
-	border-collapse: collapse; /* cellspacing=0 equivalent */
+	border-collapse: collapse;
 	padding: 0;
 }
 
 .challenge-terms {
-	border-collapse: collapse; /* cellspacing=0 equivalent */
+	border-collapse: collapse;
 	padding: 0;
 	width: 300px;
 }
 
 .challenge-line {
-	border-bottom: 1px solid #cccccc;
+	border-bottom: 1px solid #ccc;
 	margin-bottom: 15px;
 	width: 800px;
 }

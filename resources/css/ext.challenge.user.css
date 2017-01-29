@@ -3,7 +3,7 @@
 }
 
 .challenge-user-title {
-	color: #78BA5D;
+	color: #78ba5d;
 	font-size: 15px;
 	font-weight: 800;
 	padding-bottom: 4px;
@@ -14,7 +14,7 @@
 }
 
 .challenge-label {
-	color: #666666;
+	color: #666;
 }
 
 .challenge-user-info {
@@ -23,15 +23,16 @@
 }
 
 .challenge-info {
-	border: 1px solid #cccccc;
+	border: 1px solid #ccc;
 	float: right;
-	padding: 5px;
 	width: 200px;
+	padding: 5px;
+
 }
 
 .challenge-user-top a {
 	font-size: 12px;
-	font-weight: 800;
+	font-weight: 700;
 	text-decoration: none;
 }
 
@@ -45,5 +46,5 @@
 }
 
 .challenge-user-or {
-	margin: 10px 0px 10px 0px;
+	margin: 10px 0;
 }

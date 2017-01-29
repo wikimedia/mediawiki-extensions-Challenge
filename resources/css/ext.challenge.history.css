@@ -3,21 +3,21 @@ select[name="status-filter"] {
 }
 
 .challenge-nav {
+	width: 740px;
 	padding-bottom: 25px;
-	width: 740;
 }
 
 .challenge-history-table {
-	border-collapse: collapse; /* cellspacing=0 equivalent */
 	border: 0;
-	padding: 3px;
+	border-collapse: collapse;
 	width: 830px;
+	padding: 3px;
 }
 
 .challenge-history-header {
-	color: #666666;
+	color: #666;
 	font-size: 12px;
-	font-weight: 800;
+	font-weight: 700;
 	padding-right: 5px;
 }
 
@@ -26,10 +26,10 @@ select[name="status-filter"] {
 }
 
 .challenge-data {
-	border-bottom: 1px solid #eeeeee;
+	border-bottom: 1px solid #eee;
 	font-size: 11px;
-	padding: 5px;
 	vertical-align: top;
+	padding: 5px;
 }
 
 .challenge-data img {
@@ -49,6 +49,6 @@ select[name="status-filter"] {
 }
 
 .challenge-link a {
-	font-weight: 800;
 	font-size: 15px;
+	font-weight: 700;
 }
