@@ -5,6 +5,7 @@
 			"David Pean"
 		]
 	},
+	"challenge-desc": "Allows challenging other users",
 	"challenge-status-rejected": "rejected",
 	"challenge-status-removed": "removed",
 	"challenge-status-awaiting": "awaiting acceptance",

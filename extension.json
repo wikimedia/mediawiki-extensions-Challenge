@@ -7,7 +7,7 @@
 		"Jack Phoenix"
 	],
 	"url": "https://www.mediawiki.org/wiki/Extension:Challenge",
-	"description": "Allows challenging other users",
+	"descriptionmsg": "challenge-desc",
 	"license-name": "GPL-2.0+",
 	"type": "other",
 	"GroupPermissions": {
