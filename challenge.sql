@@ -1,5 +1,5 @@
 CREATE TABLE /*_*/challenge (
-  challenge_id int(11) NOT NULL auto_increment PRIMARY KEY,
+  challenge_id int(11) NOT NULL PRIMARY KEY auto_increment,
   -- Challenger
   challenge_user_id_1 int(11) NOT NULL default 0,
   challenge_username1 varchar(255) NOT NULL default '',
@@ -23,7 +23,7 @@ CREATE TABLE /*_*/challenge (
 )/*$wgDBTableOptions*/;
 
 CREATE TABLE /*_*/challenge_rate (
-  challenge_rate_id int(11) NOT NULL auto_increment PRIMARY KEY,
+  challenge_rate_id int(11) NOT NULL PRIMARY KEY auto_increment,
   challenge_id int(11) NOT NULL default 0,
   challenge_rate_date varbinary(14) NOT NULL default '',
   challenge_rate_user_id int(11) NOT NULL default 0,
