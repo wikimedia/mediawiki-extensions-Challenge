@@ -31,18 +31,18 @@
 		]
 	},
 	"ExtensionMessagesFiles": {
-		"ChallengeAliases": "Challenge.alias.php"
+		"ChallengeAliases": "includes/Challenge.alias.php"
 	},
 	"AutoloadClasses": {
-		"Challenge": "Challenge.class.php",
-		"ChallengeAction": "ChallengeAction.php",
-		"ChallengeHistory": "ChallengeHistory.php",
-		"ChallengeStandings": "ChallengeStandings.php",
-		"ChallengeUser": "ChallengeUser.php",
-		"ChallengeView": "ChallengeView.php",
-		"ChallengeUserTemplate": "templates/challengeuser.tmpl.php",
-		"ChallengeViewTemplate": "templates/challengeview.tmpl.php",
-		"ChallengeHooks": "ChallengeHooks.php"
+		"Challenge": "includes/Challenge.class.php",
+		"ChallengeAction": "includes/specials/SpecialChallengeAction.php",
+		"ChallengeHistory": "includes/specials/SpecialChallengeHistory.php",
+		"ChallengeStandings": "includes/specials/SpecialChallengeStandings.php",
+		"ChallengeUser": "includes/specials/SpecialChallengeUser.php",
+		"ChallengeView": "includes/specials/SpecialChallengeView.php",
+		"ChallengeUserTemplate": "includes/templates/ChallengeUser.template.php",
+		"ChallengeViewTemplate": "includes/templates/ChallengeView.template.php",
+		"ChallengeHooks": "includes/Challenge.hooks.php"
 	},
 	"ResourceModules": {
 		"ext.challenge.history": {

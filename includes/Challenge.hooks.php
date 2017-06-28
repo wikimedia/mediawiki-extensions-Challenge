@@ -16,7 +16,7 @@ class ChallengeHooks {
 
 		$dbType = $updater->getDB()->getType();
 
-		$filename = 'challenge.sql';
+		$filename = '../sql/challenge.sql';
 		// For non-MySQL/MariaDB/SQLite DBMSes, use the appropriately named file
 		/*
 		if ( !in_array( $dbType, array( 'mysql', 'sqlite' ) ) ) {
