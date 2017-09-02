@@ -260,7 +260,7 @@ class Challenge {
 		$user = User::newFromId( $id );
 		$username = $user->getName();
 
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 		$dbw = wfGetDB( DB_MASTER );
 		$wins = 0;
 		$losses = 0;
@@ -377,7 +377,7 @@ class Challenge {
 	 * @return int Challenge count for the given user (ID)
 	 */
 	static function getChallengeCount( $userId = 0 ) {
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 		$challengeCount = 0;
 
 		$userSQL = array();
