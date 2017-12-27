@@ -24,9 +24,9 @@ class ChallengeHooks {
 		}
 		*/
 
-		$updater->addExtensionUpdate( array( 'addTable', 'challenge', "{$dir}/{$filename}", true ) );
-		$updater->addExtensionUpdate( array( 'addTable', 'challenge_rate', "{$dir}/{$filename}", true ) );
-		$updater->addExtensionUpdate( array( 'addTable', 'challenge_user_record', "{$dir}/{$filename}", true ) );
+		$updater->addExtensionTable( 'challenge', "{$dir}/{$filename}" );
+		$updater->addExtensionTable( 'challenge_rate', "{$dir}/{$filename}" );
+		$updater->addExtensionTable( 'challenge_user_record', "{$dir}/{$filename}" );
 
 		return true;
 	}
