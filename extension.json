@@ -46,20 +46,16 @@
 	},
 	"ResourceModules": {
 		"ext.challenge.history": {
-			"styles": "resources/css/ext.challenge.history.css",
-			"position": "top"
+			"styles": "resources/css/ext.challenge.history.css"
 		},
 		"ext.challenge.user": {
-			"styles": "resources/css/ext.challenge.user.css",
-			"position": "top"
+			"styles": "resources/css/ext.challenge.user.css"
 		},
 		"ext.challenge.standings": {
-			"styles": "resources/css/ext.challenge.standings.css",
-			"position": "top"
+			"styles": "resources/css/ext.challenge.standings.css"
 		},
 		"ext.challenge.view": {
-			"styles": "resources/css/ext.challenge.view.css",
-			"position": "top"
+			"styles": "resources/css/ext.challenge.view.css"
 		},
 		"ext.challenge.js.main": {
 			"scripts": "resources/js/Challenge.js",
