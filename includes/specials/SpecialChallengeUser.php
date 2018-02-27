@@ -179,10 +179,10 @@ class ChallengeUser extends SpecialPage {
 		$template->set( 'neg', $neg );
 		$template->set( 'neu', $neu );
 		$template->set( 'total', $total );
-		$template->setRef( 'class', $this );
-		$template->setRef( 'user_title', $user_title );
-		$template->setRef( 'challenge_history_title', $challenge_history_title );
-		$template->setRef( 'avatar', $avatar );
+		$template->set( 'class', $this );
+		$template->set( 'user_title', $user_title );
+		$template->set( 'challenge_history_title', $challenge_history_title );
+		$template->set( 'avatar', $avatar );
 
 		return $template->getHTML();
 	}
