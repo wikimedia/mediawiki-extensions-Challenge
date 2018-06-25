@@ -113,8 +113,8 @@ class ChallengeUser extends SpecialPage {
 		$output .= '</div>';
 
 		if ( $wgFriendingEnabled ) {
-			$rel = new UserRelationship( $this->getUser()->getName() );
-			$friends = $rel->getRelationshipList( 1 );
+			$listLookup = new RelationshipListLookup( $this->getUser() );
+			$friends = $listLookup->getFriendList();
 			if ( $friends ) {
 				$output .= '<div class="give-gift-title">';
 				$output .= $this->msg( 'challengeuser-select-friend-from-list' )->plain();
