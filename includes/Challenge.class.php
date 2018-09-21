@@ -21,7 +21,7 @@ class Challenge {
 	 * @see https://bugzilla.wikimedia.org/show_bug.cgi?id=68045
 	 * @see https://gerrit.wikimedia.org/r/#/c/146514/
 	 *
-	 * @param User $string User (object) whom to send an email
+	 * @param User $user User (object) whom to send an email
 	 * @param string $subject Email subject
 	 * @param $string $body Email contents (HTML)
 	 * @return Status object
@@ -30,7 +30,7 @@ class Challenge {
 		global $wgPasswordSender;
 		$sender = new MailAddress( $wgPasswordSender,
 			wfMessage( 'emailsender' )->inContentLanguage()->text() );
-		$to = new MailAddress( $user );
+		$to = new MailAddress( $user->getEmail(), $user->getName(), $user->getRealName() );
 		return UserMailer::send( $to, $sender, $subject, $body, array( 'contentType' => 'text/html; charset=UTF-8' ) );
 	}
 
