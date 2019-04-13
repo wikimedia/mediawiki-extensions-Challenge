@@ -157,5 +157,6 @@
 	"challengeview-won-by": "Challenge won by <b>$1</b>",
 	"challengeview-was-push": "Challenge was a push!",
 	"challengeview-you-won": "You won the challenge!",
+	"action-challengeadmin": "administrate challenges",
 	"right-challengeadmin": "Administrate challenges"
 }

@@ -152,5 +152,6 @@
 	"challengeview-won-by": "A hint message",
 	"challengeview-was-push": "A hint message",
 	"challengeview-you-won": "A hint message",
+	"action-challengeadmin": "{{doc-action|challengeadmin}}",
 	"right-challengeadmin": "{{doc-right|challengeadmin}}"
 }
