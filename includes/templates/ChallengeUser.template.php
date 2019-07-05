@@ -24,8 +24,8 @@ class ChallengeUserTemplate extends QuickTemplate {
 		Linker::link(
 			$this->data['challenge_history_title'],
 			wfMessage( 'challengeuser-completehistory' )->plain(),
-			array(),
-			array( 'user' => $this->data['class']->user_name_to )
+			[],
+			[ 'user' => $this->data['class']->user_name_to ]
 		) . ' - ' .
 		Linker::link(
 			$this->data['challenge_history_title'],
@@ -39,17 +39,17 @@ class ChallengeUserTemplate extends QuickTemplate {
 		</div>
 		<div class="challenge-user-info">
 			<div class="challenge-user-avatar">
-				<?php echo $this->data['avatar']->getAvatarURL( array( 'align' => 'middle' ) ); ?>
+				<?php echo $this->data['avatar']->getAvatarURL( [ 'align' => 'middle' ] ); ?>
 			</div>
 			<div class="challenge-user-stats">
 			<div class="challenge-user-title"><?php echo wfMessage( 'challengeuser-users-stats', $this->data['class']->user_name_to )->escaped(); ?></div>
 			<div class="challenge-user-record"><?php echo wfMessage( 'challengeuser-record' )->plain() ?> <b><?php echo Challenge::getUserChallengeRecord( $this->data['class']->user_id_to ) ?></b></div>
 			<div class="challenge-user-feedback"><?php echo wfMessage( 'challengeuser-feedback' )->numParams( $this->data['total'] )->parse() ?> (<?php echo
-			$this->data['class']->getLanguage()->pipeList( array(
+			$this->data['class']->getLanguage()->pipeList( [
 				wfMessage( 'challengehistory-positive2' )->numParams( $this->data['pos'] )->parse(),
 				wfMessage( 'challengehistory-negative2' )->numParams( $this->data['neg'] )->parse(),
 				wfMessage( 'challengehistory-neutral2' )->numParams( $this->data['neu'] )->parse()
-			) ); ?>)</div>
+			] ); ?>)</div>
 		</div>
 	</div>
 	<div class="visualClear"></div>

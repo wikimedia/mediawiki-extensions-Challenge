@@ -103,8 +103,8 @@ class ChallengeHistory extends SpecialPage {
 		$out .= Linker::link(
 			$challenge_link,
 			$msg,
-			array(),
-			( ( $u ) ? array( 'user' => $u ) : array() )
+			[],
+			( ( $u ) ? [ 'user' => $u ] : [] )
 		);
 		$out .= $this->msg( 'word-separator' )->escaped();
 		$out .= "{$standings_link}
@@ -147,19 +147,19 @@ class ChallengeHistory extends SpecialPage {
 				$challengeViewLink = Linker::link(
 					$challenge_view_title,
 					htmlspecialchars( $challenge['info'] . ' [' . $challenge['date'] . ']' ),
-					array(),
-					array( 'id' => $challenge['id'] )
+					[],
+					[ 'id' => $challenge['id'] ]
 				);
 
-				$av1 = $avatar1->getAvatarURL( array( 'align' => 'absmiddle' ) ); // @todo FIXME: invalid HTML5
-				$av2 = $avatar2->getAvatarURL( array( 'align' => 'absmiddle' ) ); // @todo FIXME: invalid HTML5
+				$av1 = $avatar1->getAvatarURL( [ 'align' => 'absmiddle' ] ); // @todo FIXME: invalid HTML5
+				$av2 = $avatar2->getAvatarURL( [ 'align' => 'absmiddle' ] ); // @todo FIXME: invalid HTML5
 				$winnerSymbol = Html::element(
 					'img',
-					array(
+					[
 						'src' => $imgPath . 'winner-check.gif',
 						'alt' => '',
 						'align' => 'absmiddle' // @todo FIXME: invalid HTML5
-					)
+					]
 				);
 
 				$out .= "<tr>
@@ -206,8 +206,8 @@ class ChallengeHistory extends SpecialPage {
 				$out .= Linker::link(
 					$challenge_history_title,
 					$this->msg( 'challengehistory-prev' )->plain(),
-					array(),
-					array( 'user' => $user_name, 'page' => ( $page - 1 ) )
+					[],
+					[ 'user' => $user_name, 'page' => ( $page - 1 ) ]
 				) . $this->msg( 'word-separator' )->escaped();
 			}
 
@@ -225,8 +225,8 @@ class ChallengeHistory extends SpecialPage {
 					$out .= Linker::link(
 						$challenge_history_title,
 						$i,
-						array(),
-						array( 'user' => $user_name, 'page' => $i )
+						[],
+						[ 'user' => $user_name, 'page' => $i ]
 					) . $this->msg( 'word-separator' )->escaped();
 				}
 			}
@@ -235,8 +235,8 @@ class ChallengeHistory extends SpecialPage {
 				$out .= $this->msg( 'word-separator' )->escaped() . Linker::link(
 					$challenge_history_title,
 					$this->msg( 'challengehistory-next' )->plain(),
-					array(),
-					array( 'user' => $user_name, 'page' => ( $page + 1 ) )
+					[],
+					[ 'user' => $user_name, 'page' => ( $page + 1 ) ]
 				);
 			}
 			$out .= '</div>';

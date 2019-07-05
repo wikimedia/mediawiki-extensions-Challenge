@@ -44,12 +44,12 @@ class ChallengeStandings extends SpecialPage {
 		 	$out .= '<tr>
 				<td class="challenge-standings">' . $x . '</td>
 				<td class="challenge-standings">';
-			$out .= $avatar1->getAvatarURL( array( 'align' => 'absmiddle' ) ); // @todo FIXME: invalid HTML5
+			$out .= $avatar1->getAvatarURL( [ 'align' => 'absmiddle' ] ); // @todo FIXME: invalid HTML5
 			$out .= Linker::link(
 				SpecialPage::getTitleFor( 'ChallengeHistory' ),
 				$row->challenge_record_username,
-				array( 'class' => 'challenge-standings-history-link' ),
-				array( 'user' => $row->challenge_record_username )
+				[ 'class' => 'challenge-standings-history-link' ],
+				[ 'user' => $row->challenge_record_username ]
 			);
 			$out .= $this->msg( 'word-separator' )->escaped();
 			$out .= $user1Icon . '</td>';
@@ -67,8 +67,8 @@ class ChallengeStandings extends SpecialPage {
 				$out .= Linker::link(
 					SpecialPage::getTitleFor( 'ChallengeUser' ),
 					$this->msg( 'challengestandings-challengeuser' )->plain(),
-					array( 'class' => 'challenge-standings-user-link' ),
-					array( 'user' => $row->challenge_record_username )
+					[ 'class' => 'challenge-standings-user-link' ],
+					[ 'user' => $row->challenge_record_username ]
 				);
 				$out .= '</td>';
 			}

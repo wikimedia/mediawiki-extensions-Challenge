@@ -23,7 +23,7 @@ class ChallengeView extends SpecialPage {
 	public function execute( $par ) {
 		$this->getOutput()->setPageTitle( $this->msg( 'challengeview' ) );
 
-		$id = (int) $this->getRequest()->getVal( 'id', $par );
+		$id = (int)$this->getRequest()->getVal( 'id', $par );
 		if ( $id == '' ) {
 			$this->getOutput()->addHTML( $this->msg( 'challengeview-nochallenge' )->plain() );
 		} else {

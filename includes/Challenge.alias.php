@@ -6,22 +6,22 @@
  * @ingroup Extensions
  */
 
-$specialPageAliases = array();
+$specialPageAliases = [];
 
 /** English */
-$specialPageAliases['en'] = array(
-	'ChallengeAction' => array( 'ChallengeAction' ),
-	'ChallengeHistory' => array( 'ChallengeHistory' ),
-	'ChallengeStandings' => array( 'ChallengeStandings' ),
-	'ChallengeUser' => array( 'ChallengeUser' ),
-	'ChallengeView' => array( 'ChallengeView' ),
-);
+$specialPageAliases['en'] = [
+	'ChallengeAction' => [ 'ChallengeAction' ],
+	'ChallengeHistory' => [ 'ChallengeHistory' ],
+	'ChallengeStandings' => [ 'ChallengeStandings' ],
+	'ChallengeUser' => [ 'ChallengeUser' ],
+	'ChallengeView' => [ 'ChallengeView' ],
+];
 
-/** Finnish (Suomi) */
-$specialPageAliases['fi'] = array(
-	'ChallengeAction' => array( 'Haastetoiminto' ),
-	'ChallengeHistory' => array( 'Haastehistoria' ),
-	'ChallengeStandings' => array( 'Haastetilastot' ),
-	'ChallengeUser' => array( 'Haasta_käyttäjä' ),
-	'ChallengeView' => array( 'Tarkastele_haastetta' ),
-);
+/** Finnish (suomi) */
+$specialPageAliases['fi'] = [
+	'ChallengeAction' => [ 'Haastetoiminto' ],
+	'ChallengeHistory' => [ 'Haastehistoria' ],
+	'ChallengeStandings' => [ 'Haastetilastot' ],
+	'ChallengeUser' => [ 'Haasta_käyttäjä' ],
+	'ChallengeView' => [ 'Tarkastele_haastetta' ],
+];

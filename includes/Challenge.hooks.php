@@ -9,7 +9,6 @@ class ChallengeHooks {
 	 * user runs /maintenance/update.php (the core database updater script).
 	 *
 	 * @param DatabaseUpdater $updater
-	 * @return bool
 	 */
 	public static function onLoadExtensionSchemaUpdates( $updater ) {
 		$dir = __DIR__;
@@ -19,7 +18,7 @@ class ChallengeHooks {
 		$filename = '../sql/challenge.sql';
 		// For non-MySQL/MariaDB/SQLite DBMSes, use the appropriately named file
 		/*
-		if ( !in_array( $dbType, array( 'mysql', 'sqlite' ) ) ) {
+		if ( !in_array( $dbType, [ 'mysql', 'sqlite' ] ) ) {
 			$filename = "challenge.{$dbType}.sql";
 		}
 		*/
@@ -27,8 +26,6 @@ class ChallengeHooks {
 		$updater->addExtensionTable( 'challenge', "{$dir}/{$filename}" );
 		$updater->addExtensionTable( 'challenge_rate', "{$dir}/{$filename}" );
 		$updater->addExtensionTable( 'challenge_user_record', "{$dir}/{$filename}" );
-
-		return true;
 	}
 
 }

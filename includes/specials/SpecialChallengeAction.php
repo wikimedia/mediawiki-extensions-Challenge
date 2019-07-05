@@ -57,7 +57,7 @@ class ChallengeAction extends UnlistedSpecialPage {
 				$dbw = wfGetDB( DB_MASTER );
 				$dbw->insert(
 					'challenge_rate',
-					array(
+					[
 						'challenge_id' => $request->getVal( 'id' ),
 						'challenge_rate_submitter_user_id' => $this->getUser()->getId(),
 						'challenge_rate_submitter_username' => $this->getUser()->getName(),
@@ -66,7 +66,7 @@ class ChallengeAction extends UnlistedSpecialPage {
 						'challenge_rate_date' => $dbw->timestamp(),
 						'challenge_rate_score' => $request->getVal( 'challenge_rate' ),
 						'challenge_rate_comment' => $request->getVal( 'rate_comment' )
-					),
+					],
 					__METHOD__
 				);
 				break;

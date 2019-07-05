@@ -31,10 +31,10 @@ class ChallengeUser extends SpecialPage {
 
 		// Add CSS & JS via ResourceLoader
 		$output->addModuleStyles( 'ext.challenge.user' );
-		$output->addModules( array(
+		$output->addModules( [
 			'ext.challenge.js.main',
 			'ext.challenge.js.datepicker'
-		) );
+		] );
 
 		$userTitle = Title::newFromDBkey( $request->getVal( 'user', $par ) );
 		if ( !$userTitle ) {
@@ -127,7 +127,7 @@ class ChallengeUser extends SpecialPage {
 				foreach ( $friends as $friend ) {
 					$output .= Html::element(
 						'option',
-						array( 'value' => $friend['user_name'] ),
+						[ 'value' => $friend['user_name'] ],
 						$friend['user_name']
 					);
 				}

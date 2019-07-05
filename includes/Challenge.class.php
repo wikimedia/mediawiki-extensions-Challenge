@@ -4,11 +4,11 @@
  */
 class Challenge {
 
-	public $rating_names = array(
+	public $rating_names = [
 		1 => 'positive',
 		-1 => 'negative',
 		0 => 'neutral'
-	);
+	];
 
 	/**
 	 * Quickie wrapper function for sending out an email as properly rendered
@@ -31,7 +31,7 @@ class Challenge {
 		$sender = new MailAddress( $wgPasswordSender,
 			wfMessage( 'emailsender' )->inContentLanguage()->text() );
 		$to = new MailAddress( $user->getEmail(), $user->getName(), $user->getRealName() );
-		return UserMailer::send( $to, $sender, $subject, $body, array( 'contentType' => 'text/html; charset=UTF-8' ) );
+		return UserMailer::send( $to, $sender, $subject, $body, [ 'contentType' => 'text/html; charset=UTF-8' ] );
 	}
 
 	/**
@@ -52,7 +52,7 @@ class Challenge {
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->insert(
 			'challenge',
-			array(
+			[
 				'challenge_user_id_1' => $challenger->getId(),
 				'challenge_username1' => $challenger->getName(),
 				'challenge_user_id_2' => $user_id_to,
@@ -64,7 +64,7 @@ class Challenge {
 				'challenge_status' => 0,
 				'challenge_date' => $dbw->timestamp(),
 				'challenge_event_date' => $event_date
-			),
+			],
 			__METHOD__
 		);
 
@@ -84,7 +84,7 @@ class Challenge {
 				'challenge_request_body',
 				$user->getName(),
 				$user_from,
-				$challenge_view_title->getFullURL( array( 'id' => $id ) ),
+				$challenge_view_title->getFullURL( [ 'id' => $id ] ),
 				$update_profile_link->getFullURL()
 			)->text();
 			$this->sendMail( $user, $subject, $body );
@@ -103,7 +103,7 @@ class Challenge {
 				'challenge_accept_body',
 				$user->getName(),
 				$user_from,
-				$challenge_view_title->getFullURL( array( 'id' => $id ) ),
+				$challenge_view_title->getFullURL( [ 'id' => $id ] ),
 				$update_profile_link->getFullURL()
 			)->text();
 			$this->sendMail( $user, $subject, $body );
@@ -126,7 +126,7 @@ class Challenge {
 				'challenge_lose_body',
 				$user->getName(),
 				$user_from,
-				$challenge_view_title->getFullURL( array( 'id' => $id ) ),
+				$challenge_view_title->getFullURL( [ 'id' => $id ] ),
 				$update_profile_link->getFullURL()
 			)->text();
 			$this->sendMail( $user, $subject, $body );
@@ -144,7 +144,7 @@ class Challenge {
 				'challenge_win_body',
 				$user->getName(),
 				$user_from,
-				$challenge_view_title->getFullURL( array( 'id' => $id ) ),
+				$challenge_view_title->getFullURL( [ 'id' => $id ] ),
 				$update_profile_link->getFullURL()
 			)->text();
 			$this->sendMail( $user, $subject, $body );
@@ -162,8 +162,8 @@ class Challenge {
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->update(
 			'challenge',
-			array( 'challenge_status' => $status ),
-			array( 'challenge_id' => $challenge_id ),
+			[ 'challenge_status' => $status ],
+			[ 'challenge_id' => $challenge_id ],
 			__METHOD__
 		);
 		$c = $this->getChallenge( $challenge_id );
@@ -212,14 +212,14 @@ class Challenge {
 		$dbr = wfGetDB( DB_MASTER );
 		$s = $dbr->selectRow(
 			'challenge',
-			array(
+			[
 				'challenge_user_id_1', 'challenge_username1', 'challenge_user_id_2',
 				'challenge_username2', 'challenge_info', 'challenge_event_date',
 				'challenge_description', 'challenge_win_terms',
 				'challenge_lose_terms', 'challenge_winner_user_id',
 				'challenge_winner_username', 'challenge_status'
-			),
-			array( 'challenge_id' => $id ),
+			],
+			[ 'challenge_id' => $id ],
 			__METHOD__
 		);
 
@@ -247,11 +247,11 @@ class Challenge {
 		$dbr = wfGetDB( DB_MASTER );
 		$dbr->update(
 			'challenge',
-			array(
+			[
 				'challenge_winner_user_id' => $user_id,
 				'challenge_winner_username' => $user_name
-			),
-			array( 'challenge_id' => $id ),
+			],
+			[ 'challenge_id' => $id ],
 			__METHOD__
 		);
 	}
@@ -268,10 +268,10 @@ class Challenge {
 
 		$res = $dbr->select(
 			'challenge_user_record',
-			array( 'challenge_wins', 'challenge_losses', 'challenge_ties' ),
-			array( 'challenge_record_user_id' => $id ),
+			[ 'challenge_wins', 'challenge_losses', 'challenge_ties' ],
+			[ 'challenge_record_user_id' => $id ],
 			__METHOD__,
-			array( 'LIMIT' => 1 )
+			[ 'LIMIT' => 1 ]
 		);
 		$row = $dbr->fetchObject( $res );
 		if ( !$row ) {
@@ -288,13 +288,13 @@ class Challenge {
 			}
 			$dbw->insert(
 				'challenge_user_record',
-				array(
+				[
 					'challenge_record_user_id' => $id,
 					'challenge_record_username' => $username,
 					'challenge_wins' => $wins,
 					'challenge_losses' => $losses,
 					'challenge_ties' => $ties
-				),
+				],
 				__METHOD__
 			);
 		} else {
@@ -314,12 +314,12 @@ class Challenge {
 			}
 			$dbw->update(
 				'challenge_user_record',
-				array(
+				[
 					'challenge_wins' => $wins,
 					'challenge_losses' => $losses,
 					'challenge_ties' => $ties
-				),
-				array( 'challenge_record_user_id' => $id ),
+				],
+				[ 'challenge_record_user_id' => $id ],
 				__METHOD__
 			);
 		}
@@ -337,8 +337,8 @@ class Challenge {
 		$dbr = wfGetDB( DB_MASTER );
 		$s = $dbr->selectRow(
 			'challenge',
-			array( 'challlenge_user_id_1', 'challlenge_user_id_2' ),
-			array( 'challenge_id' => $challengeId ),
+			[ 'challlenge_user_id_1', 'challlenge_user_id_2' ],
+			[ 'challenge_id' => $challengeId ],
 			__METHOD__
 		);
 		if ( $s !== false ) {
@@ -360,8 +360,8 @@ class Challenge {
 		$openChallengeCount = 0;
 		$s = $dbr->selectRow(
 			'challenge',
-			array( 'COUNT(*) AS count' ),
-			array( 'challenge_user_id_2' => $userId, 'challenge_status' => 0 ),
+			[ 'COUNT(*) AS count' ],
+			[ 'challenge_user_id_2' => $userId, 'challenge_status' => 0 ],
 			__METHOD__
 		);
 		if ( $s !== false ) {
@@ -380,14 +380,14 @@ class Challenge {
 		$dbr = wfGetDB( DB_REPLICA );
 		$challengeCount = 0;
 
-		$userSQL = array();
+		$userSQL = [];
 		if ( $userId ) {
-			$userSQL = array( 'challenge_user_id_1' => $userId );
+			$userSQL = [ 'challenge_user_id_1' => $userId ];
 		}
 
 		$s = $dbr->selectRow(
 			'challenge',
-			array( 'COUNT(*) AS count' ),
+			[ 'COUNT(*) AS count' ],
 			$userSQL,
 			__METHOD__
 		);
@@ -407,7 +407,7 @@ class Challenge {
 	 * @return array
 	 */
 	public function getChallenge( $id ) {
-		$id = (int) $id; // paranoia!
+		$id = (int)$id; // paranoia!
 		$dbr = wfGetDB( DB_MASTER );
 		$sql = "SELECT {$dbr->tableName( 'challenge' )}.challenge_id AS id, challenge_user_id_1, challenge_username1, challenge_user_id_2, challenge_username2, challenge_info, challenge_description, challenge_event_date, challenge_status, challenge_winner_username, challenge_winner_user_id,
 			challenge_win_terms, challenge_lose_terms, challenge_rate_score, challenge_rate_comment
@@ -416,9 +416,9 @@ class Challenge {
 			WHERE {$dbr->tableName( 'challenge' )}.challenge_id = {$id}";
 		$res = $dbr->query( $sql, __METHOD__ );
 
-		$challenge = array();
+		$challenge = [];
 		foreach ( $res as $row ) {
-			$challenge[] = array(
+			$challenge[] = [
 				'id' => $row->id,
 				'status' => $row->challenge_status,
 				'user_id_1' => $row->challenge_user_id_1,
@@ -434,7 +434,7 @@ class Challenge {
 				'winner_user_name' => $row->challenge_winner_username,
 				'rating' => $row->challenge_rate_score,
 				'rating_comment' => $row->challenge_rate_comment
-			);
+			];
 		}
 
 		return $challenge[0];
@@ -481,9 +481,9 @@ class Challenge {
 
 		$res = $dbr->query( $sql, __METHOD__ );
 
-		$challenges = array();
+		$challenges = [];
 		foreach ( $res as $row ) {
-			$challenges[] = array(
+			$challenges[] = [
 				'id' => $row->id,
 				'status' => $row->challenge_status,
 				'user_id_1' => $row->challenge_user_id_1,
@@ -499,7 +499,7 @@ class Challenge {
 				'winner_user_name' => $row->challenge_winner_username,
 				'rating' => $row->challenge_rate_score,
 				'rating_comment' => $row->challenge_rate_comment
-			);
+			];
 		}
 
 		return $challenges;
@@ -515,8 +515,8 @@ class Challenge {
 		$dbr = wfGetDB( DB_MASTER );
 		$s = $dbr->selectRow(
 			'challenge_user_record',
-			array( 'challenge_wins', 'challenge_losses', 'challenge_ties' ),
-			array( 'challenge_record_user_id' => $userId ),
+			[ 'challenge_wins', 'challenge_losses', 'challenge_ties' ],
+			[ 'challenge_record_user_id' => $userId ],
 			__METHOD__
 		);
 		if ( $s !== false ) {
@@ -533,13 +533,13 @@ class Challenge {
 	 */
 	public static function getUserFeedbackScoreByType( $rateType, $userId ) {
 		$dbr = wfGetDB( DB_MASTER );
-		return (int) $dbr->selectField(
+		return (int)$dbr->selectField(
 			'challenge_rate',
 			'COUNT(*) AS total',
-			array(
+			[
 				'challenge_rate_user_id' => $userId,
 				'challenge_rate_score' => $rateType
-			),
+			],
 			__METHOD__
 		);
 	}

@@ -25,20 +25,20 @@ class ChallengeViewTemplate extends QuickTemplate {
 				<span class="challenge-user-title"><?php echo Linker::link(
 					$this->data['title1'],
 					$this->data['title1']->getText(),
-					array( 'class' => 'challenge-user-link' )
+					[ 'class' => 'challenge-user-link' ]
 				) ?></span> (<?php echo $this->data['c']->getUserChallengeRecord( $challenge['user_id_1'] ) ?>)
 				<br /><?php echo Linker::link(
 					$challenge_history_title,
 					wfMessage( 'challengeview-view-history' )->plain(),
-					array( 'class' => 'challenge-small-link' ),
-					array( 'user' => $this->data['title1']->getDBkey() )
+					[ 'class' => 'challenge-small-link' ],
+					[ 'user' => $this->data['title1']->getDBkey() ]
 				); ?>
 				<?php if ( $user->getName() !== $this->data['title1']->getText() ) { ?>
 				<br /><?php echo Linker::link(
 					$challenge_user_title,
 					wfMessage( 'challengeview-issue-challenge' )->plain(),
-					array( 'class' => 'challenge-small-link' ),
-					array( 'user' => $this->data['title1']->getDBkey() )
+					[ 'class' => 'challenge-small-link' ],
+					[ 'user' => $this->data['title1']->getDBkey() ]
 				); ?>
 				<?php } ?>
 			</td>
@@ -50,20 +50,20 @@ class ChallengeViewTemplate extends QuickTemplate {
 				<span class="challenge-user-link"><?php echo Linker::link(
 					$this->data['title2'],
 					$this->data['title2']->getText(),
-					array( 'class' => 'challenge-user-link' )
+					[ 'class' => 'challenge-user-link' ]
 				) ?></span> (<?php echo $this->data['c']->getUserChallengeRecord( $challenge['user_id_2'] ) ?>)
 				<br /><?php echo Linker::link(
 					$challenge_history_title,
 					wfMessage( 'challengeview-view-history' )->plain(),
-					array( 'class' => 'challenge-small-link' ),
-					array( 'user' => $this->data['title2']->getDBkey() )
+					[ 'class' => 'challenge-small-link' ],
+					[ 'user' => $this->data['title2']->getDBkey() ]
 				); ?>
 				<?php if ( $user->getName() !== $this->data['title2']->getText() ) { ?>
 				<br /><?php echo Linker::link(
 					$challenge_user_title,
 					wfMessage( 'challengeview-issue-challenge' )->plain(),
-					array( 'class' => 'challenge-small-link' ),
-					array( 'user' => $this->data['title2']->getDBkey() )
+					[ 'class' => 'challenge-small-link' ],
+					[ 'user' => $this->data['title2']->getDBkey() ]
 				); ?>
 				<?php } ?>
 			</td>
