@@ -7,7 +7,7 @@ CREATE TABLE /*_*/challenge (
   challenge_user_id_2 int(11) NOT NULL default 0,
   challenge_username2 varchar(255) NOT NULL default '',
   challenge_info varchar(200) NOT NULL default '',
-  challenge_event_date varchar(15) NOT NULL default '0000-00-00',
+  challenge_event_date varchar(15) default NULL,
   challenge_description text,
   challenge_win_terms varchar(200) NOT NULL default '',
   challenge_lose_terms varchar(200) NOT NULL default '',
@@ -17,8 +17,8 @@ CREATE TABLE /*_*/challenge (
   -- The following two fields appear to be currently unused but were used in
   -- the past by Special:ChallengeAction...the question is: should we drop these
   -- or bring them back?
-  challenge_accept_date datetime NOT NULL default '0000-00-00 00:00:00',
-  challenge_complete_date datetime NOT NULL default '0000-00-00 00:00:00',
+  challenge_accept_date datetime default NULL,
+  challenge_complete_date datetime default NULL,
   challenge_date varbinary(14) NOT NULL default ''
 )/*$wgDBTableOptions*/;
 
