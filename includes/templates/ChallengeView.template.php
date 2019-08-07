@@ -2,9 +2,6 @@
 /**
  * @file
  */
-if ( !defined( 'MEDIAWIKI' ) ) {
-	die( -1 );
-}
 
 /**
  * HTML template for Special:ChallengeView
