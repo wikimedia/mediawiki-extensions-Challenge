@@ -46,13 +46,13 @@ class ChallengeView extends SpecialPage {
 
 		$template = new ChallengeViewTemplate();
 
-		$template->setRef( 'c', $c );
+		$template->set( 'c', $c );
 		$template->set( 'challenge', $challenge );
-		$template->setRef( 'avatar1', $avatar1 );
-		$template->setRef( 'avatar2', $avatar2 );
-		$template->setRef( 'title1', $title1 );
-		$template->setRef( 'title2', $title2 );
-		$template->setRef( 'user', $u );
+		$template->set( 'avatar1', $avatar1 );
+		$template->set( 'avatar2', $avatar2 );
+		$template->set( 'title1', $title1 );
+		$template->set( 'title2', $title2 );
+		$template->set( 'user', $u );
 
 		$out = '';
 		switch ( $challenge['status'] ) {
