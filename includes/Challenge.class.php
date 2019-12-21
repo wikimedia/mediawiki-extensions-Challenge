@@ -437,7 +437,7 @@ class Challenge {
 			];
 		}
 
-		return $challenge[0];
+		return isset( $challenge[0] ) && $challenge[0] ? $challenge[0] : [];
 	}
 
 	/**

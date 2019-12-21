@@ -37,6 +37,9 @@ class ChallengeView extends SpecialPage {
 
 		$c = new Challenge();
 		$challenge = $c->getChallenge( $id );
+		if ( empty( $challenge ) ) {
+			return $this->msg( 'challengeview-invalidid' )->plain();
+		}
 
 		$u = $this->getUser();
 		$avatar1 = new wAvatar( $challenge['user_id_1'], 'l' );
