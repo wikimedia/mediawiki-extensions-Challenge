@@ -89,7 +89,7 @@ var Challenge = {
 				title: 'Special:ChallengeAction',
 				action: 2,
 				'id': $( '#challenge_id' ).val(),
-				userid: $( '#challenge_winner_userid' ).val()
+				actorid: $( '#challenge_winner_actorid' ).val()
 			}
 		} ).done( function() {
 			$( '#challenge-status' ).text( mw.msg( 'challenge-js-winner-recorded' ) ).show( 500 );
@@ -107,8 +107,7 @@ var Challenge = {
 				'id': $( '#challenge_id' ).val(),
 				challenge_rate: $( '#challenge_rate' ).val(),
 				rate_comment: $( '#rate_comment' ).val(),
-				loser_userid: $( '#loser_userid' ).val(),
-				loser_username: $( '#loser_username' ).val()
+				loser_actorid: $( '#loser_actorid' ).val()
 			}
 		} ).done( function() {
 			$( '#challenge-status' ).text( mw.msg( 'challenge-js-rating-submitted' ) ).show( 500 );

@@ -22,7 +22,7 @@ class ChallengeUser extends SpecialPage {
 	/**
 	 * Show the special page
 	 *
-	 * @param mixed $par Parameter passed to the page or null
+	 * @param string|null $par Name of the user to be challenged
 	 */
 	public function execute( $par ) {
 		$output = $this->getOutput();
@@ -36,31 +36,33 @@ class ChallengeUser extends SpecialPage {
 			'ext.challenge.js.datepicker'
 		] );
 
+		if ( $user->isAnon() ) {
+			$output->setPageTitle( $this->msg( 'challengeuser-error-page-title' ) );
+			$output->addHTML( $this->msg( 'challengeuser-login' )->plain() );
+			return;
+		}
+
 		$userTitle = Title::newFromDBkey( $request->getVal( 'user', $par ) );
 		if ( !$userTitle ) {
 			$output->addHTML( $this->displayFormNoUser() );
 			return false;
 		}
 
-		$this->user_name_to = $userTitle->getText();
-		$this->user_id_to = User::idFromName( $this->user_name_to );
+		$this->challengee = User::newFromName( $userTitle->getText() );
 
-		if ( $user->getId() == $this->user_id_to ) {
+		if ( $user->getId() == $this->challengee->getId() ) {
 			$output->setPageTitle( $this->msg( 'challengeuser-error-page-title' ) );
 			$output->addHTML( $this->msg( 'challengeuser-self' )->plain() );
-		} elseif ( $this->user_id_to == 0 ) {
+		} elseif ( $this->challengee->getId() == 0 ) {
 			$output->setPageTitle( $this->msg( 'challengeuser-error-page-title' ) );
 			$output->addHTML( $this->msg( 'challengeuser-nouser' )->plain() );
-		} elseif ( $user->getId() == 0 ) {
-			$output->setPageTitle( $this->msg( 'challengeuser-error-page-title' ) );
-			$output->addHTML( $this->msg( 'challengeuser-login' )->plain() );
 		} else {
 			if ( $request->wasPosted() && $_SESSION['alreadysubmitted'] === false ) {
 				$_SESSION['alreadysubmitted'] = true;
 				$c = new Challenge();
 				$c->addChallenge(
 					$this->getUser(),
-					$this->user_name_to,
+					$this->challengee,
 					$request->getVal( 'info' ),
 					$request->getVal( 'date' ),
 					$request->getVal( 'description' ),
@@ -69,20 +71,34 @@ class ChallengeUser extends SpecialPage {
 				);
 
 				$output->setPageTitle(
-					$this->msg( 'challengeuser-challenge-sent-title',
-						$this->user_name_to )
+					$this->msg( 'challengeuser-challenge-sent-title', $this->challengee->getName() )
 				);
 
 				$out = '<div class="challenge-links">';
-					//$out .= "<a href=\"index.php?title=User:{$this->user_name_to}\">< {$this->user_name_to}'s User Page</a>";
-					// $out .= " - <a href=\"index.php?title=Special:ViewGifts&user={$this->user_name_to}\">View All of {$this->user_name_to}'s Gifts</a>";
+					//$out .= "<a href=\"index.php?title=User:{$this->challengee->getName()}\">< {$this->challengee->getName()}'s User Page</a>";
+					// $out .= " - <a href=\"index.php?title=Special:ViewGifts&user={$this->challengee->getName()}\">View All of {$this->challengee->getName()}'s Gifts</a>";
 				if ( $this->getUser()->isLoggedIn() ) {
-					// $out .= " - <a href=\"index.php?title=Special:ViewGifts&user={$wgUser->getName()}\">View All of Your Gifts</a>";
+					// $out .= " - <a href=\"index.php?title=Special:ViewGifts&user={$user->getName()}\">View All of Your Gifts</a>";
 				}
 				$out .= '</div>';
 
 				$out .= '<div class="challenge-sent-message">';
-				$out .= $this->msg( 'challengeuser-sent', $this->user_name_to )->parse();
+				$out .= $this->msg( 'challengeuser-sent', $this->challengee->getName() )->parse();
+				$out .= '</div>';
+
+				$out .= '<div class="challenge-buttons">';
+				$mainPageURL = Title::newMainPage()->getFullURL();
+				$userPageURL = htmlspecialchars( $user->getUserPage()->getFullURL(), ENT_QUOTES );
+				$out .= Html::input( 'wpMainPage', $this->msg( 'mainpage' )->text(), 'button', [
+					'size' => 20,
+					'class' => 'site-button',
+					'onclick' => "window.location='{$mainPageURL}'"
+				] );
+				$out .= Html::input( 'wpMyProfile', $this->msg( 'challengeuser-your-profile' )->text(), 'button', [
+					'size' => 20,
+					'class' => 'site-button',
+					'onclick' => "window.location='{$userPageURL}'"
+				] );
 				$out .= '</div>';
 
 				$out .= '<div class="visualClear"></div>';
@@ -160,17 +176,17 @@ class ChallengeUser extends SpecialPage {
 	 */
 	function displayForm() {
 		$this->getOutput()->setPageTitle(
-			$this->msg( 'challengeuser-title-user',
-				$this->user_name_to )->parse()
+			$this->msg( 'challengeuser-title-user', $this->challengee->getName() )->parse()
 		);
 
-		$user_title = Title::makeTitle( NS_USER, $this->user_name_to );
+		$user_title = Title::makeTitle( NS_USER, $this->challengee->getName() );
+		$challengeeActorId = $this->challengee->getActorId();
 		$challenge_history_title = SpecialPage::getTitleFor( 'ChallengeHistory' );
-		$avatar = new wAvatar( $this->user_id_to, 'l' );
+		$avatar = new wAvatar( $this->challengee->getId(), 'l' );
 
-		$pos = Challenge::getUserFeedbackScoreByType( 1, $this->user_id_to );
-		$neg = Challenge::getUserFeedbackScoreByType( -1, $this->user_id_to );
-		$neu = Challenge::getUserFeedbackScoreByType( 0, $this->user_id_to );
+		$pos = Challenge::getUserFeedbackScoreByType( 1, $challengeeActorId );
+		$neg = Challenge::getUserFeedbackScoreByType( -1, $challengeeActorId );
+		$neu = Challenge::getUserFeedbackScoreByType( 0, $challengeeActorId );
 		$total = ( $pos + $neg + $neu );
 
 		$template = new ChallengeUserTemplate();

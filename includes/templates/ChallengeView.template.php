@@ -14,24 +14,25 @@ class ChallengeViewTemplate extends QuickTemplate {
 
 		$challenge = $this->data['challenge'];
 		$user = $this->data['user'];
+		$linkRenderer = $this->data['class']->getLinkRenderer();
 ?>
 	<table class="challenge-main-table">
 		<tr>
 			<td><?php echo $this->data['avatar1']->getAvatarURL(); ?></td>
 			<td>
-				<span class="challenge-user-title"><?php echo Linker::link(
+				<span class="challenge-user-title"><?php echo $linkRenderer->makeLink(
 					$this->data['title1'],
 					$this->data['title1']->getText(),
 					[ 'class' => 'challenge-user-link' ]
-				) ?></span> (<?php echo $this->data['c']->getUserChallengeRecord( $challenge['user_id_1'] ) ?>)
-				<br /><?php echo Linker::link(
+				) ?></span> (<?php echo $this->data['c']->getUserChallengeRecord( $challenge['challenger_actor'] ) ?>)
+				<br /><?php echo $linkRenderer->makeLink(
 					$challenge_history_title,
 					wfMessage( 'challengeview-view-history' )->plain(),
 					[ 'class' => 'challenge-small-link' ],
 					[ 'user' => $this->data['title1']->getDBkey() ]
 				); ?>
 				<?php if ( $user->getName() !== $this->data['title1']->getText() ) { ?>
-				<br /><?php echo Linker::link(
+				<br /><?php echo $linkRenderer->makeLink(
 					$challenge_user_title,
 					wfMessage( 'challengeview-issue-challenge' )->plain(),
 					[ 'class' => 'challenge-small-link' ],
@@ -44,19 +45,19 @@ class ChallengeViewTemplate extends QuickTemplate {
 			</td>
 			<td><?php echo $this->data['avatar2']->getAvatarURL(); ?></td>
 			<td>
-				<span class="challenge-user-link"><?php echo Linker::link(
+				<span class="challenge-user-link"><?php echo $linkRenderer->makeLink(
 					$this->data['title2'],
 					$this->data['title2']->getText(),
 					[ 'class' => 'challenge-user-link' ]
-				) ?></span> (<?php echo $this->data['c']->getUserChallengeRecord( $challenge['user_id_2'] ) ?>)
-				<br /><?php echo Linker::link(
+				) ?></span> (<?php echo $this->data['c']->getUserChallengeRecord( $challenge['challengee_actor'] ) ?>)
+				<br /><?php echo $linkRenderer->makeLink(
 					$challenge_history_title,
 					wfMessage( 'challengeview-view-history' )->plain(),
 					[ 'class' => 'challenge-small-link' ],
 					[ 'user' => $this->data['title2']->getDBkey() ]
 				); ?>
 				<?php if ( $user->getName() !== $this->data['title2']->getText() ) { ?>
-				<br /><?php echo Linker::link(
+				<br /><?php echo $linkRenderer->makeLink(
 					$challenge_user_title,
 					wfMessage( 'challengeview-issue-challenge' )->plain(),
 					[ 'class' => 'challenge-small-link' ],
@@ -71,7 +72,7 @@ class ChallengeViewTemplate extends QuickTemplate {
 		<tr>
 			<td>
 				<b><?php echo wfMessage( 'challengeview-event' )->plain() ?></b> <span class="challenge-event"><?php echo $challenge['info'] . ' [' . $challenge['date'] . ']' ?></span>
-				<br /><b><?php echo wfMessage( 'challengeview-description', $challenge['user_name_1'] )->parse() ?></b><span class="challenge-description"><?php echo $challenge['description'] ?></span>
+				<br /><b><?php echo wfMessage( 'challengeview-description', User::newFromActorId( $challenge['challenger_actor'] )->getName() )->parse() ?></b><span class="challenge-description"><?php echo $challenge['description'] ?></span>
 			</td>
 		</tr>
 	</table>
@@ -83,8 +84,8 @@ class ChallengeViewTemplate extends QuickTemplate {
 			<td valign="top">
 				<span class="challenge-title"><?php echo wfMessage(
 					'challengeview-ifwins',
-					$challenge['user_name_1'],
-					$challenge['user_name_2']
+					User::newFromActorId( $challenge['challenger_actor'] )->getName(),
+					User::newFromActorId( $challenge['challengee_actor'] )->getName()
 				)->parse() ?></span>
 				<table class="challenge-terms"><tr><td><?php echo $challenge['win_terms'] ?></td></tr></table><br />
 			</td>
@@ -92,8 +93,8 @@ class ChallengeViewTemplate extends QuickTemplate {
 			<td valign="top">
 				<span class="challenge-title"><?php echo wfMessage(
 					'challengeview-ifwins',
-					$challenge['user_name_2'],
-					$challenge['user_name_1']
+					User::newFromActorId( $challenge['challengee_actor'] )->getName(),
+					User::newFromActorId( $challenge['challenger_actor'] )->getName()
 				)->parse() ?></span>
 				<table class="challenge-terms"><tr><td><?php echo $challenge['lose_terms'] ?></td></tr></table>
 			</td>
@@ -101,7 +102,11 @@ class ChallengeViewTemplate extends QuickTemplate {
 	</table>
 
 <?php
-	if ( $user->isAllowed( 'challengeadmin' ) && $challenge['user_id_2'] != $user->getId() && $challenge['user_id_1'] != $user->getId() ) {
+	if (
+		$user->isAllowed( 'challengeadmin' ) &&
+		$challenge['challengee_actor'] != $user->getActorId() &&
+		$challenge['challenger_actor'] != $user->getActorId()
+	) {
 		$adminLink = "<a class=\"challenge-admin-cancel-link\" data-challenge-id=\"{$challenge['id']}\" href=\"#\">";
 		$adminLink .= wfMessage( 'challengeview-admin' )->plain();
 		$adminLink .= '</a>';

@@ -15,11 +15,15 @@ class ChallengeHistory extends SpecialPage {
 		return 'users';
 	}
 
-	private function displayUserHeader( $user_name, $userId ) {
-		//$avatar = new wAvatar( $userId, 'l' );
-		$pos = Challenge::getUserFeedbackScoreByType( 1, $userId );
-		$neg = Challenge::getUserFeedbackScoreByType( -1, $userId );
-		$neu = Challenge::getUserFeedbackScoreByType( 0, $userId );
+	/**
+	 * @param User $user
+	 * @return string HTML
+	 */
+	private function displayUserHeader( $user ) {
+		$actorId = $user->getActorId();
+		$pos = Challenge::getUserFeedbackScoreByType( 1, $actorId );
+		$neg = Challenge::getUserFeedbackScoreByType( -1, $actorId );
+		$neu = Challenge::getUserFeedbackScoreByType( 0, $actorId );
 		$total = ( $pos + $neg + $neu );
 		$percent = 0;
 		if ( $pos ) {
@@ -27,7 +31,7 @@ class ChallengeHistory extends SpecialPage {
 		}
 
 		$out = '<b>' . $this->msg( 'challengehistory-overall' )->plain() . '</b>: (' .
-			Challenge::getUserChallengeRecord( $userId ) . ')<br /><br />';
+			Challenge::getUserChallengeRecord( $actorId ) . ')<br /><br />';
 		$out .= '<b>' . $this->msg( 'challengehistory-ratings-loser' )->plain() . '</b>: <br />';
 		$out .= '<span class="challenge-rate-positive">' .
 			$this->msg( 'challengehistory-positive' )->plain() . '</span>: ' . $pos . ' (' . $percent . '%)<br />';
@@ -46,40 +50,35 @@ class ChallengeHistory extends SpecialPage {
 	public function execute( $par ) {
 		global $wgExtensionAssetsPath;
 
+		$linkRenderer = $this->getLinkRenderer();
+		$output = $this->getOutput();
 		$request = $this->getRequest();
+
 		$imgPath = $wgExtensionAssetsPath . '/Challenge/resources/images/';
 		$spImgPath = $wgExtensionAssetsPath . '/SocialProfile/images/';
-		$u = $request->getVal( 'user', $par );
 
-		$this->getOutput()->addModuleStyles( 'ext.challenge.history' );
+		$u = $request->getVal( 'user', $par );
+		$user = User::newFromName( $u );
+
+		$output->addModuleStyles( 'ext.challenge.history' );
 
 		$out = $standings_link = '';
-		if ( $u ) {
-			$userTitle = Title::newFromDBkey( $u );
-			if ( $userTitle ) {
-				$userId = User::idFromName( $userTitle->getText() );
-			} else {
-				// invalid user
-				// @todo FIXME: in this case, what is $userId when it gets passed
-				// to displayUserHeader() below?
-			}
-
-			$this->getOutput()->setPageTitle(
-				$this->msg( 'challengehistory-users-history',
-					$userTitle->getText() )
+		if ( $user ) {
+			$output->setPageTitle(
+				$this->msg( 'challengehistory-users-history', $user->getName() )
 			);
-			$out .= $this->displayUserHeader( $userTitle->getText(), $userId );
+			$out .= $this->displayUserHeader( $user );
 		} else {
-			$this->getOutput()->setPageTitle( $this->msg( 'challengehistory-recentchallenges' ) );
+			$output->setPageTitle( $this->msg( 'challengehistory-recentchallenges' ) );
 			$standings_link = " - <img src=\"{$imgPath}userpageIcon.png\" alt=\"\" /> ";
-			$standings_link .= Linker::link(
+			$standings_link .= $linkRenderer->makeLink(
 				SpecialPage::getTitleFor( 'ChallengeStandings' ),
 				$this->msg( 'challengehistory-view-standings' )->plain()
 			);
 		}
 
 		$challenge_link = SpecialPage::getTitleFor( 'ChallengeUser' );
-		$status = (int) $request->getVal( 'status' );
+		$status = (int)$request->getVal( 'status' );
 		$out .= '
 		<div class="challenge-nav">
 			<div class="challenge-history-filter">' . $this->msg( 'challengehistory-filter' )->plain();
@@ -95,16 +94,16 @@ class ChallengeHistory extends SpecialPage {
 			</div>
 			<div class=\"challenge-link\">
 				<img src=\"{$spImgPath}challengeIcon.png\" alt=\"\" /> ";
-		if ( $u ) {
-			$msg = $this->msg( 'challengehistory-challenge-user', $userTitle->getText() )->parse();
+		if ( $user ) {
+			$msg = $this->msg( 'challengehistory-challenge-user', $user->getName() )->parse();
 		} else {
 			$msg = $this->msg( 'challengehistory-challenge-someone' )->plain();
 		}
-		$out .= Linker::link(
+		$out .= $linkRenderer->makeLink(
 			$challenge_link,
 			$msg,
 			[],
-			( ( $u ) ? [ 'user' => $u ] : [] )
+			( ( $user ) ? [ 'user' => $user->getName() ] : [] )
 		);
 		$out .= $this->msg( 'word-separator' )->escaped();
 		$out .= "{$standings_link}
@@ -121,12 +120,12 @@ class ChallengeHistory extends SpecialPage {
 				<td class="challenge-history-header">' . $this->msg( 'challengehistory-status' )->plain() . '</td>
 			</tr>';
 
-		$page = (int) $request->getVal( 'page', 1 );
+		$page = (int)$request->getVal( 'page', 1 );
 		$perPage = 25;
 
 		$c = new Challenge();
 		$challengeList = $c->getChallengeList(
-			$u,
+			( $user ) ? $user->getName() : false,
 			$status,
 			$perPage,
 			$page
@@ -134,19 +133,22 @@ class ChallengeHistory extends SpecialPage {
 		$totalChallenges = $c->getChallengeCount();
 
 		if ( $challengeList ) {
+			$challenge_view_title = SpecialPage::getTitleFor( 'ChallengeView' );
+
 			foreach ( $challengeList as $challenge ) {
 				// Set up avatars and wiki titles for challenge and target
-				$avatar1 = new wAvatar( $challenge['user_id_1'], 's' );
-				$avatar2 = new wAvatar( $challenge['user_id_2'], 's' );
+				$challenger = User::newFromActorId( $challenge['challenger_actor'] );
+				$challengee = User::newFromActorId( $challenge['challengee_actor'] );
+				$avatar1 = new wAvatar( $challenger->getId(), 's' );
+				$avatar2 = new wAvatar( $challengee->getId(), 's' );
 
-				$title1 = Title::makeTitle( NS_USER, $challenge['user_name_1'] );
-				$title2 = Title::makeTitle( NS_USER, $challenge['user_name_2'] );
+				$title1 = Title::makeTitle( NS_USER, $challenger->getName() );
+				$title2 = Title::makeTitle( NS_USER, $challengee->getName() );
 
 				// Set up titles for pages used in table
-				$challenge_view_title = SpecialPage::getTitleFor( 'ChallengeView' );
-				$challengeViewLink = Linker::link(
+				$challengeViewLink = $linkRenderer->makeLink(
 					$challenge_view_title,
-					htmlspecialchars( $challenge['info'] . ' [' . $challenge['date'] . ']' ),
+					$challenge['info'] . ' [' . $challenge['date'] . ']',
 					[],
 					[ 'id' => $challenge['id'] ]
 				);
@@ -156,8 +158,10 @@ class ChallengeHistory extends SpecialPage {
 				$winnerSymbol = Html::element(
 					'img',
 					[
-						'src' => $imgPath . 'winner-check.gif',
+						'src' => $imgPath . 'checkmark.svg', // 'winner-check.gif',
 						'alt' => '',
+						'height' => '20px',
+						'width' => '20px',
 						'align' => 'absmiddle' // @todo FIXME: invalid HTML5
 					]
 				);
@@ -166,22 +170,22 @@ class ChallengeHistory extends SpecialPage {
 					<td class=\"challenge-data\">{$challengeViewLink}</td>
 					<td class=\"challenge-data challenge-data-description\">{$challenge['description']}</td>
 					<td class=\"challenge-data\">{$av1}";
-				$out .= Linker::link(
+				$out .= $linkRenderer->makeLink(
 					$title1,
-					$challenge['user_name_1']
+					$challenger->getName()
 				);
 				$out .= $this->msg( 'word-separator' )->escaped();
-				if ( $challenge['winner_user_id'] == $challenge['user_id_1'] ) {
+				if ( $challenge['winner_actor'] == $challenge['challenger_actor'] ) {
 					$out .= $winnerSymbol;
 				}
 				$out .= "</td>
 					<td class=\"challenge-data\">{$av2}";
-				$out .= Linker::link(
+				$out .= $linkRenderer->makeLink(
 					$title2,
-					$challenge['user_name_2']
+					$challengee->getName()
 				);
 				$out .= $this->msg( 'word-separator' )->escaped();
-				if ( $challenge['winner_user_id'] == $challenge['user_id_2'] ) {
+				if ( $challenge['winner_actor'] == $challenge['challengee_actor'] ) {
 					$out .= $winnerSymbol;
 				}
 				$out .= "</td>
@@ -199,15 +203,15 @@ class ChallengeHistory extends SpecialPage {
 		// Build next/prev navigation
 		$numOfPages = $totalChallenges / $perPage;
 
-		if ( $numOfPages > 1 && !$u ) {
+		if ( $numOfPages > 1 && $user ) {
 			$challenge_history_title = SpecialPage::getTitleFor( 'ChallengeHistory' );
 			$out .= '<div class="page-nav">';
 			if ( $page > 1 ) {
-				$out .= Linker::link(
+				$out .= $linkRenderer->makeLink(
 					$challenge_history_title,
 					$this->msg( 'challengehistory-prev' )->plain(),
 					[],
-					[ 'user' => $user_name, 'page' => ( $page - 1 ) ]
+					[ 'user' => $user->getName(), 'page' => ( $page - 1 ) ]
 				) . $this->msg( 'word-separator' )->escaped();
 			}
 
@@ -222,27 +226,27 @@ class ChallengeHistory extends SpecialPage {
 				if ( $i == $page ) {
 					$out .= ( $i . ' ' );
 				} else {
-					$out .= Linker::link(
+					$out .= $linkRenderer->makeLink(
 						$challenge_history_title,
 						$i,
 						[],
-						[ 'user' => $user_name, 'page' => $i ]
+						[ 'user' => $user->getName(), 'page' => $i ]
 					) . $this->msg( 'word-separator' )->escaped();
 				}
 			}
 
 			if ( ( $total - ( $perPage * $page ) ) > 0 ) {
-				$out .= $this->msg( 'word-separator' )->escaped() . Linker::link(
+				$out .= $this->msg( 'word-separator' )->escaped() . $linkRenderer->makeLink(
 					$challenge_history_title,
 					$this->msg( 'challengehistory-next' )->plain(),
 					[],
-					[ 'user' => $user_name, 'page' => ( $page + 1 ) ]
+					[ 'user' => $user->getName(), 'page' => ( $page + 1 ) ]
 				);
 			}
 			$out .= '</div>';
 		}
 
-		$this->getOutput()->addModules( 'ext.challenge.js.main' );
-		$this->getOutput()->addHTML( $out );
+		$output->addModules( 'ext.challenge.js.main' );
+		$output->addHTML( $out );
 	}
 }

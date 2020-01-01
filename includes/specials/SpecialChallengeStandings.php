@@ -35,21 +35,25 @@ class ChallengeStandings extends SpecialPage {
 			</tr>';
 
 		$dbr = wfGetDB( DB_REPLICA );
-		$sql = "SELECT challenge_record_username, challenge_record_user_id, challenge_wins, challenge_losses, challenge_ties, (challenge_wins / (challenge_wins + challenge_losses + challenge_ties) ) AS winning_percentage FROM {$dbr->tableName( 'challenge_user_record' )} ORDER BY (challenge_wins / (challenge_wins + challenge_losses + challenge_ties) ) DESC, challenge_wins DESC LIMIT 0,25";
+		$sql = "SELECT challenge_record_actor, challenge_wins, challenge_losses, challenge_ties, (challenge_wins / (challenge_wins + challenge_losses + challenge_ties) ) AS winning_percentage FROM {$dbr->tableName( 'challenge_user_record' )} ORDER BY (challenge_wins / (challenge_wins + challenge_losses + challenge_ties) ) DESC, challenge_wins DESC LIMIT 0,25";
 		$res = $dbr->query( $sql, __METHOD__ );
 		$x = 1;
 
+		$linkRenderer = $this->getLinkRenderer();
+
 		foreach ( $res as $row ) {
-		 	$avatar1 = new wAvatar( $row->challenge_record_user_id, 's' );
+			$recordHolder = User::newFromActorId( $row->challenge_record_actor );
+			$recordHolderName = $recordHolder->getName();
+		 	$avatar1 = new wAvatar( $recordHolder->getId(), 's' );
 		 	$out .= '<tr>
 				<td class="challenge-standings">' . $x . '</td>
 				<td class="challenge-standings">';
 			$out .= $avatar1->getAvatarURL( [ 'align' => 'absmiddle' ] ); // @todo FIXME: invalid HTML5
-			$out .= Linker::link(
+			$out .= $linkRenderer->makeLink(
 				SpecialPage::getTitleFor( 'ChallengeHistory' ),
-				$row->challenge_record_username,
+				$recordHolderName,
 				[ 'class' => 'challenge-standings-history-link' ],
-				[ 'user' => $row->challenge_record_username ]
+				[ 'user' => $recordHolderName ]
 			);
 			$out .= $this->msg( 'word-separator' )->escaped();
 			$out .= $user1Icon . '</td>';
@@ -62,13 +66,13 @@ class ChallengeStandings extends SpecialPage {
 						str_replace( '.0', '.', number_format( $row->winning_percentage, 3 ) ) .
 					'</td>';
 
-			if ( $row->challenge_record_username != $this->getUser()->getName() ) {
+			if ( $recordHolderName != $this->getUser()->getName() ) {
 				$out .= '<td class="challenge-standings">';
-				$out .= Linker::link(
+				$out .= $linkRenderer->makeLink(
 					SpecialPage::getTitleFor( 'ChallengeUser' ),
 					$this->msg( 'challengestandings-challengeuser' )->plain(),
 					[ 'class' => 'challenge-standings-user-link' ],
-					[ 'user' => $row->challenge_record_username ]
+					[ 'user' => $recordHolderName ]
 				);
 				$out .= '</td>';
 			}

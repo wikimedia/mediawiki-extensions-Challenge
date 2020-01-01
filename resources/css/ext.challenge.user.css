@@ -27,7 +27,6 @@
 	float: right;
 	width: 200px;
 	padding: 5px;
-
 }
 
 .challenge-user-top a {
@@ -47,4 +46,8 @@
 
 .challenge-user-or {
 	margin: 10px 0;
+}
+
+.challenge-buttons input[name="wpMyProfile"] {
+	margin-left: 5px;
 }

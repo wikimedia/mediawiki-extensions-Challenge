@@ -39,24 +39,20 @@ class Challenge {
 	 * challenged user.
 	 *
 	 * @param User $challenger The user (object) who challenged $user_to
-	 * @param string $user_to Name of the person who was challenged
-	 * @param $info
+	 * @param User $challengee Name of the person who was challenged
+	 * @param string $info
 	 * @param $event_date
 	 * @param string $description User-supplied description of the challenge
 	 * @param string $win_terms User-supplied win terms
 	 * @param string $lose_terms User-supplied lose terms
 	 */
-	public function addChallenge( $challenger, $user_to, $info, $event_date, $description, $win_terms, $lose_terms ) {
-		$user_id_to = User::idFromName( $user_to );
-
+	public function addChallenge( $challenger, $challengee, $info, $event_date, $description, $win_terms, $lose_terms ) {
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->insert(
 			'challenge',
 			[
-				'challenge_user_id_1' => $challenger->getId(),
-				'challenge_username1' => $challenger->getName(),
-				'challenge_user_id_2' => $user_id_to,
-				'challenge_username2' => $user_to,
+				'challenge_challenger_actor' => $challenger->getActorId(),
+				'challenge_challengee_actor' => $challengee->getActorId(),
 				'challenge_info' => $info,
 				'challenge_description' => $description,
 				'challenge_win_terms' => $win_terms,
@@ -69,16 +65,29 @@ class Challenge {
 		);
 
 		$this->challenge_id = $dbw->insertId();
-		$this->sendChallengeRequestEmail( $user_id_to, $challenger->getName(), $this->challenge_id );
+		$this->sendChallengeRequestEmail(
+			$challenger->getActorId(),
+			$challengee->getActorId(),
+			$this->challenge_id
+		);
 	}
 
-	public function sendChallengeRequestEmail( $user_id_to, $user_from, $id ) {
-		$user = User::newFromId( $user_id_to );
+	/**
+	 * If the challengee has a confirmed email and they've opted into receiving
+	 * challenge-related emails, inform them that they've been challenged.
+	 *
+	 * @param int $challengerActorId Actor ID of the challenger user
+	 * @param int $challengee Actor ID of the user who was challenged
+	 * @param int $id Challenge ID
+	 */
+	public function sendChallengeRequestEmail( $challengerActorId, $challengeeActorId, $id ) {
+		$user = User::newFromActorId( $challengeeActorId );
 		$user->loadFromDatabase();
 
 		if ( $user->isEmailConfirmed() && $user->getIntOption( 'notifychallenge', 1 ) ) {
 			$challenge_view_title = SpecialPage::getTitleFor( 'ChallengeView' );
 			$update_profile_link = SpecialPage::getTitleFor( 'UpdateProfile' );
+			$user_from = User::newFromActorId( $challengerActorId )->getName();
 			$subject = wfMessage( 'challenge_request_subject', $user_from )->text();
 			$body = wfMessage(
 				'challenge_request_body',
@@ -91,13 +100,14 @@ class Challenge {
 		}
 	}
 
-	public function sendChallengeAcceptEmail( $user_id_to, $user_from, $id ) {
-		$user = User::newFromId( $user_id_to );
+	public function sendChallengeAcceptEmail( $challengerActorId, $challengeeActorId, $id ) {
+		$user = User::newFromActorId( $challengerActorId );
 		$user->loadFromDatabase();
 
 		if ( $user->isEmailConfirmed() && $user->getIntOption( 'notifychallenge', 1 ) ) {
 			$challenge_view_title = SpecialPage::getTitleFor( 'ChallengeView' );
 			$update_profile_link = SpecialPage::getTitleFor( 'UpdateProfile' );
+			$user_from = User::newFromActorId( $challengeeActorId )->getName();
 			$subject = wfMessage( 'challenge_accept_subject', $user_from )->text();
 			$body = wfMessage(
 				'challenge_accept_body',
@@ -110,13 +120,14 @@ class Challenge {
 		}
 	}
 
-	public function sendChallengeLoseEmail( $user_id_to, $user_from, $id ) {
-		$user = User::newFromId( $user_id_to );
+	public function sendChallengeLoseEmail( $loserActorId, $winnerActorId, $id ) {
+		$user = User::newFromActorId( $loserActorId );
 		$user->loadFromDatabase();
 
 		if ( $user->isEmailConfirmed() && $user->getIntOption( 'notifychallenge', 1 ) ) {
 			$challenge_view_title = SpecialPage::getTitleFor( 'ChallengeView' );
 			$update_profile_link = SpecialPage::getTitleFor( 'UpdateProfile' );
+			$user_from = User::newFromActorId( $winnerActorId )->getName();
 			$subject = wfMessage(
 				'challenge_lose_subject',
 				$user_from,
@@ -133,12 +144,13 @@ class Challenge {
 		}
 	}
 
-	public function sendChallengeWinEmail( $user_id_to, $user_from, $id ) {
-		$user = User::newFromId( $user_id_to );
+	public function sendChallengeWinEmail( $winnerActorId, $loserActorId, $id ) {
+		$user = User::newFromActorId( $winnerActorId );
 		$user->loadFromDatabase();
 		if ( $user->isEmailConfirmed() && $user->getIntOption( 'notifychallenge', 1 ) ) {
 			$challenge_view_title = SpecialPage::getTitleFor( 'ChallengeView' );
 			$update_profile_link = SpecialPage::getTitleFor( 'UpdateProfile' );
+			$user_from = User::newFromActorId( $loserActorId )->getName();
 			$subject = wfMessage( 'challenge_win_subject', $user_from, $id )->parse();
 			$body = wfMessage(
 				'challenge_win_body',
@@ -171,35 +183,40 @@ class Challenge {
 		switch ( $status ) {
 			case 1: // challenge was accepted
 				// Update social stats for both users involved in challenge
-				$stats = new UserStatsTrack( 1, $c['user_id_1'], $c['user_name_1'] );
+				$challenger = User::newFromActorId( $c['challenger_actor'] );
+				$stats = new UserStatsTrack( $challenger->getId(), $challenger->getName() );
 				$stats->incStatField( 'challenges' );
 
-				$stats = new UserStatsTrack( 1, $c['user_id_2'], $c['user_name_2'] );
+				$challengee = User::newFromActorId( $c['challengee_actor'] );
+				$stats = new UserStatsTrack( $challengee->getId(), $challengee->getName() );
 				$stats->incStatField( 'challenges' );
 
 				if ( $email ) {
-					$this->sendChallengeAcceptEmail( $c['user_id_1'], $c['user_name_2'], $challenge_id );
+					$this->sendChallengeAcceptEmail(
+						$c['challenger_actor'],
+						$c['challengee_actor'],
+						$challenge_id
+					);
 				}
 
 				break;
 			case 3: // challenge was completed, send email to loser
-				$stats = new UserStatsTrack( 1, $c['winner_user_id'], $c['winner_user_name'] );
+				$winner = User::newFromActorId( $c['winner_actor'] );
+				$stats = new UserStatsTrack( $winner->getId(), $winner->getName() );
 				$stats->incStatField( 'challenges_won' );
 
 				$this->updateUserStandings( $challenge_id );
-				if ( $c['winner_user_id'] == $c['user_id_1'] ) {
-					$loser_id = $c['user_id_2'];
-					$loser_name = $c['user_name_2'];
+				if ( $c['winner_actor'] == $c['challenger_actor'] ) {
+					$loser_id = $c['challengee_actor'];
 				} else {
-					$loser_id = $c['user_id_1'];
-					$loser_name = $c['user_name_1'];
+					$loser_id = $c['challenger_actor'];
 				}
 
 				if ( $email ) {
-					$this->sendChallengeLoseEmail( $loser_id, $c['winner_user_name'], $challenge_id );
-					$this->sendChallengeWinEmail( $c['winner_user_id'], $loser_name, $challenge_id );
+					$this->sendChallengeLoseEmail( $loser_id, $c['winner_actor'], $challenge_id );
+					$this->sendChallengeWinEmail( $c['winner_actor'], $loser_id, $challenge_id );
 				}
-			break;
+				break;
 		}
 	}
 
@@ -213,52 +230,59 @@ class Challenge {
 		$s = $dbr->selectRow(
 			'challenge',
 			[
-				'challenge_user_id_1', 'challenge_username1', 'challenge_user_id_2',
-				'challenge_username2', 'challenge_info', 'challenge_event_date',
-				'challenge_description', 'challenge_win_terms',
-				'challenge_lose_terms', 'challenge_winner_user_id',
-				'challenge_winner_username', 'challenge_status'
+				'challenge_challenger_actor', 'challenge_challengee_actor',
+				'challenge_info', 'challenge_event_date', 'challenge_description',
+				'challenge_win_terms', 'challenge_lose_terms', 'challenge_winner_actor',
+				'challenge_status'
 			],
 			[ 'challenge_id' => $id ],
 			__METHOD__
 		);
 
 		if ( $s !== false ) {
-			if ( $s->challenge_winner_user_id != -1 ) { // if it's not a tie
-				if ( $s->challenge_user_id_1 == $s->challenge_winner_user_id ) {
-					$winner_id = $s->challenge_user_id_1;
-					$loser_id = $s->challenge_user_id_2;
+			if ( $s->challenge_winner_actor != -1 ) { // if it's not a tie
+				if ( $s->challenge_challenger_actor == $s->challenge_winner_actor ) {
+					$winner_id = $s->challenge_challenger_actor;
+					$loser_id = $s->challenge_challengee_actor;
 				} else {
-					$winner_id = $s->challenge_user_id_2;
-					$loser_id = $s->challenge_user_id_1;
+					$winner_id = $s->challenge_challengee_actor;
+					$loser_id = $s->challenge_challenger_actor;
 				}
 				$this->updateUserRecord( $winner_id, 1 );
 				$this->updateUserRecord( $loser_id, -1 );
 			} else {
-				$this->updateUserRecord( $s->challenge_user_id_1, 0 );
-				$this->updateUserRecord( $s->challenge_user_id_2, 0 );
+				$this->updateUserRecord( $s->challenge_challenger_actor, 0 );
+				$this->updateUserRecord( $s->challenge_challengee_actor, 0 );
 			}
 		}
 	}
 
-	public function updateChallengeWinner( $id, $user_id ) {
-		$user = User::newFromId( $user_id );
-		$user_name = $user->getName();
+	/**
+	 * Set the winner of a given challenge.
+	 *
+	 * @param int $id Challenge ID
+	 * @param int $actorId Winning user's actor ID
+	 */
+	public function updateChallengeWinner( $id, $actorId ) {
 		$dbr = wfGetDB( DB_MASTER );
 		$dbr->update(
 			'challenge',
 			[
-				'challenge_winner_user_id' => $user_id,
-				'challenge_winner_username' => $user_name
+				'challenge_winner_actor' => $actorId
 			],
 			[ 'challenge_id' => $id ],
 			__METHOD__
 		);
 	}
 
+	/**
+	 * Update challenge records for the given user.
+	 *
+	 * @param int $id User's actor ID
+	 * @param int $type 0 for a tie, 1 if they won, -1 if they lost
+	 */
 	public function updateUserRecord( $id, $type ) {
-		$user = User::newFromId( $id );
-		$username = $user->getName();
+		$user = User::newFromActorId( $id );
 
 		$dbr = wfGetDB( DB_REPLICA );
 		$dbw = wfGetDB( DB_MASTER );
@@ -269,7 +293,7 @@ class Challenge {
 		$res = $dbr->select(
 			'challenge_user_record',
 			[ 'challenge_wins', 'challenge_losses', 'challenge_ties' ],
-			[ 'challenge_record_user_id' => $id ],
+			[ 'challenge_record_actor' => $id ],
 			__METHOD__,
 			[ 'LIMIT' => 1 ]
 		);
@@ -289,8 +313,7 @@ class Challenge {
 			$dbw->insert(
 				'challenge_user_record',
 				[
-					'challenge_record_user_id' => $id,
-					'challenge_record_username' => $username,
+					'challenge_record_actor' => $id,
 					'challenge_wins' => $wins,
 					'challenge_losses' => $losses,
 					'challenge_ties' => $ties
@@ -319,30 +342,31 @@ class Challenge {
 					'challenge_losses' => $losses,
 					'challenge_ties' => $ties
 				],
-				[ 'challenge_record_user_id' => $id ],
+				[ 'challenge_record_actor' => $id ],
 				__METHOD__
 			);
 		}
 	}
 
 	/**
-	 * Is the supplied user (ID) a participant in the challenge, identified by
-	 * its ID?
+	 * Is the supplied user a participant in the given challenge?
 	 *
-	 * @param int $userId User ID
+	 * @note Completely unused as of 1 January 2020.
+	 *
+	 * @param int $actorId Actor ID
 	 * @param int $challengeId Challenge ID
 	 * @return bool
 	 */
-	public function isUserInChallenge( $userId, $challengeId ) {
+	public function isUserInChallenge( $actorId, $challengeId ) {
 		$dbr = wfGetDB( DB_MASTER );
 		$s = $dbr->selectRow(
 			'challenge',
-			[ 'challlenge_user_id_1', 'challlenge_user_id_2' ],
+			[ 'challenge_challenger_actor', 'challenge_challengee_actor' ],
 			[ 'challenge_id' => $challengeId ],
 			__METHOD__
 		);
 		if ( $s !== false ) {
-			if ( $userId == $s->challlenge_user_id_1 || $userId == $s->challlenge_user_id_2 ) {
+			if ( $actorId == $s->challenge_challenger_actor || $actorId == $s->challenge_challengee_actor ) {
 				return true;
 			}
 		}
@@ -350,18 +374,21 @@ class Challenge {
 	}
 
 	/**
-	 * Get the amount of open challenges for the given user (ID).
+	 * Get the amount of open challenges for the given user, identified via their
+	 * actor ID.
 	 *
-	 * @param int $userId User ID
-	 * @return int Challenge count for the given user (ID)
+	 * @note Completely unused as of 1 January 2020.
+	 *
+	 * @param int $actorId Actor ID
+	 * @return int Open challenge count for the given user
 	 */
-	static function getOpenChallengeCount( $userId ) {
+	static function getOpenChallengeCount( $actorId ) {
 		$dbr = wfGetDB( DB_MASTER );
 		$openChallengeCount = 0;
 		$s = $dbr->selectRow(
 			'challenge',
 			[ 'COUNT(*) AS count' ],
-			[ 'challenge_user_id_2' => $userId, 'challenge_status' => 0 ],
+			[ 'challenge_challengee_actor' => $actorId, 'challenge_status' => 0 ],
 			__METHOD__
 		);
 		if ( $s !== false ) {
@@ -371,18 +398,22 @@ class Challenge {
 	}
 
 	/**
-	 * Get the amount of total challenges for the given user (ID).
+	 * Get the amount of total challenges for the given user, identified via
+	 * their actor ID.
 	 *
-	 * @param int $userId User ID
-	 * @return int Challenge count for the given user (ID)
+	 * @todo FIXME: This is only called frm SpecialChallengeHistory.php, which
+	 * calls it _non-statically_ and never passes anything as the param...
+	 *
+	 * @param int $actorId Actor ID
+	 * @return int Challenge count for the given user
 	 */
-	static function getChallengeCount( $userId = 0 ) {
+	static function getChallengeCount( $actorId = 0 ) {
 		$dbr = wfGetDB( DB_REPLICA );
 		$challengeCount = 0;
 
 		$userSQL = [];
-		if ( $userId ) {
-			$userSQL = [ 'challenge_user_id_1' => $userId ];
+		if ( $actorId ) {
+			$userSQL = [ 'challenge_challenger_actor' => $actorId ];
 		}
 
 		$s = $dbr->selectRow(
@@ -409,7 +440,9 @@ class Challenge {
 	public function getChallenge( $id ) {
 		$id = (int)$id; // paranoia!
 		$dbr = wfGetDB( DB_MASTER );
-		$sql = "SELECT {$dbr->tableName( 'challenge' )}.challenge_id AS id, challenge_user_id_1, challenge_username1, challenge_user_id_2, challenge_username2, challenge_info, challenge_description, challenge_event_date, challenge_status, challenge_winner_username, challenge_winner_user_id,
+		$sql = "SELECT {$dbr->tableName( 'challenge' )}.challenge_id AS id,
+			challenge_challenger_actor, challenge_challengee_actor, challenge_info,
+			challenge_description, challenge_event_date, challenge_status, challenge_winner_actor,
 			challenge_win_terms, challenge_lose_terms, challenge_rate_score, challenge_rate_comment
 			FROM {$dbr->tableName( 'challenge' )} LEFT JOIN {$dbr->tableName( 'challenge_rate' )}
 				ON {$dbr->tableName( 'challenge_rate' )}.challenge_id = {$dbr->tableName( 'challenge' )}.challenge_id
@@ -421,17 +454,14 @@ class Challenge {
 			$challenge[] = [
 				'id' => $row->id,
 				'status' => $row->challenge_status,
-				'user_id_1' => $row->challenge_user_id_1,
-				'user_name_1' => $row->challenge_username1,
-				'user_id_2' => $row->challenge_user_id_2,
-				'user_name_2' => $row->challenge_username2,
+				'challenger_actor' => $row->challenge_challenger_actor,
+				'challengee_actor' => $row->challenge_challengee_actor,
 				'info' => $row->challenge_info,
 				'description' => $row->challenge_description,
 				'date' => $row->challenge_event_date,
 				'win_terms' => $row->challenge_win_terms,
 				'lose_terms' => $row->challenge_lose_terms,
-				'winner_user_id' => $row->challenge_winner_user_id,
-				'winner_user_name' => $row->challenge_winner_username,
+				'winner_actor' => $row->challenge_winner_actor,
 				'rating' => $row->challenge_rate_score,
 				'rating_comment' => $row->challenge_rate_comment
 			];
@@ -453,23 +483,25 @@ class Challenge {
 	public function getChallengeList( $user_name, $status = null, $limit = 0, $page = 0 ) {
 		$limit_sql = $status_sql = $user_sql = '';
 		if ( $limit > 0 && is_int( $limit ) ) {
-			$limitvalue = 0;
+			$offset = 0;
 			if ( $page && is_int( $page ) ) {
-				$limitvalue = $page * $limit - ( $limit );
+				$offset = $page * $limit - ( $limit );
 			}
-			$limit_sql = " LIMIT {$limitvalue},{$limit} ";
+			$limit_sql = " LIMIT {$offset},{$limit} ";
 		}
 
 		if ( $status != null && is_int( $status ) ) {
 			$status_sql = " AND challenge_status = {$status}";
 		}
 		if ( $user_name ) {
-			$user_id = User::idFromName( $user_name );
-			$user_sql = " AND (challenge_user_id_1 = {$user_id} OR challenge_user_id_2 = {$user_id}) ";
+			$actorId = User::newFromName( $user_name )->getActorId();
+			$user_sql = " AND (challenge_challenger_actor = {$actorId} OR challenge_challengee_actor = {$actorId}) ";
 		}
 
 		$dbr = wfGetDB( DB_MASTER );
-		$sql = "SELECT {$dbr->tableName( 'challenge' )}.challenge_id AS id, challenge_user_id_1, challenge_username1, challenge_user_id_2, challenge_username2, challenge_info, challenge_description, challenge_event_date, challenge_status, challenge_winner_username, challenge_winner_user_id,
+		$sql = "SELECT {$dbr->tableName( 'challenge' )}.challenge_id AS id,
+			challenge_challenger_actor, challenge_challengee_actor, challenge_info,
+			challenge_description, challenge_event_date, challenge_status, challenge_winner_actor,
 			challenge_win_terms, challenge_lose_terms, challenge_rate_score, challenge_rate_comment
 			FROM {$dbr->tableName( 'challenge' )} LEFT JOIN {$dbr->tableName( 'challenge_rate' )} ON
 				{$dbr->tableName( 'challenge_rate' )}.challenge_id = {$dbr->tableName( 'challenge' )}.challenge_id
@@ -486,17 +518,14 @@ class Challenge {
 			$challenges[] = [
 				'id' => $row->id,
 				'status' => $row->challenge_status,
-				'user_id_1' => $row->challenge_user_id_1,
-				'user_name_1' => $row->challenge_username1,
-				'user_id_2' => $row->challenge_user_id_2,
-				'user_name_2' => $row->challenge_username2,
+				'challenger_actor' => $row->challenge_challenger_actor,
+				'challengee_actor' => $row->challenge_challengee_actor,
 				'info' => $row->challenge_info,
 				'description' => $row->challenge_description,
 				'date' => $row->challenge_event_date,
 				'win_terms' => $row->challenge_win_terms,
 				'lose_terms' => $row->challenge_lose_terms,
-				'winner_user_id' => $row->challenge_winner_user_id,
-				'winner_user_name' => $row->challenge_winner_username,
+				'winner_actor' => $row->challenge_winner_actor,
 				'rating' => $row->challenge_rate_score,
 				'rating_comment' => $row->challenge_rate_comment
 			];
@@ -506,17 +535,17 @@ class Challenge {
 	}
 
 	/**
-	 * Get the challenge record for a given user ID.
+	 * Get the challenge record for a given user, identified via their actor ID.
 	 *
-	 * @param int $userId User ID
+	 * @param int $actorId User's actor ID
 	 * @return string Wins, losses and ties separated by a dash
 	 */
-	public static function getUserChallengeRecord( $userId ) {
+	public static function getUserChallengeRecord( $actorId ) {
 		$dbr = wfGetDB( DB_MASTER );
 		$s = $dbr->selectRow(
 			'challenge_user_record',
 			[ 'challenge_wins', 'challenge_losses', 'challenge_ties' ],
-			[ 'challenge_record_user_id' => $userId ],
+			[ 'challenge_record_actor' => $actorId ],
 			__METHOD__
 		);
 		if ( $s !== false ) {
@@ -528,16 +557,16 @@ class Challenge {
 
 	/**
 	 * @param int $rateType
-	 * @param int $userId
+	 * @param int $actorId
 	 * @return int
 	 */
-	public static function getUserFeedbackScoreByType( $rateType, $userId ) {
+	public static function getUserFeedbackScoreByType( $rateType, $actorId ) {
 		$dbr = wfGetDB( DB_MASTER );
 		return (int)$dbr->selectField(
 			'challenge_rate',
 			'COUNT(*) AS total',
 			[
-				'challenge_rate_user_id' => $userId,
+				'challenge_rate_actor' => $actorId,
 				'challenge_rate_score' => $rateType
 			],
 			__METHOD__
@@ -565,6 +594,9 @@ class Challenge {
 				break;
 			case 1:
 				$out .= wfMessage( 'challenge-status-in-progress' )->plain();
+				break;
+			case 2:
+				$out .= wfMessage( 'challenge-status-countered' )->plain();
 				break;
 			case 3:
 				$out .= wfMessage( 'challenge-status-completed' )->plain();

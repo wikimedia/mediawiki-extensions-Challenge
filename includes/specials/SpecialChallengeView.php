@@ -42,14 +42,17 @@ class ChallengeView extends SpecialPage {
 		}
 
 		$u = $this->getUser();
-		$avatar1 = new wAvatar( $challenge['user_id_1'], 'l' );
-		$avatar2 = new wAvatar( $challenge['user_id_2'], 'l' );
-		$title1 = Title::makeTitle( NS_USER, $challenge['user_name_1'] );
-		$title2 = Title::makeTitle( NS_USER, $challenge['user_name_2'] );
+		$challenger = User::newFromActorId( $challenge['challenger_actor'] );
+		$challengee = User::newFromActorId( $challenge['challengee_actor'] );
+		$avatar1 = new wAvatar( $challenger->getId(), 'l' );
+		$avatar2 = new wAvatar( $challengee->getId(), 'l' );
+		$title1 = Title::makeTitle( NS_USER, $challenger->getName() );
+		$title2 = Title::makeTitle( NS_USER, $challengee->getName() );
 
 		$template = new ChallengeViewTemplate();
 
 		$template->set( 'c', $c );
+		$template->set( 'class', $this );
 		$template->set( 'challenge', $challenge );
 		$template->set( 'avatar1', $avatar1 );
 		$template->set( 'avatar2', $avatar2 );
@@ -60,7 +63,7 @@ class ChallengeView extends SpecialPage {
 		$out = '';
 		switch ( $challenge['status'] ) {
 			case 0:
-				if ( $this->getUser()->getId() != $challenge['user_id_2'] ) {
+				if ( $this->getUser()->getActorId() != $challenge['challengee_actor'] ) {
 					$out .= $this->msg( 'challengeview-acceptance' )->plain();
 				} else {
 					$out .= $this->msg( 'challengeview-sent-to-you' )->plain();
@@ -77,19 +80,22 @@ class ChallengeView extends SpecialPage {
 				}
 				break;
 			case 1:
+			case 2: // treat "counter terms" as "in progress" b/c that's basically what it is
 				if (
 					!$this->getUser()->isAllowed( 'challengeadmin' ) ||
-					$challenge['user_id_1'] == $this->getUser()->getId() ||
-					$challenge['user_id_2'] == $this->getUser()->getId()
+					$challenge['challenger_actor'] == $this->getUser()->getActorId() ||
+					$challenge['challengee_actor'] == $this->getUser()->getActorId()
 				)
 				{
 					$out .= $this->msg( 'challengeview-inprogress' )->plain();
 				} else {
-					$out .= $this->msg( 'challengeview-admintext' )->escaped();
+					$challengerName = User::newFromActorId( $challenge['challenger_actor'] )->getName();
+					$challengeeName = User::newFromActorId( $challenge['challengee_actor'] )->getName();
+					$out .= $this->msg( 'challengeview-admintext' )->parse();
 					$out .= "<br /><br />
-					<select id=\"challenge_winner_userid\">
-					 	<option value=\"{$challenge['user_id_1']}\">{$challenge['user_name_1']}</option>
-						<option value=\"{$challenge['user_id_2']}\">{$challenge['user_name_2']}</option>
+					<select id=\"challenge_winner_actorid\">
+					 	<option value=\"{$challenge['challenger_actor']}\">{$challengerName}</option>
+						<option value=\"{$challenge['challengee_actor']}\">{$challengeeName}</option>
 						<option value=\"-1\">";
 					$out .= $this->msg( 'challengeview-push' )->plain();
 					$out .= "</option>
@@ -108,20 +114,21 @@ class ChallengeView extends SpecialPage {
 				$out .= $this->msg( 'challengeview-removed' )->plain();
 				break;
 			case 3:
-				if ( $challenge['winner_user_id'] != -1 ) {
-					$out .= $this->msg( 'challengeview-won-by', $challenge['winner_user_name'] )->escaped();
+				if ( $challenge['winner_actor'] != -1 ) {
+					$winnerName = User::newFromActorId( $challenge['winner_actor'] )->getName();
+					$out .= $this->msg( 'challengeview-won-by', $winnerName )->escaped();
 					$out .= '<br /><br />';
 					if ( $challenge['rating'] ) {
 						$out .= '<span class="challenge-title">';
 						$out .= $this->msg( 'challengeview-rating' )->plain();
 						$out .= '</span><br />';
-						$out .= $this->msg( 'challengeview-by', $challenge['winner_user_name'] )->escaped();
+						$out .= $this->msg( 'challengeview-by', $winnerName )->escaped();
 						$out .= '<br /><br />' . $this->msg( 'challengeview-rating2' )->escaped() .
 							" <span class=\"challenge-rating-{$c->rating_names[$challenge['rating']]}\">{$c->rating_names[$challenge['rating']]}</span>
 							<br />";
 						$out .= $this->msg( 'challengeview-comment', $challenge['rating_comment'] )->escaped();
 					} else {
-						if ( $this->getUser()->getId() == $challenge['winner_user_id'] ) {
+						if ( $this->getUser()->getActorId() == $challenge['winner_actor'] ) {
 							$out .= '<span class="challenge-title">';
 							$out .= $this->msg( 'challengeview-rating' )->plain();
 							$out .= '</span><br />
@@ -138,15 +145,12 @@ class ChallengeView extends SpecialPage {
 								</select>
 								<input type=\"hidden\" id=\"status\" value=\"{$challenge['status']}\" />
 								<input type=\"hidden\" id=\"challenge_id\" value=\"{$challenge['id']}\" />";
-							if ( $challenge['winner_user_id'] == $challenge['user_id_1'] ) {
-								$loser_id = $challenge['user_id_2'];
-								$loser_username = $challenge['user_name_2'];
+							if ( $challenge['winner_actor'] == $challenge['challenger_actor'] ) {
+								$loser_id = $challenge['challengee_actor'];
 							} else {
-								$loser_id = $challenge['user_id_1'];
-								$loser_username = $challenge['user_name_1'];
+								$loser_id = $challenge['challenger_actor'];
 							}
-							$out .= "<input type=\"hidden\" id=\"loser_userid\" value=\"{$loser_id}\" />
-								<input type=\"hidden\" id=\"loser_username\" value=\"{$loser_username}\" />
+							$out .= "<input type=\"hidden\" id=\"loser_actorid\" value=\"{$loser_id}\" />
 							<br /><br /><span class=\"challenge-form\">";
 							$out .= $this->msg( 'challengeview-additionalcomments' )->plain();
 							$out .= '</span><br />
