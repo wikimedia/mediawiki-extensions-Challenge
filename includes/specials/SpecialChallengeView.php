@@ -116,17 +116,21 @@ class ChallengeView extends SpecialPage {
 			case 3:
 				if ( $challenge['winner_actor'] != -1 ) {
 					$winnerName = User::newFromActorId( $challenge['winner_actor'] )->getName();
-					$out .= $this->msg( 'challengeview-won-by', $winnerName )->escaped();
+					$out .= $this->msg( 'challengeview-won-by', $winnerName )->parse();
 					$out .= '<br /><br />';
 					if ( $challenge['rating'] ) {
 						$out .= '<span class="challenge-title">';
 						$out .= $this->msg( 'challengeview-rating' )->plain();
 						$out .= '</span><br />';
-						$out .= $this->msg( 'challengeview-by', $winnerName )->escaped();
-						$out .= '<br /><br />' . $this->msg( 'challengeview-rating2' )->escaped() .
-							" <span class=\"challenge-rating-{$c->rating_names[$challenge['rating']]}\">{$c->rating_names[$challenge['rating']]}</span>
-							<br />";
-						$out .= $this->msg( 'challengeview-comment', $challenge['rating_comment'] )->escaped();
+						$out .= $this->msg( 'challengeview-by', $winnerName )->parse();
+						$out .= '<br /><br />' . $this->msg( 'challengeview-rating2' )->parse() .
+							" <span class=\"challenge-rating-{$c->rating_names[$challenge['rating']]}\">" .
+								// For grep: challengeview-rating-negative, challengeview-rating-neutral,
+								// challengeview-rating-positive
+								$this->msg( 'challengeview-rating-' . $c->rating_names[$challenge['rating']] )->escaped() .
+								'</span>
+							<br />';
+						$out .= $this->msg( 'challengeview-comment', $challenge['rating_comment'] )->parse();
 					} else {
 						if ( $this->getUser()->getActorId() == $challenge['winner_actor'] ) {
 							$out .= '<span class="challenge-title">';
