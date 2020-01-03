@@ -99,7 +99,8 @@
 		"remoteExtPath": "Challenge"
 	},
 	"Hooks": {
-		"LoadExtensionSchemaUpdates": "ChallengeHooks::onLoadExtensionSchemaUpdates"
+		"LoadExtensionSchemaUpdates": "ChallengeHooks::onLoadExtensionSchemaUpdates",
+		"UserProfileGetProfileHeaderLinks": "ChallengeHooks::onUserProfileGetProfileHeaderLinks"
 	},
 	"manifest_version": 1
 }

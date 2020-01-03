@@ -1,6 +1,7 @@
 {
 	"@metadata": {},
 	"challenge-desc": "{{desc|name=Challenge|url=https://www.mediawiki.org/wiki/Extension:Challenge}}",
+	"challenge-this-user": "Link shown on other users' social profile pages, which takes the user to the <code>Special:ChallengeUser/<target user></code> page, allowing them to challenge the desired user",
 	"challenge-status-rejected": "Challenge status text, shown in the history column on Special:ChallengeHistory",
 	"challenge-status-removed": "Challenge status text, shown in the history column on Special:ChallengeHistory",
 	"challenge-status-awaiting": "Challenge status text, shown in the history column on Special:ChallengeHistory",
