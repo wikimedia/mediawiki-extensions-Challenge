@@ -39,6 +39,21 @@ class ChallengeUser extends SpecialPage {
 		if ( $user->isAnon() ) {
 			$output->setPageTitle( $this->msg( 'challengeuser-error-page-title' ) );
 			$output->addHTML( $this->msg( 'challengeuser-login' )->plain() );
+			$out = '<div class="challenge-buttons">';
+			$loginURL = htmlspecialchars( SpecialPage::getTitleFor( 'Userlogin' )->getFullURL(), ENT_QUOTES );
+			$signupURL = htmlspecialchars( SpecialPage::getTitleFor( 'CreateAccount' )->getFullURL(), ENT_QUOTES );
+			$out .= Html::input( 'wpLogin', $this->msg( 'login' )->text(), 'button', [
+				'size' => 20,
+				'class' => 'site-button',
+				'onclick' => "window.location='{$loginURL}'"
+			] );
+			$out .= Html::input( 'wpSignup', $this->msg( 'createaccount' )->text(), 'button', [
+				'size' => 20,
+				'class' => 'site-button',
+				'onclick' => "window.location='{$signupURL}'"
+			] );
+			$out .= '</div>';
+			$output->addHTML( $out );
 			return;
 		}
 
