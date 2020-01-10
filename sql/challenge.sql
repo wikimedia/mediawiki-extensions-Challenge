@@ -18,20 +18,3 @@ CREATE TABLE /*_*/challenge (
   challenge_complete_date datetime default NULL,
   challenge_date varbinary(14) NOT NULL default ''
 )/*$wgDBTableOptions*/;
-
-CREATE TABLE /*_*/challenge_rate (
-  challenge_rate_id int(11) NOT NULL PRIMARY KEY auto_increment,
-  challenge_id int(11) NOT NULL default 0,
-  challenge_rate_date varbinary(14) NOT NULL default '',
-  challenge_rate_actor bigint unsigned NOT NULL,
-  challenge_rate_submitter_actor bigint unsigned NOT NULL,
-  challenge_rate_score int(11) NOT NULL default 0,
-  challenge_rate_comment text NOT NULL
-)/*$wgDBTableOptions*/;
-
-CREATE TABLE /*_*/challenge_user_record (
-  challenge_record_actor bigint unsigned NOT NULL,
-  challenge_wins int(11) NOT NULL default 0,
-  challenge_losses int(11) NOT NULL default 0,
-  challenge_ties int(11) NOT NULL default 0
-)/*$wgDBTableOptions*/;

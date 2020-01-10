@@ -11,21 +11,19 @@ class ChallengeHooks {
 	 * @param DatabaseUpdater $updater
 	 */
 	public static function onLoadExtensionSchemaUpdates( $updater ) {
-		$dir = __DIR__;
+		$dir = __DIR__ . '/../sql';
 
 		$dbType = $updater->getDB()->getType();
 
-		$filename = '../sql/challenge.sql';
-		// For non-MySQL/MariaDB/SQLite DBMSes, use the appropriately named file
-		/*
+		// For non-MySQL/MariaDB/SQLite DBMSes, pull the files from the appropriate
+		// subdirectory
 		if ( !in_array( $dbType, [ 'mysql', 'sqlite' ] ) ) {
-			$filename = "challenge.{$dbType}.sql";
+			$dir .= "/{$dbType}";
 		}
-		*/
 
-		$updater->addExtensionTable( 'challenge', "{$dir}/{$filename}" );
-		$updater->addExtensionTable( 'challenge_rate', "{$dir}/{$filename}" );
-		$updater->addExtensionTable( 'challenge_user_record', "{$dir}/{$filename}" );
+		$updater->addExtensionTable( 'challenge', "{$dir}/challenge.sql" );
+		$updater->addExtensionTable( 'challenge_rate', "{$dir}/challenge_rate.sql" );
+		$updater->addExtensionTable( 'challenge_user_record', "{$dir}/challenge_user_record.sql" );
 	}
 
 	/**
