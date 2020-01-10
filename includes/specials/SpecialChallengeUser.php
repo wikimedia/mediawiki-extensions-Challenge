@@ -20,6 +20,15 @@ class ChallengeUser extends SpecialPage {
 	}
 
 	/**
+	 * Whether this special page is listed on Special:SpecialPages or not.
+	 *
+	 * @return bool
+	 */
+	function isListed() {
+		return $this->getUser()->isLoggedIn();
+	}
+
+	/**
 	 * Show the special page
 	 *
 	 * @param string|null $par Name of the user to be challenged

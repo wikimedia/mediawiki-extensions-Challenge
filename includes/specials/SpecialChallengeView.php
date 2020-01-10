@@ -1,6 +1,6 @@
 <?php
 
-class ChallengeView extends SpecialPage {
+class ChallengeView extends UnlistedSpecialPage {
 
 	public function __construct() {
 		parent::__construct( 'ChallengeView' );
@@ -18,7 +18,7 @@ class ChallengeView extends SpecialPage {
 	/**
 	 * Show the special page
 	 *
-	 * @param mixed $par Parameter (challenge ID) passed to the page or null
+	 * @param int|null $par Parameter (challenge ID) passed to the page
 	 */
 	public function execute( $par ) {
 		$this->getOutput()->setPageTitle( $this->msg( 'challengeview' ) );
