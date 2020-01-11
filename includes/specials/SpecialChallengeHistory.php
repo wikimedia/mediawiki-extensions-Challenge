@@ -63,7 +63,7 @@ class ChallengeHistory extends SpecialPage {
 		$output->addModuleStyles( 'ext.challenge.history' );
 
 		$out = $standings_link = '';
-		if ( $user ) {
+		if ( $user && !$user->isAnon() ) {
 			$output->setPageTitle(
 				$this->msg( 'challengehistory-users-history', $user->getName() )
 			);
@@ -94,7 +94,7 @@ class ChallengeHistory extends SpecialPage {
 			</div>
 			<div class=\"challenge-link\">
 				<img src=\"{$spImgPath}challengeIcon.png\" alt=\"\" /> ";
-		if ( $user ) {
+		if ( $user && !$user->isAnon() ) {
 			$msg = $this->msg( 'challengehistory-challenge-user', $user->getName() )->parse();
 		} else {
 			$msg = $this->msg( 'challengehistory-challenge-someone' )->plain();
@@ -103,7 +103,7 @@ class ChallengeHistory extends SpecialPage {
 			$challenge_link,
 			$msg,
 			[],
-			( ( $user ) ? [ 'user' => $user->getName() ] : [] )
+			( ( $user && !$user->isAnon() ) ? [ 'user' => $user->getName() ] : [] )
 		);
 		$out .= $this->msg( 'word-separator' )->escaped();
 		$out .= "{$standings_link}
@@ -125,7 +125,7 @@ class ChallengeHistory extends SpecialPage {
 
 		$c = new Challenge();
 		$challengeList = $c->getChallengeList(
-			( $user ) ? $user->getName() : false,
+			( $user && !$user->isAnon() ) ? $user->getName() : false,
 			$status,
 			$perPage,
 			$page
@@ -203,7 +203,7 @@ class ChallengeHistory extends SpecialPage {
 		// Build next/prev navigation
 		$numOfPages = $totalChallenges / $perPage;
 
-		if ( $numOfPages > 1 && $user ) {
+		if ( $numOfPages > 1 && !$user->isAnon() ) {
 			$challenge_history_title = SpecialPage::getTitleFor( 'ChallengeHistory' );
 			$out .= '<div class="page-nav">';
 			if ( $page > 1 ) {
