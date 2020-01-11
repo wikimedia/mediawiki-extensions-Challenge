@@ -35,8 +35,8 @@ class ChallengeStandings extends SpecialPage {
 			</tr>';
 
 		$dbr = wfGetDB( DB_REPLICA );
-		$sql = "SELECT challenge_record_actor, challenge_wins, challenge_losses, challenge_ties, (challenge_wins / (challenge_wins + challenge_losses + challenge_ties) ) AS winning_percentage FROM {$dbr->tableName( 'challenge_user_record' )} ORDER BY (challenge_wins / (challenge_wins + challenge_losses + challenge_ties) ) DESC, challenge_wins DESC LIMIT 0,25";
-		$res = $dbr->query( $sql, __METHOD__ );
+		$sql = "SELECT challenge_record_actor, challenge_wins, challenge_losses, challenge_ties, (challenge_wins / (challenge_wins + challenge_losses + challenge_ties) ) AS winning_percentage FROM {$dbr->tableName( 'challenge_user_record' )} ORDER BY (challenge_wins / (challenge_wins + challenge_losses + challenge_ties) ) DESC, challenge_wins DESC";
+		$res = $dbr->query( $dbr->limitResult( $sql, 25 /* $limit */, 0 /* $offset */ ), __METHOD__ );
 		$x = 1;
 
 		$linkRenderer = $this->getLinkRenderer();

@@ -35,13 +35,32 @@ class Challenge {
 	}
 
 	/**
+	 * Helper for addChallenge(), formats a given date into something MediaWiki can work with.
+	 *
+	 * @param string $date Event date in the MM/DD/YYYY format (incl. the slashes)
+	 * @return string The supplied timestamp formatted as YYYYMMDD and suffixed with six zeros
+	 */
+	private function formatDateForDB( $date ) {
+		$exploded = explode( '/', $date );
+		if ( count( $exploded ) !== 3 ) {
+			throw new MWException( __METHOD__ . ' given a bogus argument that did not contain three slashes' );
+		}
+
+		$date = $exploded[1];
+		$month = $exploded[0];
+		$year = $exploded[2];
+
+		return $year . $month . $date . '000000';
+	}
+
+	/**
 	 * Add a challenge to the database and send a challenge request mail to the
 	 * challenged user.
 	 *
 	 * @param User $challenger The user (object) who challenged $user_to
 	 * @param User $challengee Name of the person who was challenged
 	 * @param string $info
-	 * @param $event_date
+	 * @param string $event_date Event date in the MM/DD/YYYY format (incl. the slashes)
 	 * @param string $description User-supplied description of the challenge
 	 * @param string $win_terms User-supplied win terms
 	 * @param string $lose_terms User-supplied lose terms
@@ -59,7 +78,7 @@ class Challenge {
 				'challenge_lose_terms' => $lose_terms,
 				'challenge_status' => 0,
 				'challenge_date' => $dbw->timestamp(),
-				'challenge_event_date' => $event_date
+				'challenge_event_date' => $dbw->timestamp( $this->formatDateForDB( $event_date ) )
 			],
 			__METHOD__
 		);
@@ -481,13 +500,13 @@ class Challenge {
 	 * @return array
 	 */
 	public function getChallengeList( $user_name, $status = null, $limit = 0, $page = 0 ) {
-		$limit_sql = $status_sql = $user_sql = '';
+		$status_sql = $user_sql = '';
+		$offset = 0;
+
 		if ( $limit > 0 && is_int( $limit ) ) {
-			$offset = 0;
 			if ( $page && is_int( $page ) ) {
 				$offset = $page * $limit - ( $limit );
 			}
-			$limit_sql = " LIMIT {$offset},{$limit} ";
 		}
 
 		if ( $status != null && is_int( $status ) ) {
@@ -508,10 +527,9 @@ class Challenge {
 			WHERE 1=1
 			{$user_sql}
 			{$status_sql}
-			ORDER BY challenge_date DESC
-			{$limit_sql}";
+			ORDER BY challenge_date DESC";
 
-		$res = $dbr->query( $sql, __METHOD__ );
+		$res = $dbr->query( $dbr->limitResult( $sql, $limit, $offset ), __METHOD__ );
 
 		$challenges = [];
 		foreach ( $res as $row ) {
