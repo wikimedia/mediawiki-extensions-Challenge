@@ -12,7 +12,10 @@ class ChallengeAction extends UnlistedSpecialPage {
 	 * @param mixed $par Parameter passed to the page or null
 	 */
 	public function execute( $par ) {
+		$out = $this->getOutput();
 		$request = $this->getRequest();
+		$user = $this->getUser();
+
 		$c = new Challenge();
 		$action = $request->getVal( 'action' );
 
@@ -20,7 +23,13 @@ class ChallengeAction extends UnlistedSpecialPage {
 			// This page isn't supposed to be accessed directly, but who knows
 			// what the users will do, so show an informative message in case
 			// if some poor soul ends up here directly (bug T152890)
-			$this->getOutput()->addWikiMsg( 'challengeaction-go-away' );
+			$out->addWikiMsg( 'challengeaction-go-away' );
+			return;
+		}
+
+		// status code 2 means "challenge removed by admin" which uses a different anti-CSRF token
+		if ( !$user->matchEditToken( $request->getVal( 'wpEditToken' ) ) && $request->getInt( 'status' ) !== 2 ) {
+			$out->addWikiMsg( 'sessionfailure' );
 			return;
 		}
 
@@ -32,13 +41,16 @@ class ChallengeAction extends UnlistedSpecialPage {
 				);
 				break;
 			case 2:
-				//if ( $this->getUser()->isAllowed( 'challengeadmin' ) ) {
+				if (
+					$user->isAllowed( 'challengeadmin' ) &&
+					$user->matchEditToken( $request->getVal( 'wpAdminToken' ) )
+				) {
 					$c->updateChallengeWinner(
 						$request->getInt( 'id' ),
 						$request->getInt( 'actorid' )
 					);
 					$c->updateChallengeStatus( $request->getInt( 'id' ), 3 );
-				//}
+				}
 				break;
 			case 3:
 				// Update social stats for both users involved in challenge
@@ -59,7 +71,7 @@ class ChallengeAction extends UnlistedSpecialPage {
 					'challenge_rate',
 					[
 						'challenge_id' => $request->getVal( 'id' ),
-						'challenge_rate_submitter_actor' => $this->getUser()->getActorId(),
+						'challenge_rate_submitter_actor' => $user->getActorId(),
 						'challenge_rate_actor' => $request->getInt( 'loser_actorid' ),
 						'challenge_rate_date' => $dbw->timestamp(),
 						'challenge_rate_score' => $request->getVal( 'challenge_rate' ),
@@ -70,6 +82,6 @@ class ChallengeAction extends UnlistedSpecialPage {
 				break;
 		}
 
-		$this->getOutput()->setArticleBodyOnly( true );
+		$out->setArticleBodyOnly( true );
 	}
 }

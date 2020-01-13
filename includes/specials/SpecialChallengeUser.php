@@ -81,7 +81,11 @@ class ChallengeUser extends SpecialPage {
 			$output->setPageTitle( $this->msg( 'challengeuser-error-page-title' ) );
 			$output->addHTML( $this->msg( 'challengeuser-nouser' )->plain() );
 		} else {
-			if ( $request->wasPosted() && $_SESSION['alreadysubmitted'] === false ) {
+			if (
+				$request->wasPosted() &&
+				$user->matchEditToken( $request->getVal( 'wpEditToken' ) ) &&
+				$_SESSION['alreadysubmitted'] === false
+			) {
 				$_SESSION['alreadysubmitted'] = true;
 				$c = new Challenge();
 				$c->addChallenge(

@@ -42,7 +42,8 @@ var Challenge = {
 				title: 'Special:ChallengeAction',
 				action: 1,
 				'id': id,
-				status: -2
+				status: -2,
+				wpAdminToken: $( 'input[name="wpAdminToken"]' ).val()
 			}
 		} ).done( function() {
 			var text = mw.msg( 'challenge-js-challenge-removed' );
@@ -60,7 +61,8 @@ var Challenge = {
 				title: 'Special:ChallengeAction',
 				action: 1,
 				'id': $( '#challenge_id' ).val(),
-				status: $( '#challenge_action' ).val()
+				status: $( '#challenge_action' ).val(),
+				wpEditToken: $( 'input[name="wpEditToken"]' ).val()
 			}
 		} ).done( function() {
 			var newStatus;
@@ -89,7 +91,8 @@ var Challenge = {
 				title: 'Special:ChallengeAction',
 				action: 2,
 				'id': $( '#challenge_id' ).val(),
-				actorid: $( '#challenge_winner_actorid' ).val()
+				actorid: $( '#challenge_winner_actorid' ).val(),
+				wpEditToken: $( 'input[name="wpEditToken"]' ).val()
 			}
 		} ).done( function() {
 			$( '#challenge-status' ).text( mw.msg( 'challenge-js-winner-recorded' ) ).show( 500 );
@@ -107,7 +110,8 @@ var Challenge = {
 				'id': $( '#challenge_id' ).val(),
 				challenge_rate: $( '#challenge_rate' ).val(),
 				rate_comment: $( '#rate_comment' ).val(),
-				loser_actorid: $( '#loser_actorid' ).val()
+				loser_actorid: $( '#loser_actorid' ).val(),
+				wpEditToken: $( 'input[name="wpEditToken"]' ).val()
 			}
 		} ).done( function() {
 			$( '#challenge-status' ).text( mw.msg( 'challenge-js-rating-submitted' ) ).show( 500 );

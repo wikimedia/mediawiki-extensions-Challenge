@@ -63,7 +63,7 @@ class ChallengeView extends UnlistedSpecialPage {
 		$out = '';
 		switch ( $challenge['status'] ) {
 			case 0:
-				if ( $this->getUser()->getActorId() != $challenge['challengee_actor'] ) {
+				if ( $u->getActorId() != $challenge['challengee_actor'] ) {
 					$out .= $this->msg( 'challengeview-acceptance' )->plain();
 				} else {
 					$out .= $this->msg( 'challengeview-sent-to-you' )->plain();
@@ -77,14 +77,15 @@ class ChallengeView extends UnlistedSpecialPage {
 					<input type=\"hidden\" id=\"challenge_id\" value=\"{$challenge['id']}\" />
 					<input type=\"button\" class=\"challenge-response-button site-button\" value=\"" . $this->msg( 'challengeview-submit-button' )->plain() .
 						'" />';
+					$out .= Html::hidden( 'wpEditToken', $u->getEditToken() );
 				}
 				break;
 			case 1:
 			case 2: // treat "counter terms" as "in progress" b/c that's basically what it is
 				if (
-					!$this->getUser()->isAllowed( 'challengeadmin' ) ||
-					$challenge['challenger_actor'] == $this->getUser()->getActorId() ||
-					$challenge['challengee_actor'] == $this->getUser()->getActorId()
+					!$u->isAllowed( 'challengeadmin' ) ||
+					$challenge['challenger_actor'] == $u->getActorId() ||
+					$challenge['challengee_actor'] == $u->getActorId()
 				)
 				{
 					$out .= $this->msg( 'challengeview-inprogress' )->plain();
@@ -105,6 +106,7 @@ class ChallengeView extends UnlistedSpecialPage {
 					<input type=\"button\" class=\"challenge-approval-button site-button\" value=\"" .
 						$this->msg( 'challengeview-submit-button' )->plain() .
 					'" />';
+					$out .= Html::hidden( 'wpEditToken', $u->getEditToken() );
 				}
 				break;
 			case -1:
@@ -132,7 +134,7 @@ class ChallengeView extends UnlistedSpecialPage {
 							<br />';
 						$out .= $this->msg( 'challengeview-comment', $challenge['rating_comment'] )->parse();
 					} else {
-						if ( $this->getUser()->getActorId() == $challenge['winner_actor'] ) {
+						if ( $u->getActorId() == $challenge['winner_actor'] ) {
 							$out .= '<span class="challenge-title">';
 							$out .= $this->msg( 'challengeview-rating' )->plain();
 							$out .= '</span><br />
@@ -162,6 +164,7 @@ class ChallengeView extends UnlistedSpecialPage {
 								<input type="button" class="challenge-rate-button site-button" value="' .
 									$this->msg( 'challengeview-submit-button' )->plain() .
 									'" />';
+							$out .= Html::hidden( 'wpEditToken', $u->getEditToken() );
 						} else {
 							$out .= $this->msg( 'challengeview-notyetrated' )->plain();
 						}

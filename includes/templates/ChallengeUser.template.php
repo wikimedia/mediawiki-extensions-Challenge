@@ -91,6 +91,7 @@ class ChallengeUserTemplate extends QuickTemplate {
 			<input type="button" class="createbox challenge-send-button site-button" value="<?php echo $this->data['class']->msg( 'challengeuser-submit-button' )->plain() ?>" size="20" />
 		</div>
 		<div class="visualClear"></div>
+		<input type="hidden" name="wpEditToken" value="<?php echo $this->data['class']->getUser()->getEditToken() ?>" />
 	</form>
 <?php
 	} // execute()

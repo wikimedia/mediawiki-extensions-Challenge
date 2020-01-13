@@ -110,6 +110,7 @@ class ChallengeViewTemplate extends QuickTemplate {
 		$adminLink = "<a class=\"challenge-admin-cancel-link\" data-challenge-id=\"{$challenge['id']}\" href=\"#\">";
 		$adminLink .= wfMessage( 'challengeview-admin' )->plain();
 		$adminLink .= '</a>';
+		$adminLink .= Html::hidden( 'wpAdminToken', $user->getEditToken() );
 		echo $adminLink;
 	}
 ?>
