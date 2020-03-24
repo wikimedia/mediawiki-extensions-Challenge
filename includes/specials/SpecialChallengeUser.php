@@ -169,10 +169,14 @@ class ChallengeUser extends SpecialPage {
 				$output .= $this->msg( 'challengeuser-select-friend' )->plain();
 				$output .= '</option>';
 				foreach ( $friends as $friend ) {
+					$friendUser = User::newFromActorId( $friend['actor'] );
+					if ( !$friendUser || !$friendUser instanceof User ) {
+						continue;
+					}
 					$output .= Html::element(
 						'option',
-						[ 'value' => $friend['user_name'] ],
-						$friend['user_name']
+						[ 'value' => $friendUser->getName() ],
+						$friendUser->getName()
 					);
 				}
 				$output .= '</select>
