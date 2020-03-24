@@ -1,5 +1,5 @@
 DROP SEQUENCE IF EXISTS challenge_rate_challenge_rate_id_seq CASCADE;
-CREATE SEQUENCE challenge_rate_challenge_rate_id_seq MINVALUE 0 START WITH 0;
+CREATE SEQUENCE challenge_rate_challenge_rate_id_seq;
 
 CREATE TABLE challenge_rate (
   challenge_rate_id INTEGER NOT NULL DEFAULT nextval('challenge_rate_challenge_rate_id_seq') PRIMARY KEY,
