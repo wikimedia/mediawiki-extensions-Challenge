@@ -43,7 +43,6 @@
 	"challengehistory-filter": "suodata:",
 	"challengehistory-inprogress": "Käynnissä",
 	"challengehistory-inprogress2": "käynnissä",
-	"challengehistory-losers-rating": "häviäjän arvostelu",
 	"challengehistory-negative": "Negatiivinen",
 	"challengehistory-negative2": "{{PLURAL:$1|$1 negatiivinen|$1 negatiivista}}",
 	"challengehistory-neutral": "Neutraali",
