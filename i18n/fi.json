@@ -92,7 +92,7 @@
 	"challengeuser-select-friend": "valitse ystävä",
 	"challengeuser-select-friend-from-list": "Valitse ystävälistastasi",
 	"challengeuser-self": "Et voi haastaa itseäsi!",
-	"challengeuser-sent": "Haasteesi on lähetetty ja se odottaa käyttäjän $1 hyväksyntää",
+	"challengeuser-sent": "Haasteesi on lähetetty ja se odottaa käyttäjän [[User:$1|$1]] hyväksyntää",
 	"challengeuser-start-button": "aloita haaste",
 	"challengeuser-submit-button": "Lähetä",
 	"challengeuser-title": "Haasta käyttäjä",

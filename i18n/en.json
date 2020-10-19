@@ -104,7 +104,7 @@
 	"challengeuser-select-friend": "select a friend",
 	"challengeuser-select-friend-from-list": "Select from your list of friends",
 	"challengeuser-self": "You cannot challenge yourself!",
-	"challengeuser-sent": "The challenge has been sent, and is awaiting acceptance by $1",
+	"challengeuser-sent": "The challenge has been sent, and is awaiting acceptance by [[User:$1|$1]]",
 	"challengeuser-start-button": "start challenge",
 	"challengeuser-submit-button": "Submit",
 	"challengeuser-title": "Challenge User",
