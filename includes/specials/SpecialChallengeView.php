@@ -25,7 +25,7 @@ class ChallengeView extends UnlistedSpecialPage {
 
 		$id = (int)$this->getRequest()->getVal( 'id', $par );
 		if ( $id == '' ) {
-			$this->getOutput()->addHTML( $this->msg( 'challengeview-nochallenge' )->plain() );
+			$this->getOutput()->addHTML( $this->msg( 'challengeview-nochallenge' )->escaped() );
 		} else {
 	 		$this->getOutput()->addHTML( $this->displayChallenge( $id ) );
 		}
@@ -38,7 +38,7 @@ class ChallengeView extends UnlistedSpecialPage {
 		$c = new Challenge();
 		$challenge = $c->getChallenge( $id );
 		if ( empty( $challenge ) ) {
-			return $this->msg( 'challengeview-invalidid' )->plain();
+			return $this->msg( 'challengeview-invalidid' )->escaped();
 		}
 
 		$u = $this->getUser();
@@ -60,24 +60,28 @@ class ChallengeView extends UnlistedSpecialPage {
 		$template->set( 'title2', $title2 );
 		$template->set( 'user', $u );
 
+		$challengeAction = SpecialPage::getTitleFor( 'ChallengeAction' );
+
 		$out = '';
 		switch ( $challenge['status'] ) {
 			case 0:
 				if ( $u->getActorId() != $challenge['challengee_actor'] ) {
-					$out .= $this->msg( 'challengeview-acceptance' )->plain();
+					$out .= $this->msg( 'challengeview-acceptance' )->escaped();
 				} else {
-					$out .= $this->msg( 'challengeview-sent-to-you' )->plain();
+					$out .= $this->msg( 'challengeview-sent-to-you' )->escaped();
 					$out .= '<br /><br />
-					<select id="challenge_action">
-						<option value="1">' . $this->msg( 'challengeview-accept' )->plain() . '</option>
-						<option value="-1">' . $this->msg( 'challengeview-reject' )->plain() . '</option>
-						<option value="2">' . $this->msg( 'challengeview-counterterms' )->plain() . "</option>
+					<form action="' . htmlspecialchars( $challengeAction->getFullURL( [ 'action' => 1 ] ), ENT_QUOTES ) . '" method="post">
+					<select id="challenge_action" name="challenge_action">
+						<option value="1">' . $this->msg( 'challengeview-accept' )->escaped() . '</option>
+						<option value="-1">' . $this->msg( 'challengeview-reject' )->escaped() . '</option>
+						<option value="2">' . $this->msg( 'challengeview-counterterms' )->escaped() . "</option>
 					</select>
 					<input type=\"hidden\" id=\"status\" value=\"{$challenge['status']}\" />
 					<input type=\"hidden\" id=\"challenge_id\" value=\"{$challenge['id']}\" />
-					<input type=\"button\" class=\"challenge-response-button site-button\" value=\"" . $this->msg( 'challengeview-submit-button' )->plain() .
+					<input type=\"submit\" class=\"challenge-response-button site-button\" value=\"" . $this->msg( 'challengeview-submit-button' )->escaped() .
 						'" />';
 					$out .= Html::hidden( 'wpEditToken', $u->getEditToken() );
+					$out .= '</form>';
 				}
 				break;
 			case 1:
@@ -86,34 +90,34 @@ class ChallengeView extends UnlistedSpecialPage {
 					!$u->isAllowed( 'challengeadmin' ) ||
 					$challenge['challenger_actor'] == $u->getActorId() ||
 					$challenge['challengee_actor'] == $u->getActorId()
-				)
-				{
-					$out .= $this->msg( 'challengeview-inprogress' )->plain();
+				) {
+					$out .= $this->msg( 'challengeview-inprogress' )->escaped();
 				} else {
 					$challengerName = User::newFromActorId( $challenge['challenger_actor'] )->getName();
 					$challengeeName = User::newFromActorId( $challenge['challengee_actor'] )->getName();
 					$out .= $this->msg( 'challengeview-admintext' )->parse();
-					$out .= "<br /><br />
-					<select id=\"challenge_winner_actorid\">
+					$out .= '<br /><br />
+					<form action="' . htmlspecialchars( $challengeAction->getFullURL( [ 'action' => 2 ] ), ENT_QUOTES ) . "\" method=\"post\">
+					<select id=\"challenge_winner_actorid\" name=\"challenge_winner_actorid\">
 					 	<option value=\"{$challenge['challenger_actor']}\">{$challengerName}</option>
 						<option value=\"{$challenge['challengee_actor']}\">{$challengeeName}</option>
 						<option value=\"-1\">";
-					$out .= $this->msg( 'challengeview-push' )->plain();
+					$out .= $this->msg( 'challengeview-push' )->escaped();
 					$out .= "</option>
 					</select>
 					<input type=\"hidden\" id=\"status\" value=\"{$challenge['status']}\" />
 					<input type=\"hidden\" id=\"challenge_id\" value=\"{$challenge['id']}\" />
-					<input type=\"button\" class=\"challenge-approval-button site-button\" value=\"" .
-						$this->msg( 'challengeview-submit-button' )->plain() .
+					<input type=\"submit\" class=\"challenge-approval-button site-button\" value=\"" .
+						$this->msg( 'challengeview-submit-button' )->escaped() .
 					'" />';
-					$out .= Html::hidden( 'wpEditToken', $u->getEditToken() );
+					$out .= Html::hidden( 'wpAdminToken', $u->getEditToken() );
 				}
 				break;
 			case -1:
-				$out .= $this->msg( 'challengeview-rejected' )->plain();
+				$out .= $this->msg( 'challengeview-rejected' )->escaped();
 				break;
 			case -2:
-				$out .= $this->msg( 'challengeview-removed' )->plain();
+				$out .= $this->msg( 'challengeview-removed' )->escaped();
 				break;
 			case 3:
 				if ( $challenge['winner_actor'] != -1 ) {
@@ -122,7 +126,7 @@ class ChallengeView extends UnlistedSpecialPage {
 					$out .= '<br /><br />';
 					if ( $challenge['rating'] ) {
 						$out .= '<span class="challenge-title">';
-						$out .= $this->msg( 'challengeview-rating' )->plain();
+						$out .= $this->msg( 'challengeview-rating' )->escaped();
 						$out .= '</span><br />';
 						$out .= $this->msg( 'challengeview-by', $winnerName )->parse();
 						$out .= '<br /><br />' . $this->msg( 'challengeview-rating2' )->parse() .
@@ -135,19 +139,20 @@ class ChallengeView extends UnlistedSpecialPage {
 						$out .= $this->msg( 'challengeview-comment', $challenge['rating_comment'] )->parse();
 					} else {
 						if ( $u->getActorId() == $challenge['winner_actor'] ) {
+							$out .= '<form action="' . htmlspecialchars( $challengeAction->getFullURL( [ 'action' => 3 ] ), ENT_QUOTES ) . '" method="post">';
 							$out .= '<span class="challenge-title">';
-							$out .= $this->msg( 'challengeview-rating' )->plain();
+							$out .= $this->msg( 'challengeview-rating' )->escaped();
 							$out .= '</span><br />
 								<span class="challenge-won">';
-							$out .= $this->msg( 'challengeview-you-won' )->plain();
+							$out .= $this->msg( 'challengeview-you-won' )->escaped();
 							$out .= '</span><br /><br />
 								<span class="challenge-form">';
-							$out .= $this->msg( 'challengeview-rateloser' )->plain();
+							$out .= $this->msg( 'challengeview-rateloser' )->escaped();
 							$out .= '</span><br />
-								<select id="challenge_rate">
-									<option value="1">' . $this->msg( 'challengeview-positive' )->plain() . '</option>
-									<option value="-1">' . $this->msg( 'challengeview-negative' )->plain() . '</option>
-									<option value="0">' . $this->msg( 'challengeview-neutral' )->plain() . "</option>
+								<select id="challenge_rate" name="challenge_rate">
+									<option value="1">' . $this->msg( 'challengeview-positive' )->escaped() . '</option>
+									<option value="-1">' . $this->msg( 'challengeview-negative' )->escaped() . '</option>
+									<option value="0">' . $this->msg( 'challengeview-neutral' )->escaped() . "</option>
 								</select>
 								<input type=\"hidden\" id=\"status\" value=\"{$challenge['status']}\" />
 								<input type=\"hidden\" id=\"challenge_id\" value=\"{$challenge['id']}\" />";
@@ -158,19 +163,20 @@ class ChallengeView extends UnlistedSpecialPage {
 							}
 							$out .= "<input type=\"hidden\" id=\"loser_actorid\" value=\"{$loser_id}\" />
 							<br /><br /><span class=\"challenge-form\">";
-							$out .= $this->msg( 'challengeview-additionalcomments' )->plain();
+							$out .= $this->msg( 'challengeview-additionalcomments' )->escaped();
 							$out .= '</span><br />
 								<textarea class="createbox" rows="2" cols="50" id="rate_comment"></textarea><br /><br />
-								<input type="button" class="challenge-rate-button site-button" value="' .
-									$this->msg( 'challengeview-submit-button' )->plain() .
+								<input type="submit" class="challenge-rate-button site-button" value="' .
+									$this->msg( 'challengeview-submit-button' )->escaped() .
 									'" />';
 							$out .= Html::hidden( 'wpEditToken', $u->getEditToken() );
+							$out .= '</form>';
 						} else {
-							$out .= $this->msg( 'challengeview-notyetrated' )->plain();
+							$out .= $this->msg( 'challengeview-notyetrated' )->escaped();
 						}
 					}
 				} else {
-					$out .= $this->msg( 'challengeview-was-push' )->plain() . '<br /><br />';
+					$out .= $this->msg( 'challengeview-was-push' )->escaped() . '<br /><br />';
 				}
 			break;
 		}

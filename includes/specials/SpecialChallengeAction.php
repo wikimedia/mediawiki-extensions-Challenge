@@ -36,7 +36,8 @@ class ChallengeAction extends UnlistedSpecialPage {
 		switch ( $action ) {
 			case 1:
 				$c->updateChallengeStatus(
-					$request->getInt( 'id' ),
+					// @todo FIXME: this is a bit subpar...'id' is used by JS but 'challenge_id' by no-JS
+					$request->getInt( 'id' ) ?? $request->getInt( 'challenge_id' ),
 					$request->getVal( 'status' )
 				);
 				break;
@@ -46,10 +47,10 @@ class ChallengeAction extends UnlistedSpecialPage {
 					$user->matchEditToken( $request->getVal( 'wpAdminToken' ) )
 				) {
 					$c->updateChallengeWinner(
-						$request->getInt( 'id' ),
-						$request->getInt( 'actorid' )
+						$request->getInt( 'challenge_id' ),
+						$request->getInt( 'challenge_winner_actorid' )
 					);
-					$c->updateChallengeStatus( $request->getInt( 'id' ), 3 );
+					$c->updateChallengeStatus( $request->getInt( 'challenge_id' ), Challenge::STATUS_COMPLETED );
 				}
 				break;
 			case 3:
@@ -70,7 +71,7 @@ class ChallengeAction extends UnlistedSpecialPage {
 				$dbw->insert(
 					'challenge_rate',
 					[
-						'challenge_id' => $request->getVal( 'id' ),
+						'challenge_id' => $request->getVal( 'id' ) ?? $request->getInt( 'challenge_id' ),
 						'challenge_rate_submitter_actor' => $user->getActorId(),
 						'challenge_rate_actor' => $request->getInt( 'loser_actorid' ),
 						'challenge_rate_date' => $dbw->timestamp(),

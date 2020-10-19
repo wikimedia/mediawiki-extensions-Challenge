@@ -1,5 +1,9 @@
-select[name="status-filter"] {
+select[name="status"] {
 	font-size: 10px;
+}
+
+.client-js .nojs-submit-btn {
+	display: none;
 }
 
 .challenge-nav {

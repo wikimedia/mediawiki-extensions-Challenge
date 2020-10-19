@@ -27,21 +27,21 @@ class ChallengeViewTemplate extends QuickTemplate {
 				) ?></span> (<?php echo $this->data['c']->getUserChallengeRecord( $challenge['challenger_actor'] ) ?>)
 				<br /><?php echo $linkRenderer->makeLink(
 					$challenge_history_title,
-					wfMessage( 'challengeview-view-history' )->plain(),
+					wfMessage( 'challengeview-view-history' )->escaped(),
 					[ 'class' => 'challenge-small-link' ],
 					[ 'user' => $this->data['title1']->getDBkey() ]
 				); ?>
 				<?php if ( $user->getName() !== $this->data['title1']->getText() ) { ?>
 				<br /><?php echo $linkRenderer->makeLink(
 					$challenge_user_title,
-					wfMessage( 'challengeview-issue-challenge' )->plain(),
+					wfMessage( 'challengeview-issue-challenge' )->escaped(),
 					[ 'class' => 'challenge-small-link' ],
 					[ 'user' => $this->data['title1']->getDBkey() ]
 				); ?>
 				<?php } ?>
 			</td>
 			<td>
-				<b><?php echo wfMessage( 'challengeview-versus' )->plain() ?></b>
+				<b><?php echo wfMessage( 'challengeview-versus' )->escaped() ?></b>
 			</td>
 			<td><?php echo $this->data['avatar2']->getAvatarURL(); ?></td>
 			<td>
@@ -52,14 +52,14 @@ class ChallengeViewTemplate extends QuickTemplate {
 				) ?></span> (<?php echo $this->data['c']->getUserChallengeRecord( $challenge['challengee_actor'] ) ?>)
 				<br /><?php echo $linkRenderer->makeLink(
 					$challenge_history_title,
-					wfMessage( 'challengeview-view-history' )->plain(),
+					wfMessage( 'challengeview-view-history' )->escaped(),
 					[ 'class' => 'challenge-small-link' ],
 					[ 'user' => $this->data['title2']->getDBkey() ]
 				); ?>
 				<?php if ( $user->getName() !== $this->data['title2']->getText() ) { ?>
 				<br /><?php echo $linkRenderer->makeLink(
 					$challenge_user_title,
-					wfMessage( 'challengeview-issue-challenge' )->plain(),
+					wfMessage( 'challengeview-issue-challenge' )->escaped(),
 					[ 'class' => 'challenge-small-link' ],
 					[ 'user' => $this->data['title2']->getDBkey() ]
 				); ?>
@@ -71,7 +71,7 @@ class ChallengeViewTemplate extends QuickTemplate {
 	<table>
 		<tr>
 			<td>
-				<b><?php echo wfMessage( 'challengeview-event' )->plain() ?></b> <span class="challenge-event"><?php echo $challenge['info'] . ' [' . $challenge['date'] . ']' ?></span>
+				<b><?php echo wfMessage( 'challengeview-event' )->escaped() ?></b> <span class="challenge-event"><?php echo $challenge['info'] . ' [' . $challenge['date'] . ']' ?></span>
 				<br /><b><?php echo wfMessage( 'challengeview-description', User::newFromActorId( $challenge['challenger_actor'] )->getName() )->parse() ?></b><span class="challenge-description"><?php echo $challenge['description'] ?></span>
 			</td>
 		</tr>
@@ -107,15 +107,25 @@ class ChallengeViewTemplate extends QuickTemplate {
 		$challenge['challengee_actor'] != $user->getActorId() &&
 		$challenge['challenger_actor'] != $user->getActorId()
 	) {
+		// NoJS TODO
+		/*
+		$challengeAction = SpecialPage::getTitleFor( 'ChallengeAction' );
+		$noJSform = '<form action="' . htmlspecialchars( $challengeAction->getFullURL( [ 'action' => 1 ] ), ENT_QUOTES ) . '" method="post">';
+		$noJSform .= Html::hidden( 'id', (int)$challenge['id'] );
+		$no
+		$noJSform .= Html::hidden( 'wpAdminToken', $user->getEditToken() );
+		// $noJSform = SOME KIND OF A SUBMIT BUTTON HERE...
+		$noJSform .= '</form>';
+		*/
 		$adminLink = "<a class=\"challenge-admin-cancel-link\" data-challenge-id=\"{$challenge['id']}\" href=\"#\">";
-		$adminLink .= wfMessage( 'challengeview-admin' )->plain();
+		$adminLink .= wfMessage( 'challengeview-admin' )->escaped();
 		$adminLink .= '</a>';
 		$adminLink .= Html::hidden( 'wpAdminToken', $user->getEditToken() );
 		echo $adminLink;
 	}
 ?>
 	<div class="challenge-line"></div>
-	<span class="challenge-title"><?php echo wfMessage( 'challengeview-status' )->plain() ?></span><br />
+	<span class="challenge-title"><?php echo wfMessage( 'challengeview-status' )->escaped() ?></span><br />
 	<div class="challenge-status-text">
 		<span id="challenge-status">
 			<?php echo $this->data['challenge-status-html']; ?>

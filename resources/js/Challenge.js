@@ -90,9 +90,9 @@ var Challenge = {
 			data: {
 				title: 'Special:ChallengeAction',
 				action: 2,
-				'id': $( '#challenge_id' ).val(),
-				actorid: $( '#challenge_winner_actorid' ).val(),
-				wpEditToken: $( 'input[name="wpEditToken"]' ).val()
+				'challenge_id': $( '#challenge_id' ).val(),
+				challenge_winner_actorid: $( '#challenge_winner_actorid' ).val(),
+				wpAdminToken: $( 'input[name="wpAdminToken"]' ).val()
 			}
 		} ).done( function() {
 			$( '#challenge-status' ).text( mw.msg( 'challenge-js-winner-recorded' ) ).show( 500 );
@@ -121,7 +121,7 @@ var Challenge = {
 
 $( function() {
 	// Special:ChallengeHistory (SpecialChallengeHistory.php)
-	$( 'select[name="status-filter"]' ).on( 'change', function() {
+	$( 'select[name="status"]' ).on( 'change', function() {
 		Challenge.changeFilter( $( this ).data( 'username' ), $( this ).val() );
 	} );
 
@@ -142,15 +142,18 @@ $( function() {
 	} );
 
 	// Special:ChallengeView (SpecialChallengeView.php)
-	$( 'input.challenge-approval-button' ).on( 'click', function() {
+	$( 'input.challenge-approval-button' ).on( 'click', function( e ) {
+		e.preventDefault();
 		Challenge.approval();
 	} );
 
-	$( 'input.challenge-rate-button' ).on( 'click', function() {
+	$( 'input.challenge-rate-button' ).on( 'click', function( e ) {
+		e.preventDefault();
 		Challenge.rate();
 	} );
 
-	$( 'input.challenge-response-button' ).on( 'click', function() {
+	$( 'input.challenge-response-button' ).on( 'click', function( e ) {
+		e.preventDefault();
 		Challenge.response();
 	} );
 } );

@@ -62,6 +62,7 @@
 	"challengehistory-ratings-loser": "A label message",
 	"challengehistory-recentchallenges": "A page title",
 	"challengehistory-rejected": "A option text",
+	"challengehistory-submit-btn": "Submit button text shown on Special:ChallengeHistory for users who don't have JavaScript enabled",
 	"challengehistory-status": "A label message",
 	"challengehistory-target": "A label message",
 	"challengehistory-user": "A label message",

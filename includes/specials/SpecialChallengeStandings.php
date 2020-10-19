@@ -26,10 +26,10 @@ class ChallengeStandings extends SpecialPage {
 		$out = '<table class="challenge-standings-table">
 			<tr>
 				<td class="challenge-standings-title">#</td>
-				<td class="challenge-standings-title">' . $this->msg( 'challengestandings-user' )->plain() . '</td>
-				<td class="challenge-standings-title">' . $this->msg( 'challengestandings-w' )->plain() . '</td>
-				<td class="challenge-standings-title">' . $this->msg( 'challengestandings-l' )->plain() . '</td>
-				<td class="challenge-standings-title">' . $this->msg( 'challengestandings-t' )->plain() . '</td>
+				<td class="challenge-standings-title">' . $this->msg( 'challengestandings-user' )->escaped() . '</td>
+				<td class="challenge-standings-title">' . $this->msg( 'challengestandings-w' )->escaped() . '</td>
+				<td class="challenge-standings-title">' . $this->msg( 'challengestandings-l' )->escaped() . '</td>
+				<td class="challenge-standings-title">' . $this->msg( 'challengestandings-t' )->escaped() . '</td>
 				<td class="challenge-standings-title">%</td>
 				<td class="challenge-standings-title"></td>
 			</tr>';
@@ -70,7 +70,7 @@ class ChallengeStandings extends SpecialPage {
 				$out .= '<td class="challenge-standings">';
 				$out .= $linkRenderer->makeLink(
 					SpecialPage::getTitleFor( 'ChallengeUser' ),
-					$this->msg( 'challengestandings-challengeuser' )->plain(),
+					$this->msg( 'challengestandings-challengeuser' )->escaped(),
 					[ 'class' => 'challenge-standings-user-link' ],
 					[ 'user' => $recordHolderName ]
 				);

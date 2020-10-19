@@ -38,6 +38,10 @@ class ChallengeUser extends SpecialPage {
 		$request = $this->getRequest();
 		$user = $this->getUser();
 
+		// Anons don't get to use this special page
+		// @todo FIXME: why tf doesn't this redirect to Special:UserLogin like how Special:Watchlist does??? --ashley, 18 August 2020
+		$this->requireLogin( 'challengeuser-login' );
+
 		// Add CSS & JS via ResourceLoader
 		$output->addModuleStyles( 'ext.challenge.user' );
 		$output->addModules( [
@@ -45,28 +49,14 @@ class ChallengeUser extends SpecialPage {
 			'ext.challenge.js.datepicker'
 		] );
 
-		if ( $user->isAnon() ) {
-			$output->setPageTitle( $this->msg( 'challengeuser-error-page-title' ) );
-			$output->addHTML( $this->msg( 'challengeuser-login' )->plain() );
-			$out = '<div class="challenge-buttons">';
-			$loginURL = htmlspecialchars( SpecialPage::getTitleFor( 'Userlogin' )->getFullURL(), ENT_QUOTES );
-			$signupURL = htmlspecialchars( SpecialPage::getTitleFor( 'CreateAccount' )->getFullURL(), ENT_QUOTES );
-			$out .= Html::input( 'wpLogin', $this->msg( 'login' )->text(), 'button', [
-				'size' => 20,
-				'class' => 'site-button',
-				'onclick' => "window.location='{$loginURL}'"
-			] );
-			$out .= Html::input( 'wpSignup', $this->msg( 'createaccount' )->text(), 'button', [
-				'size' => 20,
-				'class' => 'site-button',
-				'onclick' => "window.location='{$signupURL}'"
-			] );
-			$out .= '</div>';
-			$output->addHTML( $out );
-			return;
+		$urlParamName = 'user';
+		$userTitle = Title::newFromDBkey( $request->getVal( 'user', $par ) );
+		if ( !$userTitle ) {
+			// NoJS fallback
+			$urlParamName = 'friend-list';
+			$userTitle = Title::newFromDBkey( $request->getVal( 'friend-list' ) );
 		}
 
-		$userTitle = Title::newFromDBkey( $request->getVal( 'user', $par ) );
 		if ( !$userTitle ) {
 			$output->addHTML( $this->displayFormNoUser() );
 			return false;
@@ -76,10 +66,10 @@ class ChallengeUser extends SpecialPage {
 
 		if ( $user->getId() == $this->challengee->getId() ) {
 			$output->setPageTitle( $this->msg( 'challengeuser-error-page-title' ) );
-			$output->addHTML( $this->msg( 'challengeuser-self' )->plain() );
+			$output->addHTML( $this->msg( 'challengeuser-self' )->escaped() );
 		} elseif ( $this->challengee->getId() == 0 ) {
 			$output->setPageTitle( $this->msg( 'challengeuser-error-page-title' ) );
-			$output->addHTML( $this->msg( 'challengeuser-nouser' )->plain() );
+			$output->addHTML( $this->msg( 'challengeuser-nouser' )->escaped() );
 		} else {
 			if (
 				$request->wasPosted() &&
@@ -87,6 +77,58 @@ class ChallengeUser extends SpecialPage {
 				$_SESSION['alreadysubmitted'] === false
 			) {
 				$_SESSION['alreadysubmitted'] = true;
+
+				// Server-side validation for all the params, because JS just isn't enough
+				// (not to mention that no-JS is also a thing...)
+				$requiredFields = [ 'info', 'date', 'description', 'win', 'lose' ];
+				$errors = [];
+				foreach ( $requiredFields as $requiredField ) {
+					if ( $request->getVal( $requiredField ) === '' && $requiredField !== 'date' ) {
+						$errorMsgKey = in_array( $requiredField, [ 'win', 'lose' ] ) ?
+							"challenge-js-{$requiredField}-terms-required" :
+							"challenge-js-{$requiredField}-required";
+						// FIXME: stupid special case hack
+						if ( $requiredField === 'info' ) {
+							$errorMsgKey = 'challenge-js-event-required';
+						}
+						$errors[] = $errorMsgKey;
+					} elseif ( $requiredField === 'date' ) {
+						// Date parsing is slightly more complicated than "is the field non-empty?"...
+						$date = $request->getVal( 'date' );
+
+						// ...but let's start by checking that we have something to begin with
+						if ( !$date || $date === '' ) {
+							$errors[] = 'challenge-js-date-required';
+						}
+
+						// We do? Great.
+						$validator = new ChallengeDateValidator/*( $date )*/;
+						if ( !$validator->isDate( $date ) ) {
+							// Validator's isDate() is the only method where $validator->error can have
+							// an array length of 3 instead of the more usual 1
+							$errors[] = $validator->error[0];
+						}
+
+						if ( $validator->isFuture( $date ) /*|| $validator->isBackwards( $date )*/ ) {
+							$errors[] = $validator->error[0];
+						}
+
+						// Alright, our date passed validation, great. Let's move on...
+					}
+				}
+
+				// Errors? If any, show 'em and prevent going any further because the Challenge
+				// class' internals will barf in certain cases of invalid input (e.g. invalid date)
+				// @todo FIXME: ensure that validator returning false for isDate() is handled correctly here (msg params)
+				if ( $errors !== [] ) {
+					$output->setPageTitle( $this->msg( 'challengeuser-error-page-title' ) );
+					foreach ( $errors as $msgKey ) {
+						$output->addHTML( $this->msg( $msgKey )->escaped() . '<br />' );
+					}
+					$output->addReturnTo( $this->getPageTitle(), [ $urlParamName => $this->challengee->getName() ] );
+					return false;
+				}
+
 				$c = new Challenge();
 				$c->addChallenge(
 					$this->getUser(),
@@ -102,6 +144,7 @@ class ChallengeUser extends SpecialPage {
 					$this->msg( 'challengeuser-challenge-sent-title', $this->challengee->getName() )
 				);
 
+				// @todo FIXME: clean up this mess (empty <div>, empty if() loop) --ashley, 18 August 2020
 				$out = '<div class="challenge-links">';
 					//$out .= "<a href=\"index.php?title=User:{$this->challengee->getName()}\">< {$this->challengee->getName()}'s User Page</a>";
 					// $out .= " - <a href=\"index.php?title=Special:ViewGifts&user={$this->challengee->getName()}\">View All of {$this->challengee->getName()}'s Gifts</a>";
@@ -114,6 +157,7 @@ class ChallengeUser extends SpecialPage {
 				$out .= $this->msg( 'challengeuser-sent', $this->challengee->getName() )->parse();
 				$out .= '</div>';
 
+				// @todo FIXME: NoJS support for these two buttons
 				$out .= '<div class="challenge-buttons">';
 				$mainPageURL = Title::newMainPage()->getFullURL();
 				$userPageURL = htmlspecialchars( $user->getUserPage()->getFullURL(), ENT_QUOTES );
@@ -143,7 +187,7 @@ class ChallengeUser extends SpecialPage {
 		global $wgFriendingEnabled;
 
 		$this->getOutput()->setPageTitle( $this->msg(
-			'challengeuser-info-title-no-user' )->plain() );
+			'challengeuser-info-title-no-user' )->escaped() );
 
 		// JS required for autocompleting the user name (T152885)
 		$this->getOutput()->addModules( 'mediawiki.userSuggest' );
@@ -153,7 +197,7 @@ class ChallengeUser extends SpecialPage {
 		$output .= Html::hidden( 'title', $this->getPageTitle() );
 
 		$output .= '<div class="give-gift-message">';
-		$output .= $this->msg( 'challengeuser-info-body-no-user' )->plain();
+		$output .= $this->msg( 'challengeuser-info-body-no-user' )->escaped();
 		$output .= '</div>';
 
 		if ( $wgFriendingEnabled ) {
@@ -161,12 +205,12 @@ class ChallengeUser extends SpecialPage {
 			$friends = $listLookup->getFriendList();
 			if ( $friends ) {
 				$output .= '<div class="give-gift-title">';
-				$output .= $this->msg( 'challengeuser-select-friend-from-list' )->plain();
+				$output .= $this->msg( 'challengeuser-select-friend-from-list' )->escaped();
 				$output .= '</div>
 				<div class="give-gift-selectbox">
-				<select id="challenge-user-selector">';
+				<select id="challenge-user-selector" name="friend-list">';
 				$output .= '<option value="#" selected="selected">';
-				$output .= $this->msg( 'challengeuser-select-friend' )->plain();
+				$output .= $this->msg( 'challengeuser-select-friend' )->escaped();
 				$output .= '</option>';
 				foreach ( $friends as $friend ) {
 					$friendUser = User::newFromActorId( $friend['actor'] );
@@ -185,15 +229,15 @@ class ChallengeUser extends SpecialPage {
 		}
 
 		$output .= '<p class="challenge-user-or">';
-		$output .= $this->msg( 'challengeuser-or' )->plain();
+		$output .= $this->msg( 'challengeuser-or' )->escaped();
 		$output .= '</p>';
 		$output .= '<div class="give-gift-title">';
-		$output .= $this->msg( 'challengeuser-type-username' )->plain();
+		$output .= $this->msg( 'challengeuser-type-username' )->escaped();
 		$output .= '</div>';
 		$output .= '<div class="give-gift-textbox">
 			<input type="text" width="85" name="user" class="mw-autocomplete-user" value="" />
-			<input class="site-button" type="button" value="' .
-				$this->msg( 'challengeuser-start-button' )->plain() .
+			<input class="site-button" type="submit" value="' .
+				$this->msg( 'challengeuser-start-button' )->escaped() .
 				'" onclick="document.gift.submit()" />
 		</div>
 		</form>';

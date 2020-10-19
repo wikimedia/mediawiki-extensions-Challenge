@@ -33,8 +33,8 @@ class ChallengeUserTemplate extends QuickTemplate {
 		?>
 	</div>
 		<div class="challenge-info">
-			<div class="challenge-user-title"><?php echo $this->data['class']->msg( 'challengeuser-info-title' )->plain() ?></div>
-			<?php echo $this->data['class']->msg( 'challengeuser-info-body' )->plain() ?>
+			<div class="challenge-user-title"><?php echo $this->data['class']->msg( 'challengeuser-info-title' )->escaped() ?></div>
+			<?php echo $this->data['class']->msg( 'challengeuser-info-body' )->escaped() ?>
 		</div>
 		<div class="challenge-user-info">
 			<div class="challenge-user-avatar">
@@ -42,7 +42,7 @@ class ChallengeUserTemplate extends QuickTemplate {
 			</div>
 			<div class="challenge-user-stats">
 			<div class="challenge-user-title"><?php echo $this->data['class']->msg( 'challengeuser-users-stats', $challengee->getName() )->escaped(); ?></div>
-			<div class="challenge-user-record"><?php echo $this->data['class']->msg( 'challengeuser-record' )->plain() ?> <b><?php echo Challenge::getUserChallengeRecord( $challengee->getActorId() ) ?></b></div>
+			<div class="challenge-user-record"><?php echo $this->data['class']->msg( 'challengeuser-record' )->escaped() ?> <b><?php echo Challenge::getUserChallengeRecord( $challengee->getActorId() ) ?></b></div>
 			<div class="challenge-user-feedback"><?php echo $this->data['class']->msg( 'challengeuser-feedback' )->numParams( $this->data['total'] )->parse() ?> (<?php echo
 			$this->data['class']->getLanguage()->pipeList( [
 				$this->data['class']->msg( 'challengehistory-positive2' )->numParams( $this->data['pos'] )->parse(),
@@ -53,42 +53,42 @@ class ChallengeUserTemplate extends QuickTemplate {
 	</div>
 	<div class="visualClear"></div>
 
-	<div class="challenge-user-title"><?php echo $this->data['class']->msg( 'challengeuser-enter-info' )->plain() ?></div>
+	<div class="challenge-user-title"><?php echo $this->data['class']->msg( 'challengeuser-enter-info' )->escaped() ?></div>
 	<form action="" method="post" enctype="multipart/form-data" name="challenge">
 		<div class="challenge-field">
-			<div class="challenge-label"><?php echo $this->data['class']->msg( 'challengeuser-event' )->plain() ?></div>
+			<div class="challenge-label"><?php echo $this->data['class']->msg( 'challengeuser-event' )->escaped() ?></div>
 			<div class="challenge-form">
 				<input type="text" class="createbox" size="35" name="info" id="info" value="" />
 			</div>
 		</div>
 		<div class="challenge-field">
-			<div class="challenge-label"><?php echo $this->data['class']->msg( 'challengeuser-date' )->plain() ?></div>
+			<div class="challenge-label"><?php echo $this->data['class']->msg( 'challengeuser-date' )->escaped() ?></div>
 			<div class="challenge-form">
 				<input type="text" class="createbox" size="10" name="date" id="date" value="" />
 			</div>
 		</div>
 		<div class="challenge-field">
-			<div class="challenge-label"><?php echo $this->data['class']->msg( 'challengeuser-description' )->plain() ?></div>
+			<div class="challenge-label"><?php echo $this->data['class']->msg( 'challengeuser-description' )->escaped() ?></div>
 			<div class="challenge-form">
 				<input type="text" class="createbox" size="50" name="description" id="description" value="" />
 			</div>
 		</div>
 
 		<div class="challenge-field">
-			<div class="challenge-label"><?php echo $this->data['class']->msg( 'challengeuser-winterms' )->plain() ?></div>
+			<div class="challenge-label"><?php echo $this->data['class']->msg( 'challengeuser-winterms' )->escaped() ?></div>
 			<div class="challenge-form">
 				<textarea class="createbox" name="win" id="win" rows="2" cols="50"></textarea>
 			</div>
 		</div>
 
 		<div class="challenge-field">
-			<div class="challenge-label"><?php echo $this->data['class']->msg( 'challengeuser-loseterms' )->plain() ?></div>
+			<div class="challenge-label"><?php echo $this->data['class']->msg( 'challengeuser-loseterms' )->escaped() ?></div>
 			<div class="challenge-form">
 			<textarea class="createbox" name="lose" id="lose" rows="2" cols="50"></textarea>
 			</div>
 		</div>
 		<div class="challenge-buttons">
-			<input type="button" class="createbox challenge-send-button site-button" value="<?php echo $this->data['class']->msg( 'challengeuser-submit-button' )->plain() ?>" size="20" />
+			<input type="submit" class="createbox challenge-send-button site-button" value="<?php echo $this->data['class']->msg( 'challengeuser-submit-button' )->escaped() ?>" size="20" />
 		</div>
 		<div class="visualClear"></div>
 		<input type="hidden" name="wpEditToken" value="<?php echo $this->data['class']->getUser()->getEditToken() ?>" />

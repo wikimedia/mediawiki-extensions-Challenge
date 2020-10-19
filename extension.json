@@ -38,6 +38,7 @@
 	},
 	"AutoloadClasses": {
 		"Challenge": "includes/Challenge.class.php",
+		"ChallengeDateValidator": "includes/ChallengeDateValidator.php",
 		"ChallengeAction": "includes/specials/SpecialChallengeAction.php",
 		"ChallengeHistory": "includes/specials/SpecialChallengeHistory.php",
 		"ChallengeStandings": "includes/specials/SpecialChallengeStandings.php",

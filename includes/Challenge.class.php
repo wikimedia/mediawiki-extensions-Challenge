@@ -4,6 +4,37 @@
  */
 class Challenge {
 
+	// Constants for describing challenge status
+	/**
+	 * @var int Challenge was removed by an admin for violating rules
+	 */
+	const STATUS_REMOVED = -2;
+
+	/**
+	 * @var int Challenge was rejected by the challengee
+	 */
+	const STATUS_REJECTED = -1;
+
+	/**
+	 * @var int Default state, the challengee has not yet actioned on the challenge
+	 */
+	const STATUS_AWAITING = 0;
+
+	/**
+	 * @var int Challenge was accepted by the challengee
+	 */
+	const STATUS_ACCEPTED = 1;
+
+	/**
+	 * @var int Challenge terms were countered by the challengee
+	 */
+	const STATUS_COUNTERED = 2;
+
+	/**
+	 * @var int Challenge was completed and the loser should be emailed about their loss
+	 */
+	const STATUS_COMPLETED = 3;
+
 	public $rating_names = [
 		1 => 'positive',
 		-1 => 'negative',
@@ -58,7 +89,7 @@ class Challenge {
 	 * challenged user.
 	 *
 	 * @param User $challenger The user (object) who challenged $user_to
-	 * @param User $challengee Name of the person who was challenged
+	 * @param User $challengee User object representing the person who was challenged
 	 * @param string $info
 	 * @param string $event_date Event date in the MM/DD/YYYY format (incl. the slashes)
 	 * @param string $description User-supplied description of the challenge
@@ -200,7 +231,7 @@ class Challenge {
 		$c = $this->getChallenge( $challenge_id );
 
 		switch ( $status ) {
-			case 1: // challenge was accepted
+			case self::STATUS_ACCEPTED: // challenge was accepted
 				// Update social stats for both users involved in challenge
 				$challenger = User::newFromActorId( $c['challenger_actor'] );
 				$stats = new UserStatsTrack( $challenger->getId(), $challenger->getName() );
@@ -219,7 +250,7 @@ class Challenge {
 				}
 
 				break;
-			case 3: // challenge was completed, send email to loser
+			case self::STATUS_COMPLETED: // challenge was completed, send email to loser
 				$winner = User::newFromActorId( $c['winner_actor'] );
 				$stats = new UserStatsTrack( $winner->getId(), $winner->getName() );
 				$stats->incStatField( 'challenges_won' );
@@ -401,7 +432,7 @@ class Challenge {
 	 * @param int $actorId Actor ID
 	 * @return int Open challenge count for the given user
 	 */
-	static function getOpenChallengeCount( $actorId ) {
+	public static function getOpenChallengeCount( $actorId ) {
 		$dbr = wfGetDB( DB_MASTER );
 		$openChallengeCount = 0;
 		$s = $dbr->selectRow(
@@ -426,7 +457,7 @@ class Challenge {
 	 * @param int $actorId Actor ID
 	 * @return int Challenge count for the given user
 	 */
-	static function getChallengeCount( $actorId = 0 ) {
+	public static function getChallengeCount( $actorId = 0 ) {
 		$dbr = wfGetDB( DB_REPLICA );
 		$challengeCount = 0;
 
