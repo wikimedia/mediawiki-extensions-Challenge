@@ -7,14 +7,14 @@ select[name="status"] {
 }
 
 .challenge-nav {
-	width: 740px;
+	max-width: 740px;
 	padding-bottom: 25px;
 }
 
 .challenge-history-table {
 	border: 0;
 	border-collapse: collapse;
-	width: 830px;
+	max-width: 830px;
 	padding: 3px;
 }
 
