@@ -228,9 +228,15 @@ class ChallengeUser extends SpecialPage {
 			}
 		}
 
-		$output .= '<p class="challenge-user-or">';
-		$output .= $this->msg( 'challengeuser-or' )->escaped();
-		$output .= '</p>';
+		// Display the 'or' only if friending is enabled _and_ the current user has some friends;
+		// no point in displaying it if friending is enabled but the current user's
+		// friend list is empty (e.g. brand user new account)
+		if ( $wgFriendingEnabled && $friends ) {
+			$output .= '<p class="challenge-user-or">';
+			$output .= $this->msg( 'challengeuser-or' )->escaped();
+			$output .= '</p>';
+		}
+
 		$output .= '<div class="give-gift-title">';
 		$output .= $this->msg( 'challengeuser-type-username' )->escaped();
 		$output .= '</div>';
