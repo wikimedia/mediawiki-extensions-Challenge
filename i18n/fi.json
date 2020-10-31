@@ -75,6 +75,7 @@
 	"challengeuser-date": "tapahtumapäivä (KK/PP/VVVV)",
 	"challengeuser-description": "kuvaus (esim. I'm taking the Eagles w/ the spread (+3))",
 	"challengeuser-enter-info": "Anna haasteen tiedot",
+	"challengeuser-error-message-blocked": "Olet tällä hetkellä estettynä etkä voi haastaa muita käyttäjiä.",
 	"challengeuser-error-page-title": "Ups!",
 	"challengeuser-event": "tapahtuma (esim. Giants vs. Eagles)",
 	"challengeuser-feedback": "palautepisteet: '''$1'''",

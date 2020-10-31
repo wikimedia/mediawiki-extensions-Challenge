@@ -87,6 +87,7 @@
 	"challengeuser-date": "the event date (mm/dd/yyyy)",
 	"challengeuser-description": "description (ex: I'm taking the Eagles w/ the spread (+3))",
 	"challengeuser-enter-info": "Enter challenge information",
+	"challengeuser-error-message-blocked": "You are currently blocked and cannot challenge other users.",
 	"challengeuser-error-page-title": "Woops!",
 	"challengeuser-event": "the event (ex: Giants vs. Eagles)",
 	"challengeuser-feedback": "feedback score: '''$1'''",
