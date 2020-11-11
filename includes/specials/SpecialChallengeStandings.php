@@ -23,6 +23,8 @@ class ChallengeStandings extends SpecialPage {
 	public function execute( $par ) {
 		$this->getOutput()->setPageTitle( $this->msg( 'challengestandings-title' ) );
 
+		$this->getOutput()->addModuleStyles( 'ext.challenge.standings' );
+
 		$out = '<table class="challenge-standings-table">
 			<tr>
 				<td class="challenge-standings-title">#</td>
@@ -56,7 +58,7 @@ class ChallengeStandings extends SpecialPage {
 				[ 'user' => $recordHolderName ]
 			);
 			$out .= $this->msg( 'word-separator' )->escaped();
-			$out .= $user1Icon . '</td>';
+			$out .= '</td>';
 
 			$out .= '<td class="challenge-standings">' . $row->challenge_wins . '</td>
 					<td class="challenge-standings">' . $row->challenge_losses . '</td>
