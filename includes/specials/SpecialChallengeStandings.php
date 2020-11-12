@@ -29,9 +29,9 @@ class ChallengeStandings extends SpecialPage {
 			<tr>
 				<td class="challenge-standings-title">#</td>
 				<td class="challenge-standings-title">' . $this->msg( 'challengestandings-user' )->escaped() . '</td>
-				<td class="challenge-standings-title">' . $this->msg( 'challengestandings-w' )->escaped() . '</td>
-				<td class="challenge-standings-title">' . $this->msg( 'challengestandings-l' )->escaped() . '</td>
-				<td class="challenge-standings-title">' . $this->msg( 'challengestandings-t' )->escaped() . '</td>
+				<td class="challenge-standings-title explain" title="' . $this->msg( 'challengestandings-tooltip-wins' )->escaped() . '">' . $this->msg( 'challengestandings-w' )->escaped() . '</td>
+				<td class="challenge-standings-title explain" title="' . $this->msg( 'challengestandings-tooltip-losses' )->escaped() . '">' . $this->msg( 'challengestandings-l' )->escaped() . '</td>
+				<td class="challenge-standings-title explain" title="' . $this->msg( 'challengestandings-tooltip-ties' )->escaped() . '">' . $this->msg( 'challengestandings-t' )->escaped() . '</td>
 				<td class="challenge-standings-title">%</td>
 				<td class="challenge-standings-title"></td>
 			</tr>';
