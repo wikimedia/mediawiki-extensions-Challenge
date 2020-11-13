@@ -32,8 +32,9 @@ class ChallengeView extends UnlistedSpecialPage {
 	}
 
 	private function displayChallenge( $id ) {
-		$this->getOutput()->addModuleStyles( 'ext.challenge.view' );
-		$this->getOutput()->addModules( 'ext.challenge.js.main' );
+		$out = $this->getOutput();
+		$out->addModuleStyles( 'ext.challenge.view' );
+		$out->addModules( 'ext.challenge.js.main' );
 
 		$c = new Challenge();
 		$challenge = $c->getChallenge( $id );
@@ -41,6 +42,7 @@ class ChallengeView extends UnlistedSpecialPage {
 			return $this->msg( 'challengeview-invalidid' )->escaped();
 		}
 
+		$out->setPageTitle( $this->msg( 'challengeview-title' ) );
 		$u = $this->getUser();
 		$challenger = User::newFromActorId( $challenge['challenger_actor'] );
 		$challengee = User::newFromActorId( $challenge['challengee_actor'] );
