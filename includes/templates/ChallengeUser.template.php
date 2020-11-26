@@ -50,6 +50,13 @@ class ChallengeUserTemplate extends QuickTemplate {
 				$this->data['class']->msg( 'challengehistory-neutral2' )->numParams( $this->data['neu'] )->parse()
 			] ); ?>)</div>
 		</div>
+		<div class="visualClear"></div>
+		<div class="challenge-rules">
+			<?php echo $linkRenderer->makeKnownLink(
+				Title::newFromText( $this->data['class']->msg( 'challengeuser-rules-page' )->inContentLanguage()->text() ),
+				$this->data['class']->msg( 'challengeuser-rules' )->text()
+			); ?>
+		</div>
 	</div>
 	<div class="visualClear"></div>
 

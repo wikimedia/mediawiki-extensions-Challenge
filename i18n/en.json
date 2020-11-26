@@ -105,6 +105,7 @@
 	"challengeuser-or": "or",
 	"challengeuser-record": "record:",
 	"challengeuser-rules": "Please read rules and stuff",
+	"challengeuser-rules-page": "{{ns:help}}:Community challenges",
 	"challengeuser-select-friend": "select a friend",
 	"challengeuser-select-friend-from-list": "Select from your list of friends",
 	"challengeuser-self": "You cannot challenge yourself!",
