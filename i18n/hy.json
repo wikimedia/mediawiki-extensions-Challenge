@@ -1,0 +1,15 @@
+{
+	"@metadata": {
+		"authors": [
+			"Kareyac"
+		]
+	},
+	"challenge-status-rejected": "մերժվեց",
+	"challenge-js-accepted": "Ընդունված է",
+	"challengehistory-rejected": "Մերժվեց",
+	"challengestandings-user": "մասնակից",
+	"challengeview-accept": "Ընդունել",
+	"challengeview-accepted": "Ընդունված է",
+	"challengeview-reject": "Մերժել",
+	"challengeview-rejected": "Մերժվեց"
+}
