@@ -1,0 +1,24 @@
+{
+	"@metadata": {
+		"authors": [
+			"1917 Ekim Devrimi"
+		]
+	},
+	"challenge-status-rejected": "Red biyo",
+	"challenge-js-accepted": "Qebul biyo",
+	"challenge-js-countered": "Over",
+	"challengeaction": "Rêza çetıney",
+	"challengehistory-negative2": "$1 negative",
+	"challengehistory-neutral": "Notr",
+	"challengehistory-neutral2": "$1 notr",
+	"challengestandings-user": "karber",
+	"challengestandings-w": "W",
+	"challengeuser-your-profile": "Profilê To",
+	"challengeview-accept": "Qebul ke",
+	"challengeview-accepted": "Qebul biyo",
+	"challengeview-negative": "negative",
+	"challengeview-rating-positive": "pozitive",
+	"challengeview-reject": "Red ke",
+	"challengeview-rejected": "Red biyo",
+	"challengeview-versus": "vs."
+}

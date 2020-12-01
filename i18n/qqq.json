@@ -1,6 +1,8 @@
 {
 	"@metadata": {
-		"authors": []
+		"authors": [
+			"Robby"
+		]
 	},
 	"challenge-desc": "{{desc|name=Challenge|url=https://www.mediawiki.org/wiki/Extension:Challenge}}",
 	"challenge-this-user": "Link shown on other users' social profile pages, which takes the user to the <code>Special:ChallengeUser/<target user></code> page, allowing them to challenge the desired user",
@@ -53,7 +55,7 @@
 	"challengehistory-inprogress": "Drop-down menu option text on Special:ChallengeHistory",
 	"challengehistory-negative": "Used in the \"rating card\" on Special:ChallengeHistory when viewing an individual named user's challenge history (the <code>user</code> URL parameter is given ''or'' a user name is passed to the special page, like so: Special:ChallengeHistory/<code>Some user</code>)",
 	"challengehistory-negative2": "Used on the user info card on Special:ChallengeUser to show how many challenges the user has participated in which have been rated as negative",
-	"challengehistory-neutral": "Used in the \"rating card\" on Special:ChallengeHistory when viewing an individual named user's challenge history (the <code>user</code> URL parameter is given ''or'' a user name is passed to the special page, like so: Special:ChallengeHistory/<code>Some user</code>)",
+	"challengehistory-neutral": "Used in the \"rating card\" on Special:ChallengeHistory when viewing an individual named user's challenge history (the <code>user</code> URL parameter is given ''or'' a user name is passed to the special page, like so: Special:ChallengeHistory/<code>Some user</code>)\n{{identical|Neutral}}",
 	"challengehistory-neutral2": "Used on the user info card on Special:ChallengeUser to show how many challenges the user has participated in which have been rated as ties (neither party won the challenge)",
 	"challengehistory-next": "Pagination link on Special:ChallengeHistory\n{{Identical|Next}}",
 	"challengehistory-overall": "Used in the \"rating card\" on Special:ChallengeHistory when viewing an individual named user's challenge history (the <code>user</code> URL parameter is given ''or'' a user name is passed to the special page, like so: Special:ChallengeHistory/<code>Some user</code>)",
@@ -78,7 +80,7 @@
 	"challengestandings-tooltip-ties": "Tooltip shown on Special:ChallengeStandings when the user hovers their mouse over the column labeled \"{{msg-mw|challengestandings-t}}\"",
 	"challengestandings-tooltip-wins": "Tooltip shown on Special:ChallengeStandings when the user hovers their mouse over the column labeled \"{{msg-mw|challengestandings-w}}\"",
 	"challengestandings-title": "Page title for Special:ChallengeStandings",
-	"challengestandings-user": "A table header on Special:ChallengeStandings",
+	"challengestandings-user": "A table header on Special:ChallengeStandings\n{{identical|User}}",
 	"challengestandings-w": "A table header\nThe w stands for \"wins\"\nSee also {{msg-mw|challengestandings-tooltip-wins}}",
 	"challengeuser": "{{doc-special}}",
 	"challengeuser-challenge-sent-title": "Page title of Special:ChallengeUser after you've challenged another user.\nParameters:\n* $1 is the user name of the user whom you've challenged",
@@ -99,7 +101,7 @@
 	"challengeuser-login": "An error message shown to the user on Special:ChallengeUser when they try to access the page without logging in. The page title is then {{msg-mw|challengeuser-error-page-title}}.",
 	"challengeuser-loseterms": "Label message on Special:ChallengeUser for the textarea where the user can type what they are willing to do should they lose the challenge and should the person they challenged win the challenge; see also {{msg-mw|challengeuser-winterms}}",
 	"challengeuser-nouser": "An error message shown on Special:ChallengeUser when no user was chosen (e.g. the URL does not contain a user name as a parameter, like Special:ChallengeUser/<code>Foo</code> nor does it contain a valid user name either as the <code>user</code> ''or'' as the <code>friend-list</code> URL parameter)",
-	"challengeuser-or": "Shown on the \"challenge a user\" form on Special:ChallengeUser, preceded by a drop-down menu containing the user's friends and followed by an input box where they can enter the name of the user they wish to challenge if said user is not their friend",
+	"challengeuser-or": "Shown on the \"challenge a user\" form on Special:ChallengeUser, preceded by a drop-down menu containing the user's friends and followed by an input box where they can enter the name of the user they wish to challenge if said user is not their friend\n{{identical|Or}}",
 	"challengeuser-record": "Shown on Special:ChallengeUser when challenging another user; this message is followed by the user's track record, expressed as wins-ties-losses, e.g. 5-1-2 for five wins, one tie and two losses",
 	"challengeuser-rules": "Link text for the page which contains info and local policies regarding challenges, shown on Special:ChallengeUser, above the form; the help/info page name is controlled by {{msg-mw|challengeuser-rules-page}}",
 	"challengeuser-rules-page": "Name of the help/info page (including the namespace prefix) which contains information about challenges and how to use them; this message is used to render the rules link, which is shown on Special:ChallengeUser, above the form. The link title will be {{msg-mw|challengeuser-rules}}.",

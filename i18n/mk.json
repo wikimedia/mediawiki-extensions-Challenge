@@ -1,0 +1,15 @@
+{
+	"@metadata": {
+		"authors": [
+			"Bjankuloski06"
+		]
+	},
+	"challenge-desc": "Овозможува предизвикување на други корисници",
+	"challengestandings-l": "И",
+	"challengestandings-t": "Н",
+	"challengestandings-tooltip-losses": "Изгубени",
+	"challengestandings-tooltip-ties": "Нерешени",
+	"challengestandings-tooltip-wins": "Победи",
+	"challengestandings-w": "П",
+	"challengeuser": "Предизвикајте корисник"
+}
