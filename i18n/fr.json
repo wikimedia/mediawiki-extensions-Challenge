@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Florian COLLIN"
+			"Florian COLLIN",
+			"Thibaut120094"
 		]
 	},
 	"challenge-desc": "Permet de défier les autres utilisateurs",
@@ -85,7 +86,7 @@
 	"challengeuser": "Utilisateur du défi",
 	"challengeuser-challenge-sent-title": "Vous avez lancé un défi à $1",
 	"challengeuser-completehistory": "Afficher l'historique complet des défis",
-	"challengeuser-date": "la date de l'événement (jj/mm/aaaa)",
+	"challengeuser-date": "la date de l'événement (mm/jj/aaaa)",
 	"challengeuser-description": "description (ex : je prends les Eagles avec la propagation (+3))",
 	"challengeuser-enter-info": "Entrer les informations du challenge",
 	"challengeuser-error-message-blocked": "Vous êtes actuellement bloqué et ne pouvez pas contester d'autres utilisateurs.",
