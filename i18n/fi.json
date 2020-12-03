@@ -28,7 +28,16 @@
 	"challenge-js-error-invalid-date": "Anna kelvollinen päiväys",
 	"challenge-js-error-future-date": "Annettu päiväys on tulevaisuudessa.",
 	"challenge-js-error-is-backwards": "Aloituspäiväys on suurempi kuin lopetuspäiväys.",
+	"challenge_request_subject": "$1 haastoi sinut sivustolla {{SITENAME}}!",
+	"challenge_request_body": "Hei $1.\n\n$2 on haastanut sinut sivustolla {{SITENAME}}!\n\nKäy sivulla $3 tarkastellaksesi haasteen yksityiskohtia ja vastataksesi käyttäjälle $2.\n\nKiittäen\n{{GRAMMAR:genitive|{{SITENAME}}}} ylläpito\n\n---\n\nHei, etkö halua enää saada meiltä sähköpostia?\n\nNapsauta $4\nja muuta asetuksiasi poistaaksesi sähköposti-ilmoitukset käytöstä.",
+	"challenge_accept_subject": "$1 on hyväksynyt haasteesi sivustolla {{SITENAME}}!",
+	"challenge_accept_body": "Hei $1.\n\n$2 on hyväksynyt haasteesi sivustolla {{SITENAME}}!\n\nKäy sivulla $3 tarkastellaksesi haasteen yksityiskohtia.\n\nKiittäen\n{{GRAMMAR:genitive|{{SITENAME}}}} ylläpito\n\n---\n\nHei, etkö halua enää saada meiltä sähköpostia?\n\nNapsauta $4\nja muuta asetuksiasi poistaaksesi sähköposti-ilmoitukset käytöstä.",
+	"challenge_lose_subject": "Voi ei! $1 on voittanut sinut {{GRAMMAR:genitive|{{SITENAME}}}} haasteessa $2!",
+	"challenge_lose_body": "Hei $1.\n\n$2 on voittanut {{GRAMMAR:genitive|{{SITENAME}}}} haasteen!\n\nKäy sivulla $3 tarkastellaksesi haasteen yksityiskohtia ja ehtoja.\n\nKiittäen\n{{GRAMMAR:genitive|{{SITENAME}}}} ylläpito\n\n---\n\nHei, etkö halua enää saada meiltä sähköpostia?\n\nNapsauta $4\nja muuta asetuksiasi poistaaksesi sähköposti-ilmoitukset käytöstä.",
+	"challenge_win_subject": "Onneksi olkoon! Voitit käyttäjän $1 {{GRAMMAR:genitive|{{SITENAME}}}} haasteessa $2!",
+	"challenge_win_body": "Hei $1.\n\nOlet voittanut {{GRAMMAR:genitive|{{SITENAME}}}} haasteen käyttäjää $2 vastaan!\n\nKäy sivulla $3 tarkastellaksesi haasteen tietoja ja ehtoja.\n\nKiittäen\n{{GRAMMAR:genitive|{{SITENAME}}}} ylläpito\n\n---\n\nHei, etkö halua enää saada meiltä sähköpostia?\n\nNapsauta $4\nja muuta asetuksiasi poistaaksesi sähköposti-ilmoitukset käytöstä.",
 	"challengeaction": "Haastetilastot",
+	"challengeaction-go-away": "Tätä sivua ei ole tarkoitettu suoraan käytettäväksi. Ehkäpä tarkoituksesi oli sen sijaan [[Special:ChallengeUser|haastaa käyttäjä]]?",
 	"challengehistory": "Haastehistoria",
 	"challengehistory-all": "Kaikki",
 	"challengehistory-accepted": "hyväksytty",
@@ -149,5 +158,6 @@
 	"challengeview-won-by": "Haasteen voitti '''$1'''",
 	"challengeview-was-push": "Haaste oli tasapeli!",
 	"challengeview-you-won": "Voitit haasteen!",
+	"action-challengeadmin": "hallinnoida haasteita",
 	"right-challengeadmin": "Hallinnoida haasteita"
 }
