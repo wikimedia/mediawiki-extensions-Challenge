@@ -1,0 +1,17 @@
+{
+	"@metadata": {
+		"authors": [
+			"ישראל קלר"
+		]
+	},
+	"challenge-status-in-progress": "בתהליך",
+	"challengehistory-all": "הכול",
+	"challengehistory-completed": "הושלם",
+	"challengehistory-filter": "מסנן:",
+	"challengehistory-negative2": "$1 שלילי",
+	"challengehistory-submit-btn": "שליחה",
+	"challengeuser-submit-button": "שליחה",
+	"challengeview-event": "אירוע:",
+	"challengeview-rating-negative": "שלילי",
+	"challengeview-submit-button": "שליחה"
+}
