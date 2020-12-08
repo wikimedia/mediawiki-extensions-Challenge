@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"Saederup92"
+		]
+	},
+	"challenge-status-rejected": "afvist",
+	"challenge-status-removed": "fjernet",
+	"challenge-js-accepted": "Accepteret",
+	"challenge-js-rejected": "Afvist",
+	"challengehistory-next": "næste",
+	"challengestandings-user": "bruger",
+	"challengeuser-or": "eller",
+	"challengeuser-your-profile": "Din profil",
+	"challengeview-accept": "Accepter",
+	"challengeview-accepted": "Accepteret",
+	"challengeview-negative": "negativ",
+	"challengeview-reject": "Afvis",
+	"challengeview-rejected": "Afvist"
+}
