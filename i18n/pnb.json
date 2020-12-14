@@ -1,0 +1,38 @@
+{
+	"@metadata": {
+		"authors": [
+			"Abbas dhothar"
+		]
+	},
+	"challenge-status-rejected": "مسترد",
+	"challenge-js-accepted": "قبول",
+	"challenge-js-rejected": "مسترد",
+	"challengehistory-all": "سارے",
+	"challengehistory-accepted": "قبول",
+	"challengehistory-filter": "فلٹر:",
+	"challengehistory-negative": "منفی",
+	"challengehistory-negative2": "$1 منفی",
+	"challengehistory-neutral": "غیرجانبدار",
+	"challengehistory-next": "اگلا",
+	"challengehistory-positive": "مثبت",
+	"challengehistory-positive2": "$1 مثبت",
+	"challengehistory-rejected": "مسترد",
+	"challengehistory-submit-btn": "بھیجو",
+	"challengehistory-target": "ہدف",
+	"challengestandings-tooltip-wins": "جتیا",
+	"challengestandings-user": "ورتنوالا",
+	"challengeuser-submit-button": "بھیجو",
+	"challengeuser-your-profile": "تواڈی پروفائل",
+	"challengeview-accept": "قبول",
+	"challengeview-accepted": "قبول",
+	"challengeview-event": "ایونٹ:",
+	"challengeview-negative": "منفی",
+	"challengeview-neutral": "غیرجانبدار",
+	"challengeview-positive": "مثبت",
+	"challengeview-push": "دھکو",
+	"challengeview-rating-negative": "منفی",
+	"challengeview-rating-positive": "مثبت",
+	"challengeview-reject": "مسترد",
+	"challengeview-rejected": "مسترد",
+	"challengeview-submit-button": "بھیجو"
+}
