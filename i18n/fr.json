@@ -28,7 +28,7 @@
 	"challenge-js-error-date-format": "Le format de la date doit être : jj/mm/aaaa",
 	"challenge-js-error-invalid-month": "Veuillez entrer un mois valide",
 	"challenge-js-error-invalid-day": "Veuillez entrer un jour valide",
-	"challenge-js-error-invalid-year": "Veuillez entrer une année valide à 4 chiffres entre $1 et $2",
+	"challenge-js-error-invalid-year": "Veuillez entrer une année valide sur 4 chiffres entre $1 et $2",
 	"challenge-js-error-invalid-date": "Veuillez entrer une date valide",
 	"challenge-js-error-future-date": "La date saisie est une date future.",
 	"challenge-js-error-is-backwards": "La date de début est postérieure à la date de fin.",
