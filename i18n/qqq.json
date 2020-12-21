@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"Robby"
 		]
 	},
@@ -74,7 +75,7 @@
 	"challengestandings": "{{doc-special}}",
 	"challengestandings-challengeuser": "Link text on user entries on Special:ChallengeStandings; clicking on the link takes the user to the Special:ChallengeUser page, which allows them to challenge the user whose standings they were viewing",
 	"challengestandings-empty": "Shown on Special:ChallengeStandings when there is nothing to show on the page, e.g. no challenges have been recorded as complete, which can be the case when the Challenge extension was recently installed and users haven't had the opportunity to issues challenges just yet",
-	"challengestandings-l": "A table header\nThe l stands for \"losses\"\nSee also {{msg-mw|challengestandings-tooltip-losses}}",
+	"challengestandings-l": "A table header.\n\nThe L stands for \"Losses\".\n\nSee also {{msg-mw|challengestandings-tooltip-losses}}",
 	"challengestandings-t": "A table header\nThe t stands for \"ties\"\nSee also {{msg-mw|challengestandings-tooltip-ties}}",
 	"challengestandings-tooltip-losses": "Tooltip shown on Special:ChallengeStandings when the user hovers their mouse over the column labeled \"{{msg-mw|challengestandings-l}}\"",
 	"challengestandings-tooltip-ties": "Tooltip shown on Special:ChallengeStandings when the user hovers their mouse over the column labeled \"{{msg-mw|challengestandings-t}}\"",

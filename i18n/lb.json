@@ -22,6 +22,7 @@
 	"challengehistory-accepted": "akzeptéiert",
 	"challengehistory-challenge-user": "Erausfuerderung $1",
 	"challengehistory-challenge-someone": "Een erausfuerderen",
+	"challengehistory-completed": "Fäerdeg",
 	"challengehistory-event": "Evenement",
 	"challengehistory-filter": "Filter:",
 	"challengehistory-inprogress": "Am Gaang",
@@ -30,6 +31,13 @@
 	"challengehistory-neutral": "Neutral",
 	"challengehistory-positive": "Positiv",
 	"challengestandings-user": "Benotzer",
+	"challengeuser": "E Benotzer erausfuerderen",
 	"challengeuser-error-page-title": "Ups!",
-	"challengeuser-or": "oder"
+	"challengeuser-or": "oder",
+	"challengeuser-your-profile": "Äre Profil",
+	"challengeview-neutral": "neutral",
+	"challengeview-positive": "positiv",
+	"challengeview-rating-negative": "negativ",
+	"challengeview-rating-neutral": "neutral",
+	"challengeview-rating-positive": "positiv"
 }

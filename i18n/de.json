@@ -1,0 +1,27 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ameisenigel"
+		]
+	},
+	"challenge-status-rejected": "abgelehnt",
+	"challenge-status-removed": "entfernt",
+	"challenge-status-awaiting": "wartet auf Bestätigung",
+	"challenge-status-in-progress": "in Bearbeitung",
+	"challenge-status-completed": "abgeschlossen",
+	"challenge-js-accepted": "Akzeptiert",
+	"challenge-js-rejected": "Abgelehnt",
+	"challenge-js-countered": "Gezählt",
+	"challenge-js-rating-submitted": "Deine Bewertung wurde übermittelt",
+	"challenge-js-error-date-format": "Das Datum sollte das Format MM/TT/JJJJ haben",
+	"challenge-js-error-invalid-month": "Bitte einen gültigen Monat eingeben",
+	"challenge-js-error-invalid-day": "Bitte einen gültigen Tag eingeben",
+	"challenge-js-error-invalid-date": "Bitte ein gültiges Datum eingeben",
+	"challenge-js-error-future-date": "Eingegebenes Datum liegt in der Zukunft.",
+	"challengehistory-all": "Alle",
+	"challengehistory-accepted": "akzeptiert",
+	"challengehistory-completed": "Abgeschlossen",
+	"challengehistory-event": "Veranstaltung",
+	"challengehistory-filter": "Filter:",
+	"challengehistory-inprogress": "In Bearbeitung"
+}
