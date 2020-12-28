@@ -1,32 +1,33 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"Kambai Akau"
 		]
 	},
 	"challenge-status-removed": "turung",
-	"challenge-status-awaiting": "shyia̠ di̠ fwuong kaat shim",
-	"challenge-js-accepted": "Á̠ shim",
-	"challengehistory-all": "A̠mgba̠m",
-	"challengehistory-completed": "Á̠ jhyem",
-	"challengehistory-event": "nyia̠",
-	"challengehistory-neutral": "A̠hyuhywi",
+	"challenge-status-awaiting": "shyia̱ di̱ fwuong kaat shim",
+	"challenge-js-accepted": "Á̱ shim",
+	"challengehistory-all": "A̱mgba̱m",
+	"challengehistory-completed": "Á̱ jhyem",
+	"challengehistory-event": "nyia̱",
+	"challengehistory-neutral": "A̱hyuhywi",
 	"challengehistory-neutral2": "$1 hyuhywi",
 	"challengehistory-submit-btn": "Neap",
 	"challengehistory-status": "yong",
-	"challengehistory-target": "a̠vwuoncong",
+	"challengehistory-target": "a̱vwuoncong",
 	"challengehistory-view-standings": "Di yong",
 	"challengestandings-l": "L",
-	"challengestandings-tooltip-ties": "A̠ca̠caat",
+	"challengestandings-tooltip-ties": "A̱ca̱caat",
 	"challengestandings-tooltip-wins": "Yá",
-	"challengestandings-user": "a̠tyuta̠m",
+	"challengestandings-user": "a̱tyuta̱m",
 	"challengestandings-w": "W",
 	"challengeview-accept": "Shim",
-	"challengeview-accepted": "Á̠ shim",
-	"challengeview-negative": "a̠bwobwuon",
-	"challengeview-neutral": "a̠hyuhywi",
+	"challengeview-accepted": "Á̱ shim",
+	"challengeview-negative": "a̱bwobwuon",
+	"challengeview-neutral": "a̱hyuhywi",
 	"challengeview-push": "yuut",
-	"challengeview-rating-positive": "a̠tan",
+	"challengeview-rating-positive": "a̱tan",
 	"challengeview-reject": "Lak",
-	"challengeview-rejected": "Á̠ lak"
+	"challengeview-rejected": "Á̱ lak"
 }
