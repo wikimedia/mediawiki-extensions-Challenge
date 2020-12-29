@@ -1,0 +1,21 @@
+{
+	"@metadata": {
+		"authors": [
+			")8"
+		]
+	},
+	"challenge-status-rejected": "拒绝",
+	"challenge-status-removed": "已移除",
+	"challengehistory-all": "全部",
+	"challengehistory-next": "下一个",
+	"challengehistory-prev": "上一个",
+	"challengehistory-rejected": "已拒绝",
+	"challengehistory-submit-btn": "提交",
+	"challengehistory-target": "目标",
+	"challengestandings-user": "用户",
+	"challengeuser-error-page-title": "麻烦了！",
+	"challengeuser-or": "或",
+	"challengeview-reject": "拒绝",
+	"challengeview-rejected": "已拒绝",
+	"challengeview-submit-button": "提交"
+}
