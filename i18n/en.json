@@ -133,7 +133,7 @@
 	"challengeview-counterterms": "Counter Terms",
 	"challengeview-description": "$1's description:",
 	"challengeview-event": "Event:",
-	"challengeview-ifwins": "if $1 wins, $2 has to . . . ",
+	"challengeview-ifwins": "if $1 wins, $2 has to . . .",
 	"challengeview-inprogress": "In progress -- awaiting completion of event and admin approval",
 	"challengeview-invalidid": "Invalid challenge ID",
 	"challengeview-issue-challenge": "issue challenge",
