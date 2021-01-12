@@ -1,0 +1,24 @@
+{
+	"@metadata": {
+		"authors": [
+			"Jon Harald Søby"
+		]
+	},
+	"challenge-desc": "Gjør det mulig å utfordre andre brukere",
+	"challenge-this-user": "Utfordre bruker",
+	"challenge-status-rejected": "avslått",
+	"challenge-status-removed": "fjernet",
+	"challenge-status-awaiting": "venter på godkjennelse",
+	"challenge-status-in-progress": "pågår",
+	"challenge-status-completed": "fullført",
+	"challenge-js-accepted": "Godtatt",
+	"challenge-js-rejected": "Avslått",
+	"challenge-js-error-date-format": "Amerikansk datoformat: mm/dd/åååå",
+	"challenge-js-error-invalid-month": "Skriv inn en gyldig måned",
+	"challenge-js-error-invalid-day": "Skriv inn en gyldig dag",
+	"challenge-js-error-invalid-year": "Skriv inn et gyldig årstall med fire sifre mellom $1 og $2",
+	"challenge-js-error-invalid-date": "Skriv inn en gyldig dato",
+	"challenge-js-error-future-date": "Datoen som er angitt er i fremtiden.",
+	"challenge-js-error-is-backwards": "Startdatoen er etter sluttdatoen.",
+	"challenge_request_subject": "$1 har utfordret deg på {{SITENAME}}!"
+}
