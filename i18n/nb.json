@@ -20,5 +20,15 @@
 	"challenge-js-error-invalid-date": "Skriv inn en gyldig dato",
 	"challenge-js-error-future-date": "Datoen som er angitt er i fremtiden.",
 	"challenge-js-error-is-backwards": "Startdatoen er etter sluttdatoen.",
-	"challenge_request_subject": "$1 har utfordret deg på {{SITENAME}}!"
+	"challenge_request_subject": "$1 har utfordret deg på {{SITENAME}}!",
+	"challengestandings-l": "T",
+	"challengestandings-t": "U",
+	"challengestandings-tooltip-losses": "Tap",
+	"challengestandings-tooltip-ties": "Uavgjort",
+	"challengestandings-tooltip-wins": "Seire",
+	"challengestandings-user": "bruker",
+	"challengestandings-w": "S",
+	"challengeuser": "Utfordre en bruker",
+	"challengeuser-challenge-sent-title": "Du har sendt $1 en utfordring",
+	"challengeuser-completehistory": "Vis fullstendig utfordringshistorikk"
 }
