@@ -1,11 +1,15 @@
 {
 	"@metadata": {
 		"authors": [
-			")8"
+			")8",
+			"Lakejason0"
 		]
 	},
+	"challenge-desc": "允许挑战其他用户",
+	"challenge-this-user": "挑战用户",
 	"challenge-status-rejected": "拒绝",
 	"challenge-status-removed": "已移除",
+	"challenge-status-awaiting": "等待接受",
 	"challengehistory-all": "全部",
 	"challengehistory-next": "下一个",
 	"challengehistory-prev": "上一个",
