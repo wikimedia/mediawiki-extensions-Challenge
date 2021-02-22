@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"Kizule"
+		]
+	},
+	"challenge-js-accepted": "Прихваћено",
+	"challenge-js-rejected": "Одбијено",
+	"challengehistory-all": "Све",
+	"challengehistory-completed": "Завршено",
+	"challengehistory-filter": "филтер:",
+	"challengehistory-inprogress": "У току",
+	"challengehistory-negative": "Негативно",
+	"challengehistory-neutral": "Неутрално",
+	"challengehistory-positive": "Позитивно"
+}
