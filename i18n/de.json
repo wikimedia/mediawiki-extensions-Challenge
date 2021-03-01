@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Ameisenigel"
+			"Ameisenigel",
+			"RacoonyRE"
 		]
 	},
 	"challenge-status-rejected": "abgelehnt",
@@ -23,5 +24,24 @@
 	"challengehistory-completed": "Abgeschlossen",
 	"challengehistory-event": "Veranstaltung",
 	"challengehistory-filter": "Filter:",
-	"challengehistory-inprogress": "In Bearbeitung"
+	"challengehistory-inprogress": "In Bearbeitung",
+	"challengehistory-positive": "Positiv",
+	"challengehistory-prev": "vorherige",
+	"challengehistory-rejected": "Abgelehnt",
+	"challengehistory-submit-btn": "Senden",
+	"challengehistory-status": "Status",
+	"challengehistory-target": "Ziel",
+	"challengestandings-l": "L",
+	"challengestandings-user": "Benutzer",
+	"challengeuser-or": "oder",
+	"challengeuser-select-friend": "Wähle einen Freund",
+	"challengeuser-submit-button": "Übermitteln",
+	"challengeview-accept": "Akzeptieren",
+	"challengeview-event": "Ereignisse",
+	"challengeview-negative": "negativ",
+	"challengeview-positive": "positiv",
+	"challengeview-rating-negative": "negativ",
+	"challengeview-reject": "Ablehnen",
+	"challengeview-rejected": "Abgelehnt",
+	"challengeview-submit-button": "Übermitteln"
 }
