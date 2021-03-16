@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Ameisenigel",
+			"Gebu",
 			"RacoonyRE"
 		]
 	},
@@ -10,6 +11,7 @@
 	"challenge-status-awaiting": "wartet auf Bestätigung",
 	"challenge-status-in-progress": "in Bearbeitung",
 	"challenge-status-completed": "abgeschlossen",
+	"challenge-js-challenge-removed": "Die Herausforderung wurde entfernt",
 	"challenge-js-accepted": "Akzeptiert",
 	"challenge-js-rejected": "Abgelehnt",
 	"challenge-js-countered": "Gezählt",
@@ -17,8 +19,11 @@
 	"challenge-js-error-date-format": "Das Datum sollte das Format MM/TT/JJJJ haben",
 	"challenge-js-error-invalid-month": "Bitte einen gültigen Monat eingeben",
 	"challenge-js-error-invalid-day": "Bitte einen gültigen Tag eingeben",
+	"challenge-js-error-invalid-year": "Bitte gib ein gültiges vierstelliges Jahr zwischen $1 und $2 ein.",
 	"challenge-js-error-invalid-date": "Bitte ein gültiges Datum eingeben",
 	"challenge-js-error-future-date": "Eingegebenes Datum liegt in der Zukunft.",
+	"challenge-js-error-is-backwards": "Das Startdatum ist größer als das Enddatum.",
+	"challenge_request_subject": "$ hat dich auf {{SITENAME}} herausgefordert!",
 	"challengehistory-all": "Alle",
 	"challengehistory-accepted": "akzeptiert",
 	"challengehistory-completed": "Abgeschlossen",
