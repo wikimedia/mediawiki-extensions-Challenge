@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Ameisenigel",
+			"BPX-web",
 			"Gebu",
 			"RacoonyRE"
 		]
@@ -25,7 +26,7 @@
 	"challenge-js-error-invalid-date": "Bitte ein gültiges Datum eingeben",
 	"challenge-js-error-future-date": "Eingegebenes Datum liegt in der Zukunft.",
 	"challenge-js-error-is-backwards": "Das Startdatum ist größer als das Enddatum.",
-	"challenge_request_subject": "$ hat dich auf {{SITENAME}} herausgefordert!",
+	"challenge_request_subject": "$1 hat dich auf {{SITENAME}} herausgefordert!",
 	"challenge_request_body": "Hi $1,\n\n\t$2 hat dich auf {{SITENAME}} herausgefordert!\n\nWechsle zu $3, um die Einzelheiten der Herausforderung anzusehen und $2 zu antworten.\n\nDanke!\n\nDas Team von {{SITENAME}}\n\n---\n\nHey, willst du keine E-Mails mehr von uns erhalten?\n\nKlicke auf $4\nund ändere deine Einstellungen, um Benachrichtigungen per E-Mail abzustellen.",
 	"challenge_accept_subject": "$1 hat deine Herausforderung auf {{SITENAME}} angenommen!",
 	"challenge_accept_body": "Hi $1,\n\n\t$2 hat deine Herausforderung auf {{SITENAME}} angenommen!\n\nWechsle zu $3, um die Einzelheiten der Herausforderung anzusehen.\n\nDanke!\n\nDas Team von {{SITENAME}}\n\n---\n\nHey, willst du keine E-Mails mehr von uns erhalten?\n\nKlicke auf $4\nund ändere deine Einstellungen, um Benachrichtigungen per E-Mail abzustellen.",
