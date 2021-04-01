@@ -6,15 +6,20 @@
 	},
 	"challenge-status-rejected": "afvist",
 	"challenge-status-removed": "fjernet",
+	"challenge-status-in-progress": "i gang",
 	"challenge-js-accepted": "Accepteret",
 	"challenge-js-rejected": "Afvist",
+	"challenge-js-error-invalid-date": "Venligst indtast en gyldig dato",
+	"challengehistory-all": "Alle",
 	"challengehistory-next": "næste",
 	"challengestandings-user": "bruger",
 	"challengeuser-or": "eller",
+	"challengeuser-submit-button": "Indsend",
 	"challengeuser-your-profile": "Din profil",
 	"challengeview-accept": "Accepter",
 	"challengeview-accepted": "Accepteret",
 	"challengeview-negative": "negativ",
 	"challengeview-reject": "Afvis",
-	"challengeview-rejected": "Afvist"
+	"challengeview-rejected": "Afvist",
+	"challengeview-submit-button": "Indsend"
 }
