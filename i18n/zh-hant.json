@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"SiderealArt"
+		]
+	},
+	"challenge-status-rejected": "遭拒",
+	"challenge-status-removed": "已移除",
+	"challenge-status-awaiting": "等待接受",
+	"challenge-status-in-progress": "進行中",
+	"challenge-status-completed": "已完成",
+	"challenge-js-accepted": "已接受",
+	"challenge-js-rejected": "已拒絕",
+	"challengehistory-all": "全部",
+	"challengehistory-accepted": "已接受"
+}
