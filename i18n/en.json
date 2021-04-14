@@ -85,6 +85,7 @@
 	"challengestandings-w": "W",
 	"challengeuser": "Challenge a User",
 	"challengeuser-challenge-sent-title": "You have issued a challenge to $1",
+	"challengeuser-characters-left": "you have $1 characters left",
 	"challengeuser-completehistory": "View Complete Challenge History",
 	"challengeuser-date": "the event date (mm/dd/yyyy)",
 	"challengeuser-description": "description (ex: I'm taking the Eagles w/ the spread (+3))",

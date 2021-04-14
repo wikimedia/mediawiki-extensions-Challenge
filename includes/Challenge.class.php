@@ -2,6 +2,9 @@
 /**
  * @file
  */
+
+use MediaWiki\MediaWikiServices;
+
 class Challenge {
 
 	// Constants for describing challenge status
@@ -90,24 +93,26 @@ class Challenge {
 	 *
 	 * @param User $challenger The user (object) who challenged $user_to
 	 * @param User $challengee User object representing the person who was challenged
-	 * @param string $info
+	 * @param string $info User-supplied challenge title
 	 * @param string $event_date Event date in the MM/DD/YYYY format (incl. the slashes)
 	 * @param string $description User-supplied description of the challenge
 	 * @param string $win_terms User-supplied win terms
 	 * @param string $lose_terms User-supplied lose terms
 	 */
 	public function addChallenge( $challenger, $challengee, $info, $event_date, $description, $win_terms, $lose_terms ) {
+		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
+
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->insert(
 			'challenge',
 			[
 				'challenge_challenger_actor' => $challenger->getActorId(),
 				'challenge_challengee_actor' => $challengee->getActorId(),
-				'challenge_info' => $info,
+				'challenge_info' => $contLang->truncateForDatabase( $info, 200 ),
 				'challenge_description' => $description,
-				'challenge_win_terms' => $win_terms,
-				'challenge_lose_terms' => $lose_terms,
-				'challenge_status' => 0,
+				'challenge_win_terms' => $contLang->truncateForDatabase( $win_terms, 200 ),
+				'challenge_lose_terms' => $contLang->truncateForDatabase( $lose_terms, 200 ),
+				'challenge_status' => self::STATUS_AWAITING,
 				'challenge_date' => $dbw->timestamp(),
 				'challenge_event_date' => $dbw->timestamp( $this->formatDateForDB( $event_date ) )
 			],

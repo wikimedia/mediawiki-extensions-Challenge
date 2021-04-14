@@ -67,6 +67,12 @@ class ChallengeUserTemplate extends QuickTemplate {
 			<div class="challenge-form">
 				<input type="text" class="createbox" size="35" name="info" id="info" value="" />
 			</div>
+			<div class="challenge-countdown-container">
+			<?php echo $this->data['class']->msg(
+				'challengeuser-characters-left',
+				'<input readonly="readonly" type="text" id="info-countdown" value="200" />'
+			)->text() ?>
+			</div>
 		</div>
 		<div class="challenge-field">
 			<div class="challenge-label"><?php echo $this->data['class']->msg( 'challengeuser-date' )->escaped() ?></div>
@@ -86,12 +92,24 @@ class ChallengeUserTemplate extends QuickTemplate {
 			<div class="challenge-form">
 				<textarea class="createbox" name="win" id="win" rows="2" cols="50"></textarea>
 			</div>
+			<div class="challenge-countdown-container">
+			<?php echo $this->data['class']->msg(
+				'challengeuser-characters-left',
+				'<input readonly="readonly" type="text" id="win-countdown" value="200" />'
+			)->text() ?>
+			</div>
 		</div>
 
 		<div class="challenge-field">
 			<div class="challenge-label"><?php echo $this->data['class']->msg( 'challengeuser-loseterms' )->escaped() ?></div>
 			<div class="challenge-form">
-			<textarea class="createbox" name="lose" id="lose" rows="2" cols="50"></textarea>
+				<textarea class="createbox" name="lose" id="lose" rows="2" cols="50"></textarea>
+			</div>
+			<div class="challenge-countdown-container">
+			<?php echo $this->data['class']->msg(
+				'challengeuser-characters-left',
+				'<input readonly="readonly" type="text" id="lose-countdown" value="200" />'
+			)->text() ?>
 			</div>
 		</div>
 		<div class="challenge-buttons">

@@ -86,6 +86,7 @@
 	"challengestandings-w": "A table header\nThe w stands for \"wins\"\nSee also {{msg-mw|challengestandings-tooltip-wins}}\n\n2. Kommentar: Das „G“ steht für „gewonnen“.",
 	"challengeuser": "{{doc-special}}",
 	"challengeuser-challenge-sent-title": "Page title of Special:ChallengeUser after you've challenged another user.\nParameters:\n* $1 is the user name of the user whom you've challenged",
+	"challengeuser-characters-left": "Hint message used on Special:ChallengeUser below the \"event\" ({{msg-mw|challengeuser-event}}), \"win terms\" ({{msg-mw|challengeuser-winterms}}) and \"lose terms\" ({{msg-mw|challengeuser-loseterms}}) input fields/textareas to inform the user about how many more characters they can type into said input field or textarea.\nParameters:\n* $1 is '''not''' a number but rather an <code>&lt;input&gt;</code> HTML element which contains the amount of characters left and this amount is automatically updated by the relevant JavaScript code as the user enters text.",
 	"challengeuser-completehistory": "Link text on Special:ChallengeUser; clicking on this link takes you to the challenge history view (Special:ChallengeHistory with the correct user URL parameter) for the user whom you're challenging to see how they've fared in the past",
 	"challengeuser-date": "A label message for the \"challenge a user\" form on Special:ChallengeUser",
 	"challengeuser-description": "A label message for the \"challenge a user\" form on Special:ChallengeUser",

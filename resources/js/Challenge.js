@@ -7,6 +7,24 @@ var Challenge = {
 		window.location = mw.util.getUrl( 'Special:ChallengeHistory', { 'user': user, 'status': status } );
 	},
 
+	/**
+	 * Countdown as user types characters
+	 *
+	 * Based on FanBoxes' similar method but modified for our needs.
+	 *
+	 * @param {jQuery} limitField
+	 */
+	limitText: function ( limitField ) {
+		// Hard-code this limit to 200 as per the DB tables...
+		var limitNum = 200;
+		var id = limitField.attr( 'id' );
+		if ( limitField.val().length > limitNum ) {
+			limitField.val( limitField.val().substring( 0, limitNum ) );
+		} else {
+			document.getElementById( id + '-countdown' ).value = limitNum - limitField.val().length;
+		}
+	},
+
 	send: function() {
 		var err = '',
 			req = [
@@ -128,6 +146,21 @@ $( function() {
 	// Special:ChallengeUser (SpecialChallengeUser.php)
 	$( '#challenge-user-selector' ).on( 'change', function() {
 		Challenge.chooseFriend( this.value );
+	} );
+
+	$( 'input#info, textarea#win, textarea#lose' ).on( {
+		keydown: function () {
+			Challenge.limitText( $( this ) );
+		},
+		keyup: function () {
+			Challenge.limitText( $( this ) );
+		},
+		paste: function () {
+			Challenge.limitText( $( this ) );
+		},
+		keypress: function () {
+			Challenge.limitText( $( this ) );
+		}
 	} );
 
 	// Special:ChallengeUser (templates/challengeuser.tmpl.php)

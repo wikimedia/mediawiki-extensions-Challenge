@@ -51,3 +51,12 @@
 .challenge-buttons input[name="wpMyProfile"] {
 	margin-left: 5px;
 }
+
+.challenge-countdown-container {
+	color: #666;
+	font-size: 0.85em;
+}
+
+.challenge-countdown-container input {
+	width: 2.5%;
+}
