@@ -86,6 +86,7 @@
 	"challengestandings-w": "V",
 	"challengeuser": "Défier un utilisateur",
 	"challengeuser-challenge-sent-title": "Vous avez lancé un défi à $1.",
+	"challengeuser-characters-left": "il vous reste $1 caractères",
 	"challengeuser-completehistory": "Afficher l’historique complet des défis",
 	"challengeuser-date": "la date de l’événement (mm/jj/aaaa)",
 	"challengeuser-description": "description (p.ex. : je prends les Aigles avec la propagation (+3))",
