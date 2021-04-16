@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Hedda",
+			"Joseph",
 			"MuratTheTurkish",
 			"Vito Genovese"
 		]
@@ -86,6 +87,7 @@
 	"challengestandings-w": "K",
 	"challengeuser": "Bir Kullanıcıya Meydan Okuyun",
 	"challengeuser-challenge-sent-title": "$1 kullanıcısına meydan okudunuz",
+	"challengeuser-characters-left": "$1 karakteriniz kaldı",
 	"challengeuser-completehistory": "Tüm Meydan Okuma Geçmişini Gör",
 	"challengeuser-date": "etkinlik tarihi (aa/gg/yyyy)",
 	"challengeuser-description": "açıklama (ör: Kartalların dağılımını alıyorum (+3))",
