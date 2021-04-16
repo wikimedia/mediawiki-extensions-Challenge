@@ -141,6 +141,8 @@ class ChallengeHistory extends SpecialPage {
 
 		if ( $challengeList ) {
 			$challenge_view_title = SpecialPage::getTitleFor( 'ChallengeView' );
+			$lang = $this->getLanguage();
+			$viewingUserObject = $this->getUser();
 
 			foreach ( $challengeList as $challenge ) {
 				// Set up avatars and wiki titles for challenge and target
@@ -152,10 +154,25 @@ class ChallengeHistory extends SpecialPage {
 				$title1 = Title::makeTitle( NS_USER, $challenger->getName() );
 				$title2 = Title::makeTitle( NS_USER, $challengee->getName() );
 
+				// F O R M A T T I N G !
+				// Old code used the US date format (DD/MM/YYYY)
+				// New code displays the full timestamp; not ideal! So we prettify it here.
+				// Language#userDate barfs on things which aren't TS_MW timestamps
+				// We don't want everything to break just because something couldn't be
+				// formatted...
+				// Anyway this is probably not an issue outside my devbox, I don't think
+				// it's possible for US dates to get inserted into the timestamp on fresh
+				// installations of Challenge...
+				try {
+					$fmtDate = $lang->userDate( $challenge['date'], $viewingUserObject );
+				} catch ( MWException $ex ) {
+					$fmtDate = $challenge['date'];
+				}
+
 				// Set up titles for pages used in table
 				$challengeViewLink = $linkRenderer->makeLink(
 					$challenge_view_title,
-					$challenge['info'] . ' [' . $challenge['date'] . ']',
+					$challenge['info'] . ' [' . $fmtDate . ']',
 					[],
 					[ 'id' => $challenge['id'] ]
 				);

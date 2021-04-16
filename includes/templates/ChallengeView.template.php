@@ -15,6 +15,14 @@ class ChallengeViewTemplate extends QuickTemplate {
 		$challenge = $this->data['challenge'];
 		$user = $this->data['user'];
 		$linkRenderer = $this->data['class']->getLinkRenderer();
+
+		// F O R M A T T I N G
+		// Copy-pasted from SpecialChallengeHistory.php
+		try {
+			$fmtDate = $this->data['class']->getLanguage()->userDate( $challenge['date'], $user );
+		} catch ( MWException $ex ) {
+			$fmtDate = $challenge['date'];
+		}
 ?>
 	<table class="challenge-main-table">
 		<tr>
@@ -71,7 +79,7 @@ class ChallengeViewTemplate extends QuickTemplate {
 	<table>
 		<tr>
 			<td>
-				<b><?php echo wfMessage( 'challengeview-event' )->escaped() ?></b> <span class="challenge-event"><?php echo $challenge['info'] . ' [' . $challenge['date'] . ']' ?></span>
+				<b><?php echo wfMessage( 'challengeview-event' )->escaped() ?></b> <span class="challenge-event"><?php echo $challenge['info'] . ' [' . $fmtDate . ']' ?></span>
 				<br /><b><?php echo wfMessage( 'challengeview-description', User::newFromActorId( $challenge['challenger_actor'] )->getName() )->parse() ?></b><span class="challenge-description"><?php echo $challenge['description'] ?></span>
 			</td>
 		</tr>
