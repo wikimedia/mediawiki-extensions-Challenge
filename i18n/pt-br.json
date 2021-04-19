@@ -77,6 +77,7 @@
 	"challengestandings-w": "W",
 	"challengeuser": "Desafie um usuário",
 	"challengeuser-challenge-sent-title": "Você lançou um desafio para $1",
+	"challengeuser-characters-left": "você tem $1 caracteres restantes",
 	"challengeuser-completehistory": "Ver o histórico completo do desafio",
 	"challengeuser-date": "a data do evento (mm/dd/aaaa)",
 	"challengeuser-description": "descrição (ex: estou pegando as Águias com a propagação (+3))",
