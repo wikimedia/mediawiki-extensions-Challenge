@@ -4,7 +4,8 @@
 			"Ameisenigel",
 			"BPX-web",
 			"Gebu",
-			"RacoonyRE"
+			"RacoonyRE",
+			"ZabeMath"
 		]
 	},
 	"challenge-this-user": "Benutzer herausfordern",
@@ -95,6 +96,7 @@
 	"challengeview-reject": "Ablehnen",
 	"challengeview-rejected": "Abgelehnt",
 	"challengeview-submit-button": "Übermitteln",
+	"challengeview-status": "Status der Herausforderung",
 	"challengeview-versus": "vs.",
 	"challengeview-won-by": "Herausforderung gewonnen von '''$1'''",
 	"challengeview-you-won": "Du hast die Herausforderung gewonnen!"
