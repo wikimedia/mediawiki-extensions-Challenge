@@ -120,11 +120,24 @@ class Challenge {
 		);
 
 		$this->challenge_id = $dbw->insertId();
+
 		$this->sendChallengeRequestEmail(
 			$challenger->getActorId(),
 			$challengee->getActorId(),
 			$this->challenge_id
 		);
+
+		if ( ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) ) {
+			EchoEvent::create( [
+				'type' => 'challenge-received',
+				'agent' => $challenger,
+				'extra' => [
+					'notifyAgent' => false,
+					'target' => $challengee->getId(),
+					'challenge-id' => $this->challenge_id
+				]
+			] );
+		}
 	}
 
 	/**
@@ -139,7 +152,13 @@ class Challenge {
 		$user = User::newFromActorId( $challengeeActorId );
 		$user->loadFromDatabase();
 
-		if ( $user->isEmailConfirmed() && $user->getIntOption( 'notifychallenge', 1 ) ) {
+		if ( ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) ) {
+			$wantsEmail = $user->getBoolOption( 'echo-subscriptions-email-challenge-received' );
+		} else {
+			$wantsEmail = $user->getIntOption( 'notifychallenge', 1 );
+		}
+
+		if ( $user->isEmailConfirmed() && $wantsEmail ) {
 			$challenge_view_title = SpecialPage::getTitleFor( 'ChallengeView' );
 			$update_profile_link = SpecialPage::getTitleFor( 'UpdateProfile' );
 			$user_from = User::newFromActorId( $challengerActorId )->getName();
@@ -159,7 +178,13 @@ class Challenge {
 		$user = User::newFromActorId( $challengerActorId );
 		$user->loadFromDatabase();
 
-		if ( $user->isEmailConfirmed() && $user->getIntOption( 'notifychallenge', 1 ) ) {
+		if ( ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) ) {
+			$wantsEmail = $user->getBoolOption( 'echo-subscriptions-email-challenge-accepted' );
+		} else {
+			$wantsEmail = $user->getIntOption( 'notifychallenge', 1 );
+		}
+
+		if ( $user->isEmailConfirmed() && $wantsEmail ) {
 			$challenge_view_title = SpecialPage::getTitleFor( 'ChallengeView' );
 			$update_profile_link = SpecialPage::getTitleFor( 'UpdateProfile' );
 			$user_from = User::newFromActorId( $challengeeActorId )->getName();
@@ -179,7 +204,13 @@ class Challenge {
 		$user = User::newFromActorId( $loserActorId );
 		$user->loadFromDatabase();
 
-		if ( $user->isEmailConfirmed() && $user->getIntOption( 'notifychallenge', 1 ) ) {
+		if ( ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) ) {
+			$wantsEmail = $user->getBoolOption( 'echo-subscriptions-email-challenge-lost' );
+		} else {
+			$wantsEmail = $user->getIntOption( 'notifychallenge', 1 );
+		}
+
+		if ( $user->isEmailConfirmed() && $wantsEmail ) {
 			$challenge_view_title = SpecialPage::getTitleFor( 'ChallengeView' );
 			$update_profile_link = SpecialPage::getTitleFor( 'UpdateProfile' );
 			$user_from = User::newFromActorId( $winnerActorId )->getName();
@@ -202,7 +233,14 @@ class Challenge {
 	public function sendChallengeWinEmail( $winnerActorId, $loserActorId, $id ) {
 		$user = User::newFromActorId( $winnerActorId );
 		$user->loadFromDatabase();
-		if ( $user->isEmailConfirmed() && $user->getIntOption( 'notifychallenge', 1 ) ) {
+
+		if ( ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) ) {
+			$wantsEmail = $user->getBoolOption( 'echo-subscriptions-email-challenge-won' );
+		} else {
+			$wantsEmail = $user->getIntOption( 'notifychallenge', 1 );
+		}
+
+		if ( $user->isEmailConfirmed() && $wantsEmail ) {
 			$challenge_view_title = SpecialPage::getTitleFor( 'ChallengeView' );
 			$update_profile_link = SpecialPage::getTitleFor( 'UpdateProfile' );
 			$user_from = User::newFromActorId( $loserActorId )->getName();
@@ -254,6 +292,18 @@ class Challenge {
 					);
 				}
 
+				if ( ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) ) {
+					EchoEvent::create( [
+						'type' => 'challenge-accepted',
+						'agent' => $challengee,
+						'extra' => [
+							'notifyAgent' => false,
+							'target' => $challenger->getId(),
+							'challenge-id' => $challenge_id
+						]
+					] );
+				}
+
 				break;
 			case self::STATUS_COMPLETED: // challenge was completed, send email to loser
 				$winner = User::newFromActorId( $c['winner_actor'] );
@@ -270,6 +320,47 @@ class Challenge {
 				if ( $email ) {
 					$this->sendChallengeLoseEmail( $loser_id, $c['winner_actor'], $challenge_id );
 					$this->sendChallengeWinEmail( $c['winner_actor'], $loser_id, $challenge_id );
+				}
+
+				if ( ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) ) {
+					EchoEvent::create( [
+						'type' => 'challenge-won',
+						'agent' => $winner,
+						'extra' => [
+							'notifyAgent' => true,
+							'target' => $winner->getId(),
+							'challenge-id' => $challenge_id
+						]
+					] );
+
+					EchoEvent::create( [
+						'type' => 'challenge-lost',
+						'agent' => $winner,
+						'extra' => [
+							'notifyAgent' => false,
+							'target' => $loser_id,
+							'challenge-id' => $challenge_id
+						]
+					] );
+				}
+
+				break;
+
+			case self::STATUS_REJECTED:
+				// Inform the challenger that their challenge was rejected
+				if ( ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) ) {
+					$challengee = User::newFromActorId( $c['challengee_actor'] );
+					$challenger = User::newFromActorId( $c['challenger_actor'] );
+
+					EchoEvent::create( [
+						'type' => 'challenge-rejected',
+						'agent' => $challengee,
+						'extra' => [
+							'notifyAgent' => false,
+							'target' => $challenger->getId(),
+							'challenge-id' => $challenge_id
+						]
+					] );
 				}
 				break;
 		}
