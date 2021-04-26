@@ -4,13 +4,23 @@
 			"Kizule"
 		]
 	},
+	"challenge-status-rejected": "одбијено",
+	"challenge-status-removed": "уклоњено",
+	"challenge-status-in-progress": "у току",
+	"challenge-status-completed": "завршено",
 	"challenge-js-accepted": "Прихваћено",
 	"challenge-js-rejected": "Одбијено",
 	"challengehistory-all": "Све",
+	"challengehistory-accepted": "прихваћено",
 	"challengehistory-completed": "Завршено",
 	"challengehistory-filter": "филтер:",
 	"challengehistory-inprogress": "У току",
 	"challengehistory-negative": "Негативно",
 	"challengehistory-neutral": "Неутрално",
-	"challengehistory-positive": "Позитивно"
+	"challengehistory-positive": "Позитивно",
+	"challengeuser-or": "или",
+	"challengeview-accept": "Прихвати",
+	"challengeview-accepted": "Прихваћено",
+	"challengeview-by": "од '''$1'''",
+	"challengeview-by-on": "од '''$1''' на $2"
 }

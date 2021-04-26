@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Aferinamca",
 			"Hedda",
 			"Joseph",
 			"MuratTheTurkish",
@@ -164,6 +165,12 @@
 	"challengeview-won-by": "Meydan okumayı '''$1''' kazandı",
 	"challengeview-was-push": "Meydan okuma, bir zorlamaydı!",
 	"challengeview-you-won": "Meydan okumayı kazandınız!",
+	"echo-category-title-challenge-accepted": "Kabul edilen meydan okumalar",
+	"echo-pref-tooltip-challenge-accepted": "Benim oluşturduğum meydan okumalar kabul edildiğinde bana bildirim gönder.",
+	"echo-pref-tooltip-challenge-rejected": "Benim oluşturduğum meydan okumalar reddedildiğinde bana bildirim gönder.",
+	"echo-category-title-challenge-lost": "Kaybedilen meydan okumalar",
+	"echo-pref-tooltip-challenge-lost": "Bir meydan okumayı kaybettiğinde bana bildirim gönder.",
+	"echo-pref-tooltip-challenge-won": "Bir meydan okumayı kazandığımda bildirim gönder.",
 	"action-challengeadmin": "meydan okumaları yönetin",
 	"right-challengeadmin": "Meydan okumaları yönetin"
 }

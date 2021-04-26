@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Cottonhead",
 			"Eduardo Addad de Oliveira",
 			"Eduardoaddad"
 		]
@@ -151,6 +152,12 @@
 	"challengeview-view-history": "ver histórico de desafios",
 	"challengeview-won-by": "Desafio vencido por '''$1'''",
 	"challengeview-you-won": "Você venceu o desafio!",
+	"notification-challenge-received-bundle": "Você foi desafiado!",
+	"echo-category-title-challenge-accepted": "Desafios aceitos",
+	"echo-pref-tooltip-challenge-accepted": "Notifique-me quando um desafio lançado por mim for aceito.",
+	"echo-pref-tooltip-challenge-rejected": "Notifique-me quando um desafio lançado por mim for aceito.",
+	"echo-pref-tooltip-challenge-lost": "Notifique-me quando perco um desafio.",
+	"echo-pref-tooltip-challenge-won": "Notifique-me quando vencer um desafio.",
 	"action-challengeadmin": "administrar desafios",
 	"right-challengeadmin": "Administrar desafios"
 }

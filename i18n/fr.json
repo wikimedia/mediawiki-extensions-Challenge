@@ -2,6 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Florian COLLIN",
+			"JenyxGym",
+			"Scratcheur-2020Send",
 			"Thibaut120094",
 			"Verdy p"
 		]
@@ -163,6 +165,11 @@
 	"challengeview-won-by": "Défi remporté par '''$1'''",
 	"challengeview-was-push": "Le défi était une poussée !",
 	"challengeview-you-won": "Vous avez gagné le défi !",
+	"echo-category-title-challenge-received": "Défis reçus",
+	"echo-pref-tooltip-challenge-received": "Me notifier quand je reçois un défi.",
+	"notification-challenge-received": "Vous avez été [[Special:ChallengeView/$2|mis{{GENDER:{{#username:}}||e}} au défi]] par [[User:$1|$1]]",
+	"notification-challenge-received-bundle": "Vous avez été mis{{GENDER:{{#username}}||e}} au défi {{PLURAL:$1|une|$1}} fois !",
+	"echo-category-title-challenge-accepted": "Défis acceptés",
 	"action-challengeadmin": "administrer les défis",
 	"right-challengeadmin": "Administrer les défis"
 }
