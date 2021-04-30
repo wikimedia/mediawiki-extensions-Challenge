@@ -38,7 +38,7 @@ class ChallengeAction extends UnlistedSpecialPage {
 				$c->updateChallengeStatus(
 					// @todo FIXME: this is a bit subpar...'id' is used by JS but 'challenge_id' by no-JS
 					$request->getInt( 'id' ) ?? $request->getInt( 'challenge_id' ),
-					$request->getVal( 'status' )
+					$request->getInt( 'status' )
 				);
 				break;
 			case 2:

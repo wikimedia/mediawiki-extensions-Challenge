@@ -74,7 +74,7 @@ class ChallengeHistory extends SpecialPage {
 			$standings_link = " - <img src=\"{$imgPath}userpageIcon.png\" alt=\"\" /> ";
 			$standings_link .= $linkRenderer->makeLink(
 				SpecialPage::getTitleFor( 'ChallengeStandings' ),
-				$this->msg( 'challengehistory-view-standings' )->escaped()
+				$this->msg( 'challengehistory-view-standings' )->text()
 			);
 		}
 
@@ -91,7 +91,7 @@ class ChallengeHistory extends SpecialPage {
 		$out .= Html::hidden( 'title', $challenge_history_title );
 		$out .= "<select name=\"status\" data-username=\"{$sanitizedUser}\">
 				<option value='' " . ( $status == '' && strlen( $status ) == 0 ? ' selected="selected"' : '' ) . '>' . $this->msg( 'challengehistory-all' )->escaped() . "</option>
-				<option value=0 " . ( $status == 0 && strlen( $status ) == 1 ? ' selected="selected"' : '' ) . '>' . $this->msg( 'challengehistory-awaiting' )->escaped() . '</option>
+				<option value=0 " . ( $status == 0 && strlen( (string)$status ) == 1 ? ' selected="selected"' : '' ) . '>' . $this->msg( 'challengehistory-awaiting' )->escaped() . '</option>
 				<option value="1"' . ( $status == 1 ? ' selected="selected"' : '' ) . '>' . $this->msg( 'challengehistory-inprogress' )->escaped() . '</option>
 				<option value="-1"' . ( $status == -1 ? ' selected="selected"' : '' ) . '>' . $this->msg( 'challengehistory-rejected' )->escaped() . '</option>
 				<option value="3"' . ( $status == 3 ? ' selected="selected"' : '' ) . '>' . $this->msg( 'challengehistory-completed' )->escaped() . "</option>
@@ -102,9 +102,9 @@ class ChallengeHistory extends SpecialPage {
 			<div class=\"challenge-link\">
 				<img src=\"{$spImgPath}challengeIcon.png\" alt=\"\" /> ";
 		if ( $user && !$user->isAnon() ) {
-			$msg = $this->msg( 'challengehistory-challenge-user', $user->getName() )->parse();
+			$msg = $this->msg( 'challengehistory-challenge-user', $user->getName() )->text();
 		} else {
-			$msg = $this->msg( 'challengehistory-challenge-someone' )->escaped();
+			$msg = $this->msg( 'challengehistory-challenge-someone' )->text();
 		}
 		$out .= $linkRenderer->makeLink(
 			$challenge_link,
@@ -192,7 +192,8 @@ class ChallengeHistory extends SpecialPage {
 
 				$out .= "<tr>
 					<td class=\"challenge-data\">{$challengeViewLink}</td>
-					<td class=\"challenge-data challenge-data-description\">{$challenge['description']}</td>
+					<td class=\"challenge-data challenge-data-description\">";
+				$out .= htmlspecialchars( $challenge['description'], ENT_QUOTES ) . "</td>
 					<td class=\"challenge-data\">{$av1}";
 				$out .= $linkRenderer->makeLink(
 					$title1,
@@ -232,13 +233,13 @@ class ChallengeHistory extends SpecialPage {
 			if ( $page > 1 ) {
 				$out .= $linkRenderer->makeLink(
 					$challenge_history_title,
-					$this->msg( 'challengehistory-prev' )->escaped(),
+					$this->msg( 'challengehistory-prev' )->text(),
 					[],
 					[ 'user' => $user->getName(), 'page' => ( $page - 1 ) ]
 				) . $this->msg( 'word-separator' )->escaped();
 			}
 
-			if ( ( $total % $perPage ) != 0 ) {
+			if ( ( $totalChallenges % $perPage ) != 0 ) {
 				$numOfPages++;
 			}
 			if ( $numOfPages >= 9 ) {
@@ -251,17 +252,17 @@ class ChallengeHistory extends SpecialPage {
 				} else {
 					$out .= $linkRenderer->makeLink(
 						$challenge_history_title,
-						$i,
+						(string)$i,
 						[],
 						[ 'user' => $user->getName(), 'page' => $i ]
 					) . $this->msg( 'word-separator' )->escaped();
 				}
 			}
 
-			if ( ( $total - ( $perPage * $page ) ) > 0 ) {
+			if ( ( $totalChallenges - ( $perPage * $page ) ) > 0 ) {
 				$out .= $this->msg( 'word-separator' )->escaped() . $linkRenderer->makeLink(
 					$challenge_history_title,
-					$this->msg( 'challengehistory-next' )->escaped(),
+					$this->msg( 'challengehistory-next' )->text(),
 					[],
 					[ 'user' => $user->getName(), 'page' => ( $page + 1 ) ]
 				);

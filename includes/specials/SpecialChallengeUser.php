@@ -2,6 +2,9 @@
 
 class ChallengeUser extends SpecialPage {
 
+	/** @var User The person getting challenged */
+	public $challengee;
+
 	public function __construct() {
 		parent::__construct( 'ChallengeUser' );
 	}
@@ -166,7 +169,7 @@ class ChallengeUser extends SpecialPage {
 				// @todo FIXME: NoJS support for these two buttons
 				$out .= '<div class="challenge-buttons">';
 				$mainPageURL = Title::newMainPage()->getFullURL();
-				$userPageURL = htmlspecialchars( $user->getUserPage()->getFullURL(), ENT_QUOTES );
+				$userPageURL = $user->getUserPage()->getFullURL();
 				$out .= Html::input( 'wpMainPage', $this->msg( 'mainpage' )->text(), 'button', [
 					'size' => 20,
 					'class' => 'site-button',
@@ -206,6 +209,7 @@ class ChallengeUser extends SpecialPage {
 		$output .= $this->msg( 'challengeuser-info-body-no-user' )->escaped();
 		$output .= '</div>';
 
+		$friends = false;
 		if ( $wgFriendingEnabled ) {
 			$listLookup = new RelationshipListLookup( $this->getUser() );
 			$friends = $listLookup->getFriendList();
