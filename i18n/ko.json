@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Ellif",
 			"Ykhwong"
 		]
 	},
@@ -25,5 +26,13 @@
 	"challengeview-rating-neutral": "중립",
 	"challengeview-reject": "거부",
 	"challengeview-removed": "규정 위반으로 인해 제거됨",
-	"challengeview-submit-button": "제출"
+	"challengeview-submit-button": "제출",
+	"echo-pref-tooltip-challenge-received": "도전을 받으면 알림",
+	"notification-challenge-received-bundle": "{{PLURAL:$1||$1번 }}도전을 받으셨습니다!",
+	"echo-category-title-challenge-accepted": "수락한 도전",
+	"echo-category-title-challenge-rejected": "거절한 도전",
+	"echo-pref-tooltip-challenge-rejected": "내가 보낸 도전이 거절되면 알림",
+	"echo-category-title-challenge-won": "이긴 도전",
+	"echo-pref-tooltip-challenge-won": "도전에서 이기면 알림",
+	"notification-challenge-won": "[[Special:ChallengeView/$1|$1]]번 도전에서 이기셨습니다!"
 }

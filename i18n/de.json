@@ -4,6 +4,7 @@
 			"Ameisenigel",
 			"BPX-web",
 			"Gebu",
+			"ManuelFranz",
 			"RacoonyRE",
 			"ZabeMath"
 		]
@@ -46,8 +47,11 @@
 	"challengehistory-event": "Veranstaltung",
 	"challengehistory-filter": "Filter:",
 	"challengehistory-inprogress": "In Bearbeitung",
+	"challengehistory-negative": "Negativ",
 	"challengehistory-negative2": "$1 negativ",
 	"challengehistory-neutral": "Neutral",
+	"challengehistory-neutral2": "$1 neutral",
+	"challengehistory-next": "nächste",
 	"challengehistory-positive": "Positiv",
 	"challengehistory-positive2": "$1 positiv",
 	"challengehistory-prev": "vorherige",
