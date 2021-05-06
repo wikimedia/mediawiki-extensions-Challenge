@@ -25,7 +25,7 @@ class ChallengeUser extends SpecialPage {
 	 * @return bool
 	 */
 	function isListed() {
-		return $this->getUser()->isLoggedIn();
+		return $this->getUser()->isRegistered();
 	}
 
 	/**
@@ -154,7 +154,7 @@ class ChallengeUser extends SpecialPage {
 				$out = '<div class="challenge-links">';
 					//$out .= "<a href=\"index.php?title=User:{$this->challengee->getName()}\">< {$this->challengee->getName()}'s User Page</a>";
 					// $out .= " - <a href=\"index.php?title=Special:ViewGifts&user={$this->challengee->getName()}\">View All of {$this->challengee->getName()}'s Gifts</a>";
-				if ( $this->getUser()->isLoggedIn() ) {
+				if ( $this->getUser()->isRegistered() ) {
 					// $out .= " - <a href=\"index.php?title=Special:ViewGifts&user={$user->getName()}\">View All of Your Gifts</a>";
 				}
 				$out .= '</div>';

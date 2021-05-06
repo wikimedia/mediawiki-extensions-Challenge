@@ -229,7 +229,7 @@ class ChallengeHooks {
 		// to the user whose profile is being viewed
 		// Show this link only to registered users who are *not* viewing their own profile
 		$ctx = $upp->getContext();
-		if ( $ctx->getUser()->isLoggedIn() && !$upp->isOwner() ) {
+		if ( $ctx->getUser()->isRegistered() && !$upp->isOwner() ) {
 			$challengeUser = SpecialPage::getTitleFor( 'ChallengeUser', $upp->user_name );
 			$profileLinks['challenge-user'] =
 				'<a href="' . htmlspecialchars( $challengeUser->getFullURL(), ENT_QUOTES ) . '" rel="nofollow">' .
