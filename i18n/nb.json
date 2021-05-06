@@ -37,5 +37,7 @@
 	"challengestandings-w": "S",
 	"challengeuser": "Utfordre en bruker",
 	"challengeuser-challenge-sent-title": "Du har sendt $1 en utfordring",
-	"challengeuser-completehistory": "Vis fullstendig utfordringshistorikk"
+	"challengeuser-completehistory": "Vis fullstendig utfordringshistorikk",
+	"challengeuser-view-userpage": "Vis {{GRAMMAR:genitive|$1}} brukerside",
+	"challengeview-description": "{{GRAMMAR:genitive|$1}} beskrivelse:"
 }
