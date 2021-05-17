@@ -1,8 +1,17 @@
 {
 	"@metadata": {
 		"authors": [
+			"Ajeje Brazorf",
 			"Beta16"
 		]
 	},
-	"challengehistory-submit-btn": "Invia"
+	"challengehistory-submit-btn": "Invia",
+	"challengestandings-l": "P",
+	"challengestandings-t": "L",
+	"challengestandings-tooltip-losses": "Perdite",
+	"challengestandings-tooltip-ties": "Legami",
+	"challengestandings-user": "utente",
+	"challengeuser-or": "o",
+	"challengeuser-submit-button": "Invia",
+	"challengeview-accept": "Accetta"
 }
