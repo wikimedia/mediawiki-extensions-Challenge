@@ -60,19 +60,19 @@ class ChallengeStandings extends SpecialPage {
 			$out .= $this->msg( 'word-separator' )->escaped();
 			$out .= '</td>';
 
-			$out .= '<td class="challenge-standings">' . $row->challenge_wins . '</td>
-					<td class="challenge-standings">' . $row->challenge_losses . '</td>
-					<td class="challenge-standings">' . $row->challenge_ties . '</td>
+			$out .= '<td class="challenge-standings">' . (int)$row->challenge_wins . '</td>
+					<td class="challenge-standings">' . (int)$row->challenge_losses . '</td>
+					<td class="challenge-standings">' . (int)$row->challenge_ties . '</td>
 					<td class="challenge-standings">' .
 						// @todo FIXME: not i18n-compatible, should use $this->getLanguage()->formatNum( $row->winning_percentage ) or something instead...
-						str_replace( '.0', '.', number_format( $row->winning_percentage, 3 ) ) .
+						str_replace( '.0', '.', number_format( (int)$row->winning_percentage, 3 ) ) .
 					'</td>';
 
 			if ( $recordHolderName != $this->getUser()->getName() ) {
 				$out .= '<td class="challenge-standings">';
 				$out .= $linkRenderer->makeLink(
 					SpecialPage::getTitleFor( 'ChallengeUser' ),
-					$this->msg( 'challengestandings-challengeuser' )->escaped(),
+					$this->msg( 'challengestandings-challengeuser' )->text(),
 					[ 'class' => 'challenge-standings-user-link' ],
 					[ 'user' => $recordHolderName ]
 				);

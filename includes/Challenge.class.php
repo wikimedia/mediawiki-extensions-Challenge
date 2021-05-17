@@ -57,7 +57,7 @@ class Challenge {
 	 *
 	 * @param User $user User (object) whom to send an email
 	 * @param string $subject Email subject
-	 * @param $string $body Email contents (HTML)
+	 * @param string $body Email contents (HTML)
 	 * @return Status object
 	 */
 	public function sendMail( $user, $subject, $body ) {
@@ -119,12 +119,12 @@ class Challenge {
 			__METHOD__
 		);
 
-		$this->challenge_id = $dbw->insertId();
+		$challenge_id = $dbw->insertId();
 
 		$this->sendChallengeRequestEmail(
 			$challenger->getActorId(),
 			$challengee->getActorId(),
-			$this->challenge_id
+			$challenge_id
 		);
 
 		if ( ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) ) {
@@ -134,7 +134,7 @@ class Challenge {
 				'extra' => [
 					'notifyAgent' => false,
 					'target' => $challengee->getId(),
-					'challenge-id' => $this->challenge_id
+					'challenge-id' => $challenge_id
 				]
 			] );
 		}
@@ -145,7 +145,7 @@ class Challenge {
 	 * challenge-related emails, inform them that they've been challenged.
 	 *
 	 * @param int $challengerActorId Actor ID of the challenger user
-	 * @param int $challengee Actor ID of the user who was challenged
+	 * @param int $challengeeActorId Actor ID of the user who was challenged
 	 * @param int $id Challenge ID
 	 */
 	public function sendChallengeRequestEmail( $challengerActorId, $challengeeActorId, $id ) {
@@ -684,6 +684,7 @@ class Challenge {
 	 *
 	 * @param int $actorId User's actor ID
 	 * @return string Wins, losses and ties separated by a dash
+	 * @return-taint none
 	 */
 	public static function getUserChallengeRecord( $actorId ) {
 		$dbr = wfGetDB( DB_MASTER );
@@ -729,22 +730,22 @@ class Challenge {
 		$out = '';
 		switch ( $status ) {
 			case -1:
-				$out .= wfMessage( 'challenge-status-rejected' )->plain();
+				$out .= wfMessage( 'challenge-status-rejected' )->escaped();
 				break;
 			case -2:
-				$out .= wfMessage( 'challenge-status-removed' )->plain();
+				$out .= wfMessage( 'challenge-status-removed' )->escaped();
 				break;
 			case 0:
-				$out .= wfMessage( 'challenge-status-awaiting' )->plain();
+				$out .= wfMessage( 'challenge-status-awaiting' )->escaped();
 				break;
 			case 1:
-				$out .= wfMessage( 'challenge-status-in-progress' )->plain();
+				$out .= wfMessage( 'challenge-status-in-progress' )->escaped();
 				break;
 			case 2:
-				$out .= wfMessage( 'challenge-status-countered' )->plain();
+				$out .= wfMessage( 'challenge-status-countered' )->escaped();
 				break;
 			case 3:
-				$out .= wfMessage( 'challenge-status-completed' )->plain();
+				$out .= wfMessage( 'challenge-status-completed' )->escaped();
 				break;
 		}
 		return $out;
