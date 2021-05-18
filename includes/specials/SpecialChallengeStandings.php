@@ -46,8 +46,8 @@ class ChallengeStandings extends SpecialPage {
 		foreach ( $res as $row ) {
 			$recordHolder = User::newFromActorId( $row->challenge_record_actor );
 			$recordHolderName = $recordHolder->getName();
-		 	$avatar1 = new wAvatar( $recordHolder->getId(), 's' );
-		 	$out .= '<tr>
+			$avatar1 = new wAvatar( $recordHolder->getId(), 's' );
+			$out .= '<tr>
 				<td class="challenge-standings">' . $x . '</td>
 				<td class="challenge-standings">';
 			$out .= $avatar1->getAvatarURL( [ 'align' => 'absmiddle' ] ); // @todo FIXME: invalid HTML5

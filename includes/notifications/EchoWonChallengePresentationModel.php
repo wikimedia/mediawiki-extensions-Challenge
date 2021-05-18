@@ -39,4 +39,4 @@ class EchoWonChallengePresentationModel extends EchoEventPresentationModel {
 		];
 	}
 
-} 
+}

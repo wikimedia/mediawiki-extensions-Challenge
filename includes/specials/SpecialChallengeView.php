@@ -27,7 +27,7 @@ class ChallengeView extends UnlistedSpecialPage {
 		if ( $id == '' ) {
 			$this->getOutput()->addHTML( $this->msg( 'challengeview-nochallenge' )->escaped() );
 		} else {
-	 		$this->getOutput()->addHTML( $this->displayChallenge( $id ) );
+			$this->getOutput()->addHTML( $this->displayChallenge( $id ) );
 		}
 	}
 
@@ -180,7 +180,7 @@ class ChallengeView extends UnlistedSpecialPage {
 				} else {
 					$out .= $this->msg( 'challengeview-was-push' )->escaped() . '<br /><br />';
 				}
-			break;
+				break;
 		}
 
 		$template->set( 'challenge-status-html', $out );

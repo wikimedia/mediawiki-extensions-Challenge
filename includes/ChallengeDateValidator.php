@@ -12,7 +12,7 @@ class ChallengeDateValidator {
 	const maxYear = 2100;
 
 	/**
-	 * @var array $error Error to be displayed to the user, if any; the JS version alert()s
+	 * @var array Error to be displayed to the user, if any; the JS version alert()s
 	 *   these kind of errors to the user but we can't obviously do that here. 1st item
 	 *   is always the message name, and subsequent items are message parameters.
 	 */
@@ -139,7 +139,7 @@ class ChallengeDateValidator {
 		if (
 			strlen( $strDay ) < 1 || $day < 1 || $day > 31 ||
 			( $month == 2 && $day > $this->daysInFebruary( $year ) ) ||
-			$day > $daysInMonth[$month] //$this->DaysArray( $month )
+			$day > $daysInMonth[$month] // $this->DaysArray( $month )
 		) {
 			$this->error = [ 'challenge-js-error-invalid-day' ];
 			return false;

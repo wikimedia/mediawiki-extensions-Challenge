@@ -111,7 +111,7 @@ class ChallengeUser extends SpecialPage {
 						}
 
 						// We do? Great.
-						$validator = new ChallengeDateValidator/*( $date )*/;
+						$validator = new ChallengeDateValidator;
 						if ( !$validator->isDate( $date ) ) {
 							// Validator's isDate() is the only method where $validator->error can have
 							// an array length of 3 instead of the more usual 1
@@ -155,7 +155,7 @@ class ChallengeUser extends SpecialPage {
 
 				// @todo FIXME: clean up this mess (empty <div>, empty if() loop) --ashley, 18 August 2020
 				$out = '<div class="challenge-links">';
-					//$out .= "<a href=\"index.php?title=User:{$this->challengee->getName()}\">< {$this->challengee->getName()}'s User Page</a>";
+					// $out .= "<a href=\"index.php?title=User:{$this->challengee->getName()}\">< {$this->challengee->getName()}'s User Page</a>";
 					// $out .= " - <a href=\"index.php?title=Special:ViewGifts&user={$this->challengee->getName()}\">View All of {$this->challengee->getName()}'s Gifts</a>";
 				if ( $this->getUser()->isRegistered() ) {
 					// $out .= " - <a href=\"index.php?title=Special:ViewGifts&user={$user->getName()}\">View All of Your Gifts</a>";

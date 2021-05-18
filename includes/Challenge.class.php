@@ -621,7 +621,7 @@ class Challenge {
 	 * user (via their user name).
 	 *
 	 * @param string $user_name User name
-	 * @param int $status Challenge status code (or null for all challenges)
+	 * @param int|null $status Challenge status code (or null for all challenges)
 	 * @param int $limit SQL query LIMIT, i.e. get this many results
 	 * @param int $page SQL query OFFSET, i.e. skip this many results
 	 * @return array

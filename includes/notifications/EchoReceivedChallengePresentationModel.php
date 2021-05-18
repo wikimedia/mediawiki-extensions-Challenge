@@ -43,4 +43,4 @@ class EchoReceivedChallengePresentationModel extends EchoEventPresentationModel 
 		];
 	}
 
-} 
+}

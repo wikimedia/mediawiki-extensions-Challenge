@@ -43,8 +43,7 @@ class ChallengeUserTemplate extends QuickTemplate {
 			<div class="challenge-user-stats">
 			<div class="challenge-user-title"><?php echo $this->data['class']->msg( 'challengeuser-users-stats', $challengee->getName() )->escaped(); ?></div>
 			<div class="challenge-user-record"><?php echo $this->data['class']->msg( 'challengeuser-record' )->escaped() ?> <b><?php echo Challenge::getUserChallengeRecord( $challengee->getActorId() ) ?></b></div>
-			<div class="challenge-user-feedback"><?php echo $this->data['class']->msg( 'challengeuser-feedback' )->numParams( $this->data['total'] )->parse() ?> (<?php echo
-			$this->data['class']->getLanguage()->pipeList( [
+			<div class="challenge-user-feedback"><?php echo $this->data['class']->msg( 'challengeuser-feedback' )->numParams( $this->data['total'] )->parse() ?> (<?php echo $this->data['class']->getLanguage()->pipeList( [
 				$this->data['class']->msg( 'challengehistory-positive2' )->numParams( $this->data['pos'] )->parse(),
 				$this->data['class']->msg( 'challengehistory-negative2' )->numParams( $this->data['neg'] )->parse(),
 				$this->data['class']->msg( 'challengehistory-neutral2' )->numParams( $this->data['neu'] )->parse()
