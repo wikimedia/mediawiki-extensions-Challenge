@@ -1,0 +1,34 @@
+{
+	"@metadata": {
+		"authors": [
+			"Mainframe98"
+		]
+	},
+	"challenge-status-rejected": "afgewezen",
+	"challenge-status-removed": "verwijderd",
+	"challenge-js-accepted": "Geaccepteerd",
+	"challenge-js-rejected": "Afgewezen",
+	"challengehistory-all": "Alle",
+	"challengehistory-accepted": "geaccepteerd",
+	"challengehistory-negative": "Negatief",
+	"challengehistory-neutral": "Neutraal",
+	"challengehistory-next": "volgende",
+	"challengehistory-positive": "Positief",
+	"challengehistory-prev": "vorige",
+	"challengehistory-rejected": "Afgewezen",
+	"challengehistory-target": "doel",
+	"challengestandings-user": "gebruiker",
+	"challengeuser-or": "of",
+	"challengeview-accept": "Accepteren",
+	"challengeview-accepted": "Geaccepteerd",
+	"challengeview-by": "door '''$1'''",
+	"challengeview-by-on": "door '''$1''' op $2",
+	"challengeview-negative": "negatief",
+	"challengeview-neutral": "neutraal",
+	"challengeview-positive": "positief",
+	"challengeview-rating-negative": "negatief",
+	"challengeview-rating-neutral": "neutraal",
+	"challengeview-rating-positive": "positief",
+	"challengeview-reject": "Afwijzen",
+	"challengeview-rejected": "Afgewezen"
+}
