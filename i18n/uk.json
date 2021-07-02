@@ -1,0 +1,13 @@
+{
+	"@metadata": {
+		"authors": [
+			"DDPAT"
+		]
+	},
+	"challenge-status-removed": "вилучено",
+	"challenge-status-in-progress": "в процесі",
+	"challenge-status-completed": "завершено",
+	"challengehistory-all": "Усе",
+	"challengehistory-prev": "попер.",
+	"challengestandings-user": "користувач"
+}
