@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Emma Franzen",
+			"Hamilton Abreu",
 			"Kareyac"
 		]
 	},
@@ -10,7 +11,7 @@
 	"challengeuser-or": "ou",
 	"echo-pref-tooltip-challenge-accepted": "Avise-me quando um desafio feito por mim for aceito.",
 	"notification-challenge-accepted-bundle": "{{PLURAL: $1 | Um desafio | $1 desafios}} que você emitiu {{PLURAL: $1 | foi | foram}} aceitos!",
-	"notification-challenge-rejected": "[[Usuário: $1 | $1]] rejeitou [[Special: ChallengeView / $2 | seu desafio]]!",
+	"notification-challenge-rejected": "[[User:$1|$1]] rejeitou [[Special:ChallengeView/$2|o seu desafio]]!",
 	"echo-category-title-challenge-lost": "Desafios perdidos",
 	"echo-pref-tooltip-challenge-lost": "Avise-me quando eu perder um desafio."
 }
