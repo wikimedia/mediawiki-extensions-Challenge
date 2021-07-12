@@ -10,6 +10,8 @@
 	"challenge-status-rejected": "拒绝",
 	"challenge-status-removed": "已移除",
 	"challenge-status-awaiting": "等待接受",
+	"challenge-js-accepted": "已接受",
+	"challenge-js-rejected": "已拒绝",
 	"challengehistory-all": "全部",
 	"challengehistory-next": "下一个",
 	"challengehistory-prev": "上一个",

@@ -4,9 +4,19 @@
 			"DDPAT"
 		]
 	},
+	"challenge-desc": "Дозволяє кидати виклик іншим користувачам",
+	"challenge-this-user": "Змінити користувача",
+	"challenge-status-rejected": "відхилено",
 	"challenge-status-removed": "вилучено",
+	"challenge-status-awaiting": "чекає прийняття",
+	"challenge-status-countered": "терміни протистояли",
 	"challenge-status-in-progress": "в процесі",
 	"challenge-status-completed": "завершено",
+	"challenge-js-description-required": "Обов'язковий опис",
+	"challenge-js-win-terms-required": "Необхідні умови виграшу",
+	"challenge-js-lose-terms-required": "Необхідні умови втрати",
+	"challenge-js-challenge-removed": "Виклик знято",
+	"challenge-js-accepted": "Прийнято",
 	"challengehistory-all": "Усе",
 	"challengehistory-prev": "попер.",
 	"challengestandings-user": "користувач"
