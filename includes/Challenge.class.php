@@ -152,10 +152,18 @@ class Challenge {
 		$user = User::newFromActorId( $challengeeActorId );
 		$user->loadFromDatabase();
 
+		$userOptionsLookup = MediaWikiServices::getInstance()->getUserOptionsLookup();
 		if ( ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) ) {
-			$wantsEmail = $user->getBoolOption( 'echo-subscriptions-email-challenge-received' );
+			$wantsEmail = $userOptionsLookup->getBoolOption(
+				$user,
+				'echo-subscriptions-email-challenge-received'
+			);
 		} else {
-			$wantsEmail = $user->getIntOption( 'notifychallenge', 1 );
+			$wantsEmail = $userOptionsLookup->getIntOption(
+				$user,
+				'notifychallenge',
+				1
+			);
 		}
 
 		if ( $user->isEmailConfirmed() && $wantsEmail ) {
@@ -178,10 +186,18 @@ class Challenge {
 		$user = User::newFromActorId( $challengerActorId );
 		$user->loadFromDatabase();
 
+		$userOptionsLookup = MediaWikiServices::getInstance()->getUserOptionsLookup();
 		if ( ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) ) {
-			$wantsEmail = $user->getBoolOption( 'echo-subscriptions-email-challenge-accepted' );
+			$wantsEmail = $userOptionsLookup->getBoolOption(
+				$user,
+				'echo-subscriptions-email-challenge-accepted'
+			);
 		} else {
-			$wantsEmail = $user->getIntOption( 'notifychallenge', 1 );
+			$wantsEmail = $userOptionsLookup->getIntOption(
+				$user,
+				'notifychallenge',
+				1
+			);
 		}
 
 		if ( $user->isEmailConfirmed() && $wantsEmail ) {
@@ -204,10 +220,18 @@ class Challenge {
 		$user = User::newFromActorId( $loserActorId );
 		$user->loadFromDatabase();
 
+		$userOptionsLookup = MediaWikiServices::getInstance()->getUserOptionsLookup();
 		if ( ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) ) {
-			$wantsEmail = $user->getBoolOption( 'echo-subscriptions-email-challenge-lost' );
+			$wantsEmail = $userOptionsLookup->getBoolOption(
+				$user,
+				'echo-subscriptions-email-challenge-lost'
+			);
 		} else {
-			$wantsEmail = $user->getIntOption( 'notifychallenge', 1 );
+			$wantsEmail = $userOptionsLookup->getIntOption(
+				$user,
+				'notifychallenge',
+				1
+			);
 		}
 
 		if ( $user->isEmailConfirmed() && $wantsEmail ) {
@@ -234,10 +258,18 @@ class Challenge {
 		$user = User::newFromActorId( $winnerActorId );
 		$user->loadFromDatabase();
 
+		$userOptionsLookup = MediaWikiServices::getInstance()->getUserOptionsLookup();
 		if ( ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) ) {
-			$wantsEmail = $user->getBoolOption( 'echo-subscriptions-email-challenge-won' );
+			$wantsEmail = $userOptionsLookup->getBoolOption(
+				$user,
+				'echo-subscriptions-email-challenge-won'
+			);
 		} else {
-			$wantsEmail = $user->getIntOption( 'notifychallenge', 1 );
+			$wantsEmail = $userOptionsLookup->getIntOption(
+				$user,
+				'notifychallenge',
+				1
+			);
 		}
 
 		if ( $user->isEmailConfirmed() && $wantsEmail ) {
