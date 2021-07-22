@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Ahonc",
 			"DDPAT"
 		]
 	},
@@ -168,7 +169,7 @@
 	"echo-category-title-challenge-accepted": "Прийняті виклики",
 	"echo-pref-tooltip-challenge-accepted": "Повідомте мене, коли буде прийнято оскарження, подане мною.",
 	"notification-challenge-accepted": "[[User:$1|$1]] прийняв [[Special:ChallengeView/$2|твій виклик]]!",
-	"notification-challenge-accepted-bundle": "{{PLURAL:$1|Один виклик|$1 викликів}}, що ви подали, {{PLURAL:$1|було прийнято|були прийняті}}!",
+	"notification-challenge-accepted-bundle": "{{PLURAL:$1|Один виклик|$1 викликів}}, що ви подали, було прийнято!",
 	"echo-category-title-challenge-rejected": "Відхилені виклики",
 	"echo-pref-tooltip-challenge-rejected": "Повідомте мене, коли відхилене мною оскарження буде відхилено.",
 	"notification-challenge-rejected": "[[User:$1|$1]] відхилив [[Special:ChallengeView/$2|твій виклик]]!",
