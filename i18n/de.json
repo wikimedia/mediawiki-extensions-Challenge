@@ -103,5 +103,7 @@
 	"challengeview-status": "Status der Herausforderung",
 	"challengeview-versus": "vs.",
 	"challengeview-won-by": "Herausforderung gewonnen von '''$1'''",
-	"challengeview-you-won": "Du hast die Herausforderung gewonnen!"
+	"challengeview-you-won": "Du hast die Herausforderung gewonnen!",
+	"echo-category-title-challenge-lost": "Verlorene Herausforderungen",
+	"echo-category-title-challenge-won": "Gewonnene Herausforderungen"
 }
