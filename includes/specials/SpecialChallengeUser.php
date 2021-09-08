@@ -108,6 +108,7 @@ class ChallengeUser extends SpecialPage {
 						// ...but let's start by checking that we have something to begin with
 						if ( !$date || $date === '' ) {
 							$errors[] = 'challenge-js-date-required';
+							continue;
 						}
 
 						// We do? Great.
