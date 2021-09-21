@@ -4,6 +4,7 @@
 			"Florian COLLIN",
 			"Gomoko",
 			"JenyxGym",
+			"McDutchie",
 			"Scratcheur-2020Send",
 			"Thibaut120094",
 			"Verdy p"
@@ -110,7 +111,7 @@
 	"challengeuser-or": "ou",
 	"challengeuser-record": "record :",
 	"challengeuser-rules": "Veuillez lire les règles et infos",
-	"challengeuser-rules-page": "{{ns:Aide}}:Défis communautaires",
+	"challengeuser-rules-page": "{{ns:help}}:Défis communautaires",
 	"challengeuser-select-friend": "sélectionner un ami",
 	"challengeuser-select-friend-from-list": "Sélectionnez dans votre liste d’amis",
 	"challengeuser-self": "Vous ne pouvez pas vous défier vous-même !",
