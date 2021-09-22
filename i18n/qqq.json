@@ -4,6 +4,7 @@
 			"Amire80",
 			"Gebu",
 			"Jack Phoenix",
+			"McDutchie",
 			"Robby"
 		]
 	},
@@ -146,7 +147,7 @@
 	"challengeview-notyetrated": "A hint message shown on Special:ChallengeView/<challenge ID> when viewing a challenge that has been completed but that hasn't been rated yet by the person who won the challenge",
 	"challengeview-positive": "Drop-down menu item for the \"rate the loser's end of the bargain\" form on Special:ChallengeView when viewing a challenge that you won; see {{msg-mw|challengeview-rateloser}} for details",
 	"challengeview-push": "Drop-down menu item on Special:ChallengeView; the drop-down is shown to challenge admins, allowing them to set one of the parties involved in the challenge as the winner, '''or''' then they can choose this option and declare that neither user won the challenge",
-	"challengeview-rateloser": "Shown on Special:ChallengeView when viewing a challenge that you won; this label-like message is followed by a drop-down menu (containing three possible rating options: {{msg-mw|challengeview-positive}}, {{msg-mw|challengeview-neutral}} and {{msg-mw|challengeview-negative}})",
+	"challengeview-rateloser": "Shown on Special:ChallengeView when viewing a challenge that you won; this label-like message is followed by a drop-down menu (containing three possible rating options: {{msg-mw|challengeview-positive}}, {{msg-mw|challengeview-neutral}} and {{msg-mw|challengeview-negative}})\n{{doc-important|\"end\" means \"part\"/\"role\" here, as in the expression \"keeping your end of the bargain\"}}",
 	"challengeview-rating": "Header-like text shown on Special:ChallengeView, below {{msg-mw|challengeview-status}} and whatever text is shown below that message",
 	"challengeview-rating2": "Shown on Special:ChallengeView when viewing a completed challenge that has been rated by the winning party and they've written a rating about the other user involved in the challenge and their performance in the challenge",
 	"challengeview-rating-negative": "Rating menu drop-down item, shown on Special:ChallengeView/<challenge ID> for users who participated in the challenge when they rate the challenge",
