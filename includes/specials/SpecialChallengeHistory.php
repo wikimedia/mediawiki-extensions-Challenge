@@ -127,7 +127,7 @@ class ChallengeHistory extends SpecialPage {
 				<td class="challenge-history-header">' . $this->msg( 'challengehistory-status' )->escaped() . '</td>
 			</tr>';
 
-		$page = (int)$request->getVal( 'page', 1 );
+		$page = $request->getInt( 'page', 1 );
 		$perPage = 25;
 
 		$c = new Challenge();

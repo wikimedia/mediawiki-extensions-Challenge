@@ -175,7 +175,7 @@ class ChallengeDateValidator {
 		$today = DateTime::createFromFormat( '!m-d-Y', 'now' );
 		$tstDate = DateTime::createFromFormat( '!m-d-Y', $dtStr );
 
-		if ( round( ( $tstDate - $today ) / ( 60 * 60 * 60 * 24 ) ) < 0 ) {
+		if ( round( ( $tstDate->getTimestamp() - $today->getTimestamp() ) / ( 60 * 60 * 60 * 24 ) ) < 0 ) {
 			return true;
 		} else {
 			$this->error = [ 'challenge-js-error-future-date' ];
@@ -194,7 +194,7 @@ class ChallengeDateValidator {
 		$startDate = DateTime::createFromFormat( '!m-d-Y', $dtBeg );
 		$endDate = DateTime::createFromFormat( '!m-d-Y', $dtEnd );
 
-		if ( round( ( $endDate - $startDate ) / ( 60 * 60 * 60 * 24 ) ) >= 0 ) {
+		if ( round( ( $endDate->getTimestamp() - $startDate->getTimestamp() ) / ( 60 * 60 * 60 * 24 ) ) >= 0 ) {
 			return true;
 		} else {
 			$this->error = [ 'challenge-js-error-is-backwards' ];
