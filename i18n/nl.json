@@ -3,6 +3,7 @@
 		"authors": [
 			"Mainframe98",
 			"McDutchie",
+			"Robin van der Vliet",
 			"Romaine"
 		]
 	},
@@ -38,6 +39,7 @@
 	"challengehistory-empty": "Er is geen huidige uitdagingsgeschiedenis.",
 	"challengehistory-event": "evenement",
 	"challengehistory-filter": "filter:",
+	"challengehistory-inprogress": "Wordt uitgevoerd",
 	"challengehistory-negative": "Negatief",
 	"challengehistory-neutral": "Neutraal",
 	"challengehistory-next": "volgende",
