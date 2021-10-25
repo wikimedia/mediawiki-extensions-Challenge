@@ -45,7 +45,7 @@ class ChallengeUser extends SpecialPage {
 		// @todo FIXME: why tf doesn't this redirect to Special:UserLogin like how Special:Watchlist does??? --ashley, 18 August 2020
 		$this->requireLogin( 'challengeuser-login' );
 
-		if ( $user->isBlocked() ) {
+		if ( $user->getBlock() ) {
 			$output->setPageTitle( $this->msg( 'challengeuser-error-page-title' ) );
 			$output->addHTML( $this->msg( 'challengeuser-error-message-blocked' )->escaped() );
 			return;
