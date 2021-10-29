@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ajeje Brazorf"
+		]
+	},
+	"challenge-js-error-invalid-month": "Pi favuri nzirisci nu misi vàliddu",
+	"challenge-js-error-invalid-day": "Pi favuri nzirisci nu jornu vàliddu",
+	"challengehistory-all": "Tuttu",
+	"challengestandings-user": "utenti",
+	"challengeuser-error-page-title": "Ops!",
+	"challengeuser-or": "o",
+	"challengeuser-your-profile": "Lu tò prufilu",
+	"challengeview-comment": "'''cummentu''': $1",
+	"challengeview-versus": "vs."
+}
