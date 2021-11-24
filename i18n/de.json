@@ -7,7 +7,8 @@
 			"ManuelFranz",
 			"RacoonyRE",
 			"Zabe",
-			"ZabeMath"
+			"ZabeMath",
+			"Umlaut"
 		]
 	},
 	"challenge-this-user": "Benutzer herausfordern",
@@ -70,6 +71,7 @@
 	"challengestandings-user": "Benutzer",
 	"challengestandings-w": "G",
 	"challengeuser": "Einen Benutzer herausfordern",
+	"challengeuser-characters-left": "Noch $1 Zeichen",
 	"challengeuser-enter-info": "Gib Informationen zur Herausforderung ein",
 	"challengeuser-error-page-title": "Hoppla!",
 	"challengeuser-info": "Info zur Herausforderung",

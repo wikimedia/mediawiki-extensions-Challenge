@@ -11,6 +11,7 @@
 	"challenge-js-rejected": "Afvist",
 	"challenge-js-error-invalid-date": "Venligst indtast en gyldig dato",
 	"challengehistory-all": "Alle",
+	"challengehistory-accepted": "accepteret",
 	"challengehistory-inprogress": "I gang",
 	"challengehistory-next": "næste",
 	"challengehistory-target": "mål",
