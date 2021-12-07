@@ -3,7 +3,11 @@
 		"authors": [
 			"Florian COLLIN",
 			"Thibaut120094",
-			"Verdy p"
+			"Verdy p",
+			"Gomoko",
+			"JenyxGym",
+			"McDutchie",
+			"Scratcheur-2020Send"
 		]
 	},
 	"challenge-desc": "Permet de défier les autres utilisateurs.",
@@ -106,7 +110,7 @@
 	"challengeuser-or": "ou",
 	"challengeuser-record": "record :",
 	"challengeuser-rules": "Veuillez lire les règles et infos",
-	"challengeuser-rules-page": "{{ns:Aide}}:Défis communautaires",
+	"challengeuser-rules-page": "{{ns:help}}:Défis communautaires",
 	"challengeuser-select-friend": "sélectionner un ami",
 	"challengeuser-select-friend-from-list": "Sélectionnez dans votre liste d’amis",
 	"challengeuser-self": "Vous ne pouvez pas vous défier vous-même !",
@@ -144,7 +148,7 @@
 	"challengeview-notyetrated": "Ce défi n’a pas encore été noté par le gagnant",
 	"challengeview-positive": "positif",
 	"challengeview-push": "pousser",
-	"challengeview-rateloser": "Veuillez noter la fin de la bonne affaire du perdant",
+	"challengeview-rateloser": "Veuillez évaluer le rôle du perdant dans l'affaire",
 	"challengeview-rating": "Évaluation du défi",
 	"challengeview-rating2": "'''évaluation :'''",
 	"challengeview-rating-negative": "négatif",

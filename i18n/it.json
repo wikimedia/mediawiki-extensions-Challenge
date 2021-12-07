@@ -1,8 +1,21 @@
 {
 	"@metadata": {
 		"authors": [
-			"Beta16"
+			"Beta16",
+			"Ajeje Brazorf",
+			"Stefano"
 		]
 	},
-	"challengehistory-submit-btn": "Invia"
+	"challenge-js-accepted": "Accettato",
+	"challenge-js-rejected": "Rifiutato",
+	"challengehistory-completed": "Completato",
+	"challengehistory-submit-btn": "Invia",
+	"challengestandings-l": "P",
+	"challengestandings-t": "L",
+	"challengestandings-tooltip-losses": "Perdite",
+	"challengestandings-tooltip-ties": "Legami",
+	"challengestandings-user": "utente",
+	"challengeuser-or": "o",
+	"challengeuser-submit-button": "Invia",
+	"challengeview-accept": "Accetta"
 }

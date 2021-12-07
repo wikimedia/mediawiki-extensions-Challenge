@@ -4,7 +4,11 @@
 			"Ameisenigel",
 			"BPX-web",
 			"Gebu",
-			"RacoonyRE"
+			"RacoonyRE",
+			"ManuelFranz",
+			"Umlaut",
+			"Zabe",
+			"ZabeMath"
 		]
 	},
 	"challenge-this-user": "Benutzer herausfordern",
@@ -45,8 +49,11 @@
 	"challengehistory-event": "Veranstaltung",
 	"challengehistory-filter": "Filter:",
 	"challengehistory-inprogress": "In Bearbeitung",
+	"challengehistory-negative": "Negativ",
 	"challengehistory-negative2": "$1 negativ",
 	"challengehistory-neutral": "Neutral",
+	"challengehistory-neutral2": "$1 neutral",
+	"challengehistory-next": "nächste",
 	"challengehistory-positive": "Positiv",
 	"challengehistory-positive2": "$1 positiv",
 	"challengehistory-prev": "vorherige",
@@ -73,8 +80,10 @@
 	"challengeuser-rules": "Bitte lies die Regeln und ähnliches",
 	"challengeuser-select-friend": "Wähle einen Freund",
 	"challengeuser-self": "Du kannst dich nicht selbst herausfordern!",
+	"challengeuser-start-button": "Herausforderung starten",
 	"challengeuser-submit-button": "Übermitteln",
 	"challengeuser-title": "Benutzer herausfordern",
+	"challengeuser-title-user": "Benutzer $1 herausfordern",
 	"challengeuser-your-profile": "Dein Profil",
 	"challengeview-accept": "Akzeptieren",
 	"challengeview-accepted": "Akzeptiert",
@@ -95,6 +104,7 @@
 	"challengeview-reject": "Ablehnen",
 	"challengeview-rejected": "Abgelehnt",
 	"challengeview-submit-button": "Übermitteln",
+	"challengeview-status": "Status der Herausforderung",
 	"challengeview-versus": "vs.",
 	"challengeview-won-by": "Herausforderung gewonnen von '''$1'''",
 	"challengeview-you-won": "Du hast die Herausforderung gewonnen!"

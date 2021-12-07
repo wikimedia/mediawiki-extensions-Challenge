@@ -28,6 +28,7 @@
 	"challenge-js-error-future-date": "Datoen som er angitt er i fremtiden.",
 	"challenge-js-error-is-backwards": "Startdatoen er etter sluttdatoen.",
 	"challenge_request_subject": "$1 har utfordret deg på {{SITENAME}}!",
+	"challengehistory-users-history": "{{GRAMMAR:genitive|$1}} utfordringshistorikk",
 	"challengestandings-l": "T",
 	"challengestandings-t": "U",
 	"challengestandings-tooltip-losses": "Tap",
@@ -37,5 +38,14 @@
 	"challengestandings-w": "S",
 	"challengeuser": "Utfordre en bruker",
 	"challengeuser-challenge-sent-title": "Du har sendt $1 en utfordring",
-	"challengeuser-completehistory": "Vis fullstendig utfordringshistorikk"
+	"challengeuser-completehistory": "Vis fullstendig utfordringshistorikk",
+	"challengeuser-error-page-title": "Oops!",
+	"challengeuser-users-stats": "{{GRAMMAR:genitive|$1}} utfordringsstatistikk",
+	"challengeuser-view-all-challenges": "Vis alle utfordringer",
+	"challengeuser-view-userpage": "Vis {{GRAMMAR:genitive|$1}} brukerside",
+	"challengeview-by": "av '''$1'''",
+	"challengeview-by-on": "av '''$1''' $2",
+	"challengeview-comment": "'''kommentar''': $1",
+	"challengeview-description": "{{GRAMMAR:genitive|$1}} beskrivelse:",
+	"challengeview-ifwins": "hvis $1 vinner må $2 ..."
 }

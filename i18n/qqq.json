@@ -3,7 +3,9 @@
 		"authors": [
 			"Amire80",
 			"Gebu",
-			"Robby"
+			"Robby",
+			"Jack Phoenix",
+			"McDutchie"
 		]
 	},
 	"challenge-desc": "{{desc|name=Challenge|url=https://www.mediawiki.org/wiki/Extension:Challenge}}",
@@ -77,13 +79,13 @@
 	"challengestandings-challengeuser": "Link text on user entries on Special:ChallengeStandings; clicking on the link takes the user to the Special:ChallengeUser page, which allows them to challenge the user whose standings they were viewing",
 	"challengestandings-empty": "Shown on Special:ChallengeStandings when there is nothing to show on the page, e.g. no challenges have been recorded as complete, which can be the case when the Challenge extension was recently installed and users haven't had the opportunity to issues challenges just yet",
 	"challengestandings-l": "A table header.\n\nThe L stands for \"Losses\".\n\nSee also {{msg-mw|challengestandings-tooltip-losses}}",
-	"challengestandings-t": "A table header\nThe t stands for \"ties\"\nSee also {{msg-mw|challengestandings-tooltip-ties}}\n\n2. Kommentar: Das „U“ steht für „unentschieden“.",
+	"challengestandings-t": "A table header\nThe t stands for \"ties\"\nSee also {{msg-mw|challengestandings-tooltip-ties}}",
 	"challengestandings-tooltip-losses": "Tooltip shown on Special:ChallengeStandings when the user hovers their mouse over the column labeled \"{{msg-mw|challengestandings-l}}\"",
 	"challengestandings-tooltip-ties": "Tooltip shown on Special:ChallengeStandings when the user hovers their mouse over the column labeled \"{{msg-mw|challengestandings-t}}\"",
 	"challengestandings-tooltip-wins": "Tooltip shown on Special:ChallengeStandings when the user hovers their mouse over the column labeled \"{{msg-mw|challengestandings-w}}\"",
 	"challengestandings-title": "Page title for Special:ChallengeStandings",
 	"challengestandings-user": "A table header on Special:ChallengeStandings\n{{identical|User}}",
-	"challengestandings-w": "A table header\nThe w stands for \"wins\"\nSee also {{msg-mw|challengestandings-tooltip-wins}}\n\n2. Kommentar: Das „G“ steht für „gewonnen“.",
+	"challengestandings-w": "A table header\nThe w stands for \"wins\"\nSee also {{msg-mw|challengestandings-tooltip-wins}}",
 	"challengeuser": "{{doc-special}}",
 	"challengeuser-challenge-sent-title": "Page title of Special:ChallengeUser after you've challenged another user.\nParameters:\n* $1 is the user name of the user whom you've challenged",
 	"challengeuser-completehistory": "Link text on Special:ChallengeUser; clicking on this link takes you to the challenge history view (Special:ChallengeHistory with the correct user URL parameter) for the user whom you're challenging to see how they've fared in the past",
@@ -144,7 +146,7 @@
 	"challengeview-notyetrated": "A hint message shown on Special:ChallengeView/<challenge ID> when viewing a challenge that has been completed but that hasn't been rated yet by the person who won the challenge",
 	"challengeview-positive": "Drop-down menu item for the \"rate the loser's end of the bargain\" form on Special:ChallengeView when viewing a challenge that you won; see {{msg-mw|challengeview-rateloser}} for details",
 	"challengeview-push": "Drop-down menu item on Special:ChallengeView; the drop-down is shown to challenge admins, allowing them to set one of the parties involved in the challenge as the winner, '''or''' then they can choose this option and declare that neither user won the challenge",
-	"challengeview-rateloser": "Shown on Special:ChallengeView when viewing a challenge that you won; this label-like message is followed by a drop-down menu (containing three possible rating options: {{msg-mw|challengeview-positive}}, {{msg-mw|challengeview-neutral}} and {{msg-mw|challengeview-negative}})",
+	"challengeview-rateloser": "Shown on Special:ChallengeView when viewing a challenge that you won; this label-like message is followed by a drop-down menu (containing three possible rating options: {{msg-mw|challengeview-positive}}, {{msg-mw|challengeview-neutral}} and {{msg-mw|challengeview-negative}})\n{{doc-important|\"end\" means \"part\"/\"role\" here, as in the expression \"keeping your end of the bargain\"}}",
 	"challengeview-rating": "Header-like text shown on Special:ChallengeView, below {{msg-mw|challengeview-status}} and whatever text is shown below that message",
 	"challengeview-rating2": "Shown on Special:ChallengeView when viewing a completed challenge that has been rated by the winning party and they've written a rating about the other user involved in the challenge and their performance in the challenge",
 	"challengeview-rating-negative": "Rating menu drop-down item, shown on Special:ChallengeView/<challenge ID> for users who participated in the challenge when they rate the challenge",
