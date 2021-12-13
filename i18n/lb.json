@@ -1,0 +1,43 @@
+{
+	"@metadata": {
+		"authors": [
+			"Robby"
+		]
+	},
+	"challenge-desc": "Erlaabt et fir aner Benotzer erauszefuerderen",
+	"challenge-this-user": "Benotzer erausfuerderen",
+	"challenge-status-rejected": "refuséiert",
+	"challenge-status-removed": "ewech geholl",
+	"challenge-status-awaiting": "op d'Akzeptatioun waarden",
+	"challenge-status-completed": "ofgeschloss",
+	"challenge-js-description-required": "Beschreiwung ass obligatoresch",
+	"challenge-js-accepted": "Akzeptéiert",
+	"challenge-js-rejected": "Refuséiert",
+	"challenge-js-error-invalid-month": "Gitt wgl. e valabele Mount un",
+	"challenge-js-error-invalid-day": "Gitt wgl. e valabelen Dag un",
+	"challenge-js-error-invalid-date": "Gitt wgl. e valabelen Datum un",
+	"challenge-js-error-future-date": "Den Datum deen Dir aginn hutt ass an der Zukunft.",
+	"challengeaction": "Klassement vun der Erausfuerderung",
+	"challengehistory-all": "All",
+	"challengehistory-accepted": "akzeptéiert",
+	"challengehistory-challenge-user": "Erausfuerderung $1",
+	"challengehistory-challenge-someone": "Een erausfuerderen",
+	"challengehistory-completed": "Fäerdeg",
+	"challengehistory-event": "Evenement",
+	"challengehistory-filter": "Filter:",
+	"challengehistory-inprogress": "Am Gaang",
+	"challengehistory-negative": "Negativ",
+	"challengehistory-negative2": "$1 negativ",
+	"challengehistory-neutral": "Neutral",
+	"challengehistory-positive": "Positiv",
+	"challengestandings-user": "Benotzer",
+	"challengeuser": "E Benotzer erausfuerderen",
+	"challengeuser-error-page-title": "Ups!",
+	"challengeuser-or": "oder",
+	"challengeuser-your-profile": "Äre Profil",
+	"challengeview-neutral": "neutral",
+	"challengeview-positive": "positiv",
+	"challengeview-rating-negative": "negativ",
+	"challengeview-rating-neutral": "neutral",
+	"challengeview-rating-positive": "positiv"
+}

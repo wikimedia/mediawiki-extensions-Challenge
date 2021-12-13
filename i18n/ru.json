@@ -1,0 +1,26 @@
+{
+	"@metadata": {
+		"authors": [
+			"Kareyac"
+		]
+	},
+	"challenge-status-in-progress": "в процессе",
+	"challenge-js-accepted": "Принято",
+	"challenge-js-rejected": "Отклонено",
+	"challengehistory-accepted": "принято",
+	"challengehistory-event": "событие",
+	"challengehistory-filter": "фильтр:",
+	"challengehistory-inprogress": "В процессе",
+	"challengehistory-next": "след.",
+	"challengehistory-prev": "пред.",
+	"challengehistory-rejected": "Отклонено",
+	"challengehistory-target": "цель",
+	"challengestandings-user": "участник",
+	"challengeuser-error-page-title": "Ой-ойǃ",
+	"challengeuser-or": "или",
+	"challengeuser-submit-button": "Отправить",
+	"challengeview-accepted": "Принято",
+	"challengeview-event": "Событие",
+	"challengeview-reject": "Отклонить",
+	"challengeview-submit-button": "Отправить"
+}

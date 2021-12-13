@@ -1,0 +1,23 @@
+{
+	"@metadata": {
+		"authors": [
+			"SiderealArt",
+			"Winston Sung"
+		]
+	},
+	"challenge-status-rejected": "遭拒",
+	"challenge-status-removed": "已移除",
+	"challenge-status-awaiting": "等待接受",
+	"challenge-status-in-progress": "進行中",
+	"challenge-status-completed": "已完成",
+	"challenge-js-accepted": "已接受",
+	"challenge-js-rejected": "已拒絕",
+	"challengehistory": "挑戰歷史",
+	"challengehistory-all": "全部",
+	"challengehistory-accepted": "已接受",
+	"challengehistory-challenge-user": "挑戰$1",
+	"challengehistory-challenger": "挑戰者",
+	"challengehistory-inprogress": "進行中",
+	"challengehistory-status": "狀態",
+	"challengehistory-target": "目標"
+}

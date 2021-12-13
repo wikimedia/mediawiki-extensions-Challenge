@@ -1,0 +1,36 @@
+{
+	"@metadata": {
+		"authors": [
+			"Շահէն"
+		]
+	},
+	"challenge-status-rejected": "մերժուած է",
+	"challenge-status-removed": "ջնջուած",
+	"challenge-js-accepted": "Ընդունուած է",
+	"challenge-js-rejected": "Մերժուած",
+	"challenge-js-error-invalid-year": "Մուտքագրէ 4-թիւ տարեթիւ մը $1ի եւ $2ի միջեւ",
+	"challengehistory-all": "Բոլորը",
+	"challengehistory-accepted": "ընդունուած",
+	"challengehistory-neutral": "Չէզոք",
+	"challengehistory-neutral2": "$1 չէզոք",
+	"challengehistory-next": "յաջորդ",
+	"challengehistory-positive": "Դրական",
+	"challengehistory-prev": "նախ.",
+	"challengehistory-rejected": "Մերժուած",
+	"challengestandings-user": "մասնակից",
+	"challengeuser-or": "կամ",
+	"challengeuser-submit-button": "Հաստատել",
+	"challengeuser-your-profile": "Էջդ",
+	"challengeview-accept": "Ընդունիլ",
+	"challengeview-accepted": "Ընդունուած է",
+	"challengeview-neutral": "չէզոք",
+	"challengeview-positive": "դրական",
+	"challengeview-rating-neutral": "չէզոք",
+	"challengeview-rating-positive": "դրական",
+	"challengeview-reject": "Մերժել",
+	"challengeview-rejected": "Մերժուած",
+	"challengeview-removed": "Ջնջուած է որովհետեւ չէ հետեւած օրէնքներուն",
+	"challengeview-submit-button": "Հաստատել",
+	"challengeview-versus": "ընդդէմ",
+	"challengeview-you-won": "Մարտահրաւէրը յաղթեցի՛ք"
+}

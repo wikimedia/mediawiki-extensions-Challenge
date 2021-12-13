@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"Joetaras"
+		]
+	},
+	"challenge-desc": "Permette de sfidà le otre utinde",
+	"challenge-this-user": "Sfide l'utende",
+	"challenge-status-rejected": "scettate",
+	"challenge-status-removed": "luate",
+	"challenge-status-awaiting": "in attese d'u sìne"
+}

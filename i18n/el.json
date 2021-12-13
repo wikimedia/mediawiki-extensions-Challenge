@@ -1,0 +1,21 @@
+{
+	"@metadata": {
+		"authors": [
+			"Norhorn"
+		]
+	},
+	"challenge-js-error-invalid-month": "Παρακαλούμε εισαγάγετε έγκυρο μήνα",
+	"challenge-js-error-invalid-date": "Παρακαλούμε εισαγάγετε έγκυρη ημερομηνία",
+	"challengehistory-event": "συμβάν",
+	"challengehistory-view-standings": "Εμφάνιση κατάταξης",
+	"challengestandings-user": "χρήστης",
+	"challengeuser": "Πρόκληση χρήστη",
+	"challengeuser-select-friend-from-list": "Επιλέξτε από τη λίστα φίλων σας",
+	"challengeuser-submit-button": "Υποβολή",
+	"challengeuser-your-profile": "Στοιχεία χρήστη",
+	"challengeview-accept": "Αποδοχή",
+	"challengeview-event": "Συμβάν:",
+	"challengeview-rating-positive": "θετικό",
+	"challengeview-reject": "Απόρριψη",
+	"challengeview-versus": "εναντίον"
+}

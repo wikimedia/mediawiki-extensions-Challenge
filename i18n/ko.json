@@ -1,0 +1,37 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ellif",
+			"Ykhwong"
+		]
+	},
+	"challenge-status-removed": "제거됨",
+	"challenge-js-description-required": "설명은 필수입니다",
+	"challenge-js-accepted": "수락됨",
+	"challenge-js-rejected": "거부됨",
+	"challenge-js-error-date-format": "날짜 형식은 다음과 같습니다: mm/dd/yyyy",
+	"challenge-js-error-invalid-month": "유효한 달을 입력해 주십시오",
+	"challenge-js-error-invalid-day": "유효한 날을 입력해 주십시오",
+	"challenge-js-error-invalid-year": "$1부터 $2 사이의 유효한 4자리 숫자를 입력해 주십시오.",
+	"challenge-js-error-invalid-date": "유효한 날짜를 입력해 주십시오",
+	"challenge-js-error-future-date": "입력된 날짜는 미래의 날짜입니다.",
+	"challenge-js-error-is-backwards": "시작 날짜와 끝 날짜보다 더 큽니다.",
+	"challengehistory-filter": "필터:",
+	"challengehistory-inprogress": "진행 중",
+	"challengehistory-neutral": "중립",
+	"challengehistory-prev": "이전",
+	"challengehistory-status": "상태",
+	"challengestandings-user": "사용자",
+	"challengeuser-error-page-title": "이런!",
+	"challengeuser-submit-button": "제출",
+	"challengeuser-type-username": "사용자 이름을 알고 있으면 아래에 입력하십시오",
+	"challengeview-accept": "수락",
+	"challengeview-accepted": "수락됨",
+	"challengeview-description": "$1님의 설명:",
+	"challengeview-event": "행사:",
+	"challengeview-neutral": "중립",
+	"challengeview-rating-neutral": "중립",
+	"challengeview-reject": "거부",
+	"challengeview-removed": "규정 위반으로 인해 제거됨",
+	"challengeview-submit-button": "제출"
+}
