@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Jon Harald Søby"
+			"Jon Harald Søby",
+			"Vukky"
 		]
 	},
 	"challenge-desc": "Gjør det mulig å utfordre andre brukere",
@@ -28,6 +29,8 @@
 	"challenge-js-error-future-date": "Datoen som er angitt er i fremtiden.",
 	"challenge-js-error-is-backwards": "Startdatoen er etter sluttdatoen.",
 	"challenge_request_subject": "$1 har utfordret deg på {{SITENAME}}!",
+	"challengehistory-next": "neste",
+	"challengehistory-prev": "forrige",
 	"challengehistory-users-history": "{{GRAMMAR:genitive|$1}} utfordringshistorikk",
 	"challengestandings-l": "T",
 	"challengestandings-t": "U",
