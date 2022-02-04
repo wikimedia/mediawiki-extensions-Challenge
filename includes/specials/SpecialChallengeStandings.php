@@ -89,7 +89,7 @@ class ChallengeStandings extends SpecialPage {
 		// extension was recently installed, as the users haven't yet had the
 		// time to challenge each other. Display an informational message in
 		// that case.
-		if ( $dbr->numRows( $res ) === 0 ) {
+		if ( $res->numRows() === 0 ) {
 			$out = $this->msg( 'challengestandings-empty' )->parse();
 		}
 
