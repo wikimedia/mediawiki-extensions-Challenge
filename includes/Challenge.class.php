@@ -468,14 +468,12 @@ class Challenge {
 		$losses = 0;
 		$ties = 0;
 
-		$res = $dbr->select(
+		$row = $dbr->selectRow(
 			'challenge_user_record',
 			[ 'challenge_wins', 'challenge_losses', 'challenge_ties' ],
 			[ 'challenge_record_actor' => $id ],
-			__METHOD__,
-			[ 'LIMIT' => 1 ]
+			__METHOD__
 		);
-		$row = $dbr->fetchObject( $res );
 		if ( !$row ) {
 			switch ( $type ) {
 				case -1:
