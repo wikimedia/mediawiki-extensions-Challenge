@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Javiero"
+			"Javiero",
+			"Spenĉjo"
 		]
 	},
 	"challenge-desc": "Permesas defianta aliajn uzantojn",
@@ -21,7 +22,7 @@
 	"challenge-js-winner-recorded": "Defia gajninto estis registrita",
 	"challenge-js-error-date-format": "La data formato devus esti: mm/dd/yyyy",
 	"challenge-js-error-invalid-month": "Bonvolu eniru validan monaton",
-	"challenge-js-error-invalid-day": "Bonvolu eniri validan tagon",
+	"challenge-js-error-invalid-day": "Entajpu validan tagon",
 	"challenge-js-error-invalid-year": "Bonvolu enigi validan 4 ciferan jaron inter $1 kaj $2",
 	"challenge-js-error-future-date": "Dato enirita estas estonta dato.",
 	"challengeaction": "Defiaj Klasifikoj",
