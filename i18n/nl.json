@@ -46,9 +46,14 @@
 	"challengehistory-positive": "Positief",
 	"challengehistory-prev": "vorige",
 	"challengehistory-rejected": "Afgewezen",
+	"challengehistory-status": "status",
 	"challengehistory-target": "doel",
+	"challengehistory-user": "Daag deze gebruiker uit",
 	"challengestandings-challengeuser": "daag een gebruiker uit",
+	"challengestandings-l": "V",
+	"challengestandings-t": "=",
 	"challengestandings-user": "gebruiker",
+	"challengestandings-w": "G",
 	"challengeuser": "Daag een gebruiker uit",
 	"challengeuser-challenge-sent-title": "U heeft $1 uitgedaagd",
 	"challengeuser-error-page-title": "Oeps!",
@@ -74,5 +79,6 @@
 	"challengeview-rating-positive": "positief",
 	"challengeview-reject": "Afwijzen",
 	"challengeview-rejected": "Afgewezen",
+	"challengeview-versus": "versus",
 	"challengeview-you-won": "Je hebt de uitdaging gewonnen!"
 }
