@@ -1,9 +1,23 @@
 {
 	"@metadata": {
 		"authors": [
+			"FiberAhmed",
 			"محمد أحمد عبد الفتاح"
 		]
 	},
+	"challenge-status-rejected": "مرفوض",
+	"challenge-status-removed": "تم حذفها",
+	"challenge-status-awaiting": "في انتظار القبول",
+	"challenge-status-completed": "مكتمل",
+	"challenge-js-accepted": "مقبول",
+	"challenge-js-rejected": "مرفوض",
+	"challengehistory-all": "الكل",
+	"challengehistory-accepted": "مقبول",
 	"challengehistory-awaiting": "في انتظار القبول",
-	"challengeview-acceptance": "في انتظار القبول"
+	"challengehistory-completed": "مكتمل",
+	"challengeuser-submit-button": "إرسال",
+	"challengeview-accept": "قبول",
+	"challengeview-accepted": "مقبول",
+	"challengeview-acceptance": "في انتظار القبول",
+	"challengeview-event": "الحدث:"
 }
