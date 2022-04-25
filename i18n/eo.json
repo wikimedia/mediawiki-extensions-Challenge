@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Jack Phoenix",
 			"Javiero",
 			"Spenĉjo"
 		]
@@ -71,7 +72,7 @@
 	"challengeuser-select-friend": "elektu amikon",
 	"challengeuser-select-friend-from-list": "Elektu el via listo de amikoj",
 	"challengeuser-self": "Vi ne povas defii vin mem!",
-	"challengeuser-sent": "La defio estis sendita kaj estas atendanta akcepton de [[Uzanto:$1|$1]]",
+	"challengeuser-sent": "La defio estis sendita kaj estas atendanta akcepton de [[User:$1|$1]]",
 	"challengeuser-start-button": "Komencu defion",
 	"challengeuser-submit-button": "Sendi",
 	"challengeuser-title": "Defia Uzanto",
