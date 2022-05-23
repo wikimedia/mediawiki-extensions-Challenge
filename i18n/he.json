@@ -1,10 +1,18 @@
 {
 	"@metadata": {
 		"authors": [
-			"ישראל קלר"
+			"ישראל קלר",
+			"Amire80"
 		]
 	},
+	"challenge-desc": "מאפשרת לאתגר משתמשים אחרים",
+	"challenge-this-user": "לאתר משתמש",
+	"challenge-status-rejected": "נדחה",
+	"challenge-status-removed": "הוסר",
+	"challenge-status-awaiting": "בהמתנה לקבלה",
 	"challenge-status-in-progress": "בתהליך",
+	"challenge-js-error-is-backwards": "תאריך התחילה גדול מתאריך הסיום.",
+	"challenge_request_subject": "$1 {{GENDER:$1|אתגר|אתגרה}} אותך באתר {{SITENAME}}!",
 	"challengehistory-all": "הכול",
 	"challengehistory-completed": "הושלם",
 	"challengehistory-filter": "מסנן:",
