@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"MarcoAurelio",
-			"DiegoAmbrocio"
+			"DiegoAmbrocio",
+			"Fitoschido"
 		]
 	},
 	"challenge-this-user": "Desafiar al usuario",
@@ -63,6 +64,7 @@
 	"challengeuser-challenge-sent-title": "Ha lanzado un desafío a $1",
 	"challengeuser-error-page-title": "¡Vaya!",
 	"challengeuser-event": "el evento (por ejemplo: Giants vs. Eagles)",
+	"challengeuser-helppage": "Retos comunitarios",
 	"challengeuser-info": "Información sobre el desafío",
 	"challengeuser-or": "o",
 	"challengeuser-record": "récord:",
