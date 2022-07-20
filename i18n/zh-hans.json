@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			")8",
-			"Lakejason0"
+			"Lakejason0",
+			"Tr jason"
 		]
 	},
 	"challenge-desc": "允许挑战其他用户",
@@ -10,14 +11,28 @@
 	"challenge-status-rejected": "拒绝",
 	"challenge-status-removed": "已移除",
 	"challenge-status-awaiting": "等待接受",
+	"challenge-status-in-progress": "进行中",
+	"challenge-status-completed": "已完成",
 	"challenge-js-accepted": "已接受",
 	"challenge-js-rejected": "已拒绝",
+	"challenge-js-error-invalid-month": "请输入有效的月份",
+	"challenge-js-error-invalid-day": "请输入有效的天",
+	"challenge-js-error-invalid-year": "请输入介于$1和$2之间的有效4位数年份",
+	"challenge-js-error-invalid-date": "请输入有效的日期",
+	"challenge-js-error-is-backwards": "起始日期晚于结束日期。",
 	"challengehistory-all": "全部",
+	"challengehistory-accepted": "已接受",
+	"challengehistory-awaiting": "等待接受",
+	"challengehistory-completed": "已完成",
+	"challengehistory-inprogress": "进行中",
 	"challengehistory-next": "下一个",
 	"challengehistory-prev": "上一个",
 	"challengehistory-rejected": "已拒绝",
 	"challengehistory-submit-btn": "提交",
 	"challengehistory-target": "目标",
+	"challengestandings-tooltip-losses": "输",
+	"challengestandings-tooltip-ties": "平局",
+	"challengestandings-tooltip-wins": "获胜",
 	"challengestandings-user": "用户",
 	"challengeuser-error-page-title": "麻烦了！",
 	"challengeuser-or": "或",
