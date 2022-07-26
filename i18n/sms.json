@@ -4,5 +4,8 @@
 			"Yupik"
 		]
 	},
-	"challengehistory-filter": "siʹlle:"
+	"challengehistory-filter": "siʹlle:",
+	"challengehistory-submit-btn": "Vuõlttâd",
+	"challengeuser-submit-button": "Vuõlttâd",
+	"challengeview-submit-button": "Vuõlttâd"
 }
