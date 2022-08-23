@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Jack Phoenix"
+			"Jack Phoenix",
+			"Kyykaarme"
 		]
 	},
 	"challenge-this-user": "Haasta käyttäjä",
@@ -160,23 +161,23 @@
 	"challengeview-was-push": "Haaste oli tasapeli!",
 	"challengeview-you-won": "Voitit haasteen!",
 	"echo-category-title-challenge-received": "Vastaanotetut haasteet",
-	"echo-pref-tooltip-challenge-received": "Ilmoita minulle kun vastaanotan haasteen.",
+	"echo-pref-tooltip-challenge-received": "Ilmoita minulle, kun vastaanotan haasteen.",
 	"notification-challenge-received": "[[User:$1|$1]] on [[Special:ChallengeView/$2|haastanut]] sinut!",
 	"notification-challenge-received-bundle": "Sinut on haastettu {{PLURAL:$1|kerran|$1 kertaa}}!",
 	"echo-category-title-challenge-accepted": "Hyväksytyt haasteet",
-	"echo-pref-tooltip-challenge-accepted": "Ilmoita minulle kun lähettämäni haaste on hyväksytty.",
+	"echo-pref-tooltip-challenge-accepted": "Ilmoita minulle, kun lähettämäni haaste on hyväksytty.",
 	"notification-challenge-accepted": "[[User:$1|$1]] on hyväksynyt [[Special:ChallengeView/$2|haasteesi]]!",
 	"notification-challenge-accepted-bundle": "{{PLURAL:$1|Yksi lähettämäsi haaste|$1 lähettämääsi haastetta}} on hyväksytty!",
 	"echo-category-title-challenge-rejected": "Hylätyt haasteet",
-	"echo-pref-tooltip-challenge-rejected": "Ilmoita minulle kun lähettämäni haaste on hylätty.",
+	"echo-pref-tooltip-challenge-rejected": "Ilmoita minulle, kun lähettämäni haaste on hylätty.",
 	"notification-challenge-rejected": "[[User:$1|$1]] on hylännyt [[Special:ChallengeView/$2|haasteesi]]!",
 	"notification-challenge-rejected-bundle": "{{PLURAL:$1|Yksi lähettämäsi haaste|$1 lähettämääsi haastetta}} on hylätty!",
 	"echo-category-title-challenge-lost": "Hävityt haasteet",
-	"echo-pref-tooltip-challenge-lost": "Ilmoita minulle kun olen hävinnyt haasteen.",
+	"echo-pref-tooltip-challenge-lost": "Ilmoita minulle, kun olen hävinnyt haasteen.",
 	"notification-challenge-lost": "Olet hävinnyt haasteen nro. [[Special:ChallengeView/$1|$1]]!",
 	"notification-challenge-lost-bundle": "Olet hävinnyt {{PLURAL:$1|haasteen|$1 haastetta}}!",
 	"echo-category-title-challenge-won": "Voitetut haasteet",
-	"echo-pref-tooltip-challenge-won": "Ilmoita minulle kun voitan haasteen.",
+	"echo-pref-tooltip-challenge-won": "Ilmoita minulle, kun voitan haasteen.",
 	"notification-challenge-won": "Olet voittanut haasteen nro. [[Special:ChallengeView/$1|$1]]!",
 	"notification-challenge-won-bundle": "Olet voittanut {{PLURAL:$1|haasteen|$1 haastetta}}!",
 	"action-challengeadmin": "hallinnoida haasteita",
