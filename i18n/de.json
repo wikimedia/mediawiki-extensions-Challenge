@@ -9,7 +9,8 @@
 			"Umlaut",
 			"Zabe",
 			"ZabeMath",
-			"ZiqiLiang"
+			"ZiqiLiang",
+			"Justman10000"
 		]
 	},
 	"challenge-this-user": "Benutzer herausfordern",
@@ -116,6 +117,8 @@
 	"challengeview-versus": "vs.",
 	"challengeview-won-by": "Herausforderung gewonnen von '''$1'''",
 	"challengeview-you-won": "Du hast die Herausforderung gewonnen!",
+	"echo-category-title-challenge-accepted": "Akzeptierte Herausforderungen",
+	"echo-pref-tooltip-challenge-accepted": "Mich benachrichtigen, wenn eine von mir gestellte Herausforderung angenommen wurde.",
 	"echo-category-title-challenge-lost": "Verlorene Herausforderungen",
 	"echo-category-title-challenge-won": "Gewonnene Herausforderungen"
 }
