@@ -1,0 +1,13 @@
+{
+	"@metadata": {
+		"authors": [
+			"Vlad5250"
+		]
+	},
+	"challenge-status-rejected": "odbijeno",
+	"challenge-status-removed": "uklonjeno",
+	"challenge-status-in-progress": "u toku",
+	"challenge-status-completed": "završeno",
+	"challenge-js-accepted": "Prihvaćeno",
+	"challenge-js-rejected": "Odbijeno"
+}
