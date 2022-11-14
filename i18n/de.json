@@ -9,7 +9,9 @@
 			"Umlaut",
 			"Zabe",
 			"ZabeMath",
-			"ZiqiLiang"
+			"ZiqiLiang",
+			"Justman10000",
+			"TMg"
 		]
 	},
 	"challenge-this-user": "Benutzer herausfordern",
@@ -83,6 +85,7 @@
 	"challengeuser-title": "Benutzer herausfordern",
 	"challengeuser-title-user": "Benutzer $1 herausfordern",
 	"challengeuser-your-profile": "Dein Profil",
+	"challengeview": "Herausforderung ansehen",
 	"challengeview-accept": "Akzeptieren",
 	"challengeview-accepted": "Akzeptiert",
 	"challengeview-by": "von '''$1'''",
