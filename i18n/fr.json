@@ -141,7 +141,7 @@
 	"challengeview-event": "Événement :",
 	"challengeview-ifwins": "si $1 gagne, $2 doit faire . . .",
 	"challengeview-inprogress": "En cours — en attente de terminaison de l’événement et de l’approbation de l’administrateur",
-	"challengeview-invalidid": "ID de défi non valide",
+	"challengeview-invalidid": "identifiant de défi non valide",
 	"challengeview-issue-challenge": "lancer un défi",
 	"challengeview-negative": "négatif",
 	"challengeview-neutral": "neutre",
