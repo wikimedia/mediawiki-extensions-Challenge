@@ -3,13 +3,14 @@
 		"authors": [
 			"SiderealArt",
 			"Willy1018",
-			"Winston Sung"
+			"Winston Sung",
+			"捍粵者"
 		]
 	},
 	"challenge-status-rejected": "遭拒",
 	"challenge-status-removed": "已移除",
 	"challenge-status-awaiting": "等待接受",
-	"challenge-status-in-progress": "進行中",
+	"challenge-status-in-progress": "挑戰中",
 	"challenge-status-completed": "已完成",
 	"challenge-js-accepted": "已接受",
 	"challenge-js-rejected": "已拒絕",
