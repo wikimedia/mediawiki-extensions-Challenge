@@ -3,13 +3,14 @@
 		"authors": [
 			"SiderealArt",
 			"Winston Sung",
-			"Willy1018"
+			"Willy1018",
+			"捍粵者"
 		]
 	},
 	"challenge-status-rejected": "遭拒",
 	"challenge-status-removed": "已移除",
 	"challenge-status-awaiting": "等待接受",
-	"challenge-status-in-progress": "進行中",
+	"challenge-status-in-progress": "挑戰中",
 	"challenge-status-completed": "已完成",
 	"challenge-js-accepted": "已接受",
 	"challenge-js-rejected": "已拒絕",
@@ -25,7 +26,7 @@
 	"challengehistory-challenger": "挑戰者",
 	"challengehistory-challenger-desc": "挑戰者描述",
 	"challengehistory-completed": "已完成",
-	"challengehistory-inprogress": "進行中",
+	"challengehistory-inprogress": "挑戰中",
 	"challengehistory-status": "狀態",
 	"challengehistory-target": "目標",
 	"challengeuser-error-page-title": "糟糕！",

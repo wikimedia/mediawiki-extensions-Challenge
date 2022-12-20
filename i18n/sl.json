@@ -9,5 +9,15 @@
 	"challengeview-accept": "Sprejmi",
 	"challengeview-counterterms": "Pogoji števca",
 	"challengeview-sent-to-you": "Poslan vam je bil ta izziv. Prosimo, izberite odgovor.",
-	"challengeview-submit-button": "Pošlji"
+	"challengeview-submit-button": "Pošlji",
+	"echo-category-title-challenge-received": "Prejeti izzivi",
+	"echo-pref-tooltip-challenge-received": "Obvesti me, ko prejmem izziv.",
+	"echo-category-title-challenge-accepted": "Sprejeti izzivi",
+	"echo-pref-tooltip-challenge-accepted": "Obvesti me, ko je izziv, ki sem ga objavil_a, sprejet.",
+	"echo-category-title-challenge-rejected": "Zavrnjeni izzivi",
+	"echo-pref-tooltip-challenge-rejected": "Obvesti me, ko je izziv, ki sem ga objavil_a, zavrnjen.",
+	"echo-category-title-challenge-lost": "Izgubljeni izzivi",
+	"echo-pref-tooltip-challenge-lost": "Obvesti me, ko izgubim izziv.",
+	"echo-category-title-challenge-won": "Osvojeni izzivi",
+	"echo-pref-tooltip-challenge-won": "Obvesti me, ko osvojim izziv."
 }
