@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Seipinne"
+			"Seipinne",
+			"Yupik"
 		]
 	},
+	"challenge-status-removed": "sikkum",
 	"challengehistory": "Hástushistorjá",
 	"challengehistory-all": "Puoh",
 	"challengehistory-next": "čuávuvâš",
