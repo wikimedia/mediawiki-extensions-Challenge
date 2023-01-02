@@ -4,9 +4,13 @@
 			"Eleassar"
 		]
 	},
+	"challenge-js-accepted": "Sprejeto",
+	"challengehistory-accepted": "sprejet",
 	"challengeuser-helppage": "Izzivi skupnosti",
 	"challengeuser-login": "Za izdajanje izzivov morate biti prijavljeni.",
+	"challengeview": "Ogled izziva",
 	"challengeview-accept": "Sprejmi",
+	"challengeview-accepted": "Sprejeto",
 	"challengeview-counterterms": "Pogoji števca",
 	"challengeview-sent-to-you": "Poslan vam je bil ta izziv. Prosimo, izberite odgovor.",
 	"challengeview-submit-button": "Pošlji"
