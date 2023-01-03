@@ -11,7 +11,8 @@
 			"ZabeMath",
 			"ZiqiLiang",
 			"Justman10000",
-			"TMg"
+			"TMg",
+			"Brettchenweber"
 		]
 	},
 	"challenge-this-user": "Benutzer herausfordern",
@@ -93,6 +94,7 @@
 	"challengeuser-submit-button": "Übermitteln",
 	"challengeuser-title": "Benutzer herausfordern",
 	"challengeuser-title-user": "Benutzer $1 herausfordern",
+	"challengeuser-type-username": "Wenn du den Namen des Benutzers kennst, gib ihn unten ein",
 	"challengeuser-your-profile": "Dein Profil",
 	"challengeview": "Herausforderung ansehen",
 	"challengeview-accept": "Akzeptieren",
@@ -102,6 +104,7 @@
 	"challengeview-comment": "'''Kommentar''': $1",
 	"challengeview-description": "$1s Beschreibung:",
 	"challengeview-event": "Ereignisse",
+	"challengeview-ifwins": "Wenn $1 gewinnt, muss $2 …",
 	"challengeview-issue-challenge": "Herausvorderung erstellen",
 	"challengeview-negative": "negativ",
 	"challengeview-neutral": "neutral",
