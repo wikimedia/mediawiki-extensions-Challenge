@@ -98,5 +98,8 @@
 	"challengeview-removed": "Eliminado por violación de las normas",
 	"challengeview-submit-button": "Enviar",
 	"challengeview-versus": "contra.",
-	"echo-category-title-challenge-accepted": "Retos aceptados"
+	"echo-category-title-challenge-accepted": "Retos aceptados",
+	"echo-category-title-challenge-rejected": "Retos rechazados",
+	"echo-category-title-challenge-lost": "Retos perdidos",
+	"echo-category-title-challenge-won": "Retos ganados"
 }
