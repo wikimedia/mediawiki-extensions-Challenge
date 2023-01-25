@@ -12,9 +12,11 @@
 			"ZiqiLiang",
 			"Justman10000",
 			"TMg",
-			"Brettchenweber"
+			"Brettchenweber",
+			"ThisCarthing"
 		]
 	},
+	"challenge-desc": "Ermöglicht das Herausfordern anderer Benutzer",
 	"challenge-this-user": "Benutzer herausfordern",
 	"challenge-status-rejected": "abgelehnt",
 	"challenge-status-removed": "entfernt",
