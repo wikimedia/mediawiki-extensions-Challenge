@@ -1,10 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
+			"Kimberli Mäkäräinen (WMNO)",
 			"Yupik"
 		]
 	},
 	"challenge-status-removed": "sihkkojuvvon",
 	"challengehistory-filter": "sille:",
-	"challengehistory-next": "čuovvovaš"
+	"challengehistory-next": "čuovvovaš",
+	"challengeview-accept": "Dohkket",
+	"challengeview-reject": "Hilggo"
 }
