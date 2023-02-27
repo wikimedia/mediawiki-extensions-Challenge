@@ -145,6 +145,12 @@
 	"challengeview-sent-to-you": "Deze uitdaging is naar u verzonden. Kies uw reactie",
 	"challengeview-submit-button": "Verzenden",
 	"challengeview-status": "Status uitdagingen",
+	"challengeview-title": "Info over de {{SITENAME}}-uitdaging",
 	"challengeview-versus": "versus",
-	"challengeview-you-won": "Je hebt de uitdaging gewonnen!"
+	"challengeview-view-history": "uitdagingsgeschiedenis bekijken",
+	"challengeview-won-by": "Uitdaging gewonnen door '''$1'''",
+	"challengeview-was-push": "Uitdaging was gelijkspel!",
+	"challengeview-you-won": "Je hebt de uitdaging gewonnen!",
+	"action-challengeadmin": "uitdagingen te beheren",
+	"right-challengeadmin": "Uitdagingen beheren"
 }
