@@ -63,7 +63,7 @@ class ChallengeUser extends SpecialPage {
 		if ( !$userTitle ) {
 			// NoJS fallback
 			$urlParamName = 'friend-list';
-			$userTitle = Title::newFromDBkey( $request->getVal( 'friend-list' ) );
+			$userTitle = Title::newFromDBkey( $request->getVal( 'friend-list', '' ) );
 		}
 
 		if ( !$userTitle ) {
