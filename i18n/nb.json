@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Jon Harald Søby",
-			"Vukky"
+			"Vukky",
+			"EdoAug"
 		]
 	},
 	"challenge-desc": "Gjør det mulig å utfordre andre brukere",
@@ -29,9 +30,29 @@
 	"challenge-js-error-future-date": "Datoen som er angitt er i fremtiden.",
 	"challenge-js-error-is-backwards": "Startdatoen er etter sluttdatoen.",
 	"challenge_request_subject": "$1 har utfordret deg på {{SITENAME}}!",
+	"challengehistory-all": "Alle",
+	"challengehistory-accepted": "godkjent",
+	"challengehistory-awaiting": "Venter på godkjennelse",
+	"challengehistory-challenge-user": "Utfordre $1",
+	"challengehistory-challenge-someone": "Utfordre noen",
+	"challengehistory-challenger": "utfordrer",
+	"challengehistory-challenger-desc": "utfordrerbeskrivelse",
+	"challengehistory-completed": "Fullført",
+	"challengehistory-empty": "Det er ingen nåværende utfordringshistorikk.",
+	"challengehistory-event": "hendelse",
+	"challengehistory-filter": "filter:",
+	"challengehistory-inprogress": "Pågår",
+	"challengehistory-negative": "Negativ",
+	"challengehistory-neutral": "Nøytral",
 	"challengehistory-next": "neste",
+	"challengehistory-positive": "Positiv",
 	"challengehistory-prev": "forrige",
+	"challengehistory-rejected": "Avslått",
+	"challengehistory-status": "status",
+	"challengehistory-target": "mål",
+	"challengehistory-user": "Utfordre denne brukeren",
 	"challengehistory-users-history": "{{GRAMMAR:genitive|$1}} utfordringshistorikk",
+	"challengestandings-challengeuser": "utfordre bruker",
 	"challengestandings-l": "T",
 	"challengestandings-t": "U",
 	"challengestandings-user": "bruker",
@@ -40,6 +61,10 @@
 	"challengeuser-challenge-sent-title": "Du har sendt $1 en utfordring",
 	"challengeuser-completehistory": "Vis fullstendig utfordringshistorikk",
 	"challengeuser-error-page-title": "Oops!",
+	"challengeuser-helppage": "Fellesskapsutfordringer",
+	"challengeuser-info": "Utfordringsinformasjon",
+	"challengeuser-or": "eller",
+	"challengeuser-rules": "Vennligst les regler og slikt",
 	"challengeuser-users-stats": "{{GRAMMAR:genitive|$1}} utfordringsstatistikk",
 	"challengeuser-view-all-challenges": "Vis alle utfordringer",
 	"challengeuser-view-userpage": "Vis {{GRAMMAR:genitive|$1}} brukerside",
@@ -49,5 +74,7 @@
 	"challengeview-by": "av '''$1'''",
 	"challengeview-by-on": "av '''$1''' $2",
 	"challengeview-comment": "'''kommentar''': $1",
-	"challengeview-description": "{{GRAMMAR:genitive|$1}} beskrivelse:"
+	"challengeview-description": "{{GRAMMAR:genitive|$1}} beskrivelse:",
+	"action-challengeadmin": "administrere utfordringer",
+	"right-challengeadmin": "Administrere utfordringer"
 }
