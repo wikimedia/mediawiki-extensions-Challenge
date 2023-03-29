@@ -68,6 +68,7 @@
 	"challengeuser-helppage": "Fellesskapsutfordringer",
 	"challengeuser-info": "Utfordringsinformasjon",
 	"challengeuser-or": "eller",
+	"challengeuser-rules": "Vennligst les regler og slikt",
 	"challengeuser-users-stats": "{{GRAMMAR:genitive|$1}} utfordringsstatistikk",
 	"challengeuser-view-all-challenges": "Vis alle utfordringer",
 	"challengeuser-view-userpage": "Vis {{GRAMMAR:genitive|$1}} brukerside",
@@ -81,5 +82,11 @@
 	"challengeview-ifwins": "hvis $1 vinner må $2 ...",
 	"echo-category-title-challenge-accepted": "Godtatte utfordringer",
 	"notification-challenge-rejected-bundle": "{{PLURAL:$1|Én utfordringe|$1 utfordringer}} du har utstedt har blitt avvist!",
-	"echo-category-title-challenge-lost": "Tapte utfordringer"
+	"echo-category-title-challenge-lost": "Tapte utfordringer",
+	"echo-category-title-challenge-won": "Vunne utfordringer",
+	"echo-pref-tooltip-challenge-won": "Gi meg beskjed når jeg vinner en utfordring.",
+	"notification-challenge-won": "Du har vunnet utfordringen #[[Special:ChallengeView/$1|$1]]!",
+	"notification-challenge-won-bundle": "Du har vunnet {{PLURAL:$1|en utfordring|$1 utfordringer}}!",
+	"action-challengeadmin": "administrere utfordringer",
+	"right-challengeadmin": "Administrere utfordringer"
 }
