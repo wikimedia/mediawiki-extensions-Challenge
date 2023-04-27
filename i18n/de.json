@@ -14,7 +14,8 @@
 			"Umlaut",
 			"Zabe",
 			"ZabeMath",
-			"ZiqiLiang"
+			"ZiqiLiang",
+			"Lukasaiko"
 		]
 	},
 	"challenge-desc": "Ermöglicht das Herausfordern anderer Benutzer",
@@ -113,6 +114,7 @@
 	"challengeview": "Herausforderung ansehen",
 	"challengeview-accept": "Akzeptieren",
 	"challengeview-accepted": "Akzeptiert",
+	"challengeview-admintext": "Du bist ein Admin, also kannst du einen Gewinner auswählen, wenn das Event beendet ist.<br />Wer hat die Wette gewonnen?",
 	"challengeview-by": "von '''$1'''",
 	"challengeview-by-on": "von '''$1''' auf $2",
 	"challengeview-comment": "'''Kommentar''': $1",
@@ -136,8 +138,13 @@
 	"challengeview-versus": "vs.",
 	"challengeview-won-by": "Herausforderung gewonnen von '''$1'''",
 	"challengeview-you-won": "Du hast die Herausforderung gewonnen!",
+	"echo-category-title-challenge-received": "Erhaltene Herausforderungen",
+	"echo-pref-tooltip-challenge-received": "Benachrichtige mich, wenn ich eine Herausforderung erhalte.",
 	"echo-category-title-challenge-accepted": "Akzeptierte Herausforderungen",
 	"echo-pref-tooltip-challenge-accepted": "Mich benachrichtigen, wenn eine von mir gestellte Herausforderung angenommen wurde.",
 	"echo-category-title-challenge-lost": "Verlorene Herausforderungen",
-	"echo-category-title-challenge-won": "Gewonnene Herausforderungen"
+	"echo-category-title-challenge-won": "Gewonnene Herausforderungen",
+	"echo-pref-tooltip-challenge-won": "Benachrichtige mich, wenn ich eine Herausforderung gewinne.",
+	"notification-challenge-won": "Du hast die Herausforderung #[[Special:ChallengeView/$1|$1]]",
+	"right-challengeadmin": "Herausforderungen verwalten"
 }
