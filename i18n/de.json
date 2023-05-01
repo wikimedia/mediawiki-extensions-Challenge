@@ -14,7 +14,8 @@
 			"TMg",
 			"Brettchenweber",
 			"ThisCarthing",
-			"*Surak*"
+			"*Surak*",
+			"Lukasaiko"
 		]
 	},
 	"challenge-desc": "Ermöglicht das Herausfordern anderer Benutzer",
@@ -100,10 +101,12 @@
 	"challengeuser-title": "Benutzer herausfordern",
 	"challengeuser-title-user": "Benutzer $1 herausfordern",
 	"challengeuser-type-username": "Wenn du den Namen des Benutzers kennst, gib ihn unten ein",
+	"challengeuser-view-all-challenges": "Alle Herausforderungen anzeigen",
 	"challengeuser-your-profile": "Dein Profil",
 	"challengeview": "Herausforderung ansehen",
 	"challengeview-accept": "Akzeptieren",
 	"challengeview-accepted": "Akzeptiert",
+	"challengeview-admintext": "Du bist ein Admin, also kannst du einen Gewinner auswählen, wenn das Event beendet ist.<br />Wer hat die Wette gewonnen?",
 	"challengeview-by": "von '''$1'''",
 	"challengeview-by-on": "von '''$1''' auf $2",
 	"challengeview-comment": "'''Kommentar''': $1",
@@ -125,5 +128,6 @@
 	"challengeview-status": "Status der Herausforderung",
 	"challengeview-versus": "vs.",
 	"challengeview-won-by": "Herausforderung gewonnen von '''$1'''",
-	"challengeview-you-won": "Du hast die Herausforderung gewonnen!"
+	"challengeview-you-won": "Du hast die Herausforderung gewonnen!",
+	"right-challengeadmin": "Herausforderungen verwalten"
 }
