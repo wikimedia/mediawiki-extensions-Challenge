@@ -4,7 +4,11 @@
 			"Mehtab ahmed"
 		]
 	},
+	"challenge-status-in-progress": "ھلندڙ",
+	"challenge-status-completed": "مڪمل",
 	"challengehistory-all": "سڀ",
+	"challengehistory-completed": "مڪمل",
 	"challengehistory-event": "موقعو",
+	"challengehistory-inprogress": "ھلندڙ",
 	"challengeview-event": "موقعو:"
 }
