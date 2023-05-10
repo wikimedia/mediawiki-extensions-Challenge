@@ -3,6 +3,7 @@
 		"authors": [
 			"Alshamiri1",
 			"FiberAhmed",
+			"Karim185.3",
 			"أَحمد",
 			"محمد أحمد عبد الفتاح"
 		]
@@ -64,7 +65,7 @@
 	"challengehistory-ratings-loser": "التقييمات عند الخاسر",
 	"challengehistory-recentchallenges": "أحدث تحديات {{SITENAME}}",
 	"challengehistory-rejected": "مرفوض",
-	"challengehistory-submit-btn": "يُقدِّم",
+	"challengehistory-submit-btn": "إرسال",
 	"challengehistory-status": "حالة",
 	"challengehistory-target": "الهدف",
 	"challengehistory-user": "تحدي هذا المستخدم",

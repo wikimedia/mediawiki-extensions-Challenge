@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Alshamiri1",
 			"Amire80",
 			"Gebu",
 			"Jack Phoenix",
@@ -70,7 +71,7 @@
 	"challengehistory-ratings-loser": "Used in the \"rating card\" on Special:ChallengeHistory when viewing an individual named user's challenge history (the <code>user</code> URL parameter is given ''or'' a user name is passed to the special page, like so: Special:ChallengeHistory/<code>Some user</code>)",
 	"challengehistory-recentchallenges": "Page title for Special:ChallengeHistory when viewing the wiki's challenge history instead of an individual user's challenge history (neither the <code>user</code> URL parameter is not set nor was a user name is passed as a parameter to the special page, e.g. <code>Special:ChallengeHistory/Foo</code>).\nWhen this parameter is set, the page title used will instead be {{msg-mw|challengehistory-users-history}}.",
 	"challengehistory-rejected": "Drop-down menu option text on Special:ChallengeHistory",
-	"challengehistory-submit-btn": "Submit button text shown on Special:ChallengeHistory for users who don't have JavaScript enabled",
+	"challengehistory-submit-btn": "{{Identical|Submit}}",
 	"challengehistory-status": "Table header on Special:ChallengeHistory",
 	"challengehistory-target": "Table header on Special:ChallengeHistory",
 	"challengehistory-user": "Link text on Special:ChallengeHistory for challenging the listed user.\nSee also {{msg-mw|challenge-this-user}}.",
