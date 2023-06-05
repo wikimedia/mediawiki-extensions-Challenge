@@ -6,7 +6,7 @@
 		]
 	},
 	"challenge-desc": "מאפשרת לאתגר משתמשים אחרים",
-	"challenge-this-user": "לאתר משתמש",
+	"challenge-this-user": "לאתגר משתמש",
 	"challenge-status-rejected": "נדחה",
 	"challenge-status-removed": "הוסר",
 	"challenge-status-awaiting": "בהמתנה לקבלה",
@@ -27,8 +27,11 @@
 	"challengeuser-error-page-title": "אופס!",
 	"challengeuser-or": "או",
 	"challengeuser-submit-button": "שליחה",
+	"challengeview-description": "התיאור של $1:",
 	"challengeview-event": "אירוע:",
 	"challengeview-rating-negative": "שלילי",
 	"challengeview-submit-button": "שליחה",
-	"challengeview-versus": "נ'"
+	"challengeview-versus": "נ'",
+	"action-challengeadmin": "לנהל אתגרים",
+	"right-challengeadmin": "ניהול אתגרים"
 }
