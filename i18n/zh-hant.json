@@ -4,7 +4,8 @@
 			"SiderealArt",
 			"Winston Sung",
 			"Willy1018",
-			"捍粵者"
+			"捍粵者",
+			"Kly"
 		]
 	},
 	"challenge-this-user": "挑戰使用者",
@@ -38,8 +39,8 @@
 	"challengestandings-challengeuser": "挑戰使用者",
 	"challengeuser": "挑戰使用者",
 	"challengeuser-error-page-title": "糟糕！",
-	"challengeuser-feedback": "反饋分數：''' $1 '''",
-	"challengeuser-helppage": "社區挑戰",
+	"challengeuser-feedback": "回饋分數：''' $1 '''",
+	"challengeuser-helppage": "社群挑戰",
 	"challengeuser-info": "挑戰信息",
 	"challengeuser-or": "或",
 	"challengeuser-record": "紀錄：",
