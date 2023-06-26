@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"ישראל קלר",
-			"Amire80"
+			"Amire80",
+			"Neriah"
 		]
 	},
 	"challenge-desc": "מאפשרת לאתגר משתמשים אחרים",
@@ -45,6 +46,7 @@
 	"challengestandings-user": "משתמש",
 	"challengestandings-w": "נצ'",
 	"challengeuser-error-page-title": "אופס!",
+	"challengeuser-feedback": "ציון משוב: '''$1'''",
 	"challengeuser-info": "מידע על האתגר",
 	"challengeuser-or": "או",
 	"challengeuser-record": "שיא:",
@@ -53,6 +55,7 @@
 	"challengeuser-submit-button": "שליחה",
 	"challengeuser-title": "לאתגר משתמש",
 	"challengeuser-title-user": "לאתגר את המשתמש $1",
+	"challengeuser-your-profile": "הפרופיל שלך",
 	"challengeview-accept": "לקבל",
 	"challengeview-accepted": "התקבל",
 	"challengeview-by": "מאת '''$1'''",
@@ -64,11 +67,13 @@
 	"challengeview-neutral": "ניטרלי",
 	"challengeview-positive": "חיובי",
 	"challengeview-push": "דחיפה",
+	"challengeview-rating2": "'''דירוג:'''",
 	"challengeview-rating-negative": "שלילי",
 	"challengeview-rating-neutral": "ניטרלי",
 	"challengeview-rating-positive": "חיובי",
 	"challengeview-reject": "דחייה",
 	"challengeview-rejected": "נדחה",
+	"challengeview-removed": "הוסר עקב הפרת כללים",
 	"challengeview-submit-button": "שליחה",
 	"challengeview-versus": "נ'",
 	"action-challengeadmin": "לנהל אתגרים",
