@@ -4,7 +4,8 @@
 			"DiegoAmbrocio",
 			"Fitoschido",
 			"MarcoAurelio",
-			"OriginReboot"
+			"OriginReboot",
+			"No se"
 		]
 	},
 	"challenge-this-user": "Desafiar al usuario",
@@ -98,8 +99,15 @@
 	"challengeview-removed": "Eliminado por violación de las normas",
 	"challengeview-submit-button": "Enviar",
 	"challengeview-versus": "contra.",
+	"echo-pref-tooltip-challenge-received": "Notificarme cuando reciba un reto.",
 	"echo-category-title-challenge-accepted": "Retos aceptados",
+	"echo-pref-tooltip-challenge-accepted": "Notificarme cuando un reto emitido por mí haya sido aceptado.",
 	"echo-category-title-challenge-rejected": "Retos rechazados",
+	"echo-pref-tooltip-challenge-rejected": "Notificarme cuando un reto emitido por mí haya sido rechazado.",
 	"echo-category-title-challenge-lost": "Retos perdidos",
-	"echo-category-title-challenge-won": "Retos ganados"
+	"echo-pref-tooltip-challenge-lost": "Notificarme cuando pierda un reto.",
+	"echo-category-title-challenge-won": "Retos ganados",
+	"echo-pref-tooltip-challenge-won": "Notificarme cuando gane un reto.",
+	"action-challengeadmin": "administrar retos",
+	"right-challengeadmin": "administrar retos"
 }
