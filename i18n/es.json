@@ -4,7 +4,8 @@
 			"MarcoAurelio",
 			"DiegoAmbrocio",
 			"Fitoschido",
-			"OriginReboot"
+			"OriginReboot",
+			"No se"
 		]
 	},
 	"challenge-this-user": "Desafiar al usuario",
@@ -92,5 +93,7 @@
 	"challengeview-rejected": "Rechazado",
 	"challengeview-removed": "Eliminado por violación de las normas",
 	"challengeview-submit-button": "Enviar",
-	"challengeview-versus": "contra."
+	"challengeview-versus": "contra.",
+	"action-challengeadmin": "administrar retos",
+	"right-challengeadmin": "administrar retos"
 }
