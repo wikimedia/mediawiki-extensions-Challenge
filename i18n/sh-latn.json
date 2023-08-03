@@ -1,0 +1,24 @@
+{
+	"@metadata": {
+		"authors": [
+			"Winston Sung"
+		]
+	},
+	"challenge-desc": "Omogućuje izazivanje drugih korisnika",
+	"challenge-status-rejected": "odbijeno",
+	"challenge-status-removed": "uklonjeno",
+	"challenge-status-in-progress": "u toku",
+	"challenge-status-completed": "završeno",
+	"challenge-js-accepted": "Prihvaćeno",
+	"challenge-js-rejected": "Odbijeno",
+	"challengeaction-go-away": "Ova stranica nije namijenjena izravnom pristupu. Možda ste umjesto toga mislili [[Special:ChallengeUser|izazvati korisnika]]?",
+	"challengehistory-all": "Sve",
+	"challengehistory-accepted": "prihvaćeno",
+	"challengehistory-completed": "Završeno",
+	"challengehistory-next": "sljed",
+	"challengehistory-prev": "preth",
+	"challengehistory-rejected": "Odbijeno",
+	"challengehistory-submit-btn": "Pošalji",
+	"challengehistory-status": "status",
+	"challengehistory-target": "cilj"
+}
