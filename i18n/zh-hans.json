@@ -3,7 +3,8 @@
 		"authors": [
 			")8",
 			"Lakejason0",
-			"Tr jason"
+			"Tr jason",
+			"Vikarna"
 		]
 	},
 	"challenge-desc": "允许挑战其他用户",
@@ -42,5 +43,9 @@
 	"challengeview-acceptance": "等待接受",
 	"challengeview-reject": "拒绝",
 	"challengeview-rejected": "已拒绝",
-	"challengeview-submit-button": "提交"
+	"challengeview-submit-button": "提交",
+	"notification-challenge-won": "您赢得了挑战#[[Special:ChallengeView/$1|$1]]！",
+	"notification-challenge-won-bundle": "您赢得了 {{PLURAL:$1|1|$1}} 个挑战！",
+	"action-challengeadmin": "管理挑战",
+	"right-challengeadmin": "管理挑战"
 }
