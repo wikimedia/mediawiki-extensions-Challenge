@@ -1,12 +1,15 @@
 {
 	"@metadata": {
 		"authors": [
-			"Uyhoang11"
+			"Uyhoang11",
+			"Phjtieudoc"
 		]
 	},
 	"challenge-status-awaiting": "Đợi chấp thuận",
 	"challenge-js-accepted": "được chấp nhận",
 	"challenge-js-error-invalid-month": "Xin hãy nhập tháng hợp lệ",
 	"challenge-js-error-invalid-year": "Xin hãy nhập năm hợp lệ với 4 chữ số, từ $1 đến $2",
+	"challengehistory-all": "Tất cả",
+	"challengeview-event": "Sự kiện:",
 	"challengeview-reject": "Từ chối"
 }
