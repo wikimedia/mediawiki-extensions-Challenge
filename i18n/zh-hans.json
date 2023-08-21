@@ -3,7 +3,8 @@
 		"authors": [
 			")8",
 			"Lakejason0",
-			"Tr jason"
+			"Tr jason",
+			"Vikarna"
 		]
 	},
 	"challenge-desc": "允许挑战其他用户",
@@ -38,5 +39,7 @@
 	"challengeview-acceptance": "等待接受",
 	"challengeview-reject": "拒绝",
 	"challengeview-rejected": "已拒绝",
-	"challengeview-submit-button": "提交"
+	"challengeview-submit-button": "提交",
+	"action-challengeadmin": "管理挑战",
+	"right-challengeadmin": "管理挑战"
 }
