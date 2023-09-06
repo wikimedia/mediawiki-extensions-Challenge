@@ -41,6 +41,8 @@ class ChallengeUser extends SpecialPage {
 		$request = $this->getRequest();
 		$user = $this->getUser();
 
+		$this->setHeaders();
+
 		// Anons don't get to use this special page
 		// @todo FIXME: why tf doesn't this redirect to Special:UserLogin like how Special:Watchlist does??? --ashley, 18 August 2020
 		$this->requireLogin( 'challengeuser-login' );

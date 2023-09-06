@@ -21,6 +21,8 @@ class ChallengeStandings extends SpecialPage {
 	 * @param mixed $par Parameter passed to the page or null
 	 */
 	public function execute( $par ) {
+		$this->setHeaders();
+
 		$this->getOutput()->setPageTitle( $this->msg( 'challengestandings-title' ) );
 
 		$this->getOutput()->addModuleStyles( 'ext.challenge.standings' );

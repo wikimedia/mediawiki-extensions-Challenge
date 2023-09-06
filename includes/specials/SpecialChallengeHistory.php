@@ -55,6 +55,8 @@ class ChallengeHistory extends SpecialPage {
 		$request = $this->getRequest();
 		$challenge_history_title = $this->getPageTitle();
 
+		$this->setHeaders();
+
 		$imgPath = $wgExtensionAssetsPath . '/Challenge/resources/images/';
 		$spImgPath = $wgExtensionAssetsPath . '/SocialProfile/images/';
 

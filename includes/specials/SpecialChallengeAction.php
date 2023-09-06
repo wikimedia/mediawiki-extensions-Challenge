@@ -16,6 +16,8 @@ class ChallengeAction extends UnlistedSpecialPage {
 		$request = $this->getRequest();
 		$user = $this->getUser();
 
+		$this->setHeaders();
+
 		$c = new Challenge();
 		$action = $request->getVal( 'action' );
 

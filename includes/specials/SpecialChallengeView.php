@@ -21,7 +21,7 @@ class ChallengeView extends UnlistedSpecialPage {
 	 * @param int|null $par Parameter (challenge ID) passed to the page
 	 */
 	public function execute( $par ) {
-		$this->getOutput()->setPageTitle( $this->msg( 'challengeview' ) );
+		$this->setHeaders();
 
 		$id = (int)$this->getRequest()->getVal( 'id', $par );
 		if ( $id == '' ) {
