@@ -256,8 +256,7 @@ class ChallengeUser extends SpecialPage {
 		$output .= '<div class="give-gift-textbox">
 			<input type="text" width="85" name="user" class="mw-autocomplete-user" value="" />
 			<input class="site-button" type="submit" value="' .
-				$this->msg( 'challengeuser-start-button' )->escaped() .
-				'" onclick="document.gift.submit()" />
+				$this->msg( 'challengeuser-start-button' )->escaped() . '" />
 		</div>
 		</form>';
 
