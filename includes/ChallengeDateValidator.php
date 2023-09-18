@@ -166,16 +166,20 @@ class ChallengeDateValidator {
 	/**
 	 * Is the given date a future date?
 	 *
-	 * @param string $dtStr User-supplied date string
+	 * @param string $dtStr User-supplied date string, like 02/21/2022 for 21 February 2022
 	 * @return bool True if it's a future date, else false
 	 */
 	public function isFuture( $dtStr ) {
 		// exclamation mark per https://www.php.net/manual/en/datetime.createfromformat.php#118358
 		// to ensure the safe comparison of their equalities
-		$today = DateTime::createFromFormat( '!m-d-Y', 'now' );
-		$tstDate = DateTime::createFromFormat( '!m-d-Y', $dtStr );
+		$today = new DateTime( 'now' );
+		$tstDate = DateTime::createFromFormat( '!m/d/Y', $dtStr );
+		$tsForComparison = ( $tstDate->getTimestamp() - $today->getTimestamp() );
+		$another = ( 60 * 60 * 60 * 24 );
 
-		if ( round( ( $tstDate->getTimestamp() - $today->getTimestamp() ) / ( 60 * 60 * 60 * 24 ) ) < 0 ) {
+		// (int) to cast -0 to 0 because fucking PHP :)
+		$rounded = (int)round( $tsForComparison / $another );
+		if ( $rounded <= 0 ) {
 			return true;
 		} else {
 			$this->error = [ 'challenge-js-error-future-date' ];
