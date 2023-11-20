@@ -16,7 +16,8 @@
 			"ThisCarthing",
 			"*Surak*",
 			"Lukasaiko",
-			"DraconicDark"
+			"DraconicDark",
+			"SehrGuterCode"
 		]
 	},
 	"challenge-desc": "Ermöglicht das Herausfordern anderer Benutzer",
@@ -162,5 +163,6 @@
 	"challengeview-won-by": "Herausforderung gewonnen von '''$1'''",
 	"challengeview-was-push": "Die Herausforderung war ein Schub!",
 	"challengeview-you-won": "Du hast die Herausforderung gewonnen!",
+	"action-challengeadmin": "Herausforderungen verwalten",
 	"right-challengeadmin": "Herausforderungen verwalten"
 }
