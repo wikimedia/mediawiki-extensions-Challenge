@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Eleassar"
+			"Eleassar",
+			"Upwinxp"
 		]
 	},
 	"challenge-desc": "Omogoča izzivanje drugih uporabnikov",
@@ -32,8 +33,8 @@
 	"challenge-js-error-is-backwards": "Začetni datum je poznejši od končnega datuma.",
 	"challenge_request_subject": "V projektu {{SITENAME}} vas je izzval_a $1!",
 	"challenge_request_body": "Pozdravljeni, $1.\n\n V projektu {{SITENAME}} vas je izzval_a $2!\n\nPojdite na $3, da si ogledate podrobnosti izziva in odgovorite $2.\n\nHvala\n\nEkipa projekta {{SITENAME}} \n\n---\n\nHej, želite prenehati prejemati e-pošto od nas?\n\nKliknite $4 \nin spremeni svoje nastavitve, da onemogočiš e-poštna obvestila.",
-	"challenge_accept_subject": "V projektu {{SITENAME}} je $1 sprejel_a vaš izziv!",
-	"challenge_accept_body": "Pozdravljeni, $1.\n\nV projektu {{SITENAME}} je $2 sprejel_a vaš izziv!\n\nPojdite na $3, da si ogledate podrobnosti izziva in odgovorite $2.\n\nHvala\n\nEkipa projekta {{SITENAME}} \n\n---\n\nHej, želite prenehati prejemati e-pošto od nas?\n\nKliknite $4 \nin spremeni svoje nastavitve, da onemogočiš e-poštna obvestila.",
+	"challenge_accept_subject": "V projektu {{SITENAME}} je $1 sprejel/a vaš izziv!",
+	"challenge_accept_body": "Pozdravljeni, $1.\n\nV projektu {{SITENAME}} je $2 sprejel/a vaš izziv!\n\nPojdite na $3, da si ogledate podrobnosti izziva in odgovorite $2.\n\nHvala\n\nEkipa projekta {{SITENAME}} \n\n---\n\nHej, želite prenehati prejemati e-pošto od nas?\n\nKliknite $4 \nin spremeni svoje nastavitve, da onemogočiš e-poštna obvestila.",
 	"challenge_lose_subject": "Oh, ne! V projektu {{SITENAME}} vas je $1 pri izzivu št. $2 premagal_a!",
 	"challenge_lose_body": "Pozdravljeni, $1.\n\n\tV projektu {{SITENAME}} je v izzivu zmagal_a $2!\n\nPojdite na $3, da si ogledate podrobnosti in pogoje izziva.\n\nHvala\n\nEkipa projekta {{SITENAME}} \n\n---\n\nHej, želite prenehati prejemati e-pošto od nas?\n\nKliknite $4 \nin spremeni svoje nastavitve, da onemogočite e-poštna obvestila.",
 	"challenge_win_subject": "čestitamo! Pri izzivu št. $2 v projektu {{SITENAME}} ste premagali $1!",
@@ -167,11 +168,11 @@
 	"notification-challenge-received-bundle": "Izzvani ste bili {{PLURAL:$1|enkrat|$1-krat}}!",
 	"echo-category-title-challenge-accepted": "Sprejeti izzivi",
 	"echo-pref-tooltip-challenge-accepted": "Obvesti me, ko je izziv, ki sem ga objavil_a, sprejet.",
-	"notification-challenge-accepted": "[[User:$1|$1]] je sprejel_a [[Special:ChallengeView/$2|vaš izziv]]!",
+	"notification-challenge-accepted": "[[User:$1|$1]] je sprejel/a [[Special:ChallengeView/$2|vaš izziv]]!",
 	"notification-challenge-accepted-bundle": "{{PLURAL:$1|Sprejet je bil|Sprejeta sta bila|Sprejeti so bili|Sprejetih je bilo}} {{PLURAL:$1|en izziv|$1 izziva|$1 izzivi|$1 izzivov}}, ki ste {{PLURAL:$1|ga|ju|jih}} izdali!",
 	"echo-category-title-challenge-rejected": "Zavrnjeni izzivi",
 	"echo-pref-tooltip-challenge-rejected": "Obvesti me, ko je izziv, ki sem ga objavil_a, zavrnjen.",
-	"notification-challenge-rejected": "[[User:$1|$1]] je zavrnil_a [[Special:ChallengeView/$2|vaš izziv]]!",
+	"notification-challenge-rejected": "[[User:$1|$1]] je zavrnil/a [[Special:ChallengeView/$2|vaš izziv]]!",
 	"notification-challenge-rejected-bundle": "{{PLURAL:$1|Zavrnjen je bil|Zavrnjena sta bila|Sprejeti so bili|Zavrnjenih je bilo}} {{PLURAL:$1|en izziv|$1 izziva|$1 izzivi|$1 izzivov}}, ki ste {{PLURAL:$1|ga|ju|jih}} izdali!",
 	"echo-category-title-challenge-lost": "Izgubljeni izzivi",
 	"echo-pref-tooltip-challenge-lost": "Obvesti me, ko izgubim izziv.",
