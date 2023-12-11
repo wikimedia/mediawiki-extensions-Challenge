@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Eleassar"
+			"Eleassar",
+			"Upwinxp"
 		]
 	},
 	"challenge-desc": "Omogoča izzivanje drugih uporabnikov",
@@ -31,7 +32,7 @@
 	"challenge-js-error-future-date": "Vneseni datum je datum v prihodnosti.",
 	"challenge-js-error-is-backwards": "Začetni datum je poznejši od končnega datuma.",
 	"challenge_request_subject": "V projektu {{SITENAME}} vas je izzval_a $1!",
-	"challenge_accept_subject": "V projektu {{SITENAME}} je $1 sprejel_a vaš izziv!",
+	"challenge_accept_subject": "V projektu {{SITENAME}} je $1 sprejel/a vaš izziv!",
 	"challenge_lose_subject": "Oh, ne! V projektu {{SITENAME}} vas je $1 pri izzivu št. $2 premagal_a!",
 	"challenge_win_subject": "čestitamo! Pri izzivu št. $2 v projektu {{SITENAME}} ste premagali $1!",
 	"challengeaction": "Lestvica izzivov",
