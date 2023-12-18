@@ -5,6 +5,7 @@
 			"FiberAhmed",
 			"Karim185.3",
 			"LaMagiaaa",
+			"NEHAOUA",
 			"أَحمد",
 			"محمد أحمد عبد الفتاح"
 		]
@@ -76,6 +77,7 @@
 	"challengestandings-empty": "لا توجد ترتيبات التحدي. لماذا لا تقوم [[Special: ChallengeUser | تتحدى شخصًا ما]]؟",
 	"challengestandings-t": "T",
 	"challengestandings-tooltip-losses": "خسائر",
+	"challengestandings-tooltip-ties": "روابط",
 	"challengestandings-tooltip-wins": "يفوز",
 	"challengestandings-title": "{{SITENAME}} ترتيب التحدي",
 	"challengestandings-user": "مستخدم",
