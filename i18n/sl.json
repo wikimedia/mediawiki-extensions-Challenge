@@ -172,7 +172,7 @@
 	"notification-challenge-accepted-bundle": "{{PLURAL:$1|Sprejet je bil|Sprejeta sta bila|Sprejeti so bili|Sprejetih je bilo}} {{PLURAL:$1|en izziv|$1 izziva|$1 izzivi|$1 izzivov}}, ki ste {{PLURAL:$1|ga|ju|jih}} izdali!",
 	"echo-category-title-challenge-rejected": "Zavrnjeni izzivi",
 	"echo-pref-tooltip-challenge-rejected": "Obvesti me, ko je izziv, ki sem ga objavil_a, zavrnjen.",
-	"notification-challenge-rejected": "[[User:$1|$1]] je zavrnil/a [[Special:ChallengeView/$2|vaš izziv]]!",
+	"notification-challenge-rejected": "[[User:$1|$1]] je zavrnil_a [[Special:ChallengeView/$2|vaš izziv]]!",
 	"notification-challenge-rejected-bundle": "{{PLURAL:$1|Zavrnjen je bil|Zavrnjena sta bila|Sprejeti so bili|Zavrnjenih je bilo}} {{PLURAL:$1|en izziv|$1 izziva|$1 izzivi|$1 izzivov}}, ki ste {{PLURAL:$1|ga|ju|jih}} izdali!",
 	"echo-category-title-challenge-lost": "Izgubljeni izzivi",
 	"echo-pref-tooltip-challenge-lost": "Obvesti me, ko izgubim izziv.",
