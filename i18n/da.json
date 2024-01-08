@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Iketsi",
 			"Saederup92"
 		]
 	},
@@ -23,6 +24,7 @@
 	"challengeuser-your-profile": "Din profil",
 	"challengeview-accept": "Accepter",
 	"challengeview-accepted": "Accepteret",
+	"challengeview-by": "af '''$1'''",
 	"challengeview-negative": "negativ",
 	"challengeview-reject": "Afvis",
 	"challengeview-rejected": "Afvist",

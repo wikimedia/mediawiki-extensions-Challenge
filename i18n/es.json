@@ -3,6 +3,7 @@
 		"authors": [
 			"DiegoAmbrocio",
 			"Fitoschido",
+			"Iketsi",
 			"MarcoAurelio",
 			"No se",
 			"OriginReboot"
@@ -82,7 +83,7 @@
 	"challengeview-accept": "Aceptar",
 	"challengeview-accepted": "Aceptado",
 	"challengeview-acceptance": "A la espera de la aceptación",
-	"challengeview-by": "Por '''$1'''",
+	"challengeview-by": "por '''$1'''",
 	"challengeview-by-on": "Por '''$1''' en $2",
 	"challengeview-event": "Evento:",
 	"challengeview-ifwins": "si $1 gana, $2 tiene que...",

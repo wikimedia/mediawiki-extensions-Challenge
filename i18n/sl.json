@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Eleassar",
+			"Iketsi",
 			"Upwinxp"
 		]
 	},
@@ -128,7 +129,7 @@
 	"challengeview-additionalcomments": "Dodatni komentarji (npr. »Pri opravljanju naloge se je slabo odrezal«)",
 	"challengeview-admin": "Administratorski preklic izziva zaradi zlorabe",
 	"challengeview-admintext": "Ste administrator, zato lahko izberete zmagovalca, če je dogodek zaključen.<br />Kdo je dobil stavo?",
-	"challengeview-by": "'''$1'''",
+	"challengeview-by": "od '''$1'''",
 	"challengeview-by-on": "'''$1''' dne $2",
 	"challengeview-comment": "'''komentar''': $1",
 	"challengeview-counterterms": "Pogoji števca",
