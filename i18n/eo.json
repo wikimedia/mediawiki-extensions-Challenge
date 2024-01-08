@@ -3,7 +3,8 @@
 		"authors": [
 			"Jack Phoenix",
 			"Javiero",
-			"Spenĉjo"
+			"Spenĉjo",
+			"Iketsi"
 		]
 	},
 	"challenge-desc": "Permesas defianta aliajn uzantojn",
@@ -82,6 +83,7 @@
 	"challengeview-accepted": "Akceptita",
 	"challengeview-acceptance": "Atendanta Akcepton",
 	"challengeview-admin": "Administranto nuligas defion pro misuzo",
+	"challengeview-by": "de '''$1'''",
 	"challengeview-description": "$1 priskribo",
 	"challengeview-invalidid": "Nula defia IDENTIGAĴO",
 	"challengeview-negative": "Negativa",
