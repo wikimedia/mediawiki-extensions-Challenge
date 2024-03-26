@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Ajam",
+			"Ebraminio",
 			"Jeeputer"
 		]
 	},
@@ -61,12 +62,12 @@
 	"challengeview-versus": "در برابر",
 	"echo-category-title-challenge-received": "چالش‌های دریافتی",
 	"echo-pref-tooltip-challenge-received": "هرگاه چالشی دریافت کردم، مرا آگاه کن.",
-	"notification-challenge-received": "[[User:$1|$1]] شما را [[Special:ChallengeView/$2|به چالش کشیده‌است]]!",
+	"notification-challenge-received": "[[User:$1|$1]] شما را [[Special:ChallengeView/$2|به چالش کشیده است]]!",
 	"notification-challenge-received-bundle": "شما {{PLURAL:$1|یک دفعه|$1 دفعه}} به چالش کشیده شده‌اید!",
 	"echo-category-title-challenge-accepted": "چالش‌های قبول‌شده",
 	"echo-pref-tooltip-challenge-accepted": "هرگاه چالشی که از سوی من مطرح شده، قبول شد، مرا آگاه کن.",
 	"notification-challenge-accepted": "[[User:$1|$1]] [[Special:ChallengeView/$2|چالش شما]] را قبول کرد!",
-	"notification-challenge-accepted-bundle": "{{PLURAL:$1|یک چالش|$1 چالش}} مطرح‌شده از سوی شما قبول شده‌است!",
+	"notification-challenge-accepted-bundle": "{{PLURAL:$1|یک چالش|$1 چالش}} مطرح‌شده از سوی شما قبول شده است!",
 	"echo-category-title-challenge-rejected": "چالش‌های ردشده",
 	"echo-pref-tooltip-challenge-rejected": "هرگاه چالشی که از سوی من مطرح شده، رد شد، مرا آگاه کن.",
 	"notification-challenge-rejected": "[[User:$1|$1]] [[Special:ChallengeView/$2|چالش شما]] را رد کرد!",
