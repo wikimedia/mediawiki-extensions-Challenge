@@ -37,6 +37,16 @@ a.challenge-admin-cancel-link {
 	color: #990;
 }
 
+/* Hide the no-JS <form> from users who have JS enabled for they have the JS-ful link already there */
+html.client-js form.challenge-admin-cancel-form {
+	display: none;
+}
+
+/* ...and vice versa for no-JS, obviously */
+html.client-nojs a.challenge-admin-cancel-link {
+	display: none;
+}
+
 .challenge-terms-container {
 	border-collapse: collapse;
 	padding: 0;

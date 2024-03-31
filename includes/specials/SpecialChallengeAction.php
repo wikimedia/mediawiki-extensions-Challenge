@@ -40,25 +40,33 @@ class ChallengeAction extends UnlistedSpecialPage {
 			return;
 		}
 
-		// status code 2 means "challenge removed by admin" which uses a different anti-CSRF token
-		if ( !$user->matchEditToken( $request->getVal( 'wpEditToken' ) ) && $request->getInt( 'status' ) !== 2 ) {
+		// status code -2 means "challenge removed by admin" which uses a different anti-CSRF token
+		$tokenCheckOK =
+			( $request->getInt( 'status' ) === -2 ) ? $user->matchEditToken( $request->getVal( 'wpAdminToken' ) ) :
+				$user->matchEditToken( $request->getVal( 'wpEditToken' ) );
+
+		if ( $request->getInt( 'status' ) !== -2 && !$tokenCheckOK ) {
 			$out->addWikiMsg( 'sessionfailure' );
 			return;
 		}
 
 		switch ( $action ) {
 			case 1:
-				$c->updateChallengeStatus(
-					// @todo FIXME: this is a bit subpar...'id' is used by JS but 'challenge_id' by no-JS
-					// @phan-suppress-next-line PhanCoalescingNeverNull
-					$request->getInt( 'id' ) ?? $request->getInt( 'challenge_id' ),
-					$request->getInt( 'status' )
-				);
+				if ( $tokenCheckOK ) {
+					$c->updateChallengeStatus(
+						// @todo FIXME: this is a bit subpar...'id' is used by JS but 'challenge_id' by no-JS
+						// But as subpar as that is, it seems like the only good way to distinguish
+						// between JS and no-JS in PHP code.
+						// @phan-suppress-next-line PhanCoalescingNeverNull
+						$request->getInt( 'id' ) ?? $request->getInt( 'challenge_id' ),
+						$request->getInt( 'status' )
+					);
+				}
 				break;
 			case 2:
 				if (
 					$user->isAllowed( 'challengeadmin' ) &&
-					$user->matchEditToken( $request->getVal( 'wpAdminToken' ) )
+					$tokenCheckOK
 				) {
 					$c->updateChallengeWinner(
 						$request->getInt( 'challenge_id' ),
@@ -97,6 +105,17 @@ class ChallengeAction extends UnlistedSpecialPage {
 				break;
 		}
 
-		$out->setArticleBodyOnly( true );
+		if ( !$request->getInt( 'challenge_id' ) ) {
+			// JS request -> set body only
+			$out->setArticleBodyOnly( true );
+		} else {
+			// No-JS request -> do some further processing since we have no JS to do our magic for us...
+			$specialPage = SpecialPage::getTitleFor(
+				'ChallengeView',
+				// blargh@type cast; needed for phan
+				(string)$request->getInt( 'challenge_id' )
+			);
+			$out->redirect( $specialPage->getFullURL() );
+		}
 	}
 }

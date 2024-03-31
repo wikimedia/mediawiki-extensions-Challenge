@@ -120,18 +120,22 @@ class ChallengeViewTemplate extends QuickTemplate {
 	if (
 		$user->isAllowed( 'challengeadmin' ) &&
 		$challenge['challengee_actor'] != $user->getActorId() &&
-		$challenge['challenger_actor'] != $user->getActorId()
+		$challenge['challenger_actor'] != $user->getActorId() &&
+		// Only show this link/form when the challenge has not yet been removed by an admin
+		// (yes, of course the type cast is needed :^) thanks, PHP)
+		(int)$challenge['status'] !== Challenge::STATUS_REMOVED
 	) {
-		// NoJS TODO
-		/*
+		// NoJS version
 		$challengeAction = SpecialPage::getTitleFor( 'ChallengeAction' );
-		$noJSform = '<form action="' . htmlspecialchars( $challengeAction->getFullURL( [ 'action' => 1 ] ), ENT_QUOTES ) . '" method="post">';
-		$noJSform .= Html::hidden( 'id', (int)$challenge['id'] );
-		$no
+		$noJSform = '<form class="challenge-admin-cancel-form" action="' . htmlspecialchars( $challengeAction->getFullURL( [ 'action' => 1 ] ), ENT_QUOTES ) . '" method="post">';
+		$noJSform .= Html::hidden( 'challenge_id', (int)$challenge['id'] );
+		$noJSform .= Html::hidden( 'action', 1 );
+		$noJSform .= Html::hidden( 'status', -2 );
 		$noJSform .= Html::hidden( 'wpAdminToken', $user->getEditToken() );
-		// $noJSform = SOME KIND OF A SUBMIT BUTTON HERE...
+		$noJSform .= Html::submitButton( wfMessage( 'challengeview-admin' )->text(), [] );
 		$noJSform .= '</form>';
-		*/
+		echo $noJSform;
+		// JS version
 		$adminLink = "<a class=\"challenge-admin-cancel-link\" data-challenge-id=\"{$challenge['id']}\" href=\"#\">";
 		$adminLink .= wfMessage( 'challengeview-admin' )->escaped();
 		$adminLink .= '</a>';
