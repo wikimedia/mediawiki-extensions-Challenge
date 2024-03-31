@@ -39,6 +39,7 @@ class ChallengeAction extends UnlistedSpecialPage {
 			case 1:
 				$c->updateChallengeStatus(
 					// @todo FIXME: this is a bit subpar...'id' is used by JS but 'challenge_id' by no-JS
+					// @phan-suppress-next-line PhanCoalescingNeverNull
 					$request->getInt( 'id' ) ?? $request->getInt( 'challenge_id' ),
 					$request->getInt( 'status' )
 				);
