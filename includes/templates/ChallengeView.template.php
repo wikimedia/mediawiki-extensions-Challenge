@@ -79,8 +79,8 @@ class ChallengeViewTemplate extends QuickTemplate {
 	<table>
 		<tr>
 			<td>
-				<b><?php echo wfMessage( 'challengeview-event' )->escaped() ?></b> <span class="challenge-event"><?php echo $challenge['info'] . ' [' . $fmtDate . ']' ?></span>
-				<br /><b><?php echo wfMessage( 'challengeview-description', User::newFromActorId( $challenge['challenger_actor'] )->getName() )->parse() ?></b><span class="challenge-description"><?php echo $challenge['description'] ?></span>
+				<b><?php echo wfMessage( 'challengeview-event' )->escaped() ?></b> <span class="challenge-event"><?php echo htmlspecialchars( $challenge['info'], ENT_QUOTES ) . ' [' . $fmtDate . ']' ?></span>
+				<br /><b><?php echo wfMessage( 'challengeview-description', User::newFromActorId( $challenge['challenger_actor'] )->getName() )->parse() ?></b><span class="challenge-description"><?php echo htmlspecialchars( $challenge['description'], ENT_QUOTES ) ?></span>
 			</td>
 		</tr>
 	</table>
@@ -95,7 +95,7 @@ class ChallengeViewTemplate extends QuickTemplate {
 					User::newFromActorId( $challenge['challenger_actor'] )->getName(),
 					User::newFromActorId( $challenge['challengee_actor'] )->getName()
 				)->parse() ?></span>
-				<table class="challenge-terms"><tr><td><?php echo $challenge['win_terms'] ?></td></tr></table><br />
+				<table class="challenge-terms"><tr><td><?php echo htmlspecialchars( $challenge['win_terms'], ENT_QUOTES ) ?></td></tr></table><br />
 			</td>
 			<td width="20">&nbsp;</td>
 			<td valign="top">
@@ -104,7 +104,7 @@ class ChallengeViewTemplate extends QuickTemplate {
 					User::newFromActorId( $challenge['challengee_actor'] )->getName(),
 					User::newFromActorId( $challenge['challenger_actor'] )->getName()
 				)->parse() ?></span>
-				<table class="challenge-terms"><tr><td><?php echo $challenge['lose_terms'] ?></td></tr></table>
+				<table class="challenge-terms"><tr><td><?php echo htmlspecialchars( $challenge['lose_terms'], ENT_QUOTES ) ?></td></tr></table>
 			</td>
 		</tr>
 	</table>
