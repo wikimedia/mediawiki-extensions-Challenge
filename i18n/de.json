@@ -17,7 +17,8 @@
 			"*Surak*",
 			"Lukasaiko",
 			"DraconicDark",
-			"SehrGuterCode"
+			"SehrGuterCode",
+			"TomatoCake"
 		]
 	},
 	"challenge-desc": "Ermöglicht das Herausfordern anderer Benutzer",
@@ -119,6 +120,7 @@
 	"challengeuser-loseterms": "Verlustbedingungen (z.B.: Ich bin bereit, die Seite mit den Mannschaftsergebnissen 2005 zu bearbeiten)",
 	"challengeuser-nouser": "Kein Benutzer ausgewählt. Bitte fordere einen Benutzer über den richtigen Link heraus.",
 	"challengeuser-or": "oder",
+	"challengeuser-record": "Rekord:",
 	"challengeuser-rules": "Bitte lies die Regeln und ähnliches",
 	"challengeuser-rules-page": "{{ns:help}}:Community-Herausforderungen",
 	"challengeuser-select-friend": "Wähle einen Freund",
@@ -178,10 +180,12 @@
 	"challengeview-you-won": "Du hast die Herausforderung gewonnen!",
 	"echo-category-title-challenge-received": "Erhaltene Herausforderungen",
 	"echo-pref-tooltip-challenge-received": "Benachrichtige mich, wenn ich eine Herausforderung erhalte.",
+	"notification-challenge-received": "Du wurdest von [[User:$1|$1]] [[Special:ChallengeView/$2|herausgefordert]]!",
 	"echo-category-title-challenge-accepted": "Akzeptierte Herausforderungen",
 	"echo-pref-tooltip-challenge-accepted": "Mich benachrichtigen, wenn eine von mir gestellte Herausforderung angenommen wurde.",
 	"echo-category-title-challenge-rejected": "Abgelehnte Herausforderungen",
 	"echo-category-title-challenge-lost": "Verlorene Herausforderungen",
+	"echo-pref-tooltip-challenge-lost": "Benachrichtige mich, wenn ich eine Herausforderung verliere.",
 	"echo-category-title-challenge-won": "Gewonnene Herausforderungen",
 	"echo-pref-tooltip-challenge-won": "Benachrichtige mich, wenn ich eine Herausforderung gewinne.",
 	"notification-challenge-won": "Du hast die Herausforderung #[[Special:ChallengeView/$1|$1]]",
