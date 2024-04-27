@@ -23,6 +23,7 @@ class ChallengeViewTemplate extends QuickTemplate {
 		} catch ( MWException $ex ) {
 			$fmtDate = $challenge['date'];
 		}
+		// phpcs:disable Generic.WhiteSpace.ScopeIndent
 ?>
 	<table class="challenge-main-table">
 		<tr>
@@ -141,5 +142,6 @@ class ChallengeViewTemplate extends QuickTemplate {
 	</div>
 	<span id="status2"></span>
 <?php
+		// phpcs:enable Generic.WhiteSpace.ScopeIndent
 	} // execute()
 } // class
