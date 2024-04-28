@@ -94,7 +94,7 @@ class ChallengeDateValidator {
 	 * @return bool True if it's a valid date, otherwise false
 	 */
 	public function isDate( $dtStr ) {
-		if ( empty( $dtStr ) ) {
+		if ( !$dtStr ) {
 			// ashley: added this to prevent strpos() (the $pos2 definition below) from whining
 			$this->error = [ 'challenge-js-error-invalid-date' ];
 			return false;

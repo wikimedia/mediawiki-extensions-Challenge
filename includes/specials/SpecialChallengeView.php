@@ -38,7 +38,7 @@ class ChallengeView extends UnlistedSpecialPage {
 
 		$c = new Challenge();
 		$challenge = $c->getChallenge( $id );
-		if ( empty( $challenge ) ) {
+		if ( !$challenge ) {
 			return $this->msg( 'challengeview-invalidid' )->escaped();
 		}
 
