@@ -1,8 +1,14 @@
 {
 	"@metadata": {
 		"authors": [
-			"Kareyac"
+			"Kareyac",
+			"Jack Phoenix"
 		]
 	},
-	"challengeview-accept": "Nõustu"
+	"challengeuser-error-page-title": "Ups!",
+	"challengeuser-or": "või",
+	"challengeuser-select-friend": "vali sõber",
+	"challengeuser-your-profile": "Sinu profiil",
+	"challengeview-accept": "Nõustu",
+	"challengeview-reject": "Lükka tagasi"
 }
