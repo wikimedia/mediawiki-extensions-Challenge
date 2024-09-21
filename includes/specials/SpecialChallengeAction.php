@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 class ChallengeAction extends UnlistedSpecialPage {
 
 	public function __construct() {
@@ -70,7 +72,7 @@ class ChallengeAction extends UnlistedSpecialPage {
 					$stats->incStatField( 'challenges_rating_negative' );
 				}
 
-				$dbw = wfGetDB( DB_PRIMARY );
+				$dbw = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_PRIMARY );
 				$dbw->insert(
 					'challenge_rate',
 					[

@@ -102,7 +102,7 @@ class Challenge {
 	public function addChallenge( $challenger, $challengee, $info, $event_date, $description, $win_terms, $lose_terms ) {
 		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
 
-		$dbw = wfGetDB( DB_PRIMARY );
+		$dbw = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_PRIMARY );
 		$dbw->insert(
 			'challenge',
 			[
@@ -300,7 +300,7 @@ class Challenge {
 	 * @param bool $email Send emails to challenge participants (if they have confirmed their addresses)?
 	 */
 	public function updateChallengeStatus( $challenge_id, $status, $email = true ) {
-		$dbw = wfGetDB( DB_PRIMARY );
+		$dbw = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_PRIMARY );
 		$dbw->update(
 			'challenge',
 			[ 'challenge_status' => $status ],
@@ -408,7 +408,7 @@ class Challenge {
 	 * @param int $id Challenge identifier
 	 */
 	public function updateUserStandings( $id ) {
-		$dbr = wfGetDB( DB_PRIMARY );
+		$dbr = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_PRIMARY );
 		$s = $dbr->selectRow(
 			'challenge',
 			[
@@ -446,7 +446,7 @@ class Challenge {
 	 * @param int $actorId Winning user's actor ID
 	 */
 	public function updateChallengeWinner( $id, $actorId ) {
-		$dbr = wfGetDB( DB_PRIMARY );
+		$dbr = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_PRIMARY );
 		$dbr->update(
 			'challenge',
 			[
@@ -466,8 +466,9 @@ class Challenge {
 	public function updateUserRecord( $id, $type ) {
 		$user = User::newFromActorId( $id );
 
-		$dbr = wfGetDB( DB_REPLICA );
-		$dbw = wfGetDB( DB_PRIMARY );
+		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
+		$dbr = $lb->getConnection( DB_REPLICA );
+		$dbw = $lb->getConnection( DB_PRIMARY );
 		$wins = 0;
 		$losses = 0;
 		$ties = 0;
@@ -538,7 +539,7 @@ class Challenge {
 	 * @return bool
 	 */
 	public function isUserInChallenge( $actorId, $challengeId ) {
-		$dbr = wfGetDB( DB_PRIMARY );
+		$dbr = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_PRIMARY );
 		$s = $dbr->selectRow(
 			'challenge',
 			[ 'challenge_challenger_actor', 'challenge_challengee_actor' ],
@@ -563,7 +564,7 @@ class Challenge {
 	 * @return int Open challenge count for the given user
 	 */
 	public static function getOpenChallengeCount( $actorId ) {
-		$dbr = wfGetDB( DB_PRIMARY );
+		$dbr = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_PRIMARY );
 		$openChallengeCount = 0;
 		$s = $dbr->selectRow(
 			'challenge',
@@ -588,7 +589,7 @@ class Challenge {
 	 * @return int Challenge count for the given user
 	 */
 	public static function getChallengeCount( $actorId = 0 ) {
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_REPLICA );
 		$challengeCount = 0;
 
 		$userSQL = [];
@@ -619,7 +620,7 @@ class Challenge {
 	 */
 	public function getChallenge( $id ) {
 		$id = (int)$id; // paranoia!
-		$dbr = wfGetDB( DB_PRIMARY );
+		$dbr = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_PRIMARY );
 		$sql = "SELECT {$dbr->tableName( 'challenge' )}.challenge_id AS id,
 			challenge_challenger_actor, challenge_challengee_actor, challenge_info,
 			challenge_description, challenge_event_date, challenge_status, challenge_winner_actor,
@@ -678,7 +679,7 @@ class Challenge {
 			$user_sql = " AND (challenge_challenger_actor = {$actorId} OR challenge_challengee_actor = {$actorId}) ";
 		}
 
-		$dbr = wfGetDB( DB_PRIMARY );
+		$dbr = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_PRIMARY );
 		$sql = "SELECT {$dbr->tableName( 'challenge' )}.challenge_id AS id,
 			challenge_challenger_actor, challenge_challengee_actor, challenge_info,
 			challenge_description, challenge_event_date, challenge_status, challenge_winner_actor,
@@ -721,7 +722,7 @@ class Challenge {
 	 * @return-taint none
 	 */
 	public static function getUserChallengeRecord( $actorId ) {
-		$dbr = wfGetDB( DB_PRIMARY );
+		$dbr = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_PRIMARY );
 		$s = $dbr->selectRow(
 			'challenge_user_record',
 			[ 'challenge_wins', 'challenge_losses', 'challenge_ties' ],
@@ -741,7 +742,7 @@ class Challenge {
 	 * @return int
 	 */
 	public static function getUserFeedbackScoreByType( $rateType, $actorId ) {
-		$dbr = wfGetDB( DB_PRIMARY );
+		$dbr = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_PRIMARY );
 		return (int)$dbr->selectField(
 			'challenge_rate',
 			'COUNT(*) AS total',

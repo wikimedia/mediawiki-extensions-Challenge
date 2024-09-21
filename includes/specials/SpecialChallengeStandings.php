@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 class ChallengeStandings extends SpecialPage {
 
 	public function __construct() {
@@ -38,7 +40,7 @@ class ChallengeStandings extends SpecialPage {
 				<td class="challenge-standings-title"></td>
 			</tr>';
 
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_REPLICA );
 		$sql = "SELECT challenge_record_actor, challenge_wins, challenge_losses, challenge_ties, (challenge_wins / (challenge_wins + challenge_losses + challenge_ties) ) AS winning_percentage FROM {$dbr->tableName( 'challenge_user_record' )} ORDER BY (challenge_wins / (challenge_wins + challenge_losses + challenge_ties) ) DESC, challenge_wins DESC";
 		$res = $dbr->query( $dbr->limitResult( $sql, 25 /* $limit */, 0 /* $offset */ ), __METHOD__ );
 		$x = 1;
