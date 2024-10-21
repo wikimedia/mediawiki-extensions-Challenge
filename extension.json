@@ -34,9 +34,19 @@
 		"challengeadmin"
 	],
 	"SpecialPages": {
-		"ChallengeAction": "ChallengeAction",
+		"ChallengeAction": {
+			"class": "ChallengeAction",
+			"services": [
+				"DBLoadBalancer"
+			]
+		},
 		"ChallengeHistory": "ChallengeHistory",
-		"ChallengeStandings": "ChallengeStandings",
+		"ChallengeStandings": {
+			"class": "ChallengeStandings",
+			"services": [
+				"DBLoadBalancer"
+			]
+		},
 		"ChallengeUser": "ChallengeUser",
 		"ChallengeView": "ChallengeView"
 	},
