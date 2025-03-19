@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Ajeje Brazorf"
+			"Ajeje Brazorf",
+			"GianAntonucci"
 		]
 	},
 	"challenge-js-accepted": "Accittatu",
@@ -12,7 +13,7 @@
 	"challengestandings-user": "utenti",
 	"challengeuser-error-page-title": "Ops!",
 	"challengeuser-or": "o",
-	"challengeuser-your-profile": "Lu tò prufilu",
+	"challengeuser-your-profile": "Lu to prufilu",
 	"challengeview-accept": "Accetta",
 	"challengeview-accepted": "Accittatu",
 	"challengeview-comment": "'''cummentu''': $1",
