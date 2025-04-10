@@ -3,7 +3,8 @@
 		"authors": [
 			"Cottonhead",
 			"Eduardo Addad de Oliveira",
-			"Eduardoaddad"
+			"Eduardoaddad",
+			"TheEduGobi"
 		]
 	},
 	"challenge-desc": "Permite desafiar outros usuários",
@@ -36,9 +37,9 @@
 	"challenge_request_body": "Olá $1.\n\n\t$2 desafiou-o na wiki {{SITENAME}}!\n\nVisite $3 para ver os detalhes do desafio e responder a $2.\n\nObrigado\n\nA equipe da wiki {{SITENAME}}\n\n---\n\nQuer parar de receber as nossas mensagens?\n\nClique $4\ne altere as suas configurações para desativar as notificações por e-mail.",
 	"challenge_accept_subject": "$1 aceitou seu desafio em {{SITENAME}}!",
 	"challenge_accept_body": "Olá $1.\n\n\t$2 aceitou o seu desafio na wiki {{SITENAME}}!\n\nVisite $3 para ver os detalhes do desafio.\n\nObrigado\n\nA equipe da wiki {{SITENAME}}\n\n---\n\nQuer parar de receber as nossas mensagens?\n\nClique $4\ne altere as suas configurações para desativar as notificações por e-mail.",
-	"challenge_lose_subject": "Oh não! $1 venceu-o no desafio n.º $2 na wiki {{SITENAME}}!",
+	"challenge_lose_subject": "Oh, não! $1 te venceu no desafio n.º $2 na wiki {{SITENAME}}!",
 	"challenge_lose_body": "Olá $1.\n\n\t$2 venceu o desafio na wiki {{SITENAME}}!\n\nVisite $3 para ver os detalhes e condições do desafio.\n\nObrigado\n\nA equipe da wiki {{SITENAME}}\n\n---\n\nQuer parar de receber as nossas mensagens?\n\nClique $4\ne altere as suas configurações para desativar as notificações por e-mail.",
-	"challenge_win_subject": "Parabéns! Venceu $1 no desafio n.º $2 na wiki {{SITENAME}}!",
+	"challenge_win_subject": "Parabéns! Você venceu o desafio n.º $2 contra $1 na wiki {{SITENAME}}!",
 	"challenge_win_body": "Olá $1.\n\n\tVenceu o desafio na wiki {{SITENAME}} contra $2!\n\nVisite $3 para ver os detalhes e condições do desafio.\n\nObrigado\n\nA equipe da wiki {{SITENAME}}\n\n---\n\nQuer parar de receber as nossas mensagens?\n\nClique $4\ne altere as suas configurações para desativar as notificações por e-mail.",
 	"challengeaction": "Classificação do desafio",
 	"challengeaction-go-away": "Esta página não deve ser acessada diretamente. Talvez pretendesse antes [[Special:ChallengeUser|desafiar um usuário]]?",
