@@ -3,6 +3,10 @@
  * @file
  */
 
+use MediaWiki\Html\Html;
+use MediaWiki\MediaWikiServices;
+use MediaWiki\SpecialPage\SpecialPage;
+
 /**
  * HTML template for Special:ChallengeView
  * @ingroup Templates
@@ -23,6 +27,8 @@ class ChallengeViewTemplate extends QuickTemplate {
 		} catch ( MWException $ex ) {
 			$fmtDate = $challenge['date'];
 		}
+
+		$userFactory = MediaWikiServices::getInstance()->getUserFactory();
 		// phpcs:disable Generic.WhiteSpace.ScopeIndent
 ?>
 	<table class="challenge-main-table">
@@ -81,7 +87,7 @@ class ChallengeViewTemplate extends QuickTemplate {
 		<tr>
 			<td>
 				<b><?php echo wfMessage( 'challengeview-event' )->escaped() ?></b> <span class="challenge-event"><?php echo htmlspecialchars( $challenge['info'], ENT_QUOTES ) . ' [' . $fmtDate . ']' ?></span>
-				<br /><b><?php echo wfMessage( 'challengeview-description', User::newFromActorId( $challenge['challenger_actor'] )->getName() )->parse() ?></b><span class="challenge-description"><?php echo htmlspecialchars( $challenge['description'], ENT_QUOTES ) ?></span>
+				<br /><b><?php echo wfMessage( 'challengeview-description', $userFactory->newFromActorId( $challenge['challenger_actor'] )->getName() )->parse() ?></b><span class="challenge-description"><?php echo htmlspecialchars( $challenge['description'], ENT_QUOTES ) ?></span>
 			</td>
 		</tr>
 	</table>
@@ -93,8 +99,8 @@ class ChallengeViewTemplate extends QuickTemplate {
 			<td valign="top">
 				<span class="challenge-title"><?php echo wfMessage(
 					'challengeview-ifwins',
-					User::newFromActorId( $challenge['challenger_actor'] )->getName(),
-					User::newFromActorId( $challenge['challengee_actor'] )->getName()
+					$userFactory->newFromActorId( $challenge['challenger_actor'] )->getName(),
+					$userFactory->newFromActorId( $challenge['challengee_actor'] )->getName()
 				)->parse() ?></span>
 				<table class="challenge-terms"><tr><td><?php echo htmlspecialchars( $challenge['win_terms'], ENT_QUOTES ) ?></td></tr></table><br />
 			</td>
@@ -102,8 +108,8 @@ class ChallengeViewTemplate extends QuickTemplate {
 			<td valign="top">
 				<span class="challenge-title"><?php echo wfMessage(
 					'challengeview-ifwins',
-					User::newFromActorId( $challenge['challengee_actor'] )->getName(),
-					User::newFromActorId( $challenge['challenger_actor'] )->getName()
+					$userFactory->newFromActorId( $challenge['challengee_actor'] )->getName(),
+					$userFactory->newFromActorId( $challenge['challenger_actor'] )->getName()
 				)->parse() ?></span>
 				<table class="challenge-terms"><tr><td><?php echo htmlspecialchars( $challenge['lose_terms'], ENT_QUOTES ) ?></td></tr></table>
 			</td>

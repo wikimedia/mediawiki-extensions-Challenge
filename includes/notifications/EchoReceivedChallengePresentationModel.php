@@ -2,6 +2,10 @@
 /**
  * Formatter for notifications about received challenges ('challenge-received')
  */
+
+use MediaWiki\Extension\Notifications\Formatters\EchoEventPresentationModel;
+use MediaWiki\SpecialPage\SpecialPage;
+
 class EchoReceivedChallengePresentationModel extends EchoEventPresentationModel {
 
 	/**

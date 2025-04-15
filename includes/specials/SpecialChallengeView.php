@@ -1,9 +1,19 @@
 <?php
 
-class ChallengeView extends UnlistedSpecialPage {
+use MediaWiki\Html\Html;
+use MediaWiki\SpecialPage\SpecialPage;
+use MediaWiki\SpecialPage\UnlistedSpecialPage;
+use MediaWiki\Title\Title;
+use MediaWiki\User\UserFactory;
 
-	public function __construct() {
+class ChallengeView extends UnlistedSpecialPage {
+	private UserFactory $userFactory;
+
+	public function __construct(
+		UserFactory $userFactory
+	) {
 		parent::__construct( 'ChallengeView' );
+		$this->userFactory = $userFactory;
 	}
 
 	/**
@@ -42,10 +52,10 @@ class ChallengeView extends UnlistedSpecialPage {
 			return $this->msg( 'challengeview-invalidid' )->escaped();
 		}
 
-		$out->setPageTitle( $this->msg( 'challengeview-title' ) );
+		$out->setPageTitle( $this->msg( 'challengeview-title' )->escaped() );
 		$u = $this->getUser();
-		$challenger = User::newFromActorId( $challenge['challenger_actor'] );
-		$challengee = User::newFromActorId( $challenge['challengee_actor'] );
+		$challenger = $this->userFactory->newFromActorId( $challenge['challenger_actor'] );
+		$challengee = $this->userFactory->newFromActorId( $challenge['challengee_actor'] );
 		$avatar1 = new wAvatar( $challenger->getId(), 'l' );
 		$avatar2 = new wAvatar( $challengee->getId(), 'l' );
 		$title1 = Title::makeTitle( NS_USER, $challenger->getName() );
@@ -95,8 +105,8 @@ class ChallengeView extends UnlistedSpecialPage {
 				) {
 					$out .= $this->msg( 'challengeview-inprogress' )->escaped();
 				} else {
-					$challengerName = User::newFromActorId( $challenge['challenger_actor'] )->getName();
-					$challengeeName = User::newFromActorId( $challenge['challengee_actor'] )->getName();
+					$challengerName = $this->userFactory->newFromActorId( $challenge['challenger_actor'] )->getName();
+					$challengeeName = $this->userFactory->newFromActorId( $challenge['challengee_actor'] )->getName();
 					$out .= $this->msg( 'challengeview-admintext' )->parse();
 					$out .= '<br /><br />
 					<form action="' . htmlspecialchars( $challengeAction->getFullURL( [ 'action' => 2 ] ), ENT_QUOTES ) . "\" method=\"post\">
@@ -123,7 +133,7 @@ class ChallengeView extends UnlistedSpecialPage {
 				break;
 			case 3:
 				if ( $challenge['winner_actor'] != -1 ) {
-					$winnerName = User::newFromActorId( $challenge['winner_actor'] )->getName();
+					$winnerName = $this->userFactory->newFromActorId( $challenge['winner_actor'] )->getName();
 					$out .= $this->msg( 'challengeview-won-by', $winnerName )->parse();
 					$out .= '<br /><br />';
 					if ( $challenge['rating'] ) {

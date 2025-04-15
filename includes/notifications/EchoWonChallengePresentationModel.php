@@ -2,6 +2,10 @@
 /**
  * Formatter for notifications about won challenges ('challenge-won')
  */
+
+use MediaWiki\Extension\Notifications\Formatters\EchoEventPresentationModel;
+use MediaWiki\SpecialPage\SpecialPage;
+
 class EchoWonChallengePresentationModel extends EchoEventPresentationModel {
 
 	/**

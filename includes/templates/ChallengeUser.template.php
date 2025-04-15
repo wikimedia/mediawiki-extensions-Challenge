@@ -3,6 +3,8 @@
  * @file
  */
 
+use MediaWiki\Title\Title;
+
 /**
  * HTML template for Special:ChallengeUser
  * @ingroup Templates

@@ -2,6 +2,10 @@
 /**
  * Formatter for notifications about rejected challenges ('challenge-rejected')
  */
+
+use MediaWiki\Extension\Notifications\Formatters\EchoEventPresentationModel;
+use MediaWiki\SpecialPage\SpecialPage;
+
 class EchoRejectedChallengePresentationModel extends EchoEventPresentationModel {
 
 	/**

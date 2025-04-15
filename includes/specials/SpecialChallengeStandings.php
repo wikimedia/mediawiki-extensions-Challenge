@@ -1,15 +1,20 @@
 <?php
 
+use MediaWiki\SpecialPage\SpecialPage;
+use MediaWiki\User\UserFactory;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 class ChallengeStandings extends SpecialPage {
 	private ILoadBalancer $loadBalancer;
+	private UserFactory $userFactory;
 
 	public function __construct(
-		ILoadBalancer $loadBalancer
+		ILoadBalancer $loadBalancer,
+		UserFactory $userFactory
 	) {
 		parent::__construct( 'ChallengeStandings' );
 		$this->loadBalancer = $loadBalancer;
+		$this->userFactory = $userFactory;
 	}
 
 	/**
@@ -52,7 +57,7 @@ class ChallengeStandings extends SpecialPage {
 		$linkRenderer = $this->getLinkRenderer();
 
 		foreach ( $res as $row ) {
-			$recordHolder = User::newFromActorId( $row->challenge_record_actor );
+			$recordHolder = $this->userFactory->newFromActorId( $row->challenge_record_actor );
 			$recordHolderName = $recordHolder->getName();
 			$avatar1 = new wAvatar( $recordHolder->getId(), 's' );
 			$out .= '<tr>

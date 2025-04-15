@@ -1,12 +1,22 @@
 <?php
 
+use MediaWiki\Html\Html;
+use MediaWiki\SpecialPage\SpecialPage;
+use MediaWiki\Title\Title;
+use MediaWiki\User\User;
+use MediaWiki\User\UserFactory;
+
 class ChallengeUser extends SpecialPage {
+	private UserFactory $userFactory;
 
 	/** @var User The person getting challenged */
 	public $challengee;
 
-	public function __construct() {
+	public function __construct(
+		UserFactory $userFactory
+	) {
 		parent::__construct( 'ChallengeUser' );
+		$this->userFactory = $userFactory;
 	}
 
 	public function doesWrites() {
@@ -48,7 +58,7 @@ class ChallengeUser extends SpecialPage {
 		$this->requireLogin( 'challengeuser-login' );
 
 		if ( $user->getBlock() ) {
-			$output->setPageTitle( $this->msg( 'challengeuser-error-page-title' ) );
+			$output->setPageTitle( $this->msg( 'challengeuser-error-page-title' )->escaped() );
 			$output->addHTML( $this->msg( 'challengeuser-error-message-blocked' )->escaped() );
 			return;
 		}
@@ -73,13 +83,14 @@ class ChallengeUser extends SpecialPage {
 			return false;
 		}
 
-		$this->challengee = User::newFromName( $userTitle->getText() );
+		// @phan-suppress-next-line PhanPossiblyNullTypeMismatchProperty
+		$this->challengee = $this->userFactory->newFromName( $userTitle->getText() );
 
 		if ( $user->getId() == $this->challengee->getId() ) {
-			$output->setPageTitle( $this->msg( 'challengeuser-error-page-title' ) );
+			$output->setPageTitle( $this->msg( 'challengeuser-error-page-title' )->escaped() );
 			$output->addHTML( $this->msg( 'challengeuser-self' )->escaped() );
 		} elseif ( $this->challengee->getId() == 0 ) {
-			$output->setPageTitle( $this->msg( 'challengeuser-error-page-title' ) );
+			$output->setPageTitle( $this->msg( 'challengeuser-error-page-title' )->escaped() );
 			$output->addHTML( $this->msg( 'challengeuser-nouser' )->escaped() );
 		} else {
 			if (
@@ -133,7 +144,7 @@ class ChallengeUser extends SpecialPage {
 				// class' internals will barf in certain cases of invalid input (e.g. invalid date)
 				// @todo FIXME: ensure that validator returning false for isDate() is handled correctly here (msg params)
 				if ( $errors !== [] ) {
-					$output->setPageTitle( $this->msg( 'challengeuser-error-page-title' ) );
+					$output->setPageTitle( $this->msg( 'challengeuser-error-page-title' )->escaped() );
 					foreach ( $errors as $msgKey ) {
 						$output->addHTML( $this->msg( $msgKey )->escaped() . '<br />' );
 					}
@@ -143,7 +154,8 @@ class ChallengeUser extends SpecialPage {
 
 				$c = new Challenge();
 				$c->addChallenge(
-					$this->getUser(),
+					$user,
+					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable
 					$this->challengee,
 					$request->getVal( 'info' ),
 					$request->getVal( 'date' ),
@@ -153,14 +165,14 @@ class ChallengeUser extends SpecialPage {
 				);
 
 				$output->setPageTitle(
-					$this->msg( 'challengeuser-challenge-sent-title', $this->challengee->getName() )
+					$this->msg( 'challengeuser-challenge-sent-title', $this->challengee->getName() )->escaped()
 				);
 
 				// @todo FIXME: clean up this mess (empty <div>, empty if() loop) --ashley, 18 August 2020
 				$out = '<div class="challenge-links">';
 					// $out .= "<a href=\"index.php?title=User:{$this->challengee->getName()}\">< {$this->challengee->getName()}'s User Page</a>";
 					// $out .= " - <a href=\"index.php?title=Special:ViewGifts&user={$this->challengee->getName()}\">View All of {$this->challengee->getName()}'s Gifts</a>";
-				if ( $this->getUser()->isRegistered() ) {
+				if ( $user->isRegistered() ) {
 					// $out .= " - <a href=\"index.php?title=Special:ViewGifts&user={$user->getName()}\">View All of Your Gifts</a>";
 				}
 				$out .= '</div>';
@@ -226,7 +238,7 @@ class ChallengeUser extends SpecialPage {
 				$output .= $this->msg( 'challengeuser-select-friend' )->escaped();
 				$output .= '</option>';
 				foreach ( $friends as $friend ) {
-					$friendUser = User::newFromActorId( $friend['actor'] );
+					$friendUser = $this->userFactory->newFromActorId( $friend['actor'] );
 					if ( !$friendUser || !$friendUser instanceof User ) {
 						continue;
 					}

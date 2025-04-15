@@ -2,6 +2,10 @@
 /**
  * @file
  */
+
+use MediaWiki\MediaWikiServices;
+use MediaWiki\SpecialPage\SpecialPage;
+
 class ChallengeHooks {
 
 	/**
@@ -23,8 +27,8 @@ class ChallengeHooks {
 			'group' => 'interactive',
 			'section' => 'alert',
 			'presentation-model' => 'EchoReceivedChallengePresentationModel',
-			EchoAttributeManager::ATTR_LOCATORS => [
-				'EchoUserLocator::locateEventAgent'
+			MediaWiki\Extension\Notifications\AttributeManager::ATTR_LOCATORS => [
+				'MediaWiki\Extension\Notifications\UserLocator::locateEventAgent'
 			],
 
 			'icon' => 'challenge-received',
@@ -48,8 +52,8 @@ class ChallengeHooks {
 			'category' => 'challenge-accepted',
 			'group' => 'positive',
 			'presentation-model' => 'EchoAcceptedChallengePresentationModel',
-			EchoAttributeManager::ATTR_LOCATORS => [
-				'EchoUserLocator::locateEventAgent'
+			MediaWiki\Extension\Notifications\AttributeManager::ATTR_LOCATORS => [
+				'MediaWiki\Extension\Notifications\UserLocator::locateEventAgent'
 			],
 
 			'icon' => 'challenge-accepted',
@@ -75,8 +79,8 @@ class ChallengeHooks {
 			'category' => 'challenge-rejected',
 			'group' => 'negative',
 			'presentation-model' => 'EchoRejectedChallengePresentationModel',
-			EchoAttributeManager::ATTR_LOCATORS => [
-				'EchoUserLocator::locateEventAgent'
+			MediaWiki\Extension\Notifications\AttributeManager::ATTR_LOCATORS => [
+				'MediaWiki\Extension\Notifications\UserLocator::locateEventAgent'
 			],
 
 			'icon' => 'challenge-rejected',
@@ -100,8 +104,8 @@ class ChallengeHooks {
 			'category' => 'challenge-lost',
 			'group' => 'negative',
 			'presentation-model' => 'EchoLostChallengePresentationModel',
-			EchoAttributeManager::ATTR_LOCATORS => [
-				'EchoUserLocator::locateEventAgent'
+			MediaWiki\Extension\Notifications\AttributeManager::ATTR_LOCATORS => [
+				'MediaWiki\Extension\Notifications\UserLocator::locateEventAgent'
 			],
 
 			'icon' => 'challenge-lost',
@@ -125,8 +129,8 @@ class ChallengeHooks {
 			'category' => 'challenge-won',
 			'group' => 'positive',
 			'presentation-model' => 'EchoWonChallengePresentationModel',
-			EchoAttributeManager::ATTR_LOCATORS => [
-				'EchoUserLocator::locateEventAgent'
+			MediaWiki\Extension\Notifications\AttributeManager::ATTR_LOCATORS => [
+				'MediaWiki\Extension\Notifications\UserLocator::locateEventAgent'
 			],
 
 			'icon' => 'challenge-won',
@@ -149,7 +153,7 @@ class ChallengeHooks {
 	 *
 	 * This is needed to actually make the notifications show up for the desired user(s). :^)
 	 *
-	 * @param EchoEvent $event
+	 * @param MediaWiki\Extension\Notifications\Model\Event $event
 	 * @param User[] &$users
 	 */
 	public static function onEchoGetDefaultNotifiedUsers( $event, &$users ) {
@@ -161,7 +165,7 @@ class ChallengeHooks {
 			case 'challenge-won':
 				$extra = $event->getExtra();
 				$targetId = $extra['target'];
-				$users[] = User::newFromId( $targetId );
+				$users[] = MediaWikiServices::getInstance()->getUserFactory()->newFromId( $targetId );
 				break;
 		}
 	}
@@ -169,7 +173,7 @@ class ChallengeHooks {
 	/**
 	 * Set bundle for message
 	 *
-	 * @param EchoEvent $event
+	 * @param MediaWiki\Extension\Notifications\Model\Event $event
 	 * @param string &$bundleString
 	 */
 	public static function onEchoGetBundleRules( $event, &$bundleString ) {
@@ -200,7 +204,7 @@ class ChallengeHooks {
 	 * Adds the three new required database tables into the database when the
 	 * user runs /maintenance/update.php (the core database updater script).
 	 *
-	 * @param DatabaseUpdater $updater
+	 * @param MediaWiki\Installer\DatabaseUpdater $updater
 	 */
 	public static function onLoadExtensionSchemaUpdates( $updater ) {
 		$dir = __DIR__ . '/../sql';

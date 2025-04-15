@@ -3,7 +3,9 @@
  * @file
  */
 
+use MediaWiki\Extension\Notifications\Model\Event as EchoEvent;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\SpecialPage\SpecialPage;
 
 class Challenge {
 
@@ -55,7 +57,7 @@ class Challenge {
 	 * @see https://bugzilla.wikimedia.org/show_bug.cgi?id=68045
 	 * @see https://gerrit.wikimedia.org/r/#/c/146514/
 	 *
-	 * @param User $user User (object) whom to send an email
+	 * @param MediaWiki\User\User $user User (object) whom to send an email
 	 * @param string $subject Email subject
 	 * @param string $body Email contents (HTML)
 	 * @return Status object
@@ -91,8 +93,8 @@ class Challenge {
 	 * Add a challenge to the database and send a challenge request mail to the
 	 * challenged user.
 	 *
-	 * @param User $challenger The user (object) who challenged $user_to
-	 * @param User $challengee User object representing the person who was challenged
+	 * @param MediaWiki\User\User $challenger The user (object) who challenged $user_to
+	 * @param MediaWiki\User\User $challengee User object representing the person who was challenged
 	 * @param string $info User-supplied challenge title
 	 * @param string $event_date Event date in the MM/DD/YYYY format (incl. the slashes)
 	 * @param string $description User-supplied description of the challenge
@@ -100,9 +102,10 @@ class Challenge {
 	 * @param string $lose_terms User-supplied lose terms
 	 */
 	public function addChallenge( $challenger, $challengee, $info, $event_date, $description, $win_terms, $lose_terms ) {
-		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
+		$services = MediaWikiServices::getInstance();
+		$contLang = $services->getContentLanguage();
 
-		$dbw = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_PRIMARY );
+		$dbw = $services->getDBLoadBalancer()->getConnection( DB_PRIMARY );
 		$dbw->insert(
 			'challenge',
 			[
@@ -149,10 +152,13 @@ class Challenge {
 	 * @param int $id Challenge ID
 	 */
 	public function sendChallengeRequestEmail( $challengerActorId, $challengeeActorId, $id ) {
-		$user = User::newFromActorId( $challengeeActorId );
+		$services = MediaWikiServices::getInstance();
+		$userFactory = $services->getUserFactory();
+
+		$user = $userFactory->newFromActorId( $challengeeActorId );
 		$user->loadFromDatabase();
 
-		$userOptionsLookup = MediaWikiServices::getInstance()->getUserOptionsLookup();
+		$userOptionsLookup = $services->getUserOptionsLookup();
 		if ( ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) ) {
 			$wantsEmail = $userOptionsLookup->getBoolOption(
 				$user,
@@ -169,7 +175,7 @@ class Challenge {
 		if ( $user->isEmailConfirmed() && $wantsEmail ) {
 			$challenge_view_title = SpecialPage::getTitleFor( 'ChallengeView' );
 			$update_profile_link = SpecialPage::getTitleFor( 'UpdateProfile' );
-			$user_from = User::newFromActorId( $challengerActorId )->getName();
+			$user_from = $userFactory->newFromActorId( $challengerActorId )->getName();
 			$subject = wfMessage( 'challenge_request_subject', $user_from )->text();
 			$body = wfMessage(
 				'challenge_request_body',
@@ -184,10 +190,13 @@ class Challenge {
 	}
 
 	public function sendChallengeAcceptEmail( $challengerActorId, $challengeeActorId, $id ) {
-		$user = User::newFromActorId( $challengerActorId );
+		$services = MediaWikiServices::getInstance();
+		$userFactory = $services->getUserFactory();
+
+		$user = $userFactory->newFromActorId( $challengerActorId );
 		$user->loadFromDatabase();
 
-		$userOptionsLookup = MediaWikiServices::getInstance()->getUserOptionsLookup();
+		$userOptionsLookup = $services->getUserOptionsLookup();
 		if ( ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) ) {
 			$wantsEmail = $userOptionsLookup->getBoolOption(
 				$user,
@@ -204,7 +213,7 @@ class Challenge {
 		if ( $user->isEmailConfirmed() && $wantsEmail ) {
 			$challenge_view_title = SpecialPage::getTitleFor( 'ChallengeView' );
 			$update_profile_link = SpecialPage::getTitleFor( 'UpdateProfile' );
-			$user_from = User::newFromActorId( $challengeeActorId )->getName();
+			$user_from = $userFactory->newFromActorId( $challengeeActorId )->getName();
 			$subject = wfMessage( 'challenge_accept_subject', $user_from )->text();
 			$body = wfMessage(
 				'challenge_accept_body',
@@ -219,10 +228,13 @@ class Challenge {
 	}
 
 	public function sendChallengeLoseEmail( $loserActorId, $winnerActorId, $id ) {
-		$user = User::newFromActorId( $loserActorId );
+		$services = MediaWikiServices::getInstance();
+		$userFactory = $services->getUserFactory();
+
+		$user = $userFactory->newFromActorId( $loserActorId );
 		$user->loadFromDatabase();
 
-		$userOptionsLookup = MediaWikiServices::getInstance()->getUserOptionsLookup();
+		$userOptionsLookup = $services->getUserOptionsLookup();
 		if ( ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) ) {
 			$wantsEmail = $userOptionsLookup->getBoolOption(
 				$user,
@@ -239,7 +251,7 @@ class Challenge {
 		if ( $user->isEmailConfirmed() && $wantsEmail ) {
 			$challenge_view_title = SpecialPage::getTitleFor( 'ChallengeView' );
 			$update_profile_link = SpecialPage::getTitleFor( 'UpdateProfile' );
-			$user_from = User::newFromActorId( $winnerActorId )->getName();
+			$user_from = $userFactory->newFromActorId( $winnerActorId )->getName();
 			$subject = wfMessage(
 				'challenge_lose_subject',
 				$user_from,
@@ -258,10 +270,13 @@ class Challenge {
 	}
 
 	public function sendChallengeWinEmail( $winnerActorId, $loserActorId, $id ) {
-		$user = User::newFromActorId( $winnerActorId );
+		$services = MediaWikiServices::getInstance();
+		$userFactory = $services->getUserFactory();
+
+		$user = $userFactory->newFromActorId( $winnerActorId );
 		$user->loadFromDatabase();
 
-		$userOptionsLookup = MediaWikiServices::getInstance()->getUserOptionsLookup();
+		$userOptionsLookup = $services->getUserOptionsLookup();
 		if ( ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) ) {
 			$wantsEmail = $userOptionsLookup->getBoolOption(
 				$user,
@@ -278,7 +293,7 @@ class Challenge {
 		if ( $user->isEmailConfirmed() && $wantsEmail ) {
 			$challenge_view_title = SpecialPage::getTitleFor( 'ChallengeView' );
 			$update_profile_link = SpecialPage::getTitleFor( 'UpdateProfile' );
-			$user_from = User::newFromActorId( $loserActorId )->getName();
+			$user_from = $userFactory->newFromActorId( $loserActorId )->getName();
 			$subject = wfMessage( 'challenge_win_subject', $user_from, $id )->parse();
 			$body = wfMessage(
 				'challenge_win_body',
@@ -300,7 +315,9 @@ class Challenge {
 	 * @param bool $email Send emails to challenge participants (if they have confirmed their addresses)?
 	 */
 	public function updateChallengeStatus( $challenge_id, $status, $email = true ) {
-		$dbw = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_PRIMARY );
+		$services = MediaWikiServices::getInstance();
+		$userFactory = $services->getUserFactory();
+		$dbw = $services->getDBLoadBalancer()->getConnection( DB_PRIMARY );
 		$dbw->update(
 			'challenge',
 			[ 'challenge_status' => $status ],
@@ -312,11 +329,11 @@ class Challenge {
 		switch ( $status ) {
 			case self::STATUS_ACCEPTED: // challenge was accepted
 				// Update social stats for both users involved in challenge
-				$challenger = User::newFromActorId( $c['challenger_actor'] );
+				$challenger = $userFactory->newFromActorId( $c['challenger_actor'] );
 				$stats = new UserStatsTrack( $challenger->getId(), $challenger->getName() );
 				$stats->incStatField( 'challenges' );
 
-				$challengee = User::newFromActorId( $c['challengee_actor'] );
+				$challengee = $userFactory->newFromActorId( $c['challengee_actor'] );
 				$stats = new UserStatsTrack( $challengee->getId(), $challengee->getName() );
 				$stats->incStatField( 'challenges' );
 
@@ -342,7 +359,7 @@ class Challenge {
 
 				break;
 			case self::STATUS_COMPLETED: // challenge was completed, send email to loser
-				$winner = User::newFromActorId( $c['winner_actor'] );
+				$winner = $userFactory->newFromActorId( $c['winner_actor'] );
 				$stats = new UserStatsTrack( $winner->getId(), $winner->getName() );
 				$stats->incStatField( 'challenges_won' );
 
@@ -385,8 +402,8 @@ class Challenge {
 			case self::STATUS_REJECTED:
 				// Inform the challenger that their challenge was rejected
 				if ( ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) ) {
-					$challengee = User::newFromActorId( $c['challengee_actor'] );
-					$challenger = User::newFromActorId( $c['challenger_actor'] );
+					$challengee = $userFactory->newFromActorId( $c['challengee_actor'] );
+					$challenger = $userFactory->newFromActorId( $c['challenger_actor'] );
 
 					EchoEvent::create( [
 						'type' => 'challenge-rejected',
@@ -464,9 +481,10 @@ class Challenge {
 	 * @param int $type 0 for a tie, 1 if they won, -1 if they lost
 	 */
 	public function updateUserRecord( $id, $type ) {
-		$user = User::newFromActorId( $id );
+		$services = MediaWikiServices::getInstance();
+		$user = $services->getUserFactory()->newFromActorId( $id );
 
-		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
+		$lb = $services->getDBLoadBalancer();
 		$dbr = $lb->getConnection( DB_REPLICA );
 		$dbw = $lb->getConnection( DB_PRIMARY );
 		$wins = 0;
@@ -582,7 +600,7 @@ class Challenge {
 	 * Get the amount of total challenges for the given user, identified via
 	 * their actor ID.
 	 *
-	 * @todo FIXME: This is only called frm SpecialChallengeHistory.php, which
+	 * @todo FIXME: This is only called from SpecialChallengeHistory.php, which
 	 * calls it _non-statically_ and never passes anything as the param...
 	 *
 	 * @param int $actorId Actor ID
@@ -662,6 +680,7 @@ class Challenge {
 	 * @return array
 	 */
 	public function getChallengeList( $user_name, $status = null, $limit = 0, $page = 0 ) {
+		$services = MediaWikiServices::getInstance();
 		$status_sql = $user_sql = '';
 		$offset = 0;
 
@@ -675,11 +694,11 @@ class Challenge {
 			$status_sql = " AND challenge_status = {$status}";
 		}
 		if ( $user_name ) {
-			$actorId = User::newFromName( $user_name )->getActorId();
+			$actorId = $services->getUserFactory()->newFromName( $user_name )->getActorId();
 			$user_sql = " AND (challenge_challenger_actor = {$actorId} OR challenge_challengee_actor = {$actorId}) ";
 		}
 
-		$dbr = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_PRIMARY );
+		$dbr = $services->getDBLoadBalancer()->getConnection( DB_PRIMARY );
 		$sql = "SELECT {$dbr->tableName( 'challenge' )}.challenge_id AS id,
 			challenge_challenger_actor, challenge_challengee_actor, challenge_info,
 			challenge_description, challenge_event_date, challenge_status, challenge_winner_actor,

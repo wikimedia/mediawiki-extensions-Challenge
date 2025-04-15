@@ -1,15 +1,20 @@
 <?php
 
+use MediaWiki\SpecialPage\UnlistedSpecialPage;
+use MediaWiki\User\UserFactory;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 class ChallengeAction extends UnlistedSpecialPage {
 	private ILoadBalancer $loadBalancer;
+	private UserFactory $userFactory;
 
 	public function __construct(
-		ILoadBalancer $loadBalancer
+		ILoadBalancer $loadBalancer,
+		UserFactory $userFactory
 	) {
 		parent::__construct( 'ChallengeAction' );
 		$this->loadBalancer = $loadBalancer;
+		$this->userFactory = $userFactory;
 	}
 
 	/**
@@ -64,7 +69,7 @@ class ChallengeAction extends UnlistedSpecialPage {
 				break;
 			case 3:
 				// Update social stats for both users involved in challenge
-				$loser = User::newFromActorId( $request->getInt( 'loser_actorid' ) );
+				$loser = $this->userFactory->newFromActorId( $request->getInt( 'loser_actorid' ) );
 				$stats = new UserStatsTrack(
 					$loser->getId(),
 					$loser->getName()

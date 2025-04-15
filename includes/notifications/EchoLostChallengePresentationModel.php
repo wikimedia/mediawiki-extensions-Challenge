@@ -2,6 +2,10 @@
 /**
  * Formatter for notifications about lost challenges ('challenge-lost')
  */
+
+use MediaWiki\Extension\Notifications\Formatters\EchoEventPresentationModel;
+use MediaWiki\SpecialPage\SpecialPage;
+
 class EchoLostChallengePresentationModel extends EchoEventPresentationModel {
 
 	/**

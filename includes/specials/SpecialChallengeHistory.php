@@ -1,9 +1,18 @@
 <?php
 
-class ChallengeHistory extends SpecialPage {
+use MediaWiki\Html\Html;
+use MediaWiki\SpecialPage\SpecialPage;
+use MediaWiki\Title\Title;
+use MediaWiki\User\UserFactory;
 
-	public function __construct() {
+class ChallengeHistory extends SpecialPage {
+	private UserFactory $userFactory;
+
+	public function __construct(
+		UserFactory $userFactory
+	) {
 		parent::__construct( 'ChallengeHistory' );
+		$this->userFactory = $userFactory;
 	}
 
 	/**
@@ -61,18 +70,18 @@ class ChallengeHistory extends SpecialPage {
 		$spImgPath = $wgExtensionAssetsPath . '/SocialProfile/images/';
 
 		$u = $request->getVal( 'user', $par );
-		$user = User::newFromName( $u );
+		$user = $this->userFactory->newFromName( $u );
 
 		$output->addModuleStyles( 'ext.challenge.history' );
 
 		$out = $standings_link = '';
 		if ( $user && !$user->isAnon() ) {
 			$output->setPageTitle(
-				$this->msg( 'challengehistory-users-history', $user->getName() )
+				$this->msg( 'challengehistory-users-history', $user->getName() )->escaped()
 			);
 			$out .= $this->displayUserHeader( $user );
 		} else {
-			$output->setPageTitle( $this->msg( 'challengehistory-recentchallenges' ) );
+			$output->setPageTitle( $this->msg( 'challengehistory-recentchallenges' )->escaped() );
 			$standings_link = " - <img src=\"{$imgPath}userpageIcon.png\" alt=\"\" /> ";
 			$standings_link .= $linkRenderer->makeLink(
 				SpecialPage::getTitleFor( 'ChallengeStandings' ),
@@ -148,8 +157,8 @@ class ChallengeHistory extends SpecialPage {
 
 			foreach ( $challengeList as $challenge ) {
 				// Set up avatars and wiki titles for challenge and target
-				$challenger = User::newFromActorId( $challenge['challenger_actor'] );
-				$challengee = User::newFromActorId( $challenge['challengee_actor'] );
+				$challenger = $this->userFactory->newFromActorId( $challenge['challenger_actor'] );
+				$challengee = $this->userFactory->newFromActorId( $challenge['challengee_actor'] );
 				$avatar1 = new wAvatar( $challenger->getId(), 's' );
 				$avatar2 = new wAvatar( $challengee->getId(), 's' );
 
