@@ -1,11 +1,15 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\ILoadBalancer;
 
 class ChallengeAction extends UnlistedSpecialPage {
+	private ILoadBalancer $loadBalancer;
 
-	public function __construct() {
+	public function __construct(
+		ILoadBalancer $loadBalancer
+	) {
 		parent::__construct( 'ChallengeAction' );
+		$this->loadBalancer = $loadBalancer;
 	}
 
 	/**
@@ -72,7 +76,7 @@ class ChallengeAction extends UnlistedSpecialPage {
 					$stats->incStatField( 'challenges_rating_negative' );
 				}
 
-				$dbw = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_PRIMARY );
+				$dbw = $this->loadBalancer->getConnection( DB_PRIMARY );
 				$dbw->insert(
 					'challenge_rate',
 					[

@@ -1,11 +1,15 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\ILoadBalancer;
 
 class ChallengeStandings extends SpecialPage {
+	private ILoadBalancer $loadBalancer;
 
-	public function __construct() {
+	public function __construct(
+		ILoadBalancer $loadBalancer
+	) {
 		parent::__construct( 'ChallengeStandings' );
+		$this->loadBalancer = $loadBalancer;
 	}
 
 	/**
@@ -40,7 +44,7 @@ class ChallengeStandings extends SpecialPage {
 				<td class="challenge-standings-title"></td>
 			</tr>';
 
-		$dbr = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_REPLICA );
+		$dbr = $this->loadBalancer->getConnection( DB_REPLICA );
 		$sql = "SELECT challenge_record_actor, challenge_wins, challenge_losses, challenge_ties, (challenge_wins / (challenge_wins + challenge_losses + challenge_ties) ) AS winning_percentage FROM {$dbr->tableName( 'challenge_user_record' )} ORDER BY (challenge_wins / (challenge_wins + challenge_losses + challenge_ties) ) DESC, challenge_wins DESC";
 		$res = $dbr->query( $dbr->limitResult( $sql, 25 /* $limit */, 0 /* $offset */ ), __METHOD__ );
 		$x = 1;
