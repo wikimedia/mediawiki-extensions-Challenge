@@ -124,7 +124,7 @@ var ChallengeDateValidator = {
 		var startDate = new Date( dtBeg );
 		var endDate = new Date( dtEnd );
 
-		if ( Math.round( ( endDate - startDate ) / ( 60 * 60 * 60 * 24 ) ) >= 0 ) {
+		if ( Math.round( ( endDate - startDate ) / ( 1000 * 60 * 60 * 24 ) ) >= 0 ) {
 			return true;
 		} else {
 			alert( mw.msg( 'challenge-js-error-is-backwards' ) );
