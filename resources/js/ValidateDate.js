@@ -112,7 +112,7 @@ var ChallengeDateValidator = {
 		var today = new Date();
 		var tstDate = new Date( dtStr );
 
-		if ( Math.round( ( tstDate - today ) / ( 60 * 60 * 60 * 24 ) ) < 0 ) {
+		if ( Math.round( ( tstDate - today ) / ( 1000 * 60 * 60 * 24 ) ) < 0 ) {
 			return true;
 		} else {
 			alert( mw.msg( 'challenge-js-error-future-date' ) );
