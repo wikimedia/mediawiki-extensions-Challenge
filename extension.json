@@ -57,7 +57,9 @@
 		"ChallengeUser": {
 			"class": "ChallengeUser",
 			"services": [
-				"UserFactory"
+				"UserFactory",
+				"UserNameUtils",
+				"UserNamePrefixSearch"
 			]
 		},
 		"ChallengeView": {

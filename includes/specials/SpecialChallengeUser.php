@@ -5,18 +5,26 @@ use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWiki\User\UserFactory;
+use MediaWiki\User\UserNamePrefixSearch;
+use MediaWiki\User\UserNameUtils;
 
 class ChallengeUser extends SpecialPage {
 	private UserFactory $userFactory;
+	private UserNameUtils $userNameUtils;
+	private UserNamePrefixSearch $userNamePrefixSearch;
 
 	/** @var User The person getting challenged */
 	public $challengee;
 
 	public function __construct(
-		UserFactory $userFactory
+		UserFactory $userFactory,
+		UserNameUtils $userNameUtils,
+		UserNamePrefixSearch $userNamePrefixSearch
 	) {
 		parent::__construct( 'ChallengeUser' );
 		$this->userFactory = $userFactory;
+		$this->userNameUtils = $userNameUtils;
+		$this->userNamePrefixSearch = $userNamePrefixSearch;
 	}
 
 	public function doesWrites() {
@@ -307,5 +315,24 @@ class ChallengeUser extends SpecialPage {
 		$template->set( 'avatar', $avatar );
 
 		return $template->getHTML();
+	}
+
+	/**
+	 * Return an array of subpages beginning with $search that this special page will accept.
+	 *
+	 * @param string $search Prefix to search for
+	 * @param int $limit Maximum number of results to return (usually 10)
+	 * @param int $offset Number of results to skip (usually 0)
+	 * @return string[] Matching subpages
+	 */
+	public function prefixSearchSubpages( $search, $limit, $offset ) {
+		$search = $this->userNameUtils->getCanonical( $search );
+		if ( !$search ) {
+			// No prefix suggestion for invalid user
+			return [];
+		}
+		// Autocomplete subpage as user list - public to allow caching
+		return $this->userNamePrefixSearch
+			->search( UserNamePrefixSearch::AUDIENCE_PUBLIC, $search, $limit, $offset );
 	}
 }
