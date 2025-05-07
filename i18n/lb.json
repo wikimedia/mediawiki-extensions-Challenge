@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Robby"
+			"Robby",
+			"Volvox"
 		]
 	},
 	"challenge-desc": "Erlaabt et fir aner Benotzer erauszefuerderen",
@@ -43,7 +44,7 @@
 	"echo-category-title-challenge-accepted": "Akzeptéiert Erausfuerderungen",
 	"echo-pref-tooltip-challenge-accepted": "Mech informéieren wann eng Erausfuerderung vu mir akzeptéiert gouf.",
 	"echo-category-title-challenge-lost": "verlueren Erausfuerderungen",
-	"echo-pref-tooltip-challenge-lost": "Mech informéiere wann ech eng Erausfuerderung verléieren.",
+	"echo-pref-tooltip-challenge-lost": "Mech informéieren, wann ech eng Erausfuerderung verléieren.",
 	"echo-category-title-challenge-won": "Gewonnen Erausfuerderungen",
-	"echo-pref-tooltip-challenge-won": "Mech informéieren wann ech eng Erausfuerderung gewannen."
+	"echo-pref-tooltip-challenge-won": "Mech informéieren, wann ech eng Erausfuerderung gewannen."
 }
