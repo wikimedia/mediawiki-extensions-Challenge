@@ -174,17 +174,21 @@ class ChallengeDateValidator {
 		// to ensure the safe comparison of their equalities
 		$today = new DateTime( 'now' );
 		$tstDate = DateTime::createFromFormat( '!m/d/Y', $dtStr );
-		$tsForComparison = ( $tstDate->getTimestamp() - $today->getTimestamp() );
-		$another = ( 60 * 60 * 60 * 24 );
 
-		// (int) to cast -0 to 0 because fucking PHP :)
-		$rounded = (int)round( $tsForComparison / $another );
-		if ( $rounded <= 0 ) {
-			return true;
-		} else {
+		if ( $tstDate === false ) {
+			// Invalid date format or something...
+			// @todo FIXME: return a better error message!
 			$this->error = [ 'challenge-js-error-future-date' ];
-			return false;
+			return true;
 		}
+
+		// Compare the input date with the current date
+		if ( $tstDate > $today ) {
+			$this->error = [ 'challenge-js-error-future-date' ];
+			return true;
+		}
+
+		return false;
 	}
 
 	/**
@@ -198,7 +202,7 @@ class ChallengeDateValidator {
 		$startDate = DateTime::createFromFormat( '!m-d-Y', $dtBeg );
 		$endDate = DateTime::createFromFormat( '!m-d-Y', $dtEnd );
 
-		if ( round( ( $endDate->getTimestamp() - $startDate->getTimestamp() ) / ( 60 * 60 * 60 * 24 ) ) >= 0 ) {
+		if ( round( ( $endDate->getTimestamp() - $startDate->getTimestamp() ) / ( 1000 * 60 * 60 * 24 ) ) >= 0 ) {
 			return true;
 		} else {
 			$this->error = [ 'challenge-js-error-is-backwards' ];
