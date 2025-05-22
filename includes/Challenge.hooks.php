@@ -3,7 +3,6 @@
  * @file
  */
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\SpecialPage\SpecialPage;
 
 class ChallengeHooks {
@@ -17,6 +16,13 @@ class ChallengeHooks {
 	 * @param array[] &$icons Icon details
 	 */
 	public static function onBeforeCreateEchoEvent( &$notifications, &$notificationCategories, &$icons ) {
+		$locators = [
+			[
+				[ MediaWiki\Extension\Notifications\UserLocator::class, 'locateFromEventExtra' ],
+				[ 'target' ]
+			],
+		];
+
 		$notificationCategories['challenge-received'] = [
 			'priority' => 3,
 			'tooltip' => 'echo-pref-tooltip-challenge-received',
@@ -27,8 +33,7 @@ class ChallengeHooks {
 			'group' => 'interactive',
 			'section' => 'alert',
 			'presentation-model' => 'EchoReceivedChallengePresentationModel',
-			MediaWiki\Extension\Notifications\AttributeManager::ATTR_LOCATORS => [
-			],
+			MediaWiki\Extension\Notifications\AttributeManager::ATTR_LOCATORS => $locators,
 
 			'icon' => 'challenge-received',
 
@@ -51,8 +56,7 @@ class ChallengeHooks {
 			'category' => 'challenge-accepted',
 			'group' => 'positive',
 			'presentation-model' => 'EchoAcceptedChallengePresentationModel',
-			MediaWiki\Extension\Notifications\AttributeManager::ATTR_LOCATORS => [
-			],
+			MediaWiki\Extension\Notifications\AttributeManager::ATTR_LOCATORS => $locators,
 
 			'icon' => 'challenge-accepted',
 
@@ -77,8 +81,7 @@ class ChallengeHooks {
 			'category' => 'challenge-rejected',
 			'group' => 'negative',
 			'presentation-model' => 'EchoRejectedChallengePresentationModel',
-			MediaWiki\Extension\Notifications\AttributeManager::ATTR_LOCATORS => [
-			],
+			MediaWiki\Extension\Notifications\AttributeManager::ATTR_LOCATORS => $locators,
 
 			'icon' => 'challenge-rejected',
 
@@ -101,8 +104,7 @@ class ChallengeHooks {
 			'category' => 'challenge-lost',
 			'group' => 'negative',
 			'presentation-model' => 'EchoLostChallengePresentationModel',
-			MediaWiki\Extension\Notifications\AttributeManager::ATTR_LOCATORS => [
-			],
+			MediaWiki\Extension\Notifications\AttributeManager::ATTR_LOCATORS => $locators,
 
 			'icon' => 'challenge-lost',
 
@@ -125,8 +127,7 @@ class ChallengeHooks {
 			'category' => 'challenge-won',
 			'group' => 'positive',
 			'presentation-model' => 'EchoWonChallengePresentationModel',
-			MediaWiki\Extension\Notifications\AttributeManager::ATTR_LOCATORS => [
-			],
+			MediaWiki\Extension\Notifications\AttributeManager::ATTR_LOCATORS => $locators,
 
 			'icon' => 'challenge-won',
 
@@ -139,30 +140,6 @@ class ChallengeHooks {
 		$icons['challenge-won'] = [
 			'path' => '../resources/lib/ooui/themes/wikimediaui/images/icons/notice.svg'
 		];
-	}
-
-	/**
-	 * Add user to be notified on Echo event - in our case, notify the 'target' user
-	 * of a notification event, e.g. loser/winner of a challenge or the user who was
-	 * challenged, etc.
-	 *
-	 * This is needed to actually make the notifications show up for the desired user(s). :^)
-	 *
-	 * @param MediaWiki\Extension\Notifications\Model\Event $event
-	 * @param User[] &$users
-	 */
-	public static function onEchoGetDefaultNotifiedUsers( $event, &$users ) {
-		switch ( $event->getType() ) {
-			case 'challenge-received':
-			case 'challenge-accepted':
-			case 'challenge-rejected':
-			case 'challenge-lost':
-			case 'challenge-won':
-				$extra = $event->getExtra();
-				$targetId = $extra['target'];
-				$users[] = MediaWikiServices::getInstance()->getUserFactory()->newFromId( $targetId );
-				break;
-		}
 	}
 
 	/**

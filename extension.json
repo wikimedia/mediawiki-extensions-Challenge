@@ -148,7 +148,6 @@
 	"Hooks": {
 		"BeforeCreateEchoEvent": "ChallengeHooks::onBeforeCreateEchoEvent",
 		"EchoGetBundleRules": "ChallengeHooks::onEchoGetBundleRules",
-		"EchoGetDefaultNotifiedUsers": "ChallengeHooks::onEchoGetDefaultNotifiedUsers",
 		"LoadExtensionSchemaUpdates": "ChallengeHooks::onLoadExtensionSchemaUpdates",
 		"UserProfileGetProfileHeaderLinks": "ChallengeHooks::onUserProfileGetProfileHeaderLinks"
 	},
