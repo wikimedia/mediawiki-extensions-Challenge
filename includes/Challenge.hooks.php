@@ -28,7 +28,6 @@ class ChallengeHooks {
 			'section' => 'alert',
 			'presentation-model' => 'EchoReceivedChallengePresentationModel',
 			MediaWiki\Extension\Notifications\AttributeManager::ATTR_LOCATORS => [
-				'MediaWiki\Extension\Notifications\UserLocator::locateEventAgent'
 			],
 
 			'icon' => 'challenge-received',
@@ -53,7 +52,6 @@ class ChallengeHooks {
 			'group' => 'positive',
 			'presentation-model' => 'EchoAcceptedChallengePresentationModel',
 			MediaWiki\Extension\Notifications\AttributeManager::ATTR_LOCATORS => [
-				'MediaWiki\Extension\Notifications\UserLocator::locateEventAgent'
 			],
 
 			'icon' => 'challenge-accepted',
@@ -80,7 +78,6 @@ class ChallengeHooks {
 			'group' => 'negative',
 			'presentation-model' => 'EchoRejectedChallengePresentationModel',
 			MediaWiki\Extension\Notifications\AttributeManager::ATTR_LOCATORS => [
-				'MediaWiki\Extension\Notifications\UserLocator::locateEventAgent'
 			],
 
 			'icon' => 'challenge-rejected',
@@ -105,7 +102,6 @@ class ChallengeHooks {
 			'group' => 'negative',
 			'presentation-model' => 'EchoLostChallengePresentationModel',
 			MediaWiki\Extension\Notifications\AttributeManager::ATTR_LOCATORS => [
-				'MediaWiki\Extension\Notifications\UserLocator::locateEventAgent'
 			],
 
 			'icon' => 'challenge-lost',
@@ -130,7 +126,6 @@ class ChallengeHooks {
 			'group' => 'positive',
 			'presentation-model' => 'EchoWonChallengePresentationModel',
 			MediaWiki\Extension\Notifications\AttributeManager::ATTR_LOCATORS => [
-				'MediaWiki\Extension\Notifications\UserLocator::locateEventAgent'
 			],
 
 			'icon' => 'challenge-won',
