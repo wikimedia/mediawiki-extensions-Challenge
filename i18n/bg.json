@@ -1,8 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Kareyac"
+			"Kareyac",
+			"StanProg"
 		]
 	},
-	"challengeview-accept": "Приемане"
+	"challengehistory-event": "събитие",
+	"challengeview-accept": "Приемане",
+	"challengeview-event": "Събитие:"
 }
