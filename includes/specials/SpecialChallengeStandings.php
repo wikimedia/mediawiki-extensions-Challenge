@@ -34,7 +34,7 @@ class ChallengeStandings extends SpecialPage {
 	public function execute( $par ) {
 		$this->setHeaders();
 
-		$this->getOutput()->setPageTitle( $this->msg( 'challengestandings-title' ) );
+		$this->getOutput()->setPageTitle( $this->msg( 'challengestandings-title' )->parse() );
 
 		$this->getOutput()->addModuleStyles( 'ext.challenge.standings' );
 

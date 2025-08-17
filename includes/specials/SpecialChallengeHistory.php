@@ -70,7 +70,13 @@ class ChallengeHistory extends SpecialPage {
 		$spImgPath = $wgExtensionAssetsPath . '/SocialProfile/images/';
 
 		$u = $request->getVal( 'user', $par );
-		$user = $this->userFactory->newFromName( $u );
+		$user = null;
+		$sanitizedUser = '';
+		if ( $u ) {
+			$user = $this->userFactory->newFromName( $u );
+			// @todo CHECKME: is this secure enough?
+			$sanitizedUser = htmlspecialchars( $u, ENT_QUOTES );
+		}
 
 		$output->addModuleStyles( 'ext.challenge.history' );
 
@@ -94,8 +100,6 @@ class ChallengeHistory extends SpecialPage {
 		$out .= '
 		<div class="challenge-nav">
 			<div class="challenge-history-filter">' . $this->msg( 'challengehistory-filter' )->escaped();
-		// @todo CHECKME: is this secure enough?
-		$sanitizedUser = htmlspecialchars( $u, ENT_QUOTES );
 		$submitBtn = $this->msg( 'challengehistory-submit-btn' )->escaped();
 		$out .= '<form method="get" action="' . htmlspecialchars( $challenge_history_title->getFullURL(), ENT_QUOTES ) . '">';
 		$out .= Html::hidden( 'user', $u );
@@ -176,7 +180,7 @@ class ChallengeHistory extends SpecialPage {
 				// installations of Challenge...
 				try {
 					$fmtDate = $lang->userDate( $challenge['date'], $viewingUserObject );
-				} catch ( MWException $ex ) {
+				} catch ( InvalidArgumentException $ex ) {
 					$fmtDate = $challenge['date'];
 				}
 
