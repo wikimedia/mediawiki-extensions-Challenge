@@ -94,6 +94,8 @@ class ChallengeUser extends SpecialPage {
 		// @phan-suppress-next-line PhanPossiblyNullTypeMismatchProperty
 		$this->challengee = $this->userFactory->newFromName( $userTitle->getText() );
 
+		$session = $request->getSession();
+
 		if ( $user->getId() == $this->challengee->getId() ) {
 			$output->setPageTitle( $this->msg( 'challengeuser-error-page-title' )->escaped() );
 			$output->addHTML( $this->msg( 'challengeuser-self' )->escaped() );
@@ -104,9 +106,9 @@ class ChallengeUser extends SpecialPage {
 			if (
 				$request->wasPosted() &&
 				$user->matchEditToken( $request->getVal( 'wpEditToken' ) ) &&
-				$_SESSION['alreadysubmitted'] === false
+				$session->get( 'alreadysubmitted' ) === false
 			) {
-				$_SESSION['alreadysubmitted'] = true;
+				$session->set( 'alreadysubmitted', true );
 
 				// Server-side validation for all the params, because JS just isn't enough
 				// (not to mention that no-JS is also a thing...)
@@ -209,7 +211,7 @@ class ChallengeUser extends SpecialPage {
 
 				$output->addHTML( $out );
 			} else {
-				$_SESSION['alreadysubmitted'] = false;
+				$session->set( 'alreadysubmitted', false );
 				$output->addHTML( $this->displayForm() );
 			}
 		}
