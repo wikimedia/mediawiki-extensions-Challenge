@@ -180,7 +180,7 @@ class ChallengeHistory extends SpecialPage {
 				// installations of Challenge...
 				try {
 					$fmtDate = $lang->userDate( $challenge['date'], $viewingUserObject );
-				} catch ( InvalidArgumentException $ex ) {
+				} catch ( InvalidArgumentException ) {
 					$fmtDate = $challenge['date'];
 				}
 

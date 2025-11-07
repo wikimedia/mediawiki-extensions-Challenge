@@ -24,7 +24,7 @@ class ChallengeViewTemplate extends QuickTemplate {
 		// Copy-pasted from SpecialChallengeHistory.php
 		try {
 			$fmtDate = $this->data['class']->getLanguage()->userDate( $challenge['date'], $user );
-		} catch ( MWException $ex ) {
+		} catch ( MWException ) {
 			$fmtDate = $challenge['date'];
 		}
 
