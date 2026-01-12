@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Sabelöga"
+			"Sabelöga",
+			"Stefan2255"
 		]
 	},
 	"challenge-desc": "Möjliggör utmaning av andra användare",
@@ -84,6 +85,7 @@
 	"challengestandings-w": "S",
 	"challengeuser": "Utmana en användare",
 	"challengeuser-challenge-sent-title": "Du har skickat en utmaning till $1",
+	"challengeuser-characters-left": "du har $1 tecken kvar",
 	"challengeuser-completehistory": "Visa fullständig utmaningshistorik",
 	"challengeuser-date": "händelsedatum (mm/dd/åååå)",
 	"challengeuser-description": "beskrivning (ex: Jag tar över örnarna med stil (+3))",
@@ -160,6 +162,26 @@
 	"challengeview-won-by": "Utmaning vanns av '''$1'''",
 	"challengeview-was-push": "Utmaningen blev oavgjord!",
 	"challengeview-you-won": "Du vann utmaningen!",
+	"echo-category-title-challenge-received": "Mottagna utmaningar",
+	"echo-pref-tooltip-challenge-received": "Meddela mig när jag får en utmaning.",
+	"notification-challenge-received": "Du har blivit [[Special:ChallengeView/$2|utmanad]] av [[Användare: $1|$1]]!",
+	"notification-challenge-received-bundle": "Du har blivit utmanad {{PLURAL:$1|en gång|$1 gånger}}!",
+	"echo-category-title-challenge-accepted": "Mottagna utmaningar",
+	"echo-pref-tooltip-challenge-accepted": "Meddela mig när en utmaning som jag utfärdat har accepterats.",
+	"notification-challenge-accepted": "[[User:$1|$1]] har accepterat [[Special:ChallengeView/$2|din utmaning]]!",
+	"notification-challenge-accepted-bundle": "{{PLURAL:$1|En utmaning|$1 utmaningar}} som du utfärdade {{PLURAL:$1| har}} accepterats!",
+	"echo-category-title-challenge-rejected": "Avvisade utmaningar",
+	"echo-pref-tooltip-challenge-rejected": "Meddela mig när en utmaning som jag utfärdat har accepterats.",
+	"notification-challenge-rejected": "[[User:$1|$1]] har avvisat [[Special:ChallengeView/$2|din utmaning]]!",
+	"notification-challenge-rejected-bundle": "{{PLURAL:$1|En utmaning|$1 utmaningar}} som du utfärdade {{PLURAL:$1| har}} blivit {{PLURAL:$1|avvisad|avvisade}}!",
+	"echo-category-title-challenge-lost": "Förlorade utmaningar",
+	"echo-pref-tooltip-challenge-lost": "Meddela mig när jag förlorar en utmaning.",
+	"notification-challenge-lost": "Du har förlorat utmaningen #[[Special:ChallengeView/$1|$1]]!",
+	"notification-challenge-lost-bundle": "Du har förlorat {{PLURAL:$1|en utmaning|$1 utmaningar}}!",
+	"echo-category-title-challenge-won": "Vunna utmaningar",
+	"echo-pref-tooltip-challenge-won": "Meddela mig när jag vinner en utmaning.",
+	"notification-challenge-won": "Du har vunnit utmaningen #[[Special:ChallengeView/$1|$1]]!",
+	"notification-challenge-won-bundle": "Du har vunnit {{PLURAL:$1|en utmaning|$1 utmaningar}}!",
 	"action-challengeadmin": "administrativa utmaningar",
 	"right-challengeadmin": "Administrativa utmaningar"
 }
