@@ -164,7 +164,7 @@
 	"challengeview-you-won": "Du vann utmaningen!",
 	"echo-category-title-challenge-received": "Mottagna utmaningar",
 	"echo-pref-tooltip-challenge-received": "Meddela mig när jag får en utmaning.",
-	"notification-challenge-received": "Du har blivit [[Special:ChallengeView/$2|utmanad]] av [[Användare: $1|$1]]!",
+	"notification-challenge-received": "Du har blivit [[Special:ChallengeView/$2|utmanad]] av [[User:$1|$1]]!",
 	"notification-challenge-received-bundle": "Du har blivit utmanad {{PLURAL:$1|en gång|$1 gånger}}!",
 	"echo-category-title-challenge-accepted": "Mottagna utmaningar",
 	"echo-pref-tooltip-challenge-accepted": "Meddela mig när en utmaning som jag utfärdat har accepterats.",
