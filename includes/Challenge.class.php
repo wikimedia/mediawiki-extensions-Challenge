@@ -673,7 +673,7 @@ class Challenge {
 	 * Get the list of challenges that match the given conditions for a given
 	 * user (via their user name).
 	 *
-	 * @param string $user_name User name
+	 * @param string|false $user_name User name
 	 * @param int|null $status Challenge status code (or null for all challenges)
 	 * @param int $limit SQL query LIMIT, i.e. get this many results
 	 * @param int $page SQL query OFFSET, i.e. skip this many results
