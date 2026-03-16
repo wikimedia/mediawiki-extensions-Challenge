@@ -17,7 +17,7 @@
 	"challenge-js-error-invalid-month": "Gitt wgl. e valabele Mount un",
 	"challenge-js-error-invalid-day": "Gitt wgl. e valabelen Dag un",
 	"challenge-js-error-invalid-date": "Gitt wgl. e valabelen Datum un",
-	"challenge-js-error-future-date": "Den Datum deen Dir aginn hutt ass an der Zukunft.",
+	"challenge-js-error-future-date": "Den Datum, deen Dir aginn hutt, läit an der Zukunft.",
 	"challengeaction": "Klassement vun der Erausfuerderung",
 	"challengehistory-all": "All",
 	"challengehistory-accepted": "akzeptéiert",
