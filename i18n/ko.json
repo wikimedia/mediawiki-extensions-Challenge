@@ -3,11 +3,15 @@
 		"authors": [
 			"Ellif",
 			"Ykhwong",
-			"Yunbj"
+			"Yunbj",
+			"Tensama0415"
 		]
 	},
+	"challenge-status-rejected": "거절됨",
 	"challenge-status-removed": "제거됨",
+	"challenge-status-awaiting": "수락 대기 중",
 	"challenge-status-in-progress": "진행 중",
+	"challenge-status-completed": "완료",
 	"challenge-js-description-required": "설명은 필수입니다",
 	"challenge-js-accepted": "수락됨",
 	"challenge-js-rejected": "거부됨",
