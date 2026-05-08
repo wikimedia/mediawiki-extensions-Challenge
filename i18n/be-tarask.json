@@ -4,6 +4,10 @@
 			"Ucukor"
 		]
 	},
+	"challengehistory-negative": "Нэґатыўны",
+	"challengehistory-negative2": "$1 нэґатыўны",
 	"challengehistory-positive": "Пазытыўны",
-	"challengeview-positive": "пазытыўны"
+	"challengeview-negative": "нэґатыўны",
+	"challengeview-positive": "пазытыўны",
+	"challengeview-rating-negative": "нэґатыўны"
 }
