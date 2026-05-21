@@ -184,6 +184,6 @@
 	"echo-pref-tooltip-challenge-won": "내가 도전에서 승리하면 알립니다.",
 	"notification-challenge-won": "#[[Special:ChallengeView/$1|$1]] 도전에서 승리하셨습니다!",
 	"notification-challenge-won-bundle": "{{PLURAL:$1|도전|$1개 도전}}에서 승리하셨습니다!",
-	"action-challengeadmin": "도전을 관리할",
+	"action-challengeadmin": "도전을 관리",
 	"right-challengeadmin": "도전을 관리"
 }
