@@ -139,7 +139,7 @@
 	"challengeview-event": "Evenement:",
 	"challengeview-ifwins": "als $1 wint, moet $2 . . .",
 	"challengeview-inprogress": "Wordt uitgevoerd -- in afwachting van voltooiing van evenement en goedkeuring door moderator",
-	"challengeview-invalidid": "Ongeldige identificatiecode van uitdaging",
+	"challengeview-invalidid": "Incorrecte uitdagings-ID",
 	"challengeview-issue-challenge": "uitdaging versturen",
 	"challengeview-negative": "negatief",
 	"challengeview-neutral": "neutraal",
