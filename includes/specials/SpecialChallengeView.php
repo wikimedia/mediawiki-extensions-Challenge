@@ -105,8 +105,8 @@ class ChallengeView extends UnlistedSpecialPage {
 				) {
 					$out .= $this->msg( 'challengeview-inprogress' )->escaped();
 				} else {
-					$challengerName = $this->userFactory->newFromActorId( $challenge['challenger_actor'] )->getName();
-					$challengeeName = $this->userFactory->newFromActorId( $challenge['challengee_actor'] )->getName();
+					$challengerName = htmlspecialchars( $this->userFactory->newFromActorId( $challenge['challenger_actor'] )->getName(), ENT_QUOTES );
+					$challengeeName = htmlspecialchars( $this->userFactory->newFromActorId( $challenge['challengee_actor'] )->getName(), ENT_QUOTES );
 					$out .= $this->msg( 'challengeview-admintext' )->parse();
 					$out .= '<br /><br />
 					<form action="' . htmlspecialchars( $challengeAction->getFullURL( [ 'action' => 2 ] ), ENT_QUOTES ) . "\" method=\"post\">
