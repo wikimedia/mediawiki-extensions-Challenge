@@ -42,25 +42,24 @@ class ChallengeAction extends UnlistedSpecialPage {
 
 		// status code -2 means "challenge removed by admin" which uses a different anti-CSRF token
 		$tokenCheckOK =
-			( $request->getInt( 'status' ) === -2 ) ? $user->matchEditToken( $request->getVal( 'wpAdminToken' ) ) :
+			( $request->getInt( 'status' ) === Challenge::STATUS_REMOVED ) ? $user->matchEditToken( $request->getVal( 'wpAdminToken' ) ) :
 				$user->matchEditToken( $request->getVal( 'wpEditToken' ) );
 
-		if ( $request->getInt( 'status' ) !== -2 && !$tokenCheckOK ) {
+		if ( $request->getInt( 'status' ) !== Challenge::STATUS_REMOVED && !$tokenCheckOK ) {
 			$out->addWikiMsg( 'sessionfailure' );
 			return;
 		}
 
+		// @todo FIXME: this is a bit subpar...'id' is used by JS but 'challenge_id' by no-JS
+		// But as subpar as that is, it seems like the only good way to distinguish
+		// between JS and no-JS in PHP code.
+		// @phan-suppress-next-line PhanCoalescingNeverNull
+		$challengeIdentifier = $request->getInt( 'id' ) ?? $request->getInt( 'challenge_id' );
+
 		switch ( $action ) {
 			case 1:
 				if ( $tokenCheckOK ) {
-					$c->updateChallengeStatus(
-						// @todo FIXME: this is a bit subpar...'id' is used by JS but 'challenge_id' by no-JS
-						// But as subpar as that is, it seems like the only good way to distinguish
-						// between JS and no-JS in PHP code.
-						// @phan-suppress-next-line PhanCoalescingNeverNull
-						$request->getInt( 'id' ) ?? $request->getInt( 'challenge_id' ),
-						$request->getInt( 'status' )
-					);
+					$c->updateChallengeStatus( $challengeIdentifier, $request->getInt( 'status' ) );
 				}
 				break;
 			case 2:
@@ -93,7 +92,7 @@ class ChallengeAction extends UnlistedSpecialPage {
 				$dbw->insert(
 					'challenge_rate',
 					[
-						'challenge_id' => $request->getVal( 'id' ) ?? $request->getInt( 'challenge_id' ),
+						'challenge_id' => $challengeIdentifier,
 						'challenge_rate_submitter_actor' => $user->getActorId(),
 						'challenge_rate_actor' => $request->getInt( 'loser_actorid' ),
 						'challenge_rate_date' => $dbw->timestamp(),

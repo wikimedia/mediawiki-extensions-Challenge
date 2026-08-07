@@ -76,7 +76,7 @@ class ChallengeView extends UnlistedSpecialPage {
 
 		$out = '';
 		switch ( $challenge['status'] ) {
-			case 0:
+			case Challenge::STATUS_AWAITING:
 				if ( $u->getActorId() != $challenge['challengee_actor'] ) {
 					$out .= $this->msg( 'challengeview-acceptance' )->escaped();
 				} else {
@@ -96,8 +96,8 @@ class ChallengeView extends UnlistedSpecialPage {
 					$out .= '</form>';
 				}
 				break;
-			case 1:
-			case 2: // treat "counter terms" as "in progress" b/c that's basically what it is
+			case Challenge::STATUS_ACCEPTED:
+			case Challenge::STATUS_COUNTERED: // treat "counter terms" as "in progress" b/c that's basically what it is
 				if (
 					!$u->isAllowed( 'challengeadmin' ) ||
 					$challenge['challenger_actor'] == $u->getActorId() ||
@@ -125,13 +125,13 @@ class ChallengeView extends UnlistedSpecialPage {
 					$out .= Html::hidden( 'wpAdminToken', $u->getEditToken() );
 				}
 				break;
-			case -1:
+			case Challenge::STATUS_REJECTED:
 				$out .= $this->msg( 'challengeview-rejected' )->escaped();
 				break;
-			case -2:
+			case Challenge::STATUS_REMOVED:
 				$out .= $this->msg( 'challengeview-removed' )->escaped();
 				break;
-			case 3:
+			case Challenge::STATUS_COMPLETED:
 				if ( $challenge['winner_actor'] != -1 ) {
 					$winnerName = $this->userFactory->newFromActorId( $challenge['winner_actor'] )->getName();
 					$out .= $this->msg( 'challengeview-won-by', $winnerName )->parse();
