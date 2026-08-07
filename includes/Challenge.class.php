@@ -184,7 +184,6 @@ class Challenge {
 				$challenge_view_title->getFullURL( [ 'id' => $id ] ),
 				$update_profile_link->getFullURL()
 			)->text();
-			// @phan-suppress-next-line SecurityCheck-XSS UserMailer::send defaults to text/plain if passed a string
 			$this->sendMail( $user, $subject, $body );
 		}
 	}
@@ -222,7 +221,6 @@ class Challenge {
 				$challenge_view_title->getFullURL( [ 'id' => $id ] ),
 				$update_profile_link->getFullURL()
 			)->text();
-			// @phan-suppress-next-line SecurityCheck-XSS UserMailer::send defaults to text/plain if passed a string
 			$this->sendMail( $user, $subject, $body );
 		}
 	}
@@ -264,7 +262,6 @@ class Challenge {
 				$challenge_view_title->getFullURL( [ 'id' => $id ] ),
 				$update_profile_link->getFullURL()
 			)->text();
-			// @phan-suppress-next-line SecurityCheck-XSS UserMailer::send defaults to text/plain if passed a string
 			$this->sendMail( $user, $subject, $body );
 		}
 	}
@@ -302,7 +299,6 @@ class Challenge {
 				$challenge_view_title->getFullURL( [ 'id' => $id ] ),
 				$update_profile_link->getFullURL()
 			)->text();
-			// @phan-suppress-next-line SecurityCheck-XSS UserMailer::send defaults to text/plain if passed a string
 			$this->sendMail( $user, $subject, $body );
 		}
 	}
