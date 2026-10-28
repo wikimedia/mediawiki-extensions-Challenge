@@ -10,6 +10,7 @@
 	"challenge-status-rejected": "refuséiert",
 	"challenge-status-removed": "ewech geholl",
 	"challenge-status-awaiting": "op d'Akzeptatioun waarden",
+	"challenge-status-in-progress": "amgaang",
 	"challenge-status-completed": "ofgeschloss",
 	"challenge-js-description-required": "Beschreiwung ass obligatoresch",
 	"challenge-js-accepted": "Akzeptéiert",
