@@ -11,10 +11,7 @@ CREATE TABLE /*_*/challenge (
   challenge_lose_terms varchar(200) NOT NULL default '',
   challenge_winner_actor bigint unsigned NOT NULL,
   challenge_status int(11) NOT NULL default 0,
-  -- The following two fields appear to be currently unused but were used in
-  -- the past by Special:ChallengeAction...the question is: should we drop these
-  -- or bring them back?
-  challenge_accept_date datetime default NULL,
-  challenge_complete_date datetime default NULL,
+  challenge_accept_date varbinary(14) NOT NULL default '',
+  challenge_complete_date varbinary(14) NOT NULL default '',
   challenge_date varbinary(14) NOT NULL default ''
 )/*$wgDBTableOptions*/;

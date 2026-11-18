@@ -314,12 +314,22 @@ class Challenge {
 		$services = MediaWikiServices::getInstance();
 		$userFactory = $services->getUserFactory();
 		$dbw = $services->getDBLoadBalancer()->getConnection( DB_PRIMARY );
+
+		$setConds = [ 'challenge_status' => $status ];
+		if ( $status === self::STATUS_ACCEPTED ) {
+			$setConds['challenge_accept_date'] = $dbw->timestamp();
+		}
+		if ( $status === self::STATUS_COMPLETED ) {
+			$setConds['challenge_complete_date'] = $dbw->timestamp();
+		}
+
 		$dbw->update(
 			'challenge',
-			[ 'challenge_status' => $status ],
+			$setConds,
 			[ 'challenge_id' => $challenge_id ],
 			__METHOD__
 		);
+
 		$c = $this->getChallenge( $challenge_id );
 
 		switch ( $status ) {
