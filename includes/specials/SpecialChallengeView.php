@@ -3,7 +3,6 @@
 use MediaWiki\Html\Html;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\SpecialPage\UnlistedSpecialPage;
-use MediaWiki\Title\Title;
 use MediaWiki\User\UserFactory;
 
 class ChallengeView extends UnlistedSpecialPage {
@@ -58,19 +57,46 @@ class ChallengeView extends UnlistedSpecialPage {
 		$challengee = $this->userFactory->newFromActorId( $challenge['challengee_actor'] );
 		$avatar1 = new wAvatar( $challenger->getId(), 'l' );
 		$avatar2 = new wAvatar( $challengee->getId(), 'l' );
-		$title1 = Title::makeTitle( NS_USER, $challenger->getName() );
-		$title2 = Title::makeTitle( NS_USER, $challengee->getName() );
+		$linkRenderer = $this->getLinkRenderer();
+		$challengerUserLink = $linkRenderer->makeLink(
+			$challenger->getUserPage(),
+			$challenger->getName(),
+			[ 'class' => 'challenge-user-link' ]
+		);
+		$challengerHistoryLink = $linkRenderer->makeLink(
+			SpecialPage::getTitleFor( 'ChallengeHistory' ),
+			$this->msg( 'challengeview-view-history' )->text(),
+			[ 'class' => 'challenge-small-link' ],
+			[ 'user' => $challenger->getUserPage()->getDBkey() ]
+		);
+		$challengeeUserLink = $linkRenderer->makeLink(
+			$challengee->getUserPage(),
+			$challengee->getName(),
+			[ 'class' => 'challenge-user-link' ]
+		);
+		$challengeeHistoryLink = $linkRenderer->makeLink(
+			SpecialPage::getTitleFor( 'ChallengeHistory' ),
+			$this->msg( 'challengeview-view-history' )->text(),
+			[ 'class' => 'challenge-small-link' ],
+			[ 'user' => $challenger->getUserPage()->getDBkey() ]
+		);
 
 		$template = new ChallengeViewTemplate();
 
 		$template->set( 'c', $c );
 		$template->set( 'class', $this );
 		$template->set( 'challenge', $challenge );
+		$template->set( 'challenger', $challenger );
+		$template->set( 'challengee', $challengee );
 		$template->set( 'avatar1', $avatar1 );
 		$template->set( 'avatar2', $avatar2 );
-		$template->set( 'title1', $title1 );
-		$template->set( 'title2', $title2 );
+		$template->set( 'challengerUserLink', $challengerUserLink );
+		$template->set( 'challengerHistoryLink', $challengerHistoryLink );
+		$template->set( 'challengeeUserLink', $challengeeUserLink );
+		$template->set( 'challengeeHistoryLink', $challengeeHistoryLink );
 		$template->set( 'user', $u );
+		$template->set( 'userIsChallenger', ( $u->getName() === $challenger->getName() ) );
+		$template->set( 'userIsChallengee', ( $u->getName() === $challengee->getName() ) );
 
 		$challengeAction = SpecialPage::getTitleFor( 'ChallengeAction' );
 

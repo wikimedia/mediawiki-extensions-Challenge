@@ -13,7 +13,6 @@ use MediaWiki\SpecialPage\SpecialPage;
  */
 class ChallengeViewTemplate extends QuickTemplate {
 	public function execute() {
-		$challenge_history_title = SpecialPage::getTitleFor( 'ChallengeHistory' );
 		$challenge_user_title = SpecialPage::getTitleFor( 'ChallengeUser' );
 
 		$challenge = $this->data['challenge'];
@@ -28,6 +27,9 @@ class ChallengeViewTemplate extends QuickTemplate {
 			$fmtDate = $challenge['date'];
 		}
 
+		$challengerName = $this->data['challenger']->getName();
+		$challengeeName = $this->data['challengee']->getName();
+
 		$userFactory = MediaWikiServices::getInstance()->getUserFactory();
 		// phpcs:disable Generic.WhiteSpace.ScopeIndent
 ?>
@@ -35,23 +37,14 @@ class ChallengeViewTemplate extends QuickTemplate {
 		<tr>
 			<td><?php echo $this->data['avatar1']->getAvatarURL(); ?></td>
 			<td>
-				<span class="challenge-user-title"><?php echo $linkRenderer->makeLink(
-					$this->data['title1'],
-					$this->data['title1']->getText(),
-					[ 'class' => 'challenge-user-link' ]
-				) ?></span> (<?php echo $this->data['c']->getUserChallengeRecord( $challenge['challenger_actor'] ) ?>)
-				<br /><?php echo $linkRenderer->makeLink(
-					$challenge_history_title,
-					wfMessage( 'challengeview-view-history' )->escaped(),
-					[ 'class' => 'challenge-small-link' ],
-					[ 'user' => $this->data['title1']->getDBkey() ]
-				); ?>
-				<?php if ( $user->getName() !== $this->data['title1']->getText() ) { ?>
+				<span class="challenge-user-title"><?php echo $this->data['challengerUserLink'] ?></span> (<?php echo $this->data['c']->getUserChallengeRecord( $challenge['challenger_actor'] ) ?>)
+				<br /><?php echo $this->data['challengerHistoryLink']; ?>
+				<?php if ( !$this->data['userIsChallenger'] ) { ?>
 				<br /><?php echo $linkRenderer->makeLink(
 					$challenge_user_title,
 					wfMessage( 'challengeview-issue-challenge' )->escaped(),
 					[ 'class' => 'challenge-small-link' ],
-					[ 'user' => $this->data['title1']->getDBkey() ]
+					[ 'user' => $this->data['challenger']->getUserPage()->getDBkey() ]
 				); ?>
 				<?php } ?>
 			</td>
@@ -60,23 +53,14 @@ class ChallengeViewTemplate extends QuickTemplate {
 			</td>
 			<td><?php echo $this->data['avatar2']->getAvatarURL(); ?></td>
 			<td>
-				<span class="challenge-user-link"><?php echo $linkRenderer->makeLink(
-					$this->data['title2'],
-					$this->data['title2']->getText(),
-					[ 'class' => 'challenge-user-link' ]
-				) ?></span> (<?php echo $this->data['c']->getUserChallengeRecord( $challenge['challengee_actor'] ) ?>)
-				<br /><?php echo $linkRenderer->makeLink(
-					$challenge_history_title,
-					wfMessage( 'challengeview-view-history' )->escaped(),
-					[ 'class' => 'challenge-small-link' ],
-					[ 'user' => $this->data['title2']->getDBkey() ]
-				); ?>
-				<?php if ( $user->getName() !== $this->data['title2']->getText() ) { ?>
+				<span class="challenge-user-link"><?php echo $this->data['challengeeUserLink'] ?></span> (<?php echo $this->data['c']->getUserChallengeRecord( $challenge['challengee_actor'] ) ?>)
+				<br /><?php echo $this->data['challengeeHistoryLink']; ?>
+				<?php if ( !$this->data['userIsChallengee'] ) { ?>
 				<br /><?php echo $linkRenderer->makeLink(
 					$challenge_user_title,
 					wfMessage( 'challengeview-issue-challenge' )->escaped(),
 					[ 'class' => 'challenge-small-link' ],
-					[ 'user' => $this->data['title2']->getDBkey() ]
+					[ 'user' => $this->data['challengee']->getUserPage()->getDBkey() ]
 				); ?>
 				<?php } ?>
 			</td>
@@ -87,7 +71,9 @@ class ChallengeViewTemplate extends QuickTemplate {
 		<tr>
 			<td>
 				<b><?php echo wfMessage( 'challengeview-event' )->escaped() ?></b> <span class="challenge-event"><?php echo htmlspecialchars( $challenge['info'], ENT_QUOTES ) . ' [' . $fmtDate . ']' ?></span>
-				<br /><b><?php echo wfMessage( 'challengeview-description', $userFactory->newFromActorId( $challenge['challenger_actor'] )->getName() )->parse() ?></b><span class="challenge-description"><?php echo htmlspecialchars( $challenge['description'], ENT_QUOTES ) ?></span>
+				<br /><b><?php
+					echo wfMessage( 'challengeview-description', $challengerName )->parse()
+				?></b><span class="challenge-description"><?php echo htmlspecialchars( $challenge['description'], ENT_QUOTES ) ?></span>
 			</td>
 		</tr>
 	</table>
@@ -97,19 +83,20 @@ class ChallengeViewTemplate extends QuickTemplate {
 	<table class="challenge-terms-container">
 		<tr>
 			<td valign="top">
-				<span class="challenge-title"><?php echo wfMessage(
-					'challengeview-ifwins',
-					$userFactory->newFromActorId( $challenge['challenger_actor'] )->getName(),
-					$userFactory->newFromActorId( $challenge['challengee_actor'] )->getName()
-				)->parse() ?></span>
+				<span class="challenge-title"><?php
+					echo wfMessage(
+						'challengeview-ifwins',
+						$challengerName,
+						$challengeeName
+					)->parse() ?></span>
 				<table class="challenge-terms"><tr><td><?php echo htmlspecialchars( $challenge['win_terms'], ENT_QUOTES ) ?></td></tr></table><br />
 			</td>
 			<td width="20">&nbsp;</td>
 			<td valign="top">
 				<span class="challenge-title"><?php echo wfMessage(
 					'challengeview-ifwins',
-					$userFactory->newFromActorId( $challenge['challengee_actor'] )->getName(),
-					$userFactory->newFromActorId( $challenge['challenger_actor'] )->getName()
+					$challengeeName,
+					$challengerName
 				)->parse() ?></span>
 				<table class="challenge-terms"><tr><td><?php echo htmlspecialchars( $challenge['lose_terms'], ENT_QUOTES ) ?></td></tr></table>
 			</td>
