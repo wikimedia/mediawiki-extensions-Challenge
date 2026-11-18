@@ -2,7 +2,6 @@
 
 use MediaWiki\Html\Html;
 use MediaWiki\SpecialPage\SpecialPage;
-use MediaWiki\Title\Title;
 use MediaWiki\User\UserFactory;
 
 class ChallengeHistory extends SpecialPage {
@@ -81,10 +80,12 @@ class ChallengeHistory extends SpecialPage {
 		$output->addModuleStyles( 'ext.challenge.history' );
 
 		$out = $standings_link = '';
-		if ( $user && !$user->isAnon() ) {
+		$userCond = ( $user && !$user->isAnon() );
+		if ( $userCond ) {
 			$output->setPageTitle(
 				$this->msg( 'challengehistory-users-history', $user->getName() )->escaped()
 			);
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable
 			$out .= $this->displayUserHeader( $user );
 		} else {
 			$output->setPageTitle( $this->msg( 'challengehistory-recentchallenges' )->escaped() );
@@ -116,7 +117,7 @@ class ChallengeHistory extends SpecialPage {
 			</div>
 			<div class=\"challenge-link\">
 				<img src=\"{$spImgPath}challengeIcon.png\" alt=\"\" /> ";
-		if ( $user && !$user->isAnon() ) {
+		if ( $userCond ) {
 			$msg = $this->msg( 'challengehistory-challenge-user', $user->getName() )->text();
 		} else {
 			$msg = $this->msg( 'challengehistory-challenge-someone' )->text();
@@ -125,7 +126,7 @@ class ChallengeHistory extends SpecialPage {
 			$challenge_link,
 			$msg,
 			[],
-			( ( $user && !$user->isAnon() ) ? [ 'user' => $user->getName() ] : [] )
+			( $userCond ? [ 'user' => $user->getName() ] : [] )
 		);
 		$out .= $this->msg( 'word-separator' )->escaped();
 		$out .= "{$standings_link}
@@ -147,7 +148,7 @@ class ChallengeHistory extends SpecialPage {
 
 		$c = new Challenge();
 		$challengeList = $c->getChallengeList(
-			( $user && !$user->isAnon() ) ? $user->getName() : false,
+			$userCond ? $user->getName() : false,
 			$status,
 			$perPage,
 			$page
@@ -166,8 +167,14 @@ class ChallengeHistory extends SpecialPage {
 				$avatar1 = new wAvatar( $challenger->getId(), 's' );
 				$avatar2 = new wAvatar( $challengee->getId(), 's' );
 
-				$title1 = Title::makeTitle( NS_USER, $challenger->getName() );
-				$title2 = Title::makeTitle( NS_USER, $challengee->getName() );
+				$challengerUserPage = $linkRenderer->makeLink(
+					$challenger->getUserPage(),
+					$challenger->getName()
+				);
+				$challengeeUserPage = $linkRenderer->makeLink(
+					$challengee->getUserPage(),
+					$challengee->getName()
+				);
 
 				// F O R M A T T I N G !
 				// Old code used the US date format (DD/MM/YYYY)
@@ -210,20 +217,14 @@ class ChallengeHistory extends SpecialPage {
 					<td class=\"challenge-data challenge-data-description\">";
 				$out .= htmlspecialchars( $challenge['description'], ENT_QUOTES ) . "</td>
 					<td class=\"challenge-data\">{$av1}";
-				$out .= $linkRenderer->makeLink(
-					$title1,
-					$challenger->getName()
-				);
+				$out .= $challengerUserPage;
 				$out .= $this->msg( 'word-separator' )->escaped();
 				if ( $challenge['winner_actor'] == $challenge['challenger_actor'] ) {
 					$out .= $winnerSymbol;
 				}
 				$out .= "</td>
 					<td class=\"challenge-data\">{$av2}";
-				$out .= $linkRenderer->makeLink(
-					$title2,
-					$challengee->getName()
-				);
+				$out .= $challengeeUserPage;
 				$out .= $this->msg( 'word-separator' )->escaped();
 				if ( $challenge['winner_actor'] == $challenge['challengee_actor'] ) {
 					$out .= $winnerSymbol;
