@@ -110,45 +110,7 @@ class ChallengeUser extends SpecialPage {
 			) {
 				$session->set( 'alreadysubmitted', true );
 
-				// Server-side validation for all the params, because JS just isn't enough
-				// (not to mention that no-JS is also a thing...)
-				$requiredFields = [ 'info', 'date', 'description', 'win', 'lose' ];
-				$errors = [];
-				foreach ( $requiredFields as $requiredField ) {
-					if ( $request->getVal( $requiredField ) === '' && $requiredField !== 'date' ) {
-						$errorMsgKey = in_array( $requiredField, [ 'win', 'lose' ] ) ?
-							"challenge-js-{$requiredField}-terms-required" :
-							"challenge-js-{$requiredField}-required";
-						// FIXME: stupid special case hack
-						if ( $requiredField === 'info' ) {
-							$errorMsgKey = 'challenge-js-event-required';
-						}
-						$errors[] = $errorMsgKey;
-					} elseif ( $requiredField === 'date' ) {
-						// Date parsing is slightly more complicated than "is the field non-empty?"...
-						$date = $request->getVal( 'date' );
-
-						// ...but let's start by checking that we have something to begin with
-						if ( !$date || $date === '' ) {
-							$errors[] = 'challenge-js-date-required';
-							continue;
-						}
-
-						// We do? Great.
-						$validator = new ChallengeDateValidator;
-						if ( !$validator->isDate( $date ) ) {
-							// Validator's isDate() is the only method where $validator->error can have
-							// an array length of 3 instead of the more usual 1
-							$errors[] = $validator->error[0];
-						}
-
-						if ( $validator->isFuture( $date ) /*|| $validator->isBackwards( $date )*/ ) {
-							$errors[] = $validator->error[0];
-						}
-
-						// Alright, our date passed validation, great. Let's move on...
-					}
-				}
+				$errors = self::validateChallengeParams( $request );
 
 				// Errors? If any, show 'em and prevent going any further because the Challenge
 				// class' internals will barf in certain cases of invalid input (e.g. invalid date)
@@ -317,6 +279,62 @@ class ChallengeUser extends SpecialPage {
 		$template->set( 'avatar', $avatar );
 
 		return $template->getHTML();
+	}
+
+	/**
+	 * Server-side validation for all the params, because JS just isn't enough
+	 * (not to mention that no-JS is also a thing...).
+	 *
+	 * Public and static so that it can be used from the API module.
+	 *
+	 * @param MediaWiki\Request\WebRequest|array $requestOrParamArray WebRequest in SpecialChallengeUser,
+	 *  array of params when called from ApiChallengeUser
+	 * @return array Array of error message keys in case of errors; empty array on success (all params passed validation)
+	 */
+	public static function validateChallengeParams( $requestOrParamArray ) {
+		$requiredFields = [ 'info', 'date', 'description', 'win', 'lose' ];
+		$errors = [];
+
+		foreach ( $requiredFields as $requiredField ) {
+			$val = is_array( $requestOrParamArray ) ?
+				$requestOrParamArray[$requiredField] : $requestOrParamArray->getVal( $requiredField );
+
+			if ( $val === '' && $requiredField !== 'date' ) {
+				$errorMsgKey = in_array( $requiredField, [ 'win', 'lose' ] ) ?
+					"challenge-js-{$requiredField}-terms-required" :
+					"challenge-js-{$requiredField}-required";
+				// FIXME: stupid special case hack
+				if ( $requiredField === 'info' ) {
+					$errorMsgKey = 'challenge-js-event-required';
+				}
+				$errors[] = $errorMsgKey;
+			} elseif ( $requiredField === 'date' ) {
+				// Date parsing is slightly more complicated than "is the field non-empty?"...
+				$date = $val;
+
+				// ...but let's start by checking that we have something to begin with
+				if ( !$date || $date === '' ) {
+					$errors[] = 'challenge-js-date-required';
+					continue;
+				}
+
+				// We do? Great.
+				$validator = new ChallengeDateValidator;
+				if ( !$validator->isDate( $date ) ) {
+					// Validator's isDate() is the only method where $validator->error can have
+					// an array length of 3 instead of the more usual 1
+					$errors[] = $validator->error[0];
+				}
+
+				if ( $validator->isFuture( $date ) /*|| $validator->isBackwards( $date )*/ ) {
+					$errors[] = $validator->error[0];
+				}
+
+				// Alright, our date passed validation, great. Let's move on...
+			}
+		}
+
+		return $errors;
 	}
 
 	/**
